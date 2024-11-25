@@ -5,14 +5,14 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public struct ItemStack : Hashable {
-    public var materialID:String
-    public var meta:ItemMeta?
-    public var amount:UInt
-    public var durability:UInt
+public protocol ItemStack : Hashable {
+    /// The `Material` identifier of this itemstack.
+    var materialID : String { get }
+    /// The `ItemMeta` of this itemstack.
+    var meta : (any ItemMeta)? { get set }
+    var amount : Int { get set }
+    var durability : Int { get set }
     
-    /// Whether or not two ``ItemStack`` are equal, regardless of amount.
-    func isSimilar(_ item_stack: ItemStack?) -> Bool {
-        return materialID == item_stack?.materialID && (meta == item_stack?.meta)
-    }
+    /// Whether or not the two `ItemStack`s are equal, regardless of amount and durability.
+    func isSimilar(_ itemStack: (any ItemStack)?) -> Bool
 }

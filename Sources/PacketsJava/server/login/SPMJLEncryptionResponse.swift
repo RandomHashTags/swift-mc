@@ -10,13 +10,13 @@ import Packets
 extension ServerPacket.Mojang.Java.Login {
     /// See [Protocol Encryption](https://wiki.vg/Protocol_Encryption) for details. See [Mojang\_API#Player\_Certificates](https://wiki.vg/Mojang_API#Player_Certificates) for an API to get the message signature.
     struct EncryptionResponse : ServerPacketMojangJavaLoginProtocol {
-        public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.encryption_response
+        public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.encryptionResponse
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let shared_secret_length:VariableIntegerJava = try packet.readVarInt()
-            let shared_secret:[UInt8] = try packet.readByteArray(bytes: shared_secret_length)
+            let shared_secret:[UInt8] = try packet.readByteArray(bytes: shared_secret_length.value_int)
             let verifyTokenLength:VariableIntegerJava = try packet.readVarInt()
-            let verifyToken:[UInt8] = try packet.readByteArray(bytes: verifyTokenLength)
+            let verifyToken:[UInt8] = try packet.readByteArray(bytes: verifyTokenLength.value_int)
             return Self(shared_secret_length: shared_secret_length, shared_secret: shared_secret, verifyTokenLength: verifyTokenLength, verifyToken: verifyToken)
         }
         
@@ -27,7 +27,7 @@ extension ServerPacket.Mojang.Java.Login {
         /// Verify Token value, encrypted with the same public key as the shared secret.
         let verifyToken:[UInt8]
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var values:[any PacketEncodableMojangJava] = [shared_secret_length]
             values.append(contentsOf: shared_secret)
             values.append(verifyTokenLength)

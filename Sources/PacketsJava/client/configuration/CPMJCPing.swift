@@ -19,7 +19,7 @@ extension ClientPacket.Mojang.Java.Configuration {
         
         public let id:Int32
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [id]
         }
     }

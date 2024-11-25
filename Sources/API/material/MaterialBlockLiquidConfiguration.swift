@@ -6,34 +6,34 @@
 //
 
 public protocol MaterialBlockLiquidConfiguration : AnyObject, Hashable, ServerTickChangeListener {
-    /// ``World`` name : distance per tick
-    var distances_per_tick : [String:Double] { get set }
+    /// [`World` name : distance per tick]
+    var distancesPerTick : [String : Double] { get set }
 }
 
 public extension MaterialBlockLiquidConfiguration {
-    func serverTPSSlowed(to tps: UInt8, divisor: UInt16) {
+    func serverTPSSlowed(to tps: Int, divisor: Int) {
         let divisor:Double = Double(divisor)
-        for world_name in distances_per_tick.keys {
-            distances_per_tick[world_name]! /= divisor
+        for world_name in distancesPerTick.keys {
+            distancesPerTick[world_name]! /= divisor
         }
     }
-    func serverTPSIncreased(to tps: UInt8, multiplier: UInt16) {
+    func serverTPSIncreased(to tps: Int, multiplier: Int) {
         let multiplier:Double = Double(multiplier)
-        for world_name in distances_per_tick.keys {
-            distances_per_tick[world_name]! *= multiplier
+        for world_name in distancesPerTick.keys {
+            distancesPerTick[world_name]! *= multiplier
         }
     }
 }
 
 public extension MaterialBlockLiquidConfiguration {
     static func == (left: any MaterialBlockLiquidConfiguration, right: any MaterialBlockLiquidConfiguration) -> Bool {
-        return left.distances_per_tick == right.distances_per_tick
+        return left.distancesPerTick == right.distancesPerTick
     }
     static func == (left: Self, right: Self) -> Bool {
-        return left.distances_per_tick == right.distances_per_tick
+        return left.distancesPerTick == right.distancesPerTick
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(distances_per_tick)
+        hasher.combine(distancesPerTick)
     }
 }

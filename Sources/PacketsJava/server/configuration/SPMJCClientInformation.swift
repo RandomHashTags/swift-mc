@@ -10,7 +10,7 @@ import Packets
 extension ServerPacket.Mojang.Java.Configuration {
     /// Sent when the player connects, or when settings are changed.
     struct ClientInformation : ServerPacketMojangJavaConfigurationProtocol {
-        public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.client_information
+        public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.clientInformation
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let locale:String = try packet.readString()
@@ -53,7 +53,7 @@ extension ServerPacket.Mojang.Java.Configuration {
         public let allow_server_listings:Bool
         
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [locale, view_distance, chat_mode, chat_colors, displayed_skin_parts, main_hand, enable_text_filtering, allow_server_listings]
         }
         

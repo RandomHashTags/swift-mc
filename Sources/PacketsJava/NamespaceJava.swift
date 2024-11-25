@@ -7,8 +7,8 @@
 
 import Packets
 
-public struct NamespaceJava : NamespaceProtocol, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix (PacketEncodableMojangJava)
-    public static func decode(from packet: any GeneralPacket) throws -> Self {
+public struct NamespaceJava : Namespace, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix (PacketEncodableMojangJava)
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
         return try (packet as! GeneralPacketMojang).readIdentifier()
     }
     

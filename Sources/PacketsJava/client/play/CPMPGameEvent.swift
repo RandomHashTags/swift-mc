@@ -9,7 +9,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct GameEvent : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.game_event
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.gameEvent
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let event:GameEvent.Event = try packet.readEnum()
@@ -73,7 +73,7 @@ extension ClientPacket.Mojang.Java.Play {
             case enable_respawn_screen
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [event, value]
         }
     }

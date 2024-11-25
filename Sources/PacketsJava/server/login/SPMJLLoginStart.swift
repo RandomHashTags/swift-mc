@@ -10,7 +10,7 @@ import Packets
 
 extension ServerPacket.Mojang.Java.Login {
     struct LoginStart : ServerPacketMojangJavaLoginProtocol {
-        public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.login_start
+        public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.loginStart
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let name:String = try packet.readString()
@@ -23,7 +23,7 @@ extension ServerPacket.Mojang.Java.Login {
         /// The UUID of the player logging in. Unused by the Notchian server.
         public let player_uuid:UUID
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [name, player_uuid]
         }
     }

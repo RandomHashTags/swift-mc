@@ -154,17 +154,17 @@ public enum CommandsJava : String, CaseIterable, Command {
         case .publish:         return DefaultPermissions.publish
         }
     }
-    public var permission_message : String {
+    public var permissionMessage : String {
         return "Unknown or incomplete command, see below for error\n%error%<--[HERE]"
     }
     
     public func execute(_ sender: any CommandSender) {
-        if let permissible:any Permissible = sender as? (any Permissible), !permissible.has_permission(permission.id) {
+        if let permissible:any Permissible = sender as? (any Permissible), !permissible.hasPermission(permission.id) {
             return
         }
     }
     public func get_options(_ sender: any CommandSender, index: Int) -> [String] {
-        if let permissible:any Permissible = sender as? (any Permissible), !permissible.has_permission(permission.id) {
+        if let permissible:any Permissible = sender as? (any Permissible), !permissible.hasPermission(permission.id) {
             return []
         }
         return []
@@ -238,7 +238,7 @@ public enum DefaultPermissions : String, CaseIterable, Permission {
     public var children : Set<String> {
         return []
     }
-    public var default_value : any PermissionDefaultValue {
+    public var defaultValue : any PermissionDefaultValue {
         switch self {
         case .help,
                 .list,

@@ -24,7 +24,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// Affects the amount of items processed; true if shift is down when clicked.
         public let make_all:Bool
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [windowID, recipe, make_all]
         }
     }

@@ -8,21 +8,21 @@
 import Foundation
 import Packets
 
-protocol PacketMojangJava : Packet where IDValue == UInt, Category == PacketCategoryMojangJava, PacketType == GeneralPacketMojang {
+protocol PacketMojangJava : Packet where IDValue == UInt {
     
     associatedtype GameplayID : PacketGameplayID
     
-    static func server_received(_ client: any MinecraftClientHandler) throws
+    static func serverReceived(_ client: any MinecraftClientHandler) throws
     static var packetGameplayID : GameplayID.Type { get }
     
     static var id : GameplayID { get }
     
-    func encoded_values() throws -> [(any PacketEncodableMojangJava)?]
+    func encodedValues() throws -> [(any PacketEncodableMojangJava)?]
 }
 
 extension PacketMojangJava {
-    static func server_received(_ client: any MinecraftClientHandler) throws {
-        //ServerMojang.instance.logger.warning("missing `server_received` static function implementation for PacketMojangJava `\(Self.self)` with id \"\(id)\"")
+    static func serverReceived(_ client: any MinecraftClientHandler) throws {
+        //ServerMojang.instance.logger.warning("missing `serverReceived` static function implementation for PacketMojangJava `\(Self.self)` with id \"\(id)\"")
     }
     
     var platform : PacketPlatform {
@@ -30,7 +30,7 @@ extension PacketMojangJava {
     }
     
     func packetBytes() throws -> [UInt8] {
-        let encodable_bytes:[any PacketEncodableMojangJava] = try encoded_values().compactMap({ $0 })
+        let encodable_bytes:[any PacketEncodableMojangJava] = try encodedValues().compactMap({ $0 })
         return try encodable_bytes.flatMap({ try $0.packetBytes() })
     }
     
@@ -46,5 +46,9 @@ extension PacketMojangJava {
         
         print("PacketMojangJava;as_client_response;id=\(Self.id);packet_id_bytes.count=\(packet_id_bytes.count);data.count=\(data.count);length=\(length)")
         return Data(bytes)
+    }
+
+    func toGeneral() throws -> any GeneralPacket {
+        return try GeneralPacketMojang(bytes: packetBytes())
     }
 }

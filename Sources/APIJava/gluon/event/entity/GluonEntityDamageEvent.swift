@@ -13,7 +13,7 @@ struct GluonEntityDamageEvent : EntityDamageEvent {
     var cause:DamageCause
     var amount:Double
     
-    var will_die : Bool {
+    var willDie : Bool {
         return entity is (any LivingEntity) && (entity as! (any LivingEntity)).health - amount <= 0
     }
     

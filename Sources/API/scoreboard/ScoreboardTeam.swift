@@ -5,14 +5,14 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public struct ScoreboardTeam {
-    public var name:String
-    public var displayName:String
-    public var prefix:String
-    public var suffix:String
+public protocol ScoreboardTeam {
+    var name : String { get }
+    var displayName : String { get }
+    var prefix : String? { get }
+    var suffix : String? { get }
     
-    public var allowsFriendlyFire:Bool
-    public var canSeeFriendlyInvisibles:Bool
+    var allowsFriendlyFire : Bool { get }
+    var canSeeFriendlyInvisibles : Bool { get }
     
-    public var options:[ScoreboardTeamOption:ScoreboardTeamOption.Status]
+    var options : [ScoreboardTeamOption : ScoreboardTeamOption.Status] { get }
 }

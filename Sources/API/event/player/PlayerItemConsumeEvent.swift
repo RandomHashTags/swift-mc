@@ -6,7 +6,7 @@
 //
 
 public protocol PlayerItemConsumeEvent : PlayerEvent, Cancellable {
-    var item : ItemStack { get set }
+    var item : any ItemStack { get set }
     
-    init(player: any Player, item: inout ItemStack)
+    init(player: any Player, item: inout any ItemStack)
 }

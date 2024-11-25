@@ -8,11 +8,11 @@
 struct GluonEntityTeleportEvent : EntityTeleportEvent {
     let type:any EventType = GluonEventType.entity_teleport
     var entity:any Entity
-    var new_location:any Location
+    var newLocation:any Location
     var isCancelled:Bool = false
     
-    init(entity: any Entity, new_location: any Location) {
+    init(entity: any Entity, newLocation: any Location) {
         self.entity = entity
-        self.new_location = new_location
+        self.newLocation = newLocation
     }
 }

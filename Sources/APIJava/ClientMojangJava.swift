@@ -117,27 +117,27 @@ final class ClientMojangJava : MinecraftClientHandler {
             return
         }
         ServerMojang.instance.logger.info("ClientMojangJava;parse_status;packet=\(test)")
-        let ping_request:ServerPacket.Mojang.Java.Status.PingRequest
+        let pingRequest:ServerPacket.Mojang.Java.Status.PingRequest
         switch test {
-        case .ping_request:
-            ping_request = try ServerPacket.Mojang.Java.Status.PingRequest.parse(packet)
+        case .pingRequest:
+            pingRequest = try ServerPacket.Mojang.Java.Status.PingRequest.parse(packet)
             break
-        case .status_request:
-            let status_request:ServerPacket.Mojang.Java.Status.StatusRequest = try ServerPacket.Mojang.Java.Status.StatusRequest.parse(packet)
-            let status_response:ClientPacket.Mojang.Java.Status.StatusResponse = try ClientPacket.Mojang.Java.Status.StatusResponse(
+        case .statusRequest:
+            let statusRequest:ServerPacket.Mojang.Java.Status.StatusRequest = try ServerPacket.Mojang.Java.Status.StatusRequest.parse(packet)
+            let statusResponse:ClientPacket.Mojang.Java.Status.StatusResponse = try ClientPacket.Mojang.Java.Status.StatusResponse(
                 version: protocolVersion,
                 motd: "Test bruh; your Minecraft Protocol Version == \(protocolVersion)",
                 enforces_secure_chat: true,
                 online_players_count: ServerMojang.instance.player_connections.count
             )
-            try sendPacket(status_response)
+            try sendPacket(statusResponse)
             
             packet = try read_packet()
-            ping_request = try ServerPacket.Mojang.Java.Status.PingRequest.parse(packet)
+            pingRequest = try ServerPacket.Mojang.Java.Status.PingRequest.parse(packet)
             break
         }
-        let ping_response:ClientPacket.Mojang.Java.Status.PingResponse = ClientPacket.Mojang.Java.Status.PingResponse(payload: ping_request.payload)
-        try sendPacket(ping_response)
+        let pingResponse:ClientPacket.Mojang.Java.Status.PingResponse = ClientPacket.Mojang.Java.Status.PingResponse(payload: pingRequest.payload)
+        try sendPacket(pingResponse)
         close()
     }
     private func parse_login() throws {
@@ -151,7 +151,7 @@ final class ClientMojangJava : MinecraftClientHandler {
         player_builder = PlayerBuilder(uuid: login_start_packet.player_uuid, name: login_start_packet.name)
         
         switch test {
-        case .login_start:
+        case .loginStart:
             let online_mode:Bool = false
             if online_mode {
                 let publicKey:String = ServerMojang.publicKey
@@ -163,12 +163,12 @@ final class ClientMojangJava : MinecraftClientHandler {
                 let public_key_bytes:[UInt8] = [UInt8](yoink.utf8)
                 
                 let verifyToken:[UInt8] = [UInt8.random(), UInt8.random(), UInt8.random(), UInt8.random()]
-                let encryption_request:ClientPacket.Mojang.Java.Login.EncryptionRequest = ClientPacket.Mojang.Java.Login.EncryptionRequest(
+                let encryptionRequest:ClientPacket.Mojang.Java.Login.EncryptionRequest = ClientPacket.Mojang.Java.Login.EncryptionRequest(
                     serverID: "",
                     publicKey: public_key_bytes,
                     verifyToken: verifyToken
                 )
-                try sendPacket(encryption_request)
+                try sendPacket(encryptionRequest)
                 
                 print("test1")
                 packet = try read_packet()
@@ -188,12 +188,12 @@ final class ClientMojangJava : MinecraftClientHandler {
             }
             state = .configuration
             break
-        case .encryption_response:
+        case .encryptionResponse:
             break
-        case .login_acknowledged:
+        case .loginAcknowledged:
             break
             
-        case .login_plugin_response:
+        case .loginPluginResponse:
             break
         }
     }
@@ -206,27 +206,27 @@ final class ClientMojangJava : MinecraftClientHandler {
         }
         ServerMojang.instance.logger.info("ClientMojangJava;parse_configuration;packet=\(test)")
         switch test {
-        case .client_information:
+        case .clientInformation:
             information = try ServerPacket.Mojang.Java.Configuration.ClientInformation.parse(packet)
             break
         default:
             break
         }
         
-        let finish_configuration:ServerPacket.Mojang.Java.Configuration.FinishConfiguration = ServerPacket.Mojang.Java.Configuration.FinishConfiguration()
-        try sendPacket(finish_configuration)
+        let finishConfiguration:ServerPacket.Mojang.Java.Configuration.FinishConfiguration = ServerPacket.Mojang.Java.Configuration.FinishConfiguration()
+        try sendPacket(finishConfiguration)
         
         state = .play
         let uuid:UUID = player_builder.uuid
         let world:any World = GluonServer.shared.worlds.first!.value
-        let food_data:GluonFoodData = GluonFoodData(food_level: 10, saturation_level: 0, exhaustion_level: 0)
-        let inventory_type:GluonInventoryType = GluonInventoryType(id: "minecraft:player", categories: [], size: 36, material_category_restrictions: [:], material_retrictions: [:], allowed_recipe_ids: [])
+        let foodData:GluonFoodData = GluonFoodData(foodLevel: 10, saturationLevel: 0, exhaustionLevel: 0)
+        let inventory_type:GluonInventoryType = GluonInventoryType(id: "minecraft:player", categories: [], size: 36, material_category_restrictions: [:], materialRestrictions: [:], allowedRecipeIDs: [])
         let inventory:GluonPlayerInventory = GluonPlayerInventory(type: inventory_type, held_item_slot: 0, items: [], viewers: [])
         player = PlayerJava(
             name: player_builder.name,
             experience: 0,
             experienceLevel: 0,
-            food_data: food_data,
+            foodData: foodData,
             permissions: [],
             statistics: [:],
             gameMode: GameMode.survival,
@@ -236,24 +236,24 @@ final class ClientMojangJava : MinecraftClientHandler {
             isSneaking: false,
             isSprinting: false,
             inventory: inventory,
-            can_breathe_underwater: false,
-            can_pickup_items: true,
-            has_ai: false,
-            is_climbing: false,
-            is_collidable: true,
-            is_gliding: false,
-            is_invisible: false,
-            is_leashed: false,
-            is_riptiding: false,
-            is_sleeping: false,
-            is_swimming: false,
-            potion_effects: [:],
-            no_damage_ticks: 0,
-            no_damage_ticks_maximum: 20,
+            canBreatheUnderwater: false,
+            canPickupItems: true,
+            hasAI: false,
+            isClimbing: false,
+            isCollidable: true,
+            isGliding: false,
+            isInvisible: false,
+            isLeashed: false,
+            isRiptiding: false,
+            isSleeping: false,
+            isSwimming: false,
+            potionEffects: [:],
+            noDamageTicks: 0,
+            noDamageTicksMaximum: 20,
             air_remaining: 20,
             air_maximum: 20,
             health: 20,
-            health_maximum: 20,
+            healthMaximum: 20,
             
             id: UInt64.random(),
             uuid: uuid,
@@ -267,12 +267,12 @@ final class ClientMojangJava : MinecraftClientHandler {
             is_on_fire: false,
             is_on_ground: true,
             height: 0,
-            fire_ticks: 0,
-            fire_ticks_maximum: 0,
-            freeze_ticks: 0,
-            freeze_ticks_maximum: 0,
-            passenger_uuids: [],
-            vehicle_uuid: nil
+            fireTicks: 0,
+            fireTicksMaximum: 0,
+            freezeTicks: 0,
+            freezeTicksMaximum: 0,
+            passengerUUIDs: [],
+            vehicleUUID: nil
         )
         ServerMojang.instance.upgrade(uuid: uuid, connection: self)
     }
@@ -284,7 +284,7 @@ final class ClientMojangJava : MinecraftClientHandler {
             return
         }
         ServerMojang.instance.logger.info("ClientMojangJava;parse_play;packet=\(test)")
-        try test.server_received(self)
+        try test.serverReceived(self)
     }
     
     public func sendPacket(_ packet: any PacketMojangJava) throws {

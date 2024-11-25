@@ -26,7 +26,7 @@ extension ServerPacket.Mojang.Java.Play {
         
         public let slot_to_use:VariableIntegerJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [slot_to_use]
         }
     }

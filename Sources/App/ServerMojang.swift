@@ -228,7 +228,7 @@ final class ServerMojangHandler : ChannelInboundHandler {
             break
         case .status:
             let version:MinecraftProtocolVersion.Java = MinecraftProtocolVersion.v1_20_2
-            let status_request:ServerPacketMojangStatusResponse = ServerPacketMojangStatusResponse(
+            let statusRequest:ServerPacketMojangStatusResponse = ServerPacketMojangStatusResponse(
                 version: ServerPacketMojangStatusResponse.Version(name: version.name, protocol: version.rawValue),
                 players: ServerPacketMojangStatusResponse.Players(max: 10, online: 1, sample: [ServerPacketMojangStatusResponse.Player(name: "thinkofdeath", id: UUID("4566e69f-c907-48ee-8d71-d7ba5aa00d20")!)]),
                 description: ChatPacketMojang(text: "Hello world", translate: nil, with: nil, score: nil, bold: nil, italic: nil, underlined: nil, strikethrough: nil, obfuscated: nil, font: nil, color: nil, insertion: nil, clickEvent: nil, hoverEvent: nil, extra: nil),
@@ -237,7 +237,7 @@ final class ServerMojangHandler : ChannelInboundHandler {
                 previewsChat: true
             )
             do {
-                let data:Data = try JSONEncoder().encode(status_request)
+                let data:Data = try JSONEncoder().encode(statusRequest)
                 let string:String = String(data: data, encoding: .utf8)!
                 write(context: context, bytes: try string.packetBytes()) {
                     print("ServerMojang;channelRead;state==.status;write onComplete, reading...")

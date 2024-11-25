@@ -5,11 +5,13 @@
 //  Created by Evan Anderson on 8/6/23.
 //
 
+import Packets
+
 /// An integer between -2147483648 and 2147483647.
 ///
 /// Variable-length data encoding a two's complement signed 32-bit integer.
-public struct VariableIntegerJava : Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
-    public static func decode(from packet: GeneralPacketMojang) throws -> Self {
+public struct VariableIntegerJava : VariableInteger, PacketEncodableMojangJava, PacketDecodableMojangJava {
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
         return try packet.readVarInt()
     }
     

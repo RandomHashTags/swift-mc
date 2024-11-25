@@ -7,13 +7,12 @@
 
 import SwiftStringCatalogs
 
-public struct PotionEffectType : Identifiable, MultilingualName {
-    public let id:String
-    public let name:String
-
-   //public let category:PotionEffectCategory
+public protocol PotionEffectType : Identifiable, MultilingualName {
+    var categoryID : String { get }
 }
 
+// TODO: move to own file
+/*
 public extension PotionEffectType {
     private static func get(_ id: String) -> PotionEffectType {
         return PotionEffectType(id: "minecraft." + id, name: String.init(stringLiteral: id))
@@ -58,4 +57,4 @@ public extension PotionEffectType {
     static let weaving = get("weaving")
     static let windCharged = get("windCharged")
     static let wither = get("wither")
-}
+}*/

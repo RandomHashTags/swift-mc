@@ -7,28 +7,28 @@
 
 /*
 final class GluonLivingEntity : LivingEntity {
-    var can_breathe_underwater:Bool
-    var can_pickup_items:Bool
-    var has_ai:Bool
+    var canBreatheUnderwater:Bool
+    var canPickupItems:Bool
+    var hasAI:Bool
     
-    var is_climbing:Bool
-    var is_collidable:Bool
-    var is_gliding:Bool
-    var is_invisible:Bool
-    var is_leashed:Bool
-    var is_riptiding:Bool
-    var is_sleeping:Bool
-    var is_swimming:Bool
+    var isClimbing:Bool
+    var isCollidable:Bool
+    var isGliding:Bool
+    var isInvisible:Bool
+    var isLeashed:Bool
+    var isRiptiding:Bool
+    var isSleeping:Bool
+    var isSwimming:Bool
     
-    var potion_effects:[String:any PotionEffect]
-    var no_damage_ticks:UInt16
-    var no_damage_ticks_maximum:UInt16
+    var potionEffects:[String:any PotionEffect]
+    var noDamageTicks:UInt16
+    var noDamageTicksMaximum:UInt16
     
-    var air_remaining_ticks:UInt16
-    var air_maximum_ticks:UInt16
+    var airRemainingTicks:UInt16
+    var airMaximumTicks:UInt16
     
     var health:Double
-    var health_maximum:Double
+    var healthMaximum:Double
     
     var id:UInt64
     var uuid:UUID
@@ -53,41 +53,41 @@ final class GluonLivingEntity : LivingEntity {
     
     var height:Float
     
-    var fire_ticks:UInt16
-    var fire_ticks_maximum:UInt16
-    var freeze_ticks:UInt16
-    var freeze_ticks_maximum:UInt16
+    var fireTicks:UInt16
+    var fireTicksMaximum:UInt16
+    var freezeTicks:UInt16
+    var freezeTicksMaximum:UInt16
     
-    var passenger_uuids:Set<UUID>
+    var passengerUUIDs:Set<UUID>
     var passengers : [any Entity] {
-        return GluonServer.shared.getEntities(uuids: passenger_uuids)
+        return GluonServer.shared.getEntities(uuids: passengerUUIDs)
     }
     
-    var vehicle_uuid:UUID?
+    var vehicleUUID:UUID?
     var vehicle : (any Entity)? {
-        guard let uuid:UUID = vehicle_uuid else { return nil }
+        guard let uuid:UUID = vehicleUUID else { return nil }
         return GluonServer.shared.getEntity(uuid: uuid)
     }
     
     init(
-        can_breathe_underwater: Bool,
-        can_pickup_items: Bool,
-        has_ai: Bool,
-        is_climbing: Bool,
-        is_collidable: Bool,
-        is_gliding: Bool,
-        is_invisible: Bool,
-        is_leashed: Bool,
-        is_riptiding: Bool,
-        is_sleeping: Bool,
-        is_swimming: Bool,
-        potion_effects: [String : any PotionEffect],
-        no_damage_ticks: UInt16,
-        no_damage_ticks_maximum: UInt16,
+        canBreatheUnderwater: Bool,
+        canPickupItems: Bool,
+        hasAI: Bool,
+        isClimbing: Bool,
+        isCollidable: Bool,
+        isGliding: Bool,
+        isInvisible: Bool,
+        isLeashed: Bool,
+        isRiptiding: Bool,
+        isSleeping: Bool,
+        isSwimming: Bool,
+        potionEffects: [String : any PotionEffect],
+        noDamageTicks: UInt16,
+        noDamageTicksMaximum: UInt16,
         air_remaining: UInt16,
         air_maximum: UInt16,
         health: Double,
-        health_maximum: Double,
+        healthMaximum: Double,
         id: UInt64,
         uuid: UUID,
         type_id: String,
@@ -103,31 +103,31 @@ final class GluonLivingEntity : LivingEntity {
         is_on_fire: Bool,
         is_on_ground: Bool,
         height: Float,
-        fire_ticks: UInt16,
-        fire_ticks_maximum: UInt16,
-        freeze_ticks: UInt16,
-        freeze_ticks_maximum: UInt16,
-        passenger_uuids: Set<UUID>,
-        vehicle_uuid: UUID? = nil
+        fireTicks: UInt16,
+        fireTicksMaximum: UInt16,
+        freezeTicks: UInt16,
+        freezeTicksMaximum: UInt16,
+        passengerUUIDs: Set<UUID>,
+        vehicleUUID: UUID? = nil
     ) {
-        self.can_breathe_underwater = can_breathe_underwater
-        self.can_pickup_items = can_pickup_items
-        self.has_ai = has_ai
-        self.is_climbing = is_climbing
-        self.is_collidable = is_collidable
-        self.is_gliding = is_gliding
-        self.is_invisible = is_invisible
-        self.is_leashed = is_leashed
-        self.is_riptiding = is_riptiding
-        self.is_sleeping = is_sleeping
-        self.is_swimming = is_swimming
-        self.potion_effects = potion_effects
-        self.no_damage_ticks = no_damage_ticks
-        self.no_damage_ticks_maximum = no_damage_ticks_maximum
-        self.air_remaining_ticks = air_remaining
-        self.air_maximum_ticks = air_maximum
+        self.canBreatheUnderwater = canBreatheUnderwater
+        self.canPickupItems = canPickupItems
+        self.hasAI = hasAI
+        self.isClimbing = isClimbing
+        self.isCollidable = isCollidable
+        self.isGliding = isGliding
+        self.isInvisible = isInvisible
+        self.isLeashed = isLeashed
+        self.isRiptiding = isRiptiding
+        self.isSleeping = isSleeping
+        self.isSwimming = isSwimming
+        self.potionEffects = potionEffects
+        self.noDamageTicks = noDamageTicks
+        self.noDamageTicksMaximum = noDamageTicksMaximum
+        self.airRemainingTicks = air_remaining
+        self.airMaximumTicks = air_maximum
         self.health = health
-        self.health_maximum = health_maximum
+        self.healthMaximum = healthMaximum
         self.id = id
         self.uuid = uuid
         self.type_id = type_id
@@ -143,37 +143,37 @@ final class GluonLivingEntity : LivingEntity {
         self.is_on_fire = is_on_fire
         self.is_on_ground = is_on_ground
         self.height = height
-        self.fire_ticks = fire_ticks
-        self.fire_ticks_maximum = fire_ticks_maximum
-        self.freeze_ticks = freeze_ticks
-        self.freeze_ticks_maximum = freeze_ticks_maximum
-        self.passenger_uuids = passenger_uuids
-        self.vehicle_uuid = vehicle_uuid
+        self.fireTicks = fireTicks
+        self.fireTicksMaximum = fireTicksMaximum
+        self.freezeTicks = freezeTicks
+        self.freezeTicksMaximum = freezeTicksMaximum
+        self.passengerUUIDs = passengerUUIDs
+        self.vehicleUUID = vehicleUUID
     }
     
     /*
     init(from decoder: Decoder) throws {
         let living_entity_container:KeyedDecodingContainer = try decoder.container(keyedBy: LivingEntityCodingKeys.self)
-        self.can_breathe_underwater = try living_entity_container.decode(Bool.self, forKey: .can_breathe_underwater)
-        self.can_pickup_items = try living_entity_container.decode(Bool.self, forKey: .can_pickup_items)
-        self.has_ai = try living_entity_container.decode(Bool.self, forKey: .has_ai)
-        self.is_climbing = try living_entity_container.decode(Bool.self, forKey: .is_climbing)
-        self.is_collidable = try living_entity_container.decode(Bool.self, forKey: .is_collidable)
-        self.is_gliding = try living_entity_container.decode(Bool.self, forKey: .is_gliding)
-        self.is_invisible = try living_entity_container.decode(Bool.self, forKey: .is_invisible)
-        self.is_leashed = try living_entity_container.decode(Bool.self, forKey: .is_leashed)
-        self.is_riptiding = try living_entity_container.decode(Bool.self, forKey: .is_riptiding)
-        self.is_sleeping = try living_entity_container.decode(Bool.self, forKey: .is_sleeping)
-        self.is_swimming = try living_entity_container.decode(Bool.self, forKey: .is_swimming)
-        self.potion_effects = try living_entity_container.decode([String : GluonPotionEffect].self, forKey: .potion_effects)
-        self.no_damage_ticks = try living_entity_container.decode(UInt16.self, forKey: .no_damage_ticks)
-        self.no_damage_ticks_maximum = try living_entity_container.decode(UInt16.self, forKey: .no_damage_ticks_maximum)
+        self.canBreatheUnderwater = try living_entity_container.decode(Bool.self, forKey: .canBreatheUnderwater)
+        self.canPickupItems = try living_entity_container.decode(Bool.self, forKey: .canPickupItems)
+        self.hasAI = try living_entity_container.decode(Bool.self, forKey: .hasAI)
+        self.isClimbing = try living_entity_container.decode(Bool.self, forKey: .isClimbing)
+        self.isCollidable = try living_entity_container.decode(Bool.self, forKey: .isCollidable)
+        self.isGliding = try living_entity_container.decode(Bool.self, forKey: .isGliding)
+        self.isInvisible = try living_entity_container.decode(Bool.self, forKey: .isInvisible)
+        self.isLeashed = try living_entity_container.decode(Bool.self, forKey: .isLeashed)
+        self.isRiptiding = try living_entity_container.decode(Bool.self, forKey: .isRiptiding)
+        self.isSleeping = try living_entity_container.decode(Bool.self, forKey: .isSleeping)
+        self.isSwimming = try living_entity_container.decode(Bool.self, forKey: .isSwimming)
+        self.potionEffects = try living_entity_container.decode([String : GluonPotionEffect].self, forKey: .potionEffects)
+        self.noDamageTicks = try living_entity_container.decode(UInt16.self, forKey: .noDamageTicks)
+        self.noDamageTicksMaximum = try living_entity_container.decode(UInt16.self, forKey: .noDamageTicksMaximum)
         self.air_remaining = try living_entity_container.decode(UInt16.self, forKey: .air_remaining)
         self.air_maximum = try living_entity_container.decode(UInt16.self, forKey: .air_maximum)
         
         let damageable_container:KeyedDecodingContainer = try decoder.container(keyedBy: DamageableCodingKeys.self)
         self.health = try damageable_container.decode(Double.self, forKey: .health)
-        self.health_maximum = try damageable_container.decode(Double.self, forKey: .health_maximum)
+        self.healthMaximum = try damageable_container.decode(Double.self, forKey: .healthMaximum)
         
         let entity_container:KeyedDecodingContainer = try decoder.container(keyedBy: EntityCodingKeys.self)
         self.uuid = try entity_container.decode(UUID.self, forKey: .uuid)
@@ -190,12 +190,12 @@ final class GluonLivingEntity : LivingEntity {
         self.is_on_fire = try entity_container.decode(Bool.self, forKey: .is_on_fire)
         self.is_on_ground = try entity_container.decode(Bool.self, forKey: .is_on_ground)
         self.height = try entity_container.decode(Float.self, forKey: .height)
-        self.fire_ticks = try entity_container.decode(UInt16.self, forKey: .fire_ticks)
-        self.fire_ticks_maximum = try entity_container.decode(UInt16.self, forKey: .fire_ticks_maximum)
-        self.freeze_ticks = try entity_container.decode(UInt16.self, forKey: .freeze_ticks)
-        self.freeze_ticks_maximum = try entity_container.decode(UInt16.self, forKey: .freeze_ticks_maximum)
-        self.passenger_uuids = try entity_container.decode(Set<UUID>.self, forKey: .passenger_uuids)
-        self.vehicle_uuid = try entity_container.decodeIfPresent(UUID.self, forKey: .vehicle_uuid)
+        self.fireTicks = try entity_container.decode(UInt16.self, forKey: .fireTicks)
+        self.fireTicksMaximum = try entity_container.decode(UInt16.self, forKey: .fireTicksMaximum)
+        self.freezeTicks = try entity_container.decode(UInt16.self, forKey: .freezeTicks)
+        self.freezeTicksMaximum = try entity_container.decode(UInt16.self, forKey: .freezeTicksMaximum)
+        self.passengerUUIDs = try entity_container.decode(Set<UUID>.self, forKey: .passengerUUIDs)
+        self.vehicleUUID = try entity_container.decodeIfPresent(UUID.self, forKey: .vehicleUUID)
     }*/
 }
 */

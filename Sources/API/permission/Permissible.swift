@@ -10,7 +10,5 @@ public protocol Permissible : Hashable {
 }
 
 public extension Permissible {
-    func has_permission(_ permission: String) -> Bool {
-        return permissions.contains(permission)
-    }
+    func hasPermission(_ permission: String) -> Bool { permissions.contains(permission) }
 }

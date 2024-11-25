@@ -14,7 +14,7 @@ extension ClientPacket.Mojang.Java.Play {
     ///
     /// The default SMP server increments the time by `20` every second.
     struct UpdateTime : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.update_time
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateTime
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let worldAge:Int64 = try packet.readLong()
@@ -27,7 +27,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// The world (or region) time, in ticks. If negative the sun will stop moving at the Math.abs of the time.
         public let timeOfDay:Int64
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [worldAge, timeOfDay]
         }
     }

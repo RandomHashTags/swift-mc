@@ -39,7 +39,7 @@ extension ServerPacket.Mojang.Java.Play {
             case start_flying_with_elytra
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [entityID, action, jump_boost]
         }
     }

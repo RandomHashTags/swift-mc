@@ -20,7 +20,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// The selected slot in the players current (trading) inventory. (Was a full Integer for the plugin message).
         public let selected_slot:VariableIntegerJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [selected_slot]
         }
     }

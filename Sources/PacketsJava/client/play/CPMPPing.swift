@@ -17,7 +17,7 @@ extension ClientPacket.Mojang.Java.Play {
             return Self(id: id)
         }
         
-        static func server_received(_ client: any MinecraftClientHandler) throws {
+        static func serverReceived(_ client: any MinecraftClientHandler) throws {
             let packet:Self = try client.read_and_parse_mojang_packet()
             let server_response_packet:ServerPacket.Mojang.Java.Play.Pong = ServerPacket.Mojang.Java.Play.Pong(id: packet.id)
             try client.sendPacket(server_response_packet)
@@ -25,7 +25,7 @@ extension ClientPacket.Mojang.Java.Play {
         
         public let id:Int32
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [id]
         }
     }

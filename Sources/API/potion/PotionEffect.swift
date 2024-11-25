@@ -5,32 +5,22 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol PotionEffect : AnyObject, Tickable, Identifiable where ID == String {
+public protocol PotionEffect : AnyObject, Tickable, Identifiable {
     var typeID : String { get }
     var hasIcon : Bool { get set }
     var hasParticles : Bool { get set }
     var isAmbient : Bool { get set }
     
-    var amplifier : UInt16 { get set }
+    var amplifier : Int { get set }
     /// Remaining duration of ticks for this potion effect.
-    var duration : UInt16 { get set }
+    var duration : Int { get set }
 }
 
 public extension PotionEffect {
-    static func == (lhs: any PotionEffect, rhs: any PotionEffect) -> Bool {
-        return lhs.id.elementsEqual(rhs.id) && lhs.hasIcon == rhs.hasIcon && lhs.hasParticles == rhs.hasParticles && lhs.isAmbient == rhs.isAmbient && lhs.amplifier == rhs.amplifier && lhs.duration == rhs.duration
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.combine(amplifier)
-        hasher.combine(duration)
-    }
-    
-    func serverTPSSlowed(to tps: UInt8, divisor: UInt16) {
+    func serverTPSSlowed(to tps: Int, divisor: Int) {
         duration /= divisor
     }
-    func serverTPSIncreased(to tps: UInt8, multiplier: UInt16) {
+    func serverTPSIncreased(to tps: Int, multiplier: Int) {
         duration *= multiplier
     }
 }

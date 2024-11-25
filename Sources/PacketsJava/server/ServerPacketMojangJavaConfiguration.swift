@@ -9,21 +9,21 @@ import Packets
 
 extension ServerPacket.Mojang.Java {
     enum Configuration : UInt8, PacketGameplayID {
-        case client_information
-        case plugin_message
-        case finish_configuration
-        case keep_alive
+        case clientInformation
+        case pluginMessage
+        case finishConfiguration
+        case keepAlive
         case pong
-        case resource_pack_response
+        case resourcePackResponse
         
         var packet : any ServerPacketMojangJavaConfigurationProtocol.Type {
             switch self {
-            case .client_information:     return ServerPacket.Mojang.Java.Configuration.ClientInformation.self
-            case .plugin_message:         return ServerPacket.Mojang.Java.Configuration.PluginMessage.self
-            case .finish_configuration:   return ServerPacket.Mojang.Java.Configuration.FinishConfiguration.self
-            case .keep_alive:             return ServerPacket.Mojang.Java.Configuration.KeepAlive.self
+            case .clientInformation:     return ServerPacket.Mojang.Java.Configuration.ClientInformation.self
+            case .pluginMessage:         return ServerPacket.Mojang.Java.Configuration.PluginMessage.self
+            case .finishConfiguration:   return ServerPacket.Mojang.Java.Configuration.FinishConfiguration.self
+            case .keepAlive:             return ServerPacket.Mojang.Java.Configuration.KeepAlive.self
             case .pong:                   return ServerPacket.Mojang.Java.Configuration.Pong.self
-            case .resource_pack_response: return ServerPacket.Mojang.Java.Configuration.ResourcePackResponse.self
+            case .resourcePackResponse: return ServerPacket.Mojang.Java.Configuration.ResourcePackResponse.self
             }
         }
     }

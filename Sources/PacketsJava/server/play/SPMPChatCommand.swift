@@ -11,14 +11,14 @@ extension ServerPacket.Mojang.Java.Play {
     struct ChatCommand : ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.chat_command
         
-        public static func parse(_ packet: GeneralPacketMojang) throws -> ServerPacket.Mojang.Java.Play.ChatCommand {
+        public static func parse(_ packet: any GeneralPacket) throws -> ServerPacket.Mojang.Java.Play.ChatCommand {
             let command:String = try packet.readString()
             let timestamp:Int64 = try packet.readLong()
             let salt:Int64 = try packet.readLong()
             let array_length:VariableIntegerJava = try packet.readVarInt()
-            let argument_names:[String] = try packet.readStringArray(count: array_length)
+            let argument_names:[String] = try packet.readStringArray(count: array_length.value_int)
             let signature_byte_count:Int = 256
-            let signatures:[[UInt8]] = try packet.readMap(count: array_length, transform: {
+            let signatures:[[UInt8]] = try packet.readMap(count: array_length.value_int, transform: {
                 return try packet.readByteArray(bytes: signature_byte_count)
             })
             let message_count:VariableIntegerJava = try packet.readVarInt()
@@ -41,7 +41,7 @@ extension ServerPacket.Mojang.Java.Play {
         public let message_count:VariableIntegerJava
         public let acknowledged:[UInt8] // TODO: make Fixed BitSet
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[any PacketEncodableMojangJava] = [command, timestamp, salt, array_length]
             array.append(contentsOf: argument_names)
             for signature in signatures {

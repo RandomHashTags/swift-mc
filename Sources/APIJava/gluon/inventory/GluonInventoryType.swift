@@ -10,10 +10,10 @@ struct GluonInventoryType : InventoryType {
     let categories:[String]
     let size:UInt
     let material_category_restrictions:[UInt:Set<String>]?
-    let material_retrictions:[UInt:Set<String>]?
-    let allowed_recipe_ids:Set<String>?
+    let materialRestrictions:[UInt:Set<String>]?
+    let allowedRecipeIDs:Set<String>?
     var allowed_recipes : [any Recipe]? {
-        guard let identifiers:Set<String> = allowed_recipe_ids else { return nil }
+        guard let identifiers:Set<String> = allowedRecipeIDs else { return nil }
         return GluonServer.shared.get_recipes(identifiers: identifiers)
     }
 }

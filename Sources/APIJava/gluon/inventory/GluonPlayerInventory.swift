@@ -13,8 +13,8 @@ struct GluonPlayerInventory : PlayerInventory {
     var leggings:(ItemStack)?
     var boots:(ItemStack)?
     
-    var item_in_main_hand:(ItemStack)?
-    var item_in_off_hand:(ItemStack)?
+    var itemInMainHand:(ItemStack)?
+    var itemInOffHand:(ItemStack)?
     
     var held_item_slot:Int
     

@@ -5,12 +5,11 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public struct BiomeConfiguration : Identifiable, Hashable {
-    public let id:String
-    public let temperature:Float
-    public let temperatureStartingY:Int
-    public let temperatureEndingY:Int
-    public let temperatureDropRate:Float
+public protocol BiomeConfiguration : Identifiable, Hashable {
+    var temperature : Float { get }
+    var temperatureStartingY : Int { get }
+    var temperatureEndingY : Int { get }
+    var temperatureDropRate : Float { get }
     
-    public let downfall:Float
+    var downfall : Float { get }
 }

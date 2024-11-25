@@ -28,26 +28,26 @@ final class GluonItem : Item {
     
     var height:Float
     
-    var fire_ticks:UInt16
-    var fire_ticks_maximum:UInt16
+    var fireTicks:UInt16
+    var fireTicksMaximum:UInt16
     
-    var freeze_ticks:UInt16
-    var freeze_ticks_maximum:UInt16
+    var freezeTicks:UInt16
+    var freezeTicksMaximum:UInt16
     
-    var passenger_uuids:Set<UUID>
+    var passengerUUIDs:Set<UUID>
     var passengers : [any Entity] {
-        return GluonServer.shared.getEntities(uuids: passenger_uuids)
+        return GluonServer.shared.getEntities(uuids: passengerUUIDs)
     }
-    var vehicle_uuid:UUID?
+    var vehicleUUID:UUID?
     var vehicle : (any Entity)? {
-        guard let uuid:UUID = vehicle_uuid else { return nil }
+        guard let uuid:UUID = vehicleUUID else { return nil }
         return GluonServer.shared.getEntity(uuid: uuid)
     }
     
-    var item_stack:ItemStack
-    var pickup_delay:UInt8
+    var itemStack:ItemStack
+    var pickupDelay:UInt8
     
-    init(id: UInt64, uuid: UUID, type_id: String, ticks_lived: UInt64, name: String, customName: String? = nil, displayName: String? = nil, boundaries: [Boundary], location: any Location, velocity: Vector, fallDistance: Float, is_glowing: Bool, is_on_fire: Bool, is_on_ground: Bool, height: Float, fire_ticks: UInt16, fire_ticks_maximum: UInt16, freeze_ticks: UInt16, freeze_ticks_maximum: UInt16, passenger_uuids: Set<UUID>, vehicle_uuid: UUID? = nil, item_stack: ItemStack, pickup_delay: UInt8) {
+    init(id: UInt64, uuid: UUID, type_id: String, ticks_lived: UInt64, name: String, customName: String? = nil, displayName: String? = nil, boundaries: [Boundary], location: any Location, velocity: Vector, fallDistance: Float, is_glowing: Bool, is_on_fire: Bool, is_on_ground: Bool, height: Float, fireTicks: UInt16, fireTicksMaximum: UInt16, freezeTicks: UInt16, freezeTicksMaximum: UInt16, passengerUUIDs: Set<UUID>, vehicleUUID: UUID? = nil, itemStack: ItemStack, pickupDelay: UInt8) {
         self.id = id
         self.uuid = uuid
         self.type_id = type_id
@@ -63,18 +63,18 @@ final class GluonItem : Item {
         self.is_on_fire = is_on_fire
         self.is_on_ground = is_on_ground
         self.height = height
-        self.fire_ticks = fire_ticks
-        self.fire_ticks_maximum = fire_ticks_maximum
-        self.freeze_ticks = freeze_ticks
-        self.freeze_ticks_maximum = freeze_ticks_maximum
-        self.passenger_uuids = passenger_uuids
-        self.vehicle_uuid = vehicle_uuid
-        self.item_stack = item_stack
-        self.pickup_delay = pickup_delay
+        self.fireTicks = fireTicks
+        self.fireTicksMaximum = fireTicksMaximum
+        self.freezeTicks = freezeTicks
+        self.freezeTicksMaximum = freezeTicksMaximum
+        self.passengerUUIDs = passengerUUIDs
+        self.vehicleUUID = vehicleUUID
+        self.itemStack = itemStack
+        self.pickupDelay = pickupDelay
     }
     
     func tick(_ server: any Server) {
-        tick_item(server)
+        tickItem(server)
     }
 }
 */

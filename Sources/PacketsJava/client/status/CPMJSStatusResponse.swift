@@ -10,7 +10,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Status {
     struct StatusResponse : ClientPacketMojangJavaStatusProtocol {
-        public static let id:ClientPacket.Mojang.Java.Status = ClientPacket.Mojang.Java.Status.status_response
+        public static let id:ClientPacket.Mojang.Java.Status = ClientPacket.Mojang.Java.Status.statusResponse
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let json_response:String = try packet.readString()
@@ -24,7 +24,7 @@ extension ClientPacket.Mojang.Java.Status {
             self.json_response = json_response
         }
         init(version: MinecraftProtocolVersion.Java, motd: String, enforces_secure_chat: Bool, online_players_count: Int) throws {
-            let status_request:ServerPacketMojangStatusResponse = ServerPacketMojangStatusResponse(
+            let statusRequest:ServerPacketMojangStatusResponse = ServerPacketMojangStatusResponse(
                 version: ServerPacketMojangStatusResponse.Version(
                     name: version.name,
                     protocol: version.rawValue
@@ -57,14 +57,14 @@ extension ClientPacket.Mojang.Java.Status {
                 enforcesSecureChat: enforces_secure_chat,
                 previewsChat: true
             )
-            let data:Data = try JSONEncoder().encode(status_request)
+            let data:Data = try JSONEncoder().encode(statusRequest)
             guard let string:String = String(data: data, encoding: .utf8) else {
-                throw DecodingError.valueNotFound(String.self, DecodingError.Context.init(codingPath: [], debugDescription: "couldn't convert status_request packet to JSON"))
+                throw DecodingError.valueNotFound(String.self, DecodingError.Context.init(codingPath: [], debugDescription: "couldn't convert statusRequest packet to JSON"))
             }
             json_response = string
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [json_response]
         }
     }

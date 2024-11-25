@@ -5,20 +5,20 @@
 //  Created by Evan Anderson on 3/5/23.
 //
 
-public protocol MaterialItemConsumableConfiguration : AnyObject, ServerTickChangeListener, Identifiable where ID == String {
+public protocol MaterialItemConsumableConfiguration : AnyObject, ServerTickChangeListener, Identifiable {
     /// Amount of ticks required of consuming to consider this item to be consumed.
     var duration : UInt64 { get set }
     
     var nutrition : Int { get }
-    var saturation_modifier : Float { get }
+    var saturationModifier : Float { get }
     var effects : [any PotionEffect] { get }
 }
 
 public extension MaterialItemConsumableConfiguration {
-    func serverTPSSlowed(to tps: UInt8, divisor: UInt16) {
+    func serverTPSSlowed(to tps: Int, divisor: Int) {
         duration /= UInt64(divisor)
     }
-    func serverTPSIncreased(to tps: UInt8, multiplier: UInt16) {
+    func serverTPSIncreased(to tps: Int, multiplier: Int) {
         duration *= UInt64(multiplier)
     }
 }

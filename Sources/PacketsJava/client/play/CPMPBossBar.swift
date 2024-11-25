@@ -10,7 +10,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct BossBar : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.boss_bar
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.bossBar
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let uuid:UUID = try packet.readUUID()
@@ -92,7 +92,7 @@ extension ClientPacket.Mojang.Java.Play {
             case twenty_notches
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [uuid, action]
             let secondary:[(any PacketEncodableMojangJava)?]
             switch action {

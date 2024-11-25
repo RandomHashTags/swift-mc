@@ -22,7 +22,7 @@ extension ServerPacket.Mojang.Java.Play {
         public let command:String
         public let track_output:Bool
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [entityID, command, track_output]
         }
     }

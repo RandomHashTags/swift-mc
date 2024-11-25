@@ -20,7 +20,7 @@ extension ServerPacket.Mojang.Java.Play {
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let hand:UseItemOn.Hand = try packet.readEnum()
-            let location:PositionPacketMojang = try packet.read_packet_decodable()
+            let location:PositionPacketMojang = try packet.readPacket()
             let face:PlayerAction.Face = try packet.readEnum()
             let cursor_position_x:Float = try packet.readFloat()
             let cursor_position_y:Float = try packet.readFloat()
@@ -50,7 +50,7 @@ extension ServerPacket.Mojang.Java.Play {
             case off_hand
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 hand,
                 location,

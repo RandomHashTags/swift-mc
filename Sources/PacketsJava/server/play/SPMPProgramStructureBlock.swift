@@ -15,7 +15,7 @@ extension ServerPacket.Mojang.Java.Play {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.program_structure_block
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let location:PositionPacketMojang = try packet.read_packet_decodable()
+            let location:PositionPacketMojang = try packet.readPacket()
             let action:ProgramStructureBlock.Action = try packet.readEnum()
             let mode:ProgramStructureBlock.Mode = try packet.readEnum()
             let name:String = try packet.readString()
@@ -86,7 +86,7 @@ extension ServerPacket.Mojang.Java.Play {
             case counterclockwise_90
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 location,
                 action,

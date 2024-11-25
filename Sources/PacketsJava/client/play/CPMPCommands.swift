@@ -16,8 +16,8 @@ extension ClientPacket.Mojang.Java.Play {
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let count:VariableIntegerJava = try packet.readVarInt()
-            let nodes:[CommandNodeMojang] = try packet.readMap(count: count) {
-                return try packet.read_packet_decodable()
+            let nodes:[CommandNodeMojang] = try packet.readMap(count: count.value_int) {
+                return try packet.readPacket()
             }
             let root_index:VariableIntegerJava = try packet.readVarInt()
             return Self(count: count, nodes: nodes, root_index: root_index)
@@ -29,7 +29,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// Index of the `root` node in `nodes`.
         public let root_index:VariableIntegerJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [count]
             array.append(contentsOf: nodes)
             array.append(root_index)

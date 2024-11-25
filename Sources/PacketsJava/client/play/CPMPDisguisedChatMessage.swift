@@ -10,7 +10,7 @@ import Packets
 extension ClientPacket.Mojang.Java.Play {
     /// Used to send system chat messages to the client.
     struct DisguisedChatMessage : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.disguised_chat_message
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.disguisedChatMessage
         
         public let message:ChatPacketMojang
         /// The chat message type.
@@ -22,7 +22,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// The target name associated with the chat type. Usually the message target's display name. Only present if previous boolean is true.
         public let target_name:ChatPacketMojang
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 message,
                 chat_type,

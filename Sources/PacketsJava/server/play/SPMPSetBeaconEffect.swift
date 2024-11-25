@@ -27,7 +27,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// A [Potion ID](https://minecraft.gamepedia.com/Data_values#Potions ). (Was a full Integer for the plugin message).
         public let secondary_effect:VariableIntegerJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [has_primary_effect, primary_effect, has_secondary_effect, secondary_effect]
         }
     }

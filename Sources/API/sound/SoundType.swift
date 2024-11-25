@@ -5,14 +5,12 @@
 //  Created by Evan Anderson on 11/26/23.
 //
 
-public protocol SoundType : Identifiable where ID == String {
-    associatedtype SoundEventType : SoundEvent
-    
+public protocol SoundType : Identifiable {
     var volume : Float { get }
     var pitch : Float { get }
-    var sound_break : SoundEventType { get }
-    var sound_step : SoundEventType { get }
-    var sound_place : SoundEventType { get }
-    var sound_hit : SoundEventType { get }
-    var sound_fall : SoundEventType { get }
+    var soundBreak : any SoundEvent { get }
+    var soundStep : any SoundEvent { get }
+    var soundPlace : any SoundEvent { get }
+    var soundHit : any SoundEvent { get }
+    var soundFall : any SoundEvent { get }
 }

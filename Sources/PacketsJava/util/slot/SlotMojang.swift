@@ -39,9 +39,9 @@ public struct SlotMojang : Codable, PacketEncodableMojangJava, PacketDecodableMo
         var array:[UInt8] = try present.packetBytes()
         if present {
             let precondition:String = "present == true"
-            let item_id:VariableIntegerJava = try unwrap_optional(item_id, key_path: \Self.item_id, precondition: precondition)
-            let item_count:Int8 = try unwrap_optional(item_count, key_path: \Self.item_count, precondition: precondition)
-            let nbt:Data = try unwrap_optional(nbt, key_path: \Self.nbt, precondition: precondition)
+            let item_id:VariableIntegerJava = try unwrapOptional(item_id, key_path: \Self.item_id, precondition: precondition)
+            let item_count:Int8 = try unwrapOptional(item_count, key_path: \Self.item_count, precondition: precondition)
+            let nbt:Data = try unwrapOptional(nbt, key_path: \Self.nbt, precondition: precondition)
             array.append(contentsOf: try item_id.packetBytes())
             array.append(contentsOf: try item_count.packetBytes())
             array.append(contentsOf: try nbt.packetBytes())

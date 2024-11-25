@@ -6,6 +6,6 @@
 //
 
 public protocol Tickable : ServerTickChangeListener {
-    /// Logic executed per server tick.
+    /// Logic executed every server tick.
     mutating func tick(_ server: any Server)
 }

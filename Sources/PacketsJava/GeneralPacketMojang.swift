@@ -42,6 +42,7 @@ public final class GeneralPacketMojang : GeneralPacket {
     public static let continue_bit:UInt8 = 0x80
     
     public let length:VariableIntegerJava
+    public var count : Int { length.value_int }
     public let packetID:VariableIntegerJava
     public let data:ArraySlice<UInt8>
     
@@ -69,7 +70,7 @@ public final class GeneralPacketMojang : GeneralPacket {
     /// Minecraft's VarInts are not encoded using Protocol Buffers; it's just similar. If you try to use Protocol Buffers Varints with Minecraft's VarInts, you'll get incorrect results in some cases. The major differences:
     /// - Minecraft's VarInts are all signed, but do not use the ZigZag encoding. Protocol buffers have 3 types of Varints: `uint32` (normal encoding, unsigned), `sint32` (ZigZag encoding, signed), and `int32` (normal encoding, signed). Minecraft's are the `int32` variety. Because Minecraft uses the normal encoding instead of ZigZag encoding, negative values always use the maximum number of bytes.
     /// - Minecraft's VarInts are never longer than 5 bytes and its VarLongs will never be longer than 10 bytes, while Protocol Buffer Varints will always use 10 bytes when encoding negative numbers, even if it's an `int32`.
-    public func readVarInt() throws -> VariableIntegerJava {
+    public func readVarInt<T: VariableInteger>() throws -> T {
         var value:Int32 = 0
         var position:Int = 0
         var current_byte:UInt8 = 0
@@ -86,10 +87,10 @@ public final class GeneralPacketMojang : GeneralPacket {
                 throw GeneralPacketError.varint_is_too_big
             }
         }
-        return VariableIntegerJava(value: value)
+        return VariableIntegerJava(value: value) as! T
     }
     
-    public func readVarLong() throws -> VariableLongJava {
+    public func readVarLong<T: VariableLong>() throws -> T {
         var value:Int64 = 0
         var position:Int = 0
         var current_byte:UInt8 = 0
@@ -106,7 +107,7 @@ public final class GeneralPacketMojang : GeneralPacket {
                 throw GeneralPacketError.varlong_is_too_big
             }
         }
-        return VariableLongJava(value: value)
+        return VariableLongJava(value: value) as! T
     }
     
     private func from_bytes_integer<T : FixedWidthInteger>(bytes: Int) throws -> T {
@@ -187,7 +188,8 @@ public final class GeneralPacketMojang : GeneralPacket {
         return string
     }
     public func readString() throws -> String {
-        let size:Int = try readVarInt().value_int
+        let varint:VariableIntegerJava = try readVarInt()
+        let size:Int = varint.value_int
         return read_string(size: size)
     }
     
@@ -197,14 +199,15 @@ public final class GeneralPacketMojang : GeneralPacket {
         return byte == 1
     }
     
-    public func readAngle() throws -> AngleMojang {
+    public func readAngle<T: Angle>() throws -> T {
         let byte:UInt8 = data[reading_index]
         reading_index += 1
-        return AngleMojang(value: Int(byte))
+        return AngleMojang(value: Int(byte)) as! T
     }
     
-    public func readEnum<T: PacketEncodableMojangJava & RawRepresentable<Int>>() throws -> T {
-        let integer:Int = try readVarInt().value_int
+    public func readEnum<T: PacketEncodable & RawRepresentable<Int>>() throws -> T {
+        let varint:VariableIntegerJava = try readVarInt()
+        let integer:Int = varint.value_int
         guard let value:T = T.init(rawValue: integer) else {
             throw ServerPacketMojangErrors.VarIntEnum.doesnt_exist(type: T.self, id: integer)
         }
@@ -233,8 +236,8 @@ public final class GeneralPacketMojang : GeneralPacket {
     }
     public func readStringArray(count: Int) throws -> [String] {
         return try (0..<count).map({ _ in
-            let size:Int = try readVarInt().value_int
-            return read_string(size: size)
+            let varint:VariableIntegerJava = try readVarInt()
+            return read_string(size: varint.value_int)
         })
     }
     
@@ -245,25 +248,25 @@ public final class GeneralPacketMojang : GeneralPacket {
         return try (0..<count).map({ _ in try transform() })
     }
     
-    public func read_packet_decodable_array<T: PacketDecodableMojangJava>(count: VariableIntegerJava) throws -> [T] {
-        return try read_packet_decodable_array(count: count.value_int)
+    public func readPacketArray<T: PacketDecodable>(count: VariableIntegerJava) throws -> [T] {
+        return try readPacketArray(count: count.value_int)
     }
-    public func read_packet_decodable_array<T: PacketDecodableMojangJava>(count: Int) throws -> [T] {
-        return try (0..<count).map({ _ in try read_packet_decodable() })
+    public func readPacketArray<T: PacketDecodable>(count: Int) throws -> [T] {
+        return try (0..<count).map({ _ in try readPacket() })
     }
-    public func read_packet_decodable<T: PacketDecodableMojangJava>() throws -> T {
+    public func readPacket<T: PacketDecodable>() throws -> T {
         let value:T = try T.decode(from: self)
         reading_index += try value.packetBytes().count
         return value
     }
     
-    public func readIdentifier() throws -> NamespaceJava {
+    public func readIdentifier<T: Namespace>() throws -> T {
         let string:String = try readString()
         let values:[Substring] = string.split(separator: ".")
         guard values.count == 2 else {
             throw GeneralPacketError.namespace_value_length_not_equal
         }
-        return NamespaceJava(identifier: values[0], value: values[1])
+        return NamespaceJava(identifier: values[0], value: values[1]) as! T
     }
     
     public func readUUID() throws -> UUID {
@@ -278,13 +281,14 @@ public final class GeneralPacketMojang : GeneralPacket {
         return UUID(uuid: test)
     }
     
-    public func read_data(bytes: Int) throws -> Data {
+    public func readData(bytes: Int) throws -> Data {
         let array:[UInt8] = try readByteArray(bytes: bytes)
         return Data(array)
     }
     
     public func read_json<T: Decodable>() throws -> T {
-        let size:Int = try readVarInt().value_int
+        let varint:VariableIntegerJava = try readVarInt()
+        let size:Int = varint.value_int
         let bytes:ArraySlice<UInt8> = data[reading_index..<reading_index + size]
         let buffer:Data = Data(bytes)
         let json:T = try JSONDecoder().decode(T.self, from: buffer)

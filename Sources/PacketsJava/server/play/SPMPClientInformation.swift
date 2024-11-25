@@ -21,7 +21,7 @@ extension ServerPacket.Mojang.Java.Play {
     ///
     /// The most significant bit (bit 7, 0x80) appears to be unused.
     struct ClientInformation : ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.client_information
+        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.clientInformation
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let locale:String = try packet.readString()
@@ -61,7 +61,7 @@ extension ServerPacket.Mojang.Java.Play {
             case right
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 locale,
                 view_distance,

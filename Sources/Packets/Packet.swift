@@ -7,22 +7,16 @@
 
 public protocol Packet : Codable, PacketEncodable {
     associatedtype IDValue : Codable
-    associatedtype Category : PacketCategory
-    associatedtype PacketType : GeneralPacket
     
-    static func parse(_ packet: PacketType) throws -> Self
+    static func parse(_ packet: any GeneralPacket) throws -> Self
     
     var platform : PacketPlatform { get }
-    var category : Category { get }
+    var category : any PacketCategory { get }
     
-    func to_general() throws -> PacketType
+    func toGeneral() throws -> any GeneralPacket
 }
 public extension Packet {
-    static func parse(_ packet: PacketType) throws -> Self {
+    static func parse(_ packet: any GeneralPacket) throws -> Self {
         throw GeneralPacketError.not_implemented(packet_type: Self.self)
-    }
-    
-    func to_general() throws -> PacketType {
-        return try PacketType(bytes: packetBytes())
     }
 }

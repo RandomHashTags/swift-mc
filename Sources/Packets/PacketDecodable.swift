@@ -6,6 +6,6 @@
 //
 
 public protocol PacketDecodable : Hashable {
-    static func decode(from packet: any GeneralPacket) throws -> Self
+    static func decode<T: GeneralPacket>(from packet: T) throws -> Self
     func packetBytes() throws -> [UInt8]
 }

@@ -73,21 +73,21 @@ extension ServerPacket.Mojang.Java.Play {
             case off_hand
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[any PacketEncodableMojangJava] = [entityID, type]
             switch type {
             case .interact:
-                let hand:Interact.Hand = try unwrap_optional(hand, key_path: \Self.hand, precondition: "type == .interact")
+                let hand:Interact.Hand = try unwrapOptional(hand, key_path: \Self.hand, precondition: "type == .interact")
                 array.append(hand)
                 break
             case .attack:
                 break
             case .interact_at:
                 let precondition:String = "type == .interact_at"
-                let x:Float = try unwrap_optional(target_x, key_path: \Self.target_x, precondition: precondition)
-                let y:Float = try unwrap_optional(target_y, key_path: \Self.target_y, precondition: precondition)
-                let z:Float = try unwrap_optional(target_z, key_path: \Self.target_z, precondition: precondition)
-                let hand:Interact.Hand = try unwrap_optional(hand, key_path: \Self.hand, precondition: precondition)
+                let x:Float = try unwrapOptional(target_x, key_path: \Self.target_x, precondition: precondition)
+                let y:Float = try unwrapOptional(target_y, key_path: \Self.target_y, precondition: precondition)
+                let z:Float = try unwrapOptional(target_z, key_path: \Self.target_z, precondition: precondition)
+                let hand:Interact.Hand = try unwrapOptional(hand, key_path: \Self.hand, precondition: precondition)
                 array.append(contentsOf: [x, y, z])
                 array.append(hand)
                 break

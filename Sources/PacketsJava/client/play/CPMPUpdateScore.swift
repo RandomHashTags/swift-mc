@@ -10,7 +10,7 @@ import Packets
 extension ClientPacket.Mojang.Java.Play {
     /// This is sent to the client when it should update a scoreboard item.
     struct UpdateScore : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.update_score
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateScore
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let entityName:String = try packet.readString()
@@ -38,10 +38,10 @@ extension ClientPacket.Mojang.Java.Play {
             case remove_item = 1
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [entityName, action, objectiveName]
             if action != .remove_item {
-                let value:VariableIntegerJava = try unwrap_optional(value, key_path: \Self.value, precondition: "action.rawValue != 1")
+                let value:VariableIntegerJava = try unwrapOptional(value, key_path: \Self.value, precondition: "action.rawValue != 1")
                 array.append(value)
             }
             return array

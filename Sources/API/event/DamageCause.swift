@@ -7,25 +7,25 @@
 
 public enum DamageCause : Identifiable {
     case contact
-    case entity_attack(damager: any Entity)
+    case entityAttack(damager: any Entity)
     case projectile(projectile: any Projectile)
     case suffocation
     case fall
     case fire
-    case fire_tick
+    case fireTick
     case melting
     case lava
     case drowning
     case block(block: any Block)
-    case block_explosion(block: any Block)
-    case entity_explosion(entity: any Entity)
+    case blockExplosion(block: any Block)
+    case entityExplosion(entity: any Entity)
     case void
     case lightning
     case suicide
     case starvation
-    case potion_effect(potion_effect: any PotionEffect)
-    case falling_block(block: any Block)
-    case enchantment(enchant: EnchantmentType)
+    case potionEffect(potionEffect: any PotionEffect)
+    case fallingBlock(block: any Block)
+    case enchantment(enchant: any EnchantmentType)
     case cramming
     
     case custom(identifier: String, value: Any? = nil)
@@ -36,7 +36,7 @@ public enum DamageCause : Identifiable {
                 .suffocation,
                 .fall,
                 .fire,
-                .fire_tick,
+                .fireTick,
                 .melting,
                 .lava,
                 .drowning,
@@ -46,20 +46,20 @@ public enum DamageCause : Identifiable {
                 .starvation,
                 .cramming:
             return String(describing: self)
-        case .entity_attack(damager: _):
-            return "entity_attack"
+        case .entityAttack(damager: _):
+            return "entityAttack"
         case .projectile(projectile: _):
             return "projectile"
         case .block(block: _):
             return "block"
-        case .block_explosion(block: _):
-            return "block_explosion"
-        case .entity_explosion(entity: _):
-            return "entity_explosion"
-        case .potion_effect(potion_effect: _):
-            return "potion_effect"
-        case .falling_block(block: _):
-            return "falling_block"
+        case .blockExplosion(block: _):
+            return "blockExplosion"
+        case .entityExplosion(entity: _):
+            return "entityExplosion"
+        case .potionEffect(potionEffect: _):
+            return "potionEffect"
+        case .fallingBlock(block: _):
+            return "fallingBlock"
         case .enchantment(enchant: _):
             return "enchantment"
             

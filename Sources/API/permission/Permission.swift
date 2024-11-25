@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol Permission : Identifiable where ID == String {
+public protocol Permission : Identifiable {
     var children : Set<String> { get }
-    var default_value : any PermissionDefaultValue { get }
+    var defaultValue : any PermissionDefaultValue { get }
 }

@@ -32,9 +32,9 @@ extension ServerPacket.Mojang.Java.Play {
             let button:Int8 = try packet.readByte()
             let mode:ClickContainer.Mode = try packet.readEnum()
             let slots_count:VariableIntegerJava = try packet.readVarInt()
-            let slot_numbers:[Int16] = try packet.read_packet_decodable_array(count: slots_count)
-            let slot_data:[SlotMojang] = try packet.read_packet_decodable_array(count: slots_count)
-            let carried_item:SlotMojang = try packet.read_packet_decodable()
+            let slot_numbers:[Int16] = try packet.readPacketArray(count: slots_count.value_int)
+            let slot_data:[SlotMojang] = try packet.readPacketArray(count: slots_count.value_int)
+            let carried_item:SlotMojang = try packet.readPacket()
             return Self(windowID: windowID, stateID: stateID, slot: slot, button: button, mode: mode, slots_count: slots_count, slot_numbers: slot_numbers, slot_data: slot_data, carried_item: carried_item)
         }
         
@@ -64,7 +64,7 @@ extension ServerPacket.Mojang.Java.Play {
             case other
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[any PacketEncodableMojangJava] = [windowID, stateID, slot, button, mode, slots_count]
             array.append(contentsOf: slot_numbers)
             array.append(contentsOf: slot_data)

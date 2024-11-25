@@ -8,7 +8,7 @@
 public protocol EntityDamageEvent : EntityEventCancellable {
     var cause : DamageCause { get }
     var amount : Double { get set }
-    var will_die : Bool { get }
+    var willDie : Bool { get }
     
     init(entity: any Entity, cause: DamageCause, amount: Double)
 }

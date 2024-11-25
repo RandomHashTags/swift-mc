@@ -23,7 +23,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// UUID of the player to teleport to (can also be an entity UUID).
         public let target_player:UUID
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [target_player]
         }
     }

@@ -6,7 +6,7 @@
 //
 
 public protocol EntityTeleportEvent : EntityEventCancellable {
-    var new_location : any Location { get set }
+    var newLocation : any Location { get set }
     
-    init(entity: any Entity, new_location: any Location)
+    init(entity: any Entity, newLocation: any Location)
 }

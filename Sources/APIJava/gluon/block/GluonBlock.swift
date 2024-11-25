@@ -12,8 +12,8 @@ struct GluonBlock : Block {
         return GluonServer.shared.get_material(identifier: materialID)
     }
     
-    let requires_correct_tool_for_drops:Bool
-    let has_collision:Bool
+    let requiresCorrectToolForDrops:Bool
+    let hasCollision:Bool
     
     let instrument_id:String?
     var instrument : (Instrument)? {
@@ -28,30 +28,30 @@ struct GluonBlock : Block {
     var light_level:UInt8
     var location:any Location
     
-    var growable_age:UInt8?
+    var growableAge:UInt8?
     
-    var loot_table:(LootTable)?
+    var lootTable:(LootTable)?
     
     func tick(_ server: any Server) {
     }
     
     func break_naturally() {
-        guard let loot:[ItemStack] = loot_table?.loot_normal else { return }
+        guard let loot:[ItemStack] = lootTable?.loot_normal else { return }
         let world:any World = location.world
-        let pickup_delay:UInt8 = GluonServer.shared.ticksPerSecond / 2
+        let pickupDelay:UInt8 = GluonServer.shared.ticksPerSecond / 2
         let half:Double = 0.5
         let item_location:any Location = location.advanced_by(x: half, y: half, z: half)
-        for item_stack in loot {
-            /*let item:GluonItem = GluonItem(item_stack: item_stack, pickup_delay: pickup_delay, location: item_location)
-            world.spawn_entity(item)*/
+        for itemStack in loot {
+            /*let item:GluonItem = GluonItem(itemStack: itemStack, pickupDelay: pickupDelay, location: item_location)
+            world.spawnEntity(item)*/
         }
     }
-    func get_breaking_speed(_ item_stack: ItemStack) -> Float {
+    func get_breaking_speed(_ itemStack: ItemStack) -> Float {
        guard let block_configuration:any MaterialBlockConfiguration = material?.configuration.block else {
            return 0
        }
        let hardness:Float = block_configuration.hardness
-       let is_preferred_tool:Bool = block_configuration.preferred_break_material_identifiers?.contains(item_stack.materialID) ?? false
+       let is_preferred_tool:Bool = block_configuration.preferred_break_material_identifiers?.contains(itemStack.materialID) ?? false
        let tool_multiplier:Float, additional_multiplier:Float
        if is_preferred_tool {
            tool_multiplier = 1.5
@@ -67,8 +67,8 @@ struct GluonBlock : Block {
     func get_breaking_speed(_ player: any Player) -> Float {
         var speed_multiplier:Float = 1.0
         
-        let potion_effects:[String:any PotionEffect] = player.potion_effects
-        for (identifier, potion_effect) in potion_effects {
+        let potionEffects:[String:any PotionEffect] = player.potionEffects
+        for (identifier, potionEffect) in potionEffects {
         }
         
         if !player.is_on_ground {

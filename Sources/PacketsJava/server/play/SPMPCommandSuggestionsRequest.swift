@@ -22,7 +22,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// All text behind the cursor without the `/` (e.g. to the left of the cursor in left-to-right languages like English).
         public let text:String
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [transactionID, text]
         }
     }

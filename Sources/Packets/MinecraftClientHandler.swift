@@ -19,5 +19,6 @@ public protocol MinecraftClientHandler : AnyObject, Hashable {
     
     func close()
     
+    func sendPacket(_ packet: any ServerPacketProtocol) throws
     func sendPacketData(_ data: Data) throws
 }

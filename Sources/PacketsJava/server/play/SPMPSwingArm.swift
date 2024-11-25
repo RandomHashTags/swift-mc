@@ -24,7 +24,7 @@ extension ServerPacket.Mojang.Java.Play {
             case off_hand
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [hand]
         }
     }

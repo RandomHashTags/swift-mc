@@ -23,7 +23,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// The ID of the entity to query.
         public let entityID:VariableIntegerJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [transactionID, entityID]
         }
     }

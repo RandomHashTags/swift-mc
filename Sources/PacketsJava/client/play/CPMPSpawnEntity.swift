@@ -11,7 +11,7 @@ import Packets
 extension ClientPacket.Mojang.Java.Play {
     /// Sent by the server when a vehicle or other non-living entity is created.
     struct SpawnEntity : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.spawn_entity
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.spawnEntity
         
         /// A unique integer ID mostly used to identify the entity.
         public let entityID:VariableIntegerJava
@@ -33,7 +33,7 @@ extension ClientPacket.Mojang.Java.Play {
         public let velocityY:Int
         public let velocityZ:Int
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 entityID,
                 entity_uuid,

@@ -19,7 +19,7 @@ extension ServerPacket.Mojang.Java.Play {
         
         public let recipe:NamespaceJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [recipe]
         }
     }

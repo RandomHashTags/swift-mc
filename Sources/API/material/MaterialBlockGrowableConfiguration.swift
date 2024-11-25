@@ -6,6 +6,6 @@
 //
 
 public protocol MaterialBlockGrowableConfiguration {
-    var maximum_age : UInt8 { get }
-    var minimum_light_level_to_grow : UInt8 { get }
+    var maximumAge : UInt8 { get }
+    var minimumLightLevelToGrow : UInt8 { get }
 }

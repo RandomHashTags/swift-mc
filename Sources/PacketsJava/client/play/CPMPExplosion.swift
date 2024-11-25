@@ -21,7 +21,7 @@ extension ClientPacket.Mojang.Java.Play {
             let z:Double = try packet.readDouble()
             let strength:Float = try packet.readFloat()
             let record_count:VariableIntegerJava = try packet.readVarInt()
-            let data:Data = try packet.read_data(bytes: record_count.value_int * 3)
+            let data:Data = try packet.readData(bytes: record_count.value_int * 3)
             let player_motion_x:Float = try packet.readFloat()
             let player_motion_y:Float = try packet.readFloat()
             let player_motion_z:Float = try packet.readFloat()
@@ -45,7 +45,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// Z velocity of the player being pushed by the explosion.
         public let player_motion_z:Float
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 x,
                 y,

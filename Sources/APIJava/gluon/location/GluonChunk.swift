@@ -17,8 +17,8 @@ final class GluonChunk : Chunk {
         let this_chunk:(Int, Int) = (x, z)
         return entities.filter({ $0.location.chunk_coordinates == this_chunk })
     }
-    var living_entities : [any LivingEntity] {
-        let entities:[any LivingEntity] = world.living_entities
+    var livingEntities : [any LivingEntity] {
+        let entities:[any LivingEntity] = world.livingEntities
         let this_chunk:(Int, Int) = (x, z)
         return entities.filter({ $0.location.chunk_coordinates == this_chunk })
     }

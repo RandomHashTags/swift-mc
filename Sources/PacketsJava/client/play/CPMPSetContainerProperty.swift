@@ -10,7 +10,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct SetContainerProperty : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.set_container_property
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setContainerProperty
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let windowID:UInt8 = try packet.readUnsignedByte()
@@ -25,7 +25,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// The new value for the property.
         public let value:Int16
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [windowID, property, value]
         }
     }

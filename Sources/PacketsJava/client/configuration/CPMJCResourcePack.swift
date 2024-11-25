@@ -9,7 +9,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Configuration {
     struct ResourcePack : ClientPacket.Mojang.Java.ConfigurationProtocol {
-        public static let id:ClientPacket.Mojang.Java.Configuration = ClientPacket.Mojang.Java.Configuration.resource_pack
+        public static let id:ClientPacket.Mojang.Java.Configuration = ClientPacket.Mojang.Java.Configuration.resourcePack
         
         /// The URL to the resource pack.
         public let url:String
@@ -23,7 +23,7 @@ extension ClientPacket.Mojang.Java.Configuration {
         /// This is shown in the prompt making the client accept or decline the resource pack.
         public let prompt_message:ChatPacketMojang?
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var values:[(any PacketEncodableMojangJava)?] = [url, hash, forced, has_prompt_message]
             if has_prompt_message {
                 values.append(prompt_message)

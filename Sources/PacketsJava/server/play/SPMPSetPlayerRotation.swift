@@ -50,7 +50,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// True if the client is on the ground, false otherwise.
         public let onGround:Bool
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [yaw, pitch, onGround]
         }
     }

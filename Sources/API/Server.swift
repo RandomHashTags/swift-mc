@@ -31,28 +31,28 @@ public protocol Server : AnyObject, Tickable {
     var bannedPlayers : Set<BanEntry> { get set }
     var bannedIPAddresses : Set<BanEntry> { get set }
     
-    var difficulties : [String : Difficulty] { get set }
+    var difficulties : [String : any Difficulty] { get set }
     var worlds : [String : any World] { get set }
     
     var event_types : [String : EventType] { get set }
     
-    var sound_categories : [String : SoundCategory] { get set }
-    var sounds : [String : Sound] { get set }
-    var materials : [String : Material] { get set }
-    var biomes : [String : Biome] { get set }
-    var enchantment_types : [String : EnchantmentType] { get set }
-    var entity_types : [String : EntityType] { get set }
+    var sound_categories : [String : any SoundCategory] { get set }
+    var sounds : [String : any Sound] { get set }
+    var materials : [String : any Material] { get set }
+    var biomes : [String : any Biome] { get set }
+    var enchantment_types : [String : any EnchantmentType] { get set }
+    var entity_types : [String : any EntityType] { get set }
     var inventory_types : [String : any InventoryType] { get set }
-    var potion_effect_types : [String : PotionEffectType] { get set }
-    var game_modes : [String : GameMode] { get set }
-    var advancements : [String : Advancement] { get set }
-    var art : [String : Art] { get set }
+    var potion_effect_types : [String : any PotionEffectType] { get set }
+    var game_modes : [String : any GameMode] { get set }
+    var advancements : [String : any Advancement] { get set }
+    var art : [String : any Art] { get set }
     var attributes : [String : any Attribute] { get set }
-    var instruments : [String : Instrument] { get set }
+    var instruments : [String : any Instrument] { get set }
     var statistics : [String : any Statistic] { get set }
     var commands : [String : any Command] { get set }
     var permissions : [String : any Permission] { get set }
-    var recipes : [String : Recipe] { get set }
+    var recipes : [String : any Recipe] { get set }
     
     var event_listeners : [String : [any EventListener]] { get set }
     
@@ -61,7 +61,7 @@ public protocol Server : AnyObject, Tickable {
     
     func callEvent(event: some Event)
     
-    func getNearbyEntities(center: any Location, x_radius: Double, y_radius: Double, z_radius: Double) -> [any Entity]
+    func getNearbyEntities(center: any Location, xRadius: Double, yRadius: Double, zRadius: Double) -> [any Entity]
     
     func getEntity(uuid: UUID) -> (any Entity)?
     func getEntities(uuids: Set<UUID>) -> [any Entity]
@@ -85,7 +85,7 @@ public extension Server {
         }
     }
     
-    func serverTPSSlowed(to tps: UInt8, divisor: UInt16) {
+    func serverTPSSlowed(to tps: Int, divisor: Int) {
         gravityPerTick *= Double(divisor)
         voidDamagePerTick *= Double(divisor)
         
@@ -107,7 +107,7 @@ public extension Server {
             world.serverTPSSlowed(to: tps, divisor: divisor)
         }
     }
-    func serverTPSIncreased(to tps: UInt8, multiplier: UInt16) {
+    func serverTPSIncreased(to tps: Int, multiplier: Int) {
         gravityPerTick /= Double(multiplier)
         voidDamagePerTick /= Double(multiplier)
         
@@ -146,7 +146,7 @@ public extension Server {
         event_types[type.id] = type
     }
     
-    func get_entity_type(identifier: String) -> (EntityType)? {
+    func get_entity_type(identifier: String) -> (any EntityType)? {
         return entity_types[identifier]
     }
     func get_world(name: String) -> (any World)? {
@@ -154,54 +154,54 @@ public extension Server {
     }
     
     
-    func get_advancement(id: String) -> (Advancement)? {
+    func get_advancement(id: String) -> (any Advancement)? {
         return advancements[id]
     }
     func get_command(identifier: String) -> (any Command)? {
         return commands[identifier]
     }
-    func get_enchantment_type(identifier: String) -> (EnchantmentType)? {
+    func get_enchantment_type(identifier: String) -> (any EnchantmentType)? {
         return enchantment_types[identifier]
     }
-    func get_game_mode(identifier: String) -> (GameMode)? {
+    func get_game_mode(identifier: String) -> (any GameMode)? {
         return game_modes[identifier]
     }
     func get_inventory_type(identifier: String) -> (any InventoryType)? {
         return inventory_types[identifier]
     }
     
-    func get_material(identifier: String) -> Material? {
+    func get_material(identifier: String) -> (any Material)? {
         return materials[identifier]
     }
-    func get_materials(identifiers: any Collection<String>) -> [Material] {
+    func get_materials(identifiers: any Collection<String>) -> [any Material] {
         return identifiers.compactMap({ materials[$0] })
     }
     
     func get_permission(identifier: String) -> (any Permission)? {
         return permissions[identifier]
     }
-    func get_potion_effect_type(identifier: String) -> (PotionEffectType)? {
+    func get_potion_effect_type(identifier: String) -> (any PotionEffectType)? {
         return potion_effect_types[identifier]
     }
     func get_statistic(identifier: String) -> (any Statistic)? {
         return statistics[identifier]
     }
     
-    func get_recipe(identifier: String) -> Recipe? {
+    func get_recipe(identifier: String) -> (any Recipe)? {
         return recipes[identifier]
     }
-    func get_recipes(identifiers: any Collection<String>) -> [Recipe] {
+    func get_recipes(identifiers: any Collection<String>) -> [any Recipe] {
         return identifiers.compactMap({ recipes[$0] })
     }
     
-    func get_instrument(identifier: String) -> Instrument? {
+    func get_instrument(identifier: String) -> (any Instrument)? {
         return instruments[identifier]
     }
 }
 
 public extension Server {
-    func getNearbyEntities(center: any Location, x_radius: Double, y_radius: Double, z_radius: Double) -> [any Entity] {
-        return center.world.entities.filter({ $0.location.is_nearby(center: center, x_radius: x_radius, y_radius: y_radius, z_radius: z_radius) })
+    func getNearbyEntities(center: any Location, xRadius: Double, yRadius: Double, zRadius: Double) -> [any Entity] {
+        return center.world.entities.filter({ $0.location.is_nearby(center: center, xRadius: xRadius, yRadius: yRadius, zRadius: zRadius) })
     }
     
     func getEntity(uuid: UUID) -> (any Entity)? {
@@ -218,14 +218,14 @@ public extension Server {
     
     func getLivingEntity(uuid: UUID) -> (any LivingEntity)? {
         for world in worlds.values {
-            if let entity:any LivingEntity = world.living_entities.first(where: { $0.uuid == uuid }) {
+            if let entity:any LivingEntity = world.livingEntities.first(where: { $0.uuid == uuid }) {
                 return entity
             }
         }
         return nil
     }
     func getLivingEntities(uuids: Set<UUID>) -> [any LivingEntity] {
-        return worlds.values.flatMap({ $0.living_entities.filter({ uuids.contains($0.uuid) }) })
+        return worlds.values.flatMap({ $0.livingEntities.filter({ uuids.contains($0.uuid) }) })
     }
     
     func getPlayer(uuid: UUID) -> (any Player)? {

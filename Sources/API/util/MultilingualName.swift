@@ -5,8 +5,8 @@
 //  Created by Evan Anderson on 4/23/23.
 //
 
-import SwiftStringCatalogs
+import Foundation
 
 public protocol MultilingualName {
-    var name : String { get }
+    func name(for locale: Locale) -> String?
 }

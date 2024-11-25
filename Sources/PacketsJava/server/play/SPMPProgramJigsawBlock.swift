@@ -13,7 +13,7 @@ extension ServerPacket.Mojang.Java.Play {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.program_jigsaw_block
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let location:PositionPacketMojang = try packet.read_packet_decodable()
+            let location:PositionPacketMojang = try packet.readPacket()
             let name:NamespaceJava = try packet.readIdentifier()
             let target:NamespaceJava = try packet.readIdentifier()
             let pool:NamespaceJava = try packet.readIdentifier()
@@ -32,7 +32,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// `rollable` if the attached piece can be rotated, else `aligned`.
         public let joint_type:String
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [location, name, target, pool, final_state, joint_type]
         }
     }

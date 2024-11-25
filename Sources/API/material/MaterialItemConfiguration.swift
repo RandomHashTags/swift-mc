@@ -7,26 +7,27 @@
 
 public protocol MaterialItemConfiguration {
     /// Maximum amount of the same item that can be stacked in one slot.
-    var item_stack_size_maximum : Int { get }
+    var itemStackSizeMaximum : Int { get }
     
-    /// If the item has durability.
-    var has_durability : Bool { get }
+    /// Whether or not this item has durability.
+    var hasDurability : Bool { get }
     /// The item's maximum durability.
-    var durability : UInt { get }
-    
+    var durability : Int { get }
+
+    /// The item's consumable configuration.
     var consumable : (any MaterialItemConsumableConfiguration)? { get }
     
-    /// Amount of health points this item inflicts to a ``LivingEntity``.
-    var attack_damage : Double { get }
-    /// Amount of durability to reduced this item by when attacking a ``LivingEntity``.
-    var attack_durability_damage : UInt { get }
+    /// Amount of health points this item inflicts to a `LivingEntity`.
+    var attackDamage : Double { get }
+    /// Amount of durability to reduced this item by when attacking a `LivingEntity`.
+    var attackDurabilityDamage : Int { get }
     /// Amount of durability to reduce an item of the material by if the block broken does prefer the item's material.
-    var break_preferred_block_durability_damage : UInt { get }
+    var breakPreferredBlockDurabilityDamage : Int { get }
     /// Amount of durability to reduce an item of this material by if the block broken doesn't prefer the item's material.
-    var break_nonpreferred_block_durability_damage : UInt { get }
+    var break_nonpreferred_block_durability_damage : Int { get }
     
-    /// The ``Material`` identifiers this item can only be placed on.
-    var place_block_whitelist : Set<String>? { get }
-    /// The ``Material`` identifiers this item cannot be placed on.
-    var place_block_blacklist : Set<String>? { get }
+    /// The `Material` identifiers this item can only be placed on.
+    var placeBlockWhitelist : Set<String>? { get }
+    /// The `Material` identifiers this item cannot be placed on.
+    var placeBlockBlacklist : Set<String>? { get }
 }

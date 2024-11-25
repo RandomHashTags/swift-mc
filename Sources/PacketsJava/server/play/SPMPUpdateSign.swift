@@ -15,7 +15,7 @@ extension ServerPacket.Mojang.Java.Play {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.update_sign
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let location:PositionPacketMojang = try packet.read_packet_decodable()
+            let location:PositionPacketMojang = try packet.readPacket()
             let is_front_text:Bool = try packet.readBool()
             let line_1:String = try packet.readString()
             let line_2:String = try packet.readString()
@@ -33,7 +33,7 @@ extension ServerPacket.Mojang.Java.Play {
         public let line_3:String
         public let line_4:String
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 location,
                 is_front_text,

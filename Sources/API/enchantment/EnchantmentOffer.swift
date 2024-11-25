@@ -6,18 +6,11 @@
 //
 
 public protocol EnchantmentOffer : Hashable {
+    /// The `EnchantmentType` identifier of this offer.
     var typeID : String { get }
-    var type : EnchantmentType? { get set }
-    /// The enchantment level of ``EnchantmentType``of this offer.
-    var level : UInt16 { get set }
+    var type : (any EnchantmentType)? { get }
+    /// The level of the enchantment type for this offer.
+    var level : Int { get }
     /// The amount of experience levels this offer costs.
-    var cost : UInt16 { get set }
-}
-
-public extension EnchantmentOffer {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(typeID)
-        hasher.combine(level)
-        hasher.combine(cost)
-    }
+    var cost : Int { get }
 }

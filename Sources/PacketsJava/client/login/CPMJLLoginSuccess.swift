@@ -13,13 +13,13 @@ extension ClientPacket.Mojang.Java.Login {
     /// - Warning: The (notchian) server might take a bit to fully transition to the Play state, so it's recommended to wait for the Login (play) packet from the server.
     /// - Warning: The notchian client doesn't send any packets until the Login (play) packet.
     struct LoginSuccess : ClientPacketMojangJavaLoginProtocol {
-        public static let id:ClientPacket.Mojang.Java.Login = ClientPacket.Mojang.Java.Login.login_success
+        public static let id:ClientPacket.Mojang.Java.Login = ClientPacket.Mojang.Java.Login.loginSuccess
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let uuid:UUID = try packet.readUUID()
             let username:String = try packet.readString()
             let numberOfProperties:VariableIntegerJava = try packet.readVarInt()
-            let properties:[LoginSuccess.Property] = try packet.read_packet_decodable_array(count: numberOfProperties)
+            let properties:[LoginSuccess.Property] = try packet.readPacketArray(count: numberOfProperties.value_int)
             return Self(uuid: uuid, username: username, numberOfProperties: numberOfProperties, properties: properties)
         }
         
@@ -30,7 +30,7 @@ extension ClientPacket.Mojang.Java.Login {
         public let properties:[LoginSuccess.Property]
         
         public struct Property : Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
-            public static func decode(from packet: any GeneralPacket) throws -> Self {
+            public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
                 let name:String = try packet.readString()
                 let value:String = try packet.readString()
                 let is_signed:Bool = try packet.readBool()
@@ -50,14 +50,14 @@ extension ClientPacket.Mojang.Java.Login {
                 array.append(contentsOf: try value.packetBytes())
                 array.append(contentsOf: try is_signed.packetBytes())
                 if is_signed {
-                    let signature:String = try unwrap_optional(signature, key_path: \Self.signature, precondition: "is_signed == true")
+                    let signature:String = try unwrapOptional(signature, key_path: \Self.signature, precondition: "is_signed == true")
                     array.append(contentsOf: try signature.packetBytes())
                 }
                 return array
             }
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [uuid, username, numberOfProperties]
             array.append(contentsOf: properties)
             return array

@@ -12,7 +12,7 @@ extension ClientPacket.Mojang.Java.Play {
     ///
     /// The Notchian client determines how solid to display the warning by comparing to whichever is higher, the warning distance or whichever is lower, the distance from the current diameter to the target diameter or the place the border will be after warningTime seconds.
     struct InitializeWorldBorder : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.initialize_world_border
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.initializeWorldBorder
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let x:Double = try packet.readDouble()
@@ -21,9 +21,9 @@ extension ClientPacket.Mojang.Java.Play {
             let new_diameter:Double = try packet.readDouble()
             let speed:VariableLongJava = try packet.readVarLong()
             let portal_teleport_boundary:VariableIntegerJava = try packet.readVarInt()
-            let warning_blocks:VariableIntegerJava = try packet.readVarInt()
+            let warningBlocks:VariableIntegerJava = try packet.readVarInt()
             let warningTime:VariableIntegerJava = try packet.readVarInt()
-            return Self(x: x, z: z, old_diameter: old_diameter, new_diameter: new_diameter, speed: speed, portal_teleport_boundary: portal_teleport_boundary, warning_blocks: warning_blocks, warningTime: warningTime)
+            return Self(x: x, z: z, old_diameter: old_diameter, new_diameter: new_diameter, speed: speed, portal_teleport_boundary: portal_teleport_boundary, warningBlocks: warningBlocks, warningTime: warningTime)
         }
         
         public let x:Double
@@ -37,11 +37,11 @@ extension ClientPacket.Mojang.Java.Play {
         /// Resulting coordinates from a portal teleport are limited to ±value. Usually 29999984.
         public let portal_teleport_boundary:VariableIntegerJava
         /// In meters.
-        public let warning_blocks:VariableIntegerJava
+        public let warningBlocks:VariableIntegerJava
         /// In seconds as set by `/worldborder warning time`.
         public let warningTime:VariableIntegerJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 x,
                 z,
@@ -49,7 +49,7 @@ extension ClientPacket.Mojang.Java.Play {
                 new_diameter,
                 speed,
                 portal_teleport_boundary,
-                warning_blocks,
+                warningBlocks,
                 warningTime
             ]
         }

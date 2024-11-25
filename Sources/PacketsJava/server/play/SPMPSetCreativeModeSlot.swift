@@ -18,14 +18,14 @@ extension ServerPacket.Mojang.Java.Play {
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let slot:Int16 = try packet.readShort()
-            let clicked_item:SlotMojang = try packet.read_packet_decodable()
+            let clicked_item:SlotMojang = try packet.readPacket()
             return Self(slot: slot, clicked_item: clicked_item)
         }
         
         public let slot:Int16
         public let clicked_item:SlotMojang
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [slot, clicked_item]
         }
     }

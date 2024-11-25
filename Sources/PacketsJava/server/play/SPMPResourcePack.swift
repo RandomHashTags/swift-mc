@@ -9,7 +9,7 @@ import Packets
 
 extension ServerPacket.Mojang.Java.Play {
     struct ResourcePack : ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.resource_pack
+        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.resourcePack
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let result:ResourcePack.Result = try packet.readEnum()
@@ -25,7 +25,7 @@ extension ServerPacket.Mojang.Java.Play {
             case accepted
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [result]
         }
     }

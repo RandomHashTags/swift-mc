@@ -29,27 +29,27 @@ final class GluonEntity : Entity {
     
     var height:Float
     
-    var fire_ticks:UInt16
-    var fire_ticks_maximum:UInt16
+    var fireTicks:UInt16
+    var fireTicksMaximum:UInt16
     
-    var freeze_ticks:UInt16
-    var freeze_ticks_maximum:UInt16
+    var freezeTicks:UInt16
+    var freezeTicksMaximum:UInt16
     
-    var passenger_uuids:Set<UUID>
+    var passengerUUIDs:Set<UUID>
     var passengers : [any Entity] {
-        return GluonServer.shared.getEntities(uuids: passenger_uuids)
+        return GluonServer.shared.getEntities(uuids: passengerUUIDs)
     }
-    var vehicle_uuid:UUID?
+    var vehicleUUID:UUID?
     var vehicle : (any Entity)? {
-        guard let uuid:UUID = vehicle_uuid else { return nil }
+        guard let uuid:UUID = vehicleUUID else { return nil }
         return GluonServer.shared.getEntity(uuid: uuid)
     }
     
     func tick(_ server: any Server) {
-        tick_entity(server)
+        tickEntity(server)
     }
     
-    init(id: UInt64, uuid: UUID, type_id: String, ticks_lived: UInt64, name: String, customName: String? = nil, displayName: String? = nil, boundaries: [Boundary], location: any Location, velocity: Vector, fallDistance: Float, is_glowing: Bool, is_on_fire: Bool, is_on_ground: Bool, height: Float, fire_ticks: UInt16, fire_ticks_maximum: UInt16, freeze_ticks: UInt16, freeze_ticks_maximum: UInt16, passenger_uuids: Set<UUID>, vehicle_uuid: UUID? = nil) {
+    init(id: UInt64, uuid: UUID, type_id: String, ticks_lived: UInt64, name: String, customName: String? = nil, displayName: String? = nil, boundaries: [Boundary], location: any Location, velocity: Vector, fallDistance: Float, is_glowing: Bool, is_on_fire: Bool, is_on_ground: Bool, height: Float, fireTicks: UInt16, fireTicksMaximum: UInt16, freezeTicks: UInt16, freezeTicksMaximum: UInt16, passengerUUIDs: Set<UUID>, vehicleUUID: UUID? = nil) {
         self.id = id
         self.uuid = uuid
         self.type_id = type_id
@@ -65,12 +65,12 @@ final class GluonEntity : Entity {
         self.is_on_fire = is_on_fire
         self.is_on_ground = is_on_ground
         self.height = height
-        self.fire_ticks = fire_ticks
-        self.fire_ticks_maximum = fire_ticks_maximum
-        self.freeze_ticks = freeze_ticks
-        self.freeze_ticks_maximum = freeze_ticks_maximum
-        self.passenger_uuids = passenger_uuids
-        self.vehicle_uuid = vehicle_uuid
+        self.fireTicks = fireTicks
+        self.fireTicksMaximum = fireTicksMaximum
+        self.freezeTicks = freezeTicks
+        self.freezeTicksMaximum = freezeTicksMaximum
+        self.passengerUUIDs = passengerUUIDs
+        self.vehicleUUID = vehicleUUID
     }
     
     /*init(from decoder: Decoder) throws {
@@ -89,12 +89,12 @@ final class GluonEntity : Entity {
         self.is_on_fire = try container.decode(Bool.self, forKey: .is_on_fire)
         self.is_on_ground = try container.decode(Bool.self, forKey: .is_on_ground)
         self.height = try container.decode(Float.self, forKey: .height)
-        self.fire_ticks = try container.decode(UInt16.self, forKey: .fire_ticks)
-        self.fire_ticks_maximum = try container.decode(UInt16.self, forKey: .fire_ticks_maximum)
-        self.freeze_ticks = try container.decode(UInt16.self, forKey: .freeze_ticks)
-        self.freeze_ticks_maximum = try container.decode(UInt16.self, forKey: .freeze_ticks_maximum)
-        self.passenger_uuids = try container.decode(Set<UUID>.self, forKey: .passenger_uuids)
-        self.vehicle_uuid = try container.decodeIfPresent(UUID.self, forKey: .vehicle_uuid)
+        self.fireTicks = try container.decode(UInt16.self, forKey: .fireTicks)
+        self.fireTicksMaximum = try container.decode(UInt16.self, forKey: .fireTicksMaximum)
+        self.freezeTicks = try container.decode(UInt16.self, forKey: .freezeTicks)
+        self.freezeTicksMaximum = try container.decode(UInt16.self, forKey: .freezeTicksMaximum)
+        self.passengerUUIDs = try container.decode(Set<UUID>.self, forKey: .passengerUUIDs)
+        self.vehicleUUID = try container.decodeIfPresent(UUID.self, forKey: .vehicleUUID)
     }*/
 }
 
@@ -107,10 +107,10 @@ extension Entity {
 
 extension GluonEntity {
     func remove() {
-        location.world.remove_entity(self)
+        location.world.removeEntity(self)
     }
     func teleport(_ location: any Location) {
-        let event:GluonEntityTeleportEvent = GluonEntityTeleportEvent(entity: self, new_location: location)
+        let event:GluonEntityTeleportEvent = GluonEntityTeleportEvent(entity: self, newLocation: location)
         GluonServer.shared.callEvent(event: event)
         guard !event.isCancelled else { return }
         self.location = location

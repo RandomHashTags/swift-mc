@@ -19,7 +19,7 @@ extension ServerPacket.Mojang.Java.Play {
         
         public let locked:Bool
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [locked]
         }
     }

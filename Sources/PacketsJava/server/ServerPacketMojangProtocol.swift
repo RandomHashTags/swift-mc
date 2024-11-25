@@ -21,8 +21,8 @@ extension ServerPacketMojangJavaHandshakingProtocol {
     }
 }
 extension ServerPacketMojangJavaHandshakingProtocol {
-    var category : Category {
-        return Category.server_handshaking
+    var category : any PacketCategory {
+        return PacketCategoryMojangJava.serverHandshaking
     }
 }
 
@@ -37,9 +37,7 @@ extension ServerPacketMojangJavaLoginProtocol {
     }
 }
 extension ServerPacketMojangJavaLoginProtocol {
-    var category : Category {
-        return Category.server_login
-    }
+    var category : any PacketCategory { PacketCategoryMojangJava.serverLogin }
 }
 
 // MARK: ServerPacketMojangJavaConfigurationProtocol
@@ -53,9 +51,7 @@ extension ServerPacketMojangJavaConfigurationProtocol {
     }
 }
 extension ServerPacketMojangJavaConfigurationProtocol {
-    var category : Category {
-        return Category.server_configuration
-    }
+    var category : any PacketCategory { PacketCategoryMojangJava.serverConfiguration }
 }
 
 // MARK: ServerPacketMojangJavaPlayProtocol
@@ -69,9 +65,7 @@ extension ServerPacketMojangJavaPlayProtocol {
     }
 }
 extension ServerPacketMojangJavaPlayProtocol {
-    var category : Category {
-        return Category.server_play
-    }
+    var category : any PacketCategory { PacketCategoryMojangJava.serverPlay }
 }
 
 // MARK: ServerPacketMojangJavaStatusProtocol
@@ -85,7 +79,5 @@ extension ServerPacketMojangJavaStatusProtocol {
     }
 }
 extension ServerPacketMojangJavaStatusProtocol {
-    var category : Category {
-        return Category.server_status
-    }
+    var category : any PacketCategory { PacketCategoryMojangJava.serverStatus }
 }

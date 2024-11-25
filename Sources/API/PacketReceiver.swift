@@ -8,5 +8,5 @@
 import Packets
 
 public protocol PacketReceiver {
-    func sendPacket<T : Packet>(_ packet: T) throws
+    func sendPacket(_ packet: any Packet) throws
 }

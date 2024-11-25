@@ -9,11 +9,11 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct SetTitleText : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.set_title_text
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setTitleText
         
         public let text:ChatPacketMojang
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [text]
         }
     }

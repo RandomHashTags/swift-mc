@@ -9,7 +9,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct ChunkBiomes : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.chunk_biomes
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.chunkBiomes
         
         /// Number of elements in `data`.
         public let number_of_chunks:VariableIntegerJava
@@ -34,7 +34,7 @@ extension ClientPacket.Mojang.Java.Play {
             }
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [number_of_chunks]
             array.append(contentsOf: data)
             return array

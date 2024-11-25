@@ -15,7 +15,7 @@ public protocol Chunk : AnyObject, Tickable {
     init(world: any World, x: Int, z: Int)
     
     var entities : [any Entity] { get }
-    var living_entities : [any LivingEntity] { get }
+    var livingEntities : [any LivingEntity] { get }
     var players : [any Player] { get }
     
     func load() async
@@ -26,12 +26,12 @@ public extension Chunk {
     func tick(_ server: Server) {
     }
     
-    func serverTPSSlowed(to tps: UInt8, divisor: UInt16) {
+    func serverTPSSlowed(to tps: Int, divisor: Int) {
         for block in blocks {
             block.serverTPSSlowed(to: tps, divisor: divisor)
         }
     }
-    func serverTPSIncreased(to tps: UInt8, multiplier: UInt16) {
+    func serverTPSIncreased(to tps: Int, multiplier: Int) {
         for block in blocks {
             block.serverTPSIncreased(to: tps, multiplier: multiplier)
         }
@@ -59,8 +59,8 @@ public extension Chunk {
         for index in world.entities.indices {
             world.entities[index].save()
         }
-        for index in world.living_entities.indices {
-            world.living_entities[index].save()
+        for index in world.livingEntities.indices {
+            world.livingEntities[index].save()
         }
         for index in world.players.indices {
             world.players[index].save()
@@ -69,8 +69,8 @@ public extension Chunk {
         for index in world.entities.indices {
             world.entities[index].remove()
         }
-        for index in world.living_entities.indices {
-            world.living_entities[index].remove()
+        for index in world.livingEntities.indices {
+            world.livingEntities[index].remove()
         }
         for index in world.players.indices {
             world.players[index].remove()

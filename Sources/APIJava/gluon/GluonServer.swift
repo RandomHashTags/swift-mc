@@ -90,19 +90,19 @@ final class GluonServer : GluonSharedInstance, Server {
                 name: "overworld",
                 spawn_location: spawn_location,
                 difficulty: DifficultyJava.normal,
-                game_rules: [],
+                gameRules: [],
                 time: 0,
                 border: nil,
-                y_min: -64,
-                y_max: 320,
-                y_sea_level: 100,
-                chunks_loaded: [],
-                allows_animals: true,
-                allows_monsters: true,
-                allows_pvp: true,
-                beds_work: true,
+                yMin: -64,
+                yMax: 320,
+                ySeaLevel: 100,
+                chunksLoaded: [],
+                allowsAnimals: true,
+                allowsMonsters: true,
+                allowsPVP: true,
+                bedsWork: true,
                 entities: [],
-                living_entities: [],
+                livingEntities: [],
                 players: []
             )
         ]
@@ -115,7 +115,7 @@ final class GluonServer : GluonSharedInstance, Server {
         biomes = [:]
         enchantment_types = [:]
         entity_types = [
-            "minecraft.player" : GluonEntityType(id: "minecraft.player", name: "Player", is_affected_by_gravity: true, is_damageable: true, receives_fall_damage: true, no_damage_ticks_maximum: 20, fire_ticks_maximum: 20, freeze_ticks_maximum: 20)
+            "minecraft.player" : GluonEntityType(id: "minecraft.player", name: "Player", is_affected_by_gravity: true, is_damageable: true, receives_fall_damage: true, noDamageTicksMaximum: 20, fireTicksMaximum: 20, freezeTicksMaximum: 20)
         ]
         inventory_types = [:]
         potion_effect_types = [:]
@@ -153,8 +153,8 @@ final class GluonServer : GluonSharedInstance, Server {
             categories: [],
             size: 9,
             material_category_restrictions: nil,
-            material_retrictions: nil,
-            allowed_recipe_ids: nil
+            materialRestrictions: nil,
+            allowedRecipeIDs: nil
         )
         let inventory:GluonPlayerInventory = GluonPlayerInventory(type: inventory_type, held_item_slot: 0, items: [], viewers: [])
         let player_uuid:UUID = UUID()
@@ -164,7 +164,7 @@ final class GluonServer : GluonSharedInstance, Server {
             name: "RandomHashTags",
             experience: 0,
             experienceLevel: 0,
-            food_level: 20,
+            foodLevel: 20,
             permissions: [],
             statistics: [:],
             gameMode: GameModeJava.survival,
@@ -174,24 +174,24 @@ final class GluonServer : GluonSharedInstance, Server {
             isSneaking: false,
             isSprinting: false,
             inventory: inventory,
-            can_breathe_underwater: false,
-            can_pickup_items: true,
-            has_ai: false,
-            is_climbing: false,
-            is_collidable: true,
-            is_gliding: false,
-            is_invisible: false,
-            is_leashed: false,
-            is_riptiding: false,
-            is_sleeping: false,
-            is_swimming: false,
-            potion_effects: [:],
-            no_damage_ticks: 0,
-            no_damage_ticks_maximum: 20,
+            canBreatheUnderwater: false,
+            canPickupItems: true,
+            hasAI: false,
+            isClimbing: false,
+            isCollidable: true,
+            isGliding: false,
+            isInvisible: false,
+            isLeashed: false,
+            isRiptiding: false,
+            isSleeping: false,
+            isSwimming: false,
+            potionEffects: [:],
+            noDamageTicks: 0,
+            noDamageTicksMaximum: 20,
             air_remaining: 20,
             air_maximum: 20,
             health: 20,
-            health_maximum: 20,
+            healthMaximum: 20,
             uuid: player_uuid,
             type_id: "minecraft.player",
             ticks_lived: 0,
@@ -203,14 +203,14 @@ final class GluonServer : GluonSharedInstance, Server {
             is_on_fire: false,
             is_on_ground: false,
             height: 5,
-            fire_ticks: 0,
-            fire_ticks_maximum: 20,
-            freeze_ticks: 0,
-            freeze_ticks_maximum: 20,
-            passenger_uuids: [],
-            vehicle_uuid: nil
+            fireTicks: 0,
+            fireTicksMaximum: 20,
+            freezeTicks: 0,
+            freezeTicksMaximum: 20,
+            passengerUUIDs: [],
+            vehicleUUID: nil
         )
-        worlds["overworld"]!.spawn_player(player)
+        worlds["overworld"]!.spawnPlayer(player)
         callEvent(event: GluonPlayerJoinEvent(player))*/
         
         if !serverIsAwake {

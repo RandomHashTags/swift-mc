@@ -7,7 +7,7 @@
 
 struct GluonMaterialCategory : MaterialCategory {
     let id:String
-    let configuration_id:String
+    let configurationID:String
     var configuration : (any MaterialConfiguration)? {
         return nil // TODO: fix
     }

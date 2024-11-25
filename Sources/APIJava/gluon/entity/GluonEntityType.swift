@@ -16,9 +16,9 @@ final class GluonEntityType : EntityType {
     
     let receives_fall_damage:Bool
     
-    var no_damage_ticks_maximum:UInt16
-    var fire_ticks_maximum:UInt16
-    var freeze_ticks_maximum:UInt16
+    var noDamageTicksMaximum:UInt16
+    var fireTicksMaximum:UInt16
+    var freezeTicksMaximum:UInt16
     
     init(
         id: String,
@@ -26,17 +26,17 @@ final class GluonEntityType : EntityType {
         is_affected_by_gravity: Bool,
         is_damageable: Bool,
         receives_fall_damage: Bool,
-        no_damage_ticks_maximum: UInt16,
-        fire_ticks_maximum: UInt16,
-        freeze_ticks_maximum: UInt16
+        noDamageTicksMaximum: UInt16,
+        fireTicksMaximum: UInt16,
+        freezeTicksMaximum: UInt16
     ) {
         self.id = id
         self.name = name
         self.is_affected_by_gravity = is_affected_by_gravity
         self.is_damageable = is_damageable
         self.receives_fall_damage = receives_fall_damage
-        self.no_damage_ticks_maximum = no_damage_ticks_maximum
-        self.fire_ticks_maximum = fire_ticks_maximum
-        self.freeze_ticks_maximum = freeze_ticks_maximum
+        self.noDamageTicksMaximum = noDamageTicksMaximum
+        self.fireTicksMaximum = fireTicksMaximum
+        self.freezeTicksMaximum = freezeTicksMaximum
     }
 }

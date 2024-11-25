@@ -7,11 +7,11 @@
 
 import Foundation
 
-public struct BanEntry : Hashable {
-    /// the ``Player``'s UUID that banned `target`
-    public let bannedBy:UUID
-    public let target:String
-    public let banTime:Date
-    public let expiration:Date?
-    public let reason:String?
+public protocol BanEntry : Hashable {
+    /// The UUID that banned `target`. `nil` = console
+    var bannedBy : UUID? { get }
+    var target : String { get }
+    var banTime : Date { get }
+    var expiration : Date? { get }
+    var reason : String? { get }
 }

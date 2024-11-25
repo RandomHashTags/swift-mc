@@ -6,13 +6,9 @@
 //
 
 import Foundation
-import SwiftStringCatalogs
 
-public struct Advancement : Identifiable, MultilingualName {
-    public let id:String
-    public let name:String
-    
-    public let description:String
-    public let criteria:[String]
-    public var done:Date?
+public protocol Advancement : Identifiable, MultilingualName {    
+    var description : String { get }
+    var criteria : [String] { get }
+    var completed : Date? { get }
 }

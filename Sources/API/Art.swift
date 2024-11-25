@@ -5,11 +5,9 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public struct Art : Identifiable {
-    public let id:String
-    
-    /// measured in blocks
-    public let width : UInt
-    /// measured in blocks
-    public let height:UInt
+public protocol Art : Identifiable {
+    /// Measured in blocks.
+    var width : Int { get }
+    /// Measured in blocks.
+    var height : Int { get }
 }

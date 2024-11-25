@@ -5,12 +5,10 @@
 //  Created by Evan Anderson on 8/6/23.
 //
 
+import Packets
+
 /// A rotation angle in steps of 1/256 of a full turn
-public struct AngleMojang : Codable, PacketEncodableMojangJava {
+public struct AngleMojang : Angle, PacketEncodableMojangJava {
     /// Whether or not this is signed does not matter, since the resulting angles are the same.
     public let value:Int
-    
-    public func packetBytes() throws -> [UInt8] {
-        return [UInt8(value)]
-    }
 }

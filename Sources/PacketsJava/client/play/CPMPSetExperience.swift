@@ -9,7 +9,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct SetExperience : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.set_experience
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setExperience
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let experienceBar:Float = try packet.readFloat()
@@ -24,7 +24,7 @@ extension ClientPacket.Mojang.Java.Play {
         public let totalExperience:VariableIntegerJava
         public let level:VariableIntegerJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [experienceBar, totalExperience, level]
         }
     }

@@ -5,25 +5,20 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-import SwiftStringCatalogs
+public protocol GameMode : Identifiable, MultilingualName {
+    /// The `InventoryClickType` identifiers not allowed for this game mode.
+    var disallowedInventoryClickTypes : Set<String> { get }
 
-public struct GameMode : Identifiable, MultilingualName {
-    public let id:String
-    public let name:String
+    var allowsFlight : Bool { get }
 
-    /// The ``InventoryClickType`` ids not allowed for this game mode.
-    let disallowedInventoryClickTypes:Set<String>
+    var canBreakBlocks : Bool { get }
+    var canBreatheUnderwater : Bool { get }
+    var canPickupItems : Bool { get }
+    var canPlaceBlocks : Bool { get }
 
-    public let allowsFlight:Bool
-
-    public let canBreakBlocks:Bool
-    public let canBreatheUnderwater:Bool
-    public let canPickupItems:Bool
-    public let canPlaceBlocks:Bool
-
-    public let isAffectedByGravity:Bool
-    public let isDamageable:Bool
-    public let isInvisible:Bool
+    var isAffectedByGravity : Bool { get }
+    var isDamageable : Bool { get }
+    var isInvisible : Bool { get }
     
-    public let losesHunger:Bool
+    var losesHunger : Bool { get }
 }

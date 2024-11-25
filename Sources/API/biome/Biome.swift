@@ -5,10 +5,11 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public struct Biome : Identifiable {
-    public let id:String
+public protocol Biome : Identifiable {
 }
 
+// TODO: move to own file
+/*
 public extension Biome {
     private static func get(_ id: String) -> Biome {
         return Biome(id: "minecraft." + id)
@@ -78,4 +79,4 @@ public extension Biome {
     static let windsweptHills = get("windsweptHills")
     static let windsweptSavanna = get("windsweptSavanna")
     static let woodedBadlands = get("woodedBadlands")
-}
+}*/

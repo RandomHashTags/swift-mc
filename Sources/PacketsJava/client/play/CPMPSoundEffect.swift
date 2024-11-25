@@ -11,7 +11,7 @@ extension ClientPacket.Mojang.Java.Play {
     /// Plays a sound effect at the given location, either by hardcoded ID or Identifier. Sound IDs and names can be found at https://pokechu22.github.io/Burger/1.20.1.html#sounds .
     /// - Warning: Numeric sound effect IDs are liable to change between versions
     struct SoundEffect : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.sound_effect
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.soundEffect
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let soundID:VariableIntegerJava = try packet.readVarInt()
@@ -25,7 +25,7 @@ extension ClientPacket.Mojang.Java.Play {
                     range = try packet.readFloat()
                 }
             }
-            let soundCategory:SoundCategory = try packet.readEnum()
+            let soundCategory:SoundCategoryJava = try packet.readEnum()
             let effect_position_x:Int32 = try packet.readInt()
             let effect_position_y:Int32 = try packet.readInt()
             let effect_position_z:Int32 = try packet.readInt()
@@ -44,7 +44,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// The fixed range of the sound. Only present if `hasFixedRange` is true and `soundID` is 0.
         public let range:Float?
         /// The category that this sound will be played from.
-        public let soundCategory:SoundCategory
+        public let soundCategory:SoundCategoryJava
         /// Effect X multiplied by 8 (fixed-point number with only 3 bits dedicated to the fractional part).
         public let effect_position_x:Int32
         /// Effect X multiplied by 8 (fixed-point number with only 3 bits dedicated to the fractional part).
@@ -58,7 +58,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// Seed used to pick sound variant.
         public let seed:Int64
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [soundID]
             if soundID.value == 0 {
                 array.append(soundName)

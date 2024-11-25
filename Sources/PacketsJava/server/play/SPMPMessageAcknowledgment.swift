@@ -18,7 +18,7 @@ extension ServerPacket.Mojang.Java.Play {
         
         public let message_count:VariableIntegerJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [message_count]
         }
     }

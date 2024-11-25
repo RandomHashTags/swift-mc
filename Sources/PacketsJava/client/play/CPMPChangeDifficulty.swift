@@ -10,7 +10,7 @@ import Packets
 extension ClientPacket.Mojang.Java.Play {
     /// Changes the difficulty setting in the client's option menu.
     struct ChangeDifficulty : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.change_difficulty
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.changeDifficulty
         
         public let difficulty:ChangeDifficulty.Difficulty
         public let difficulty_locked:Bool
@@ -22,7 +22,7 @@ extension ClientPacket.Mojang.Java.Play {
             case hard
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [difficulty, difficulty_locked]
         }
     }

@@ -14,7 +14,7 @@ extension ClientPacket.Mojang.Java.Login {
     ///
     /// In Notchian client, the maximum data length is 1048576 bytes.
     struct LoginPluginRequest : ClientPacketMojangJavaLoginProtocol {
-        public static let id:ClientPacket.Mojang.Java.Login = ClientPacket.Mojang.Java.Login.login_plugin_request
+        public static let id:ClientPacket.Mojang.Java.Login = ClientPacket.Mojang.Java.Login.loginPluginRequest
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let message_id:VariableIntegerJava = try packet.readVarInt()
@@ -27,7 +27,7 @@ extension ClientPacket.Mojang.Java.Login {
         public let channel:NamespaceJava
         public let data:[UInt8]
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [message_id, channel]
             array.append(contentsOf: data)
             return array

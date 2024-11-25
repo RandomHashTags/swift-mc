@@ -6,19 +6,19 @@
 //
 
 struct GluonFoodData : FoodData {
-    var food_level:Int
-    var saturation_level:Float
-    var exhaustion_level:Float
+    var foodLevel:Int
+    var saturationLevel:Float
+    var exhaustionLevel:Float
     
     mutating func tick(_ server: Server) {
         // TODO: fix
     }
     
-    mutating func serverTPSSlowed(to tps: UInt8, divisor: UInt16) {
+    mutating func serverTPSSlowed(to tps: Int, divisor: Int) {
         // TODO: fix
     }
     
-    mutating func serverTPSIncreased(to tps: UInt8, multiplier: UInt16) {
+    mutating func serverTPSIncreased(to tps: Int, multiplier: Int) {
         // TODO: fix
     }
 }

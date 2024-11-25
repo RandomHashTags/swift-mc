@@ -5,6 +5,6 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public struct Boundary {
-    public let type:BoundaryType
+public protocol Boundary {
+    var type : any BoundaryType { get }
 }

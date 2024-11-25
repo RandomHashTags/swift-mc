@@ -6,5 +6,5 @@
 //
 
 public protocol PlayerGameModeChangeEvent : PlayerEventCancellable {
-    var new_game_mode : GameMode { get set }
+    var newGameMode : any GameMode { get set }
 }

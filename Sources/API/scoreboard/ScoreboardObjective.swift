@@ -5,8 +5,8 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public struct ScoreboardObjective {
-    public var name:String
-    public var displayName:String
-    public var criteria:String
+public protocol ScoreboardObjective {
+    var name : String { get }
+    var displayName : String { get }
+    var criteria : String { get }
 }

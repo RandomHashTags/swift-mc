@@ -10,11 +10,11 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct UpdateRecipes : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.update_recipes
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateRecipes
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let count:VariableIntegerJava = try packet.readVarInt()
-            let recipes:[UpdateRecipes.UpdateRecipe] = try packet.readMap(count: count) {
+            let recipes:[UpdateRecipes.UpdateRecipe] = try packet.readMap(count: count.value_int) {
                 let identifier:NamespaceJava = try packet.readIdentifier()
                 let recipeID:NamespaceJava = try packet.readIdentifier()
                 let data:Data = Data() // TODO: fix
@@ -41,7 +41,7 @@ extension ClientPacket.Mojang.Java.Play {
             }
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [count]
             array.append(contentsOf: recipes)
             return array

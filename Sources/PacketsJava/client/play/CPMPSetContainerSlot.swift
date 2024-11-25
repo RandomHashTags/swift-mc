@@ -14,13 +14,13 @@ extension ClientPacket.Mojang.Java.Play {
     ///
     /// This packet can only be used to edit the hotbar and offhand of the player's inventory if window ID is set to 0 (slots 36 through 45) if the player is in creative, with their inventory open, and not in their survival inventory tab. Otherwise, when window ID is 0, it can edit any slot in the player's inventory. If the window ID is set to -2, then any slot in the inventory can be used but no add item animation will be played.
     struct SetContainerSlot : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.set_container_slot
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setContainerSlot
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let windowID:Int8 = try packet.readByte()
             let stateID:VariableIntegerJava = try packet.readVarInt()
             let slot:Int16 = try packet.readShort()
-            let slot_data:SlotMojang = try packet.read_packet_decodable()
+            let slot_data:SlotMojang = try packet.readPacket()
             return Self(windowID: windowID, stateID: stateID, slot: slot, slot_data: slot_data)
         }
         
@@ -33,7 +33,7 @@ extension ClientPacket.Mojang.Java.Play {
         public let slot:Int16
         public let slot_data:SlotMojang
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 windowID,
                 stateID,

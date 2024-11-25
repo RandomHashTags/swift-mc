@@ -11,11 +11,7 @@ public protocol Nameable {
     var displayName : String? { get set }
 }
 public extension Nameable {
-    var hasCustomName : Bool {
-        return customName != nil
-    }
+    var hasCustomName : Bool { customName != nil }
     
-    var displayName : String? {
-        return nil
-    }
+    var displayName : String? { nil }
 }

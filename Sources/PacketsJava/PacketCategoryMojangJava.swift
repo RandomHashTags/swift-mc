@@ -8,17 +8,17 @@
 import Packets
 
 public enum PacketCategoryMojangJava : PacketCategory {
-    case client_handshaking
-    case client_login
-    case client_configuration
-    case client_play
-    case client_status
+    case clientHandshaking
+    case clientLogin
+    case clientConfiguration
+    case clientPlay
+    case clientStatus
     
-    case server_handshaking
-    case server_login
-    case server_configuration
-    case server_play
-    case server_status
+    case serverHandshaking
+    case serverLogin
+    case serverConfiguration
+    case serverPlay
+    case serverStatus
     
     /// the associated packet is meant to be a placeholder for something
     case middleware

@@ -6,6 +6,6 @@
 //
 
 public protocol ServerTickChangeListener {
-    mutating func serverTPSSlowed(to tps: UInt8, divisor: UInt16)
-    mutating func serverTPSIncreased(to tps: UInt8, multiplier: UInt16)
+    mutating func serverTPSSlowed(to tps: Int, divisor: Int)
+    mutating func serverTPSIncreased(to tps: Int, multiplier: Int)
 }

@@ -10,7 +10,7 @@ import Packets
 extension ClientPacket.Mojang.Java.Play {
     /// This packet is used exclusively for opening the horse GUI. Open Screen is used for all other GUIs. The client will not open the inventory if the Entity ID does not point to an horse-like animal.
     struct OpenHorseScreen : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.open_horse_screen
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.openHorseScreen
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let windowID:UInt8 = try packet.readUnsignedByte()
@@ -23,7 +23,7 @@ extension ClientPacket.Mojang.Java.Play {
         public let slotCount:VariableIntegerJava
         public let entityID:Int32
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [windowID, slotCount, entityID]
         }
     }

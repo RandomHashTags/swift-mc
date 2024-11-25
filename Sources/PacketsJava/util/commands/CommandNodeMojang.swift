@@ -9,10 +9,10 @@ import Foundation
 import Packets
 
 public struct CommandNodeMojang : Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
-    public static func decode(from packet: any GeneralPacket) throws -> Self {
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
         let flags:Int8 = try packet.readByte()
         let children_count:VariableIntegerJava = try packet.readVarInt()
-        let children:[VariableIntegerJava] = try packet.readMap(count: children_count) {
+        let children:[VariableIntegerJava] = try packet.readMap(count: children_count.value_int) {
             return try packet.readVarInt()
         }
         let redirect_node:VariableIntegerJava?
@@ -70,7 +70,7 @@ public struct CommandNodeMojang : Codable, PacketEncodableMojangJava, PacketDeco
             array.append(contentsOf: try child.packetBytes())
         }
         if (flags & 0x08) != 0 {
-            let redirect_node:VariableIntegerJava = try unwrap_optional(redirect_node, key_path: \Self.redirect_node, precondition: "(flags & 0x08) != 0")
+            let redirect_node:VariableIntegerJava = try unwrapOptional(redirect_node, key_path: \Self.redirect_node, precondition: "(flags & 0x08) != 0")
             array.append(contentsOf: try redirect_node.packetBytes())
         }
         return array
@@ -134,7 +134,7 @@ public struct CommandNodeMojang : Codable, PacketEncodableMojangJava, PacketDeco
                 public let min:Swift.Double?
                 public let max:Swift.Double?
                 
-                public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+                public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
                     var array:[(any PacketEncodableMojangJava)?] = [flags]
                     if (flags & 0x01) != 0 {
                         array.append(min)
@@ -150,10 +150,10 @@ public struct CommandNodeMojang : Codable, PacketEncodableMojangJava, PacketDeco
 }
 
 public protocol CommandNodeMojangProperty : Codable, PacketEncodableMojangJava {
-    func encoded_values() throws -> [(any PacketEncodableMojangJava)?]
+    func encodedValues() throws -> [(any PacketEncodableMojangJava)?]
 }
 public extension CommandNodeMojangProperty {
     func packetBytes() throws -> [UInt8] {
-        return try encoded_values().compactMap({ $0 }).map({ try $0.packetBytes() }).flatMap({ $0 })
+        return try encodedValues().compactMap({ $0 }).map({ try $0.packetBytes() }).flatMap({ $0 })
     }
 }

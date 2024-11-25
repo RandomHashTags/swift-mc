@@ -12,7 +12,7 @@ final class GluonPlayer : Player {
     
     var experience:UInt64
     var experienceLevel:UInt64
-    var food_data:any FoodData
+    var foodData:any FoodData
     
     var permissions:Set<String>
     var statistics:[String : any StatisticActive]
@@ -27,29 +27,29 @@ final class GluonPlayer : Player {
     
     var inventory:any PlayerInventory
     
-    var can_breathe_underwater:Bool
-    var can_pickup_items:Bool
-    var has_ai:Bool
+    var canBreatheUnderwater:Bool
+    var canPickupItems:Bool
+    var hasAI:Bool
     
-    var is_climbing:Bool
-    var is_collidable:Bool
-    var is_gliding:Bool
-    var is_invisible:Bool
-    var is_leashed:Bool
-    var is_riptiding:Bool
-    var is_sleeping:Bool
-    var is_swimming:Bool
+    var isClimbing:Bool
+    var isCollidable:Bool
+    var isGliding:Bool
+    var isInvisible:Bool
+    var isLeashed:Bool
+    var isRiptiding:Bool
+    var isSleeping:Bool
+    var isSwimming:Bool
     
-    var potion_effects:[String:any PotionEffect]
+    var potionEffects:[String:any PotionEffect]
     
-    var no_damage_ticks:UInt16
-    var no_damage_ticks_maximum:UInt16
+    var noDamageTicks:UInt16
+    var noDamageTicksMaximum:UInt16
     
-    var air_remaining_ticks:UInt16
-    var air_maximum_ticks:UInt16
+    var airRemainingTicks:UInt16
+    var airMaximumTicks:UInt16
     
     var health:Double
-    var health_maximum:Double
+    var healthMaximum:Double
     
     var id:UInt64
     var uuid:UUID
@@ -73,26 +73,26 @@ final class GluonPlayer : Player {
     
     var height:Float
     
-    var fire_ticks:UInt16
-    var fire_ticks_maximum:UInt16
+    var fireTicks:UInt16
+    var fireTicksMaximum:UInt16
     
-    var freeze_ticks:UInt16
-    var freeze_ticks_maximum:UInt16
+    var freezeTicks:UInt16
+    var freezeTicksMaximum:UInt16
     
-    var passenger_uuids:Set<UUID>
+    var passengerUUIDs:Set<UUID>
     var passengers : [any Entity] {
-        return GluonServer.shared.getEntities(uuids: passenger_uuids)
+        return GluonServer.shared.getEntities(uuids: passengerUUIDs)
     }
     
-    var vehicle_uuid:UUID?
+    var vehicleUUID:UUID?
     var vehicle : (any Entity)? {
-        guard let uuid:UUID = vehicle_uuid else { return nil }
+        guard let uuid:UUID = vehicleUUID else { return nil }
         return GluonServer.shared.getEntity(uuid: uuid)
     }
     
-    func set_game_mode(_ gameMode: GameMode) {
+    func setGameMode(_ gameMode: GameMode) {
         guard !self.gameMode.id.elementsEqual(gameMode.id) else { return }
-        let event:GluonPlayerGameModeChangeEvent = GluonPlayerGameModeChangeEvent(player: self, new_game_mode: gameMode)
+        let event:GluonPlayerGameModeChangeEvent = GluonPlayerGameModeChangeEvent(player: self, newGameMode: gameMode)
         GluonServer.shared.callEvent(event: event)
         guard !event.isCancelled else { return }
         self.gameMode = gameMode
@@ -122,7 +122,7 @@ final class GluonPlayer : Player {
         name: String,
         experience: UInt64,
         experienceLevel: UInt64,
-        food_data: any FoodData,
+        foodData: any FoodData,
         permissions: Set<String>,
         statistics: [String:any StatisticActive],
         gameMode: GameMode,
@@ -132,24 +132,24 @@ final class GluonPlayer : Player {
         isSneaking: Bool,
         isSprinting: Bool,
         inventory: any PlayerInventory,
-        can_breathe_underwater: Bool,
-        can_pickup_items: Bool,
-        has_ai: Bool,
-        is_climbing: Bool,
-        is_collidable: Bool,
-        is_gliding: Bool,
-        is_invisible: Bool,
-        is_leashed: Bool,
-        is_riptiding: Bool,
-        is_sleeping: Bool,
-        is_swimming: Bool,
-        potion_effects: [String:any PotionEffect],
-        no_damage_ticks: UInt16,
-        no_damage_ticks_maximum: UInt16,
+        canBreatheUnderwater: Bool,
+        canPickupItems: Bool,
+        hasAI: Bool,
+        isClimbing: Bool,
+        isCollidable: Bool,
+        isGliding: Bool,
+        isInvisible: Bool,
+        isLeashed: Bool,
+        isRiptiding: Bool,
+        isSleeping: Bool,
+        isSwimming: Bool,
+        potionEffects: [String:any PotionEffect],
+        noDamageTicks: UInt16,
+        noDamageTicksMaximum: UInt16,
         air_remaining: UInt16,
         air_maximum: UInt16,
         health: Double,
-        health_maximum: Double,
+        healthMaximum: Double,
         id: UInt64,
         uuid: UUID,
         type_id: String,
@@ -162,17 +162,17 @@ final class GluonPlayer : Player {
         is_on_fire: Bool,
         is_on_ground: Bool,
         height: Float,
-        fire_ticks: UInt16,
-        fire_ticks_maximum: UInt16,
-        freeze_ticks: UInt16,
-        freeze_ticks_maximum: UInt16,
-        passenger_uuids: Set<UUID>,
-        vehicle_uuid: UUID?
+        fireTicks: UInt16,
+        fireTicksMaximum: UInt16,
+        freezeTicks: UInt16,
+        freezeTicksMaximum: UInt16,
+        passengerUUIDs: Set<UUID>,
+        vehicleUUID: UUID?
     ) {
         self.name = name
         self.experience = experience
         self.experienceLevel = experienceLevel
-        self.food_data = food_data
+        self.foodData = foodData
         self.permissions = permissions
         self.statistics = statistics
         self.gameMode = gameMode
@@ -182,24 +182,24 @@ final class GluonPlayer : Player {
         self.isSneaking = isSneaking
         self.isSprinting = isSprinting
         self.inventory = inventory
-        self.can_breathe_underwater = can_breathe_underwater
-        self.can_pickup_items = can_pickup_items
-        self.has_ai = has_ai
-        self.is_climbing = is_climbing
-        self.is_collidable = is_collidable
-        self.is_gliding = is_gliding
-        self.is_invisible = is_invisible
-        self.is_leashed = is_leashed
-        self.is_riptiding = is_riptiding
-        self.is_sleeping = is_sleeping
-        self.is_swimming = is_swimming
-        self.potion_effects = potion_effects
-        self.no_damage_ticks = no_damage_ticks
-        self.no_damage_ticks_maximum = no_damage_ticks_maximum
-        self.air_remaining_ticks = air_remaining
-        self.air_maximum_ticks = air_maximum
+        self.canBreatheUnderwater = canBreatheUnderwater
+        self.canPickupItems = canPickupItems
+        self.hasAI = hasAI
+        self.isClimbing = isClimbing
+        self.isCollidable = isCollidable
+        self.isGliding = isGliding
+        self.isInvisible = isInvisible
+        self.isLeashed = isLeashed
+        self.isRiptiding = isRiptiding
+        self.isSleeping = isSleeping
+        self.isSwimming = isSwimming
+        self.potionEffects = potionEffects
+        self.noDamageTicks = noDamageTicks
+        self.noDamageTicksMaximum = noDamageTicksMaximum
+        self.airRemainingTicks = air_remaining
+        self.airMaximumTicks = air_maximum
         self.health = health
-        self.health_maximum = health_maximum
+        self.healthMaximum = healthMaximum
         self.id = id
         self.uuid = uuid
         self.type_id = type_id
@@ -212,12 +212,12 @@ final class GluonPlayer : Player {
         self.is_on_fire = is_on_fire
         self.is_on_ground = is_on_ground
         self.height = height
-        self.fire_ticks = fire_ticks
-        self.fire_ticks_maximum = fire_ticks_maximum
-        self.freeze_ticks = freeze_ticks
-        self.freeze_ticks_maximum = freeze_ticks_maximum
-        self.passenger_uuids = passenger_uuids
-        self.vehicle_uuid = vehicle_uuid
+        self.fireTicks = fireTicks
+        self.fireTicksMaximum = fireTicksMaximum
+        self.freezeTicks = freezeTicks
+        self.freezeTicksMaximum = freezeTicksMaximum
+        self.passengerUUIDs = passengerUUIDs
+        self.vehicleUUID = vehicleUUID
     }
 }
 extension GluonPlayer {
@@ -231,7 +231,7 @@ extension GluonPlayer {
         listName = try container.decodeIfPresent(String.self, forKey: .listName)
         experience = try container.decode(UInt64.self, forKey: .experience)
         experienceLevel = try container.decode(UInt64.self, forKey: .experienceLevel)
-        food_level = try container.decode(UInt64.self, forKey: .food_level)
+        foodLevel = try container.decode(UInt64.self, forKey: .foodLevel)
         
         permissions = try container.decode(Set<String>.self, forKey: .permissions)
         statistics = try container.decode([String:TargetStatisticActive].self, forKey: .statistics)
@@ -247,29 +247,29 @@ extension GluonPlayer {
         
         inventory = try container.decode(GluonPlayerInventory.self, forKey: .inventory)
         
-        can_breathe_underwater = living_entity.can_breathe_underwater
-        can_pickup_items = living_entity.can_pickup_items
-        has_ai = living_entity.has_ai
+        canBreatheUnderwater = living_entity.canBreatheUnderwater
+        canPickupItems = living_entity.canPickupItems
+        hasAI = living_entity.hasAI
         
-        is_climbing = living_entity.is_climbing
-        is_collidable = living_entity.is_collidable
-        is_gliding = living_entity.is_gliding
-        is_invisible = living_entity.is_invisible
-        is_leashed = living_entity.is_leashed
-        is_riptiding = living_entity.is_riptiding
-        is_sleeping = living_entity.is_sleeping
-        is_swimming = living_entity.is_swimming
+        isClimbing = living_entity.isClimbing
+        isCollidable = living_entity.isCollidable
+        isGliding = living_entity.isGliding
+        isInvisible = living_entity.isInvisible
+        isLeashed = living_entity.isLeashed
+        isRiptiding = living_entity.isRiptiding
+        isSleeping = living_entity.isSleeping
+        isSwimming = living_entity.isSwimming
         
-        potion_effects = living_entity.potion_effects
+        potionEffects = living_entity.potionEffects
         
-        no_damage_ticks = living_entity.no_damage_ticks
-        no_damage_ticks_maximum = living_entity.no_damage_ticks_maximum
+        noDamageTicks = living_entity.noDamageTicks
+        noDamageTicksMaximum = living_entity.noDamageTicksMaximum
         
         air_remaining = living_entity.air_remaining
         air_maximum = living_entity.air_maximum
         
         health = living_entity.health
-        health_maximum = living_entity.health_maximum
+        healthMaximum = living_entity.healthMaximum
         
         uuid = living_entity.uuid
         type = living_entity.type
@@ -287,14 +287,14 @@ extension GluonPlayer {
         
         height = living_entity.height
         
-        fire_ticks = living_entity.fire_ticks
-        fire_ticks_maximum = living_entity.fire_ticks_maximum
+        fireTicks = living_entity.fireTicks
+        fireTicksMaximum = living_entity.fireTicksMaximum
         
-        freeze_ticks = living_entity.freeze_ticks
-        freeze_ticks_maximum = living_entity.freeze_ticks_maximum
+        freezeTicks = living_entity.freezeTicks
+        freezeTicksMaximum = living_entity.freezeTicksMaximum
         
-        passenger_uuids = living_entity.passenger_uuids
-        vehicle_uuid = living_entity.vehicle_uuid
+        passengerUUIDs = living_entity.passengerUUIDs
+        vehicleUUID = living_entity.vehicleUUID
     }
     func encode(to encoder: Encoder) throws {
         var container:KeyedEncodingContainer = encoder.container(keyedBy: GluonPlayerCodingKeys.self)
@@ -306,7 +306,7 @@ enum GluonPlayerCodingKeys : CodingKey {
     case listName
     case experience
     case experienceLevel
-    case food_level
+    case foodLevel
     case permissions
     case statistics
     case gameMode

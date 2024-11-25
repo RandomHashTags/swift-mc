@@ -16,9 +16,9 @@ extension ServerPacket.Mojang.Java.Play {
             let session_id:UUID = try packet.readUUID()
             let expires_at:Int64 = try packet.readLong()
             let publicKeyLength:VariableIntegerJava = try packet.readVarInt()
-            let publicKey:[UInt8] = try packet.readByteArray(bytes: publicKeyLength)
+            let publicKey:[UInt8] = try packet.readByteArray(bytes: publicKeyLength.value_int)
             let key_signature_length:VariableIntegerJava = try packet.readVarInt()
-            let key_signature:[UInt8] = try packet.readByteArray(bytes: key_signature_length)
+            let key_signature:[UInt8] = try packet.readByteArray(bytes: key_signature_length.value_int)
             return Self(session_id: session_id, expires_at: expires_at, publicKeyLength: publicKeyLength, publicKey: publicKey, key_signature_length: key_signature_length, key_signature: key_signature)
         }
         
@@ -34,7 +34,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// The signature consists of the player UUID, the key expiration timestamp, and the public key data. These values are hashed using [SHA-1](https://en.wikipedia.org/wiki/SHA-1) and signed using Mojang's private [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) key.
         public let key_signature:[UInt8]
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[any PacketEncodableMojangJava] = [session_id, expires_at, publicKeyLength]
             array.append(contentsOf: publicKey)
             array.append(key_signature_length)

@@ -8,11 +8,11 @@
 struct GluonPlayerGameModeChangeEvent : PlayerGameModeChangeEvent {
     let type:any EventType = GluonEventType.player_change_game_mode
     var player:any Player
-    var new_game_mode:GameMode
+    var newGameMode:GameMode
     var isCancelled:Bool = false
     
-    init(player: any Player, new_game_mode: GameMode) {
+    init(player: any Player, newGameMode: GameMode) {
         self.player = player
-        self.new_game_mode = new_game_mode
+        self.newGameMode = newGameMode
     }
 }

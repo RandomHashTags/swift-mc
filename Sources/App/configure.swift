@@ -38,25 +38,25 @@ public func configure(_ app: Application) throws {
 }
 
 private func test() {
-    let difficulty:any Difficulty = DifficultyJava(id: "minecraft.normal", name: "Normal", damage_multiplier: 1)
+    let difficulty:any Difficulty = DifficultyJava(id: "minecraft.normal", name: "Normal", damageMultiplier: 1)
     let world:GluonWorld = GluonWorld.init(
         uuid: UUID(),
         seed: 420,
         name: "minecraft.overworld",
         spawn_location: Vector.init(x: HugeFloat.zero, y: HugeFloat.zero, z: HugeFloat.zero),
         difficulty: difficulty,
-        game_rules: [],
+        gameRules: [],
         time: 0,
-        y_min: HugeFloat("-64"),
-        y_max: HugeFloat("365"),
-        y_sea_level: HugeFloat.zero,
-        chunks_loaded: [],
-        allows_animals: true,
-        allows_monsters: true,
-        allows_pvp: true,
-        beds_work: true,
+        yMin: HugeFloat("-64"),
+        yMax: HugeFloat("365"),
+        ySeaLevel: HugeFloat.zero,
+        chunksLoaded: [],
+        allowsAnimals: true,
+        allowsMonsters: true,
+        allowsPVP: true,
+        bedsWork: true,
         entities: [],
-        living_entities: [],
+        livingEntities: [],
         players: []
     )
     let chunk:any Chunk = GluonChunk.init(world: world, x: HugeInt.zero, z: HugeInt.zero)

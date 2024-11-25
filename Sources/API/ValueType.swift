@@ -5,23 +5,23 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public enum ValueType : String {
-    case string
-    case char//(Int8)
-    case char_unsigned//(UInt8)
-    case short//(Int16)
-    case short_unsigned//(UInt16)
+public enum ValueType {
+    case string(String)
+    case char(Int8)
+    case charUnsigned(UInt8)
+    case short(Int16)
+    case shortUnsigned(UInt16)
     
-    case integer
-    case integer_unsigned
-    case long
-    case long_unsigned // UInt64
+    case integer(Int)
+    case integerUnsigned(UInt)
+    case long(Int64)
+    case longUnsigned(UInt64)
     
-    case float
-    case double
+    case float(Float)
+    case double(Double)
     
-    case boolean
+    case boolean(Bool)
     
-    case location
-    case item_stack
+    case location((any Location)?)
+    case itemStack((any ItemStack)?)
 }

@@ -6,9 +6,9 @@
 //
 
 final class GluonMaterialBlockLiquidConfiguration : MaterialBlockLiquidConfiguration {
-    var distances_per_tick:[String:Double]
+    var distancesPerTick:[String:Double]
     
-    init(distances_per_tick: [String:Double]) {
-        self.distances_per_tick = distances_per_tick
+    init(distancesPerTick: [String:Double]) {
+        self.distancesPerTick = distancesPerTick
     }
 }

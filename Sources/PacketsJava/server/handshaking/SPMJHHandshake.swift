@@ -29,7 +29,7 @@ extension ServerPacket.Mojang.Java.Handshaking {
         public let server_port:UInt16
         public let next_state:State
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [protocolVersion, server_address, server_port, next_state]
         }
         

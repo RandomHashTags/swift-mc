@@ -20,7 +20,7 @@ public protocol Location : Hashable {
     /// Whether or not the two locations are the same, regardless of `yaw` or `pitch`.
     func isSimilar(_ location: Self) -> Bool
     
-    func is_nearby(center: any Location, x_radius: Double, y_radius: Double, z_radius: Double) -> Bool
+    func is_nearby(center: any Location, xRadius: Double, yRadius: Double, zRadius: Double) -> Bool
     /// Gets the distance between two locations, regardless of world.
     func distance(to location: any Location) -> (x: Double, y: Double, z: Double)
     
@@ -54,9 +54,9 @@ public extension Location {
         return world.uuid == location.world.uuid && x == location.x && y == location.y && z == location.z
     }
     
-    func is_nearby(center: any Location, x_radius: Double, y_radius: Double, z_radius: Double) -> Bool {
+    func is_nearby(center: any Location, xRadius: Double, yRadius: Double, zRadius: Double) -> Bool {
         let (dis_x, dis_y, dis_z):(Double, Double, Double) = distance(to: center)
-        return abs(dis_x) <= x_radius && abs(dis_y) <= y_radius && abs(dis_z) <= z_radius
+        return abs(dis_x) <= xRadius && abs(dis_y) <= yRadius && abs(dis_z) <= zRadius
     }
     func distance(to location: any Location) -> (x: Double, y: Double, z: Double) {
         let loc_x:Double = location.x, loc_y:Double = location.y, loc_z:Double = location.z

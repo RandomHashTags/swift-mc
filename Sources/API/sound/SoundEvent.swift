@@ -6,7 +6,7 @@
 //
 
 public protocol SoundEvent {
-    static var default_range : Float { get }
+    static var defaultRange : Float { get }
     
     var range : Float { get }
 }

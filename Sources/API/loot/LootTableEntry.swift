@@ -5,9 +5,9 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public struct LootTableEntry {
-    public let item:ItemStack
-    public let amountMin:UInt
-    public let amountMax:UInt
-    public let chance:UInt8
+public protocol LootTableEntry {
+    var item : any ItemStack { get }
+    var amountMin : Int { get }
+    var amountMax : Int { get }
+    var chance : UInt8 { get }
 }

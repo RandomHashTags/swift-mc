@@ -9,7 +9,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct SetTitleAnimationTimes : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.set_title_animation_times
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setTitleAnimationTimes
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let fadeIn:Int32 = try packet.readInt()
@@ -25,7 +25,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// Ticks to spend fading out, not when to start fading out.
         public let fadeOut:Int32
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [fadeIn, stay, fadeOut]
         }
     }

@@ -11,7 +11,7 @@ import Packets
 ///
 /// x as a 26-bit integer, followed by z as a 26-bit integer, followed by y as a 12-bit integer (all signed, two's complement).
 public struct PositionPacketMojang : Codable, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix
-    public static func decode(from packet: any GeneralPacket) throws -> PositionPacketMojang { // TODO: fix
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> PositionPacketMojang { // TODO: fix
         return Self()
     }
     

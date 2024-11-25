@@ -9,7 +9,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct UpdateTags : ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.update_tags
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateTags
         
         /// Number of elements in `tags`.
         public let count:VariableIntegerJava
@@ -45,7 +45,7 @@ extension ClientPacket.Mojang.Java.Play {
             }
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [count]
             array.append(contentsOf: tagTypes)
             array.append(contentsOf: tags)

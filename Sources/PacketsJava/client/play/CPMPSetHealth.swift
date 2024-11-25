@@ -12,7 +12,7 @@ extension ClientPacket.Mojang.Java.Play {
     ///
     /// Food saturation acts as a food “overcharge”. Food values will not decrease while the saturation is over zero. New players logging in or respawning automatically get a saturation of 5.0. Eating food increases the saturation as well as the food bar.
     struct SetHealth : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.set_health
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setHealth
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let health:Float = try packet.readFloat()
@@ -27,7 +27,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// Seems to vary from 0.0 to 5.0 in integer increments.
         public let food_saturation:Float
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [health, food, food_saturation]
         }
     }

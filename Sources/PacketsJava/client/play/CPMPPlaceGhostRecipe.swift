@@ -10,7 +10,7 @@ import Packets
 extension ClientPacket.Mojang.Java.Play {
     /// Response to the serverbound packet ([Place Recipe](https://wiki.vg/Protocol#Place_Recipe) ), with the same recipe ID. Appears to be used to notify the UI.
     struct PlaceGhostRecipe : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.place_ghost_recipe
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.placeGhostRecipe
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let windowID:Int8 = try packet.readByte()
@@ -21,7 +21,7 @@ extension ClientPacket.Mojang.Java.Play {
         public let windowID:Int8
         public let recipe:NamespaceJava
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [windowID, recipe]
         }
     }

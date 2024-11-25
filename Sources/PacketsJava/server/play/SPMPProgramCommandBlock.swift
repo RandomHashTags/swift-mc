@@ -12,7 +12,7 @@ extension ServerPacket.Mojang.Java.Play {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.program_command_block
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let location:PositionPacketMojang = try packet.read_packet_decodable()
+            let location:PositionPacketMojang = try packet.readPacket()
             let command:String = try packet.readString()
             let mode:ProgramCommandBlock.Mode = try packet.readEnum()
             let flags:Int8 = try packet.readByte()
@@ -31,7 +31,7 @@ extension ServerPacket.Mojang.Java.Play {
             case redstone
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [location, command, mode, flags]
         }
     }

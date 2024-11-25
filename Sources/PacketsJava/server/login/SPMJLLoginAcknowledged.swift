@@ -12,13 +12,13 @@ extension ServerPacket.Mojang.Java.Login {
     ///
     /// This packet switches the connection state to [configuration](https://wiki.vg/Protocol#Configuration).
     struct LoginAcknowledged : ServerPacketMojangJavaLoginProtocol {
-        public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.login_acknowledged
+        public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.loginAcknowledged
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             return Self()
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return []
         }
     }

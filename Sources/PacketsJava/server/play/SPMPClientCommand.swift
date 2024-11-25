@@ -25,7 +25,7 @@ extension ServerPacket.Mojang.Java.Play {
             case request_stats = 1
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [action]
         }
     }

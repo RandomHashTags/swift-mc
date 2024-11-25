@@ -5,27 +5,24 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-import SwiftStringCatalogs
+public protocol EntityType : Identifiable, MultilingualName, ServerTickChangeListener {
+    var isAffectedByGravity : Bool { get }
+    var isDamageable : Bool { get }
 
-public struct EntityType : Identifiable, MultilingualName, ServerTickChangeListener {
-    public let id:String
-    public let name:String
+    var receivesFallDamage : Bool { get }
 
-    public let isAffectedByGravity:Bool
-    public let isDamageable:Bool
+    var noDamageTicksMaximum : Int { get set }
+    var fireTicksMaximum : Int { get set }
+    var freezeTicksMaximum : Int { get set }
+}
 
-    public let receivesFallDamage:Bool
-
-    public var noDamageTicksMaximum:UInt16
-    public var fireTicksMaximum:UInt16
-    public var freezeTicksMaximum:UInt16
-
-    public mutating func serverTPSSlowed(to tps: UInt8, divisor: UInt16) {
+public extension EntityType {
+    mutating func serverTPSSlowed(to tps: Int, divisor: Int) {
         noDamageTicksMaximum /= divisor
         fireTicksMaximum /= divisor
         freezeTicksMaximum /= divisor
     }
-    public mutating func serverTPSIncreased(to tps: UInt8, multiplier: UInt16) {
+    mutating func serverTPSIncreased(to tps: Int, multiplier: Int) {
         noDamageTicksMaximum *= multiplier
         fireTicksMaximum *= multiplier
         freezeTicksMaximum *= multiplier

@@ -10,7 +10,7 @@ import Packets
 extension ClientPacket.Mojang.Java.Play {
     /// Unused by the Notchian server. Likely provided for custom servers to send chat message completions to clients.
     struct ChatSuggestions : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.chat_suggestions
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.chatSuggestions
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let action:ChatSuggestions.Action = try packet.readEnum()
@@ -30,7 +30,7 @@ extension ClientPacket.Mojang.Java.Play {
             case set
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [action, count]
             array.append(contentsOf: entries)
             return array

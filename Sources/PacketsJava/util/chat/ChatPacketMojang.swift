@@ -12,14 +12,14 @@ struct ChatPacketMojang : ChatPacket, PacketMojangJava, PacketEncodableMojangJav
     public typealias GameplayID = ClientPacket.Mojang.Java.Status
     
     // TODO: fix
-    public static let id:ClientPacket.Mojang.Java.Status = ClientPacket.Mojang.Java.Status.ping_response
+    public static let id:ClientPacket.Mojang.Java.Status = ClientPacket.Mojang.Java.Status.pingResponse
     public static let packetGameplayID:ClientPacket.Mojang.Java.Status.Type = ClientPacket.Mojang.Java.Status.self
     
-    public static func decode(from packet: any GeneralPacket) throws -> ChatPacketMojang {
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> ChatPacketMojang {
         throw GeneralPacketError.not_implemented(packet_type: Self.self)
     }
     
-    public var category : PacketCategoryMojangJava {
+    public var category : any PacketCategory {
         return PacketCategoryMojangJava.middleware
     }
     
@@ -57,7 +57,7 @@ struct ChatPacketMojang : ChatPacket, PacketMojangJava, PacketEncodableMojangJav
     
     public let extra:[ChatPacketMojang]?
     
-    public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] { // TODO: fix
+    public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] { // TODO: fix
         return []
     }
 }

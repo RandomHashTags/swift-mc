@@ -17,6 +17,6 @@ public extension Projectile {
         default_tick_projectile(server)
     }
     func default_tick_projectile(_ server: any Server) {
-        tick_entity(server)
+        tickEntity(server)
     }
 }

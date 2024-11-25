@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public struct Scoreboard {
-    public var objectives:[ScoreboardObjective]
-    public var teams:[ScoreboardTeam]
+public protocol Scoreboard {
+    var objectives : [ScoreboardObjective] { get }
+    var teams : [ScoreboardTeam] { get }
 }

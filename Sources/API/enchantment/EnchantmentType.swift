@@ -7,20 +7,20 @@
 
 import SwiftStringCatalogs
 
-public struct EnchantmentType : Identifiable, MultilingualName {
-    public let id:String
-    public let name:String
+public protocol EnchantmentType : Identifiable, MultilingualName {
 
-    //public let weight:UInt16
-    public let maxLevel:UInt16
+    var weight : UInt16 { get }
+    var maxLevel : UInt16 { get }
 
-    /// the ``EnchantmentType`` ids this enchantment type conflicts with.
-    //public let conflictsWith:Set<String>
+    /// The `EnchantmentType` identifiers this enchantment type conflicts with.
+    var conflictsWith : Set<String> { get }
 
-    //public let isTreasure:Bool
-    //public let isCursed:Bool
+    var isTreasure : Bool { get }
+    var isCursed : Bool { get }
 }
 
+// TODO: move below to EnchantmentTypeJava file
+/*
 public extension EnchantmentType {
     private static func get(_ id: String, maxLevel: UInt16) -> EnchantmentType {
         return EnchantmentType(id: "minecraft." + id, name: String(stringLiteral: id), maxLevel: maxLevel)
@@ -68,4 +68,4 @@ public extension EnchantmentType {
     static let unbreaking = get("unbreaking", maxLevel: 3)
     static let vanishingCurse = get("vanishingCurse", maxLevel: 1)
     static let windBurst = get("windBurst", maxLevel: 3)
-}
+}*/

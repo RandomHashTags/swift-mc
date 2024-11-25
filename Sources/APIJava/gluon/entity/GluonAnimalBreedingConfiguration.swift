@@ -7,5 +7,5 @@
 
 struct GluonAnimalBreedingConfiguration : AnimalBreedingConfiguration {
     let id:String
-    let breed_item:ItemStack
+    let breedItem:ItemStack
 }

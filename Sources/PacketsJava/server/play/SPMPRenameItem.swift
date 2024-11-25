@@ -20,7 +20,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// The new name of the item.
         public let name:String
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [name]
         }
     }

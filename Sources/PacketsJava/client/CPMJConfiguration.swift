@@ -9,27 +9,27 @@ import Packets
 
 extension ClientPacket.Mojang.Java {
     enum Configuration : UInt8, PacketGameplayID {
-        case plugin_message
+        case pluginMessage
         case disconnect
-        case finish_configuration
-        case keep_alive
+        case finishConfiguration
+        case keepAlive
         case ping
-        case registry_data
-        case resource_pack
-        case feature_flags
-        case update_tags
+        case registryData
+        case resourcePack
+        case featureFlags
+        case updateTags
         
         var packet : any ClientPacket.Mojang.Java.ConfigurationProtocol.Type {
             switch self {
-            case .plugin_message:       return ClientPacket.Mojang.Java.Configuration.PluginMessage.self
+            case .pluginMessage:       return ClientPacket.Mojang.Java.Configuration.PluginMessage.self
             case .disconnect:           return ClientPacket.Mojang.Java.Configuration.Disconnect.self
-            case .finish_configuration: return ClientPacket.Mojang.Java.Configuration.FinishConfiguration.self
-            case .keep_alive:           return ClientPacket.Mojang.Java.Configuration.KeepAlive.self
+            case .finishConfiguration: return ClientPacket.Mojang.Java.Configuration.FinishConfiguration.self
+            case .keepAlive:           return ClientPacket.Mojang.Java.Configuration.KeepAlive.self
             case .ping:                 return ClientPacket.Mojang.Java.Configuration.Ping.self
-            case .registry_data:        return ClientPacket.Mojang.Java.Configuration.RegistryData.self
-            case .resource_pack:        return ClientPacket.Mojang.Java.Configuration.ResourcePack.self
-            case .feature_flags:        return ClientPacket.Mojang.Java.Configuration.FeatureFlags.self
-            case .update_tags:          return ClientPacket.Mojang.Java.Configuration.UpdateTags.self
+            case .registryData:        return ClientPacket.Mojang.Java.Configuration.RegistryData.self
+            case .resourcePack:        return ClientPacket.Mojang.Java.Configuration.ResourcePack.self
+            case .featureFlags:        return ClientPacket.Mojang.Java.Configuration.FeatureFlags.self
+            case .updateTags:          return ClientPacket.Mojang.Java.Configuration.UpdateTags.self
             }
         }
     }

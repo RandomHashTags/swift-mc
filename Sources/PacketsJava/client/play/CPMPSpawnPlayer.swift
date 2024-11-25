@@ -15,7 +15,7 @@ extension ClientPacket.Mojang.Java.Play {
     ///
     /// Servers can, however, safely spawn player entities for players not in visible range. The client appears to handle it correctly.
     struct SpawnPlayer : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.spawn_player
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.spawnPlayer
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let entityID:VariableIntegerJava = try packet.readVarInt()
@@ -37,7 +37,7 @@ extension ClientPacket.Mojang.Java.Play {
         public let yaw:AngleMojang
         public let pitch:AngleMojang
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 entityID,
                 player_uuid,

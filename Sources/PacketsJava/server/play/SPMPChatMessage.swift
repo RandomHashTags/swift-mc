@@ -24,7 +24,7 @@ extension ServerPacket.Mojang.Java.Play {
         public let message_count:VariableIntegerJava
         public let acknowledged:[UInt8] // TODO: make BitSet
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[any PacketEncodableMojangJava] = [
                 message,
                 timestamp,
@@ -32,7 +32,7 @@ extension ServerPacket.Mojang.Java.Play {
                 has_signature
             ]
             if has_signature {
-                let signature:[UInt8] = try unwrap_optional(signature, key_path: \Self.signature, precondition: "has_signature == true")
+                let signature:[UInt8] = try unwrapOptional(signature, key_path: \Self.signature, precondition: "has_signature == true")
                 array.append(contentsOf: signature)
             }
             array.append(message_count)

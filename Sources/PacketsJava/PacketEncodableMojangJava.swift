@@ -11,9 +11,7 @@ import Packets
 public protocol PacketEncodableMojangJava : PacketEncodable {
 }
 public extension PacketEncodableMojangJava where Self : RawRepresentable, RawValue : PacketEncodableMojangJava {
-    func packetBytes() throws -> [UInt8] {
-        return try rawValue.packetBytes()
-    }
+    func packetBytes() throws -> [UInt8] { try rawValue.packetBytes() }
 }
 
 extension FixedWidthInteger {
@@ -36,7 +34,7 @@ extension FixedWidthInteger {
 extension Int : PacketEncodableMojangJava {}
 extension Int8 : PacketEncodableMojangJava {}
 extension Int16 : PacketEncodableMojangJava, PacketDecodableMojangJava {
-    public static func decode(from packet: any GeneralPacket) throws -> Int16 {
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> Int16 {
         return try packet.readShort()
     }
 }

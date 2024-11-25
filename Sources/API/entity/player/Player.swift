@@ -12,11 +12,11 @@ public protocol Player : LivingEntity, CommandSender, Permissible {
     
     var experience : UInt64 { get set }
     var experienceLevel : UInt64 { get set }
-    var food_data : any FoodData { get set }
+    var foodData : any FoodData { get set }
     
     var statistics : [String : any StatisticActive] { get set }
     
-    var gameMode : GameMode { get set }
+    var gameMode : any GameMode { get set }
     var isBlocking : Bool { get set }
     var isFlying : Bool { get set }
     var isOP : Bool { get set }
@@ -26,13 +26,13 @@ public protocol Player : LivingEntity, CommandSender, Permissible {
     
     var inventory : any PlayerInventory { get set }
         
-    func tick_player(_ server: any Server)
+    func tickPlayer(_ server: any Server)
     
-    func set_game_mode(_ gameMode: GameMode)
+    func setGameMode(_ gameMode: any GameMode)
     
     func kick(reason: String)
     
-    func consumed(item: inout ItemStack)
+    func consumed(item: inout any ItemStack)
 }
 
 public extension Player {
@@ -41,33 +41,33 @@ public extension Player {
     }
     
     func tick(_ server: any Server) {
-        tick_player(server)
+        tickPlayer(server)
     }
-    func tick_player(_ server: any Server) {
-        default_tick_player(server)
+    func tickPlayer(_ server: any Server) {
+        defaultTickPlayer(server)
     }
-    func default_tick_player(_ server: any Server) {
-        //ServerMojang.instance.logger.info(Logger.Message(stringLiteral: "Player;default_tick_player;player " + name + " has been ticked"))
-        tick_living_entity(server)
+    func defaultTickPlayer(_ server: any Server) {
+        //ServerMojang.instance.logger.info(Logger.Message(stringLiteral: "Player;defaultTickPlayer;player " + name + " has been ticked"))
+        tickLivingEntity(server)
     }
     
-    func has_permission(_ permission: String) -> Bool {
+    func hasPermission(_ permission: String) -> Bool {
         return permissions.contains(permission)
     }
 }
 
 public extension Player {
-    func serverTPSSlowed(to tps: UInt8, divisor: UInt16) {
-        player_server_tps_slowed(to: tps, divisor: divisor)
+    func serverTPSSlowed(to tps: Int, divisor: Int) {
+        playerServerTPSSlowed(to: tps, divisor: divisor)
     }
-    internal func player_server_tps_slowed(to tps: UInt8, divisor: UInt16) {
-        player_server_tps_increased(to: tps, multiplier: divisor)
+    internal func playerServerTPSSlowed(to tps: Int, divisor: Int) {
+        playerServerTPSIncreased(to: tps, multiplier: divisor)
     }
     
-    func serverTPSIncreased(to tps: UInt8, multiplier: UInt16) {
-        player_server_tps_increased(to: tps, multiplier: multiplier)
+    func serverTPSIncreased(to tps: Int, multiplier: Int) {
+        playerServerTPSIncreased(to: tps, multiplier: multiplier)
     }
-    internal func player_server_tps_increased(to tps: UInt8, multiplier: UInt16) {
+    internal func playerServerTPSIncreased(to tps: Int, multiplier: Int) {
         living_entity_server_tps_increased(to: tps, multiplier: multiplier)
     }
 }

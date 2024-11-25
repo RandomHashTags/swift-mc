@@ -14,7 +14,7 @@ extension ServerPacket.Mojang.Java.Play {
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let slot:VariableIntegerJava = try packet.readVarInt()
             let count:VariableIntegerJava = try packet.readVarInt()
-            let entries:[String] = try packet.readStringArray(count: count)
+            let entries:[String] = try packet.readStringArray(count: count.value_int)
             let has_title:Bool = try packet.readBool()
             let title:String? = has_title ? try packet.readString() : nil
             return Self(slot: slot, count: count, entries: entries, has_title: has_title, title: title)
@@ -31,12 +31,12 @@ extension ServerPacket.Mojang.Java.Play {
         /// Title of book.
         public let title:String?
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[any PacketEncodableMojangJava] = [slot, count]
             array.append(contentsOf: entries)
             array.append(has_title)
             if has_title {
-                let title:String = try unwrap_optional(title, key_path: \Self.title, precondition: "has_title == true")
+                let title:String = try unwrapOptional(title, key_path: \Self.title, precondition: "has_title == true")
                 array.append(title)
             }
             return array

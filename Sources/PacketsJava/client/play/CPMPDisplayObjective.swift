@@ -10,7 +10,7 @@ import Packets
 extension ClientPacket.Mojang.Java.Play {
     /// This is sent to the client when it should display a scoreboard.
     struct DisplayObjective : ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.display_objective
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.displayObjective
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let position:Int8 = try packet.readByte()
@@ -23,7 +23,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// The unique name for the scoreboard to be displayed.
         public let scoreName:String
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [position, scoreName]
         }
     }

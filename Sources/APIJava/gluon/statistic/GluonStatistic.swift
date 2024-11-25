@@ -10,5 +10,5 @@ import SwiftStringCatalogs
 struct GluonStatistic : Statistic {
     let id:String
     let name:String
-    let value_type:ValueType
+    let value:ValueType
 }

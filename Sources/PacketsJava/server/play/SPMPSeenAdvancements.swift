@@ -26,11 +26,11 @@ extension ServerPacket.Mojang.Java.Play {
             case closed_screen
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[any PacketEncodableMojangJava] = [action]
             switch action {
             case .opened_tab:
-                let tab_id:NamespaceJava = try unwrap_optional(tab_id, key_path: \Self.tab_id, precondition: "action == .opened_tab")
+                let tab_id:NamespaceJava = try unwrapOptional(tab_id, key_path: \Self.tab_id, precondition: "action == .opened_tab")
                 array.append(tab_id)
                 break
             case .closed_screen:

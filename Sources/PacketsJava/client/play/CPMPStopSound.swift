@@ -9,7 +9,7 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Play {
     struct StopSound : ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.stop_sound
+        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.stopSound
         
         /// Controls which fields are present.
         public let flags:Int8
@@ -18,7 +18,7 @@ extension ClientPacket.Mojang.Java.Play {
         /// Only if flags is 2 or 3 (bit mask 0x2). A sound effect name, see [Custom Sound Effect](https://wiki.vg/Protocol#Custom_Sound_Effect ). If not present, then all sounds are cleared.
         public let sound:NamespaceJava?
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [flags]
             switch flags {
             case 1:

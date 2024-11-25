@@ -9,14 +9,14 @@ import Packets
 
 extension ClientPacket.Mojang.Java.Login {
     struct EncryptionRequest : ClientPacketMojangJavaLoginProtocol {
-        public static let id:ClientPacket.Mojang.Java.Login = ClientPacket.Mojang.Java.Login.encryption_request
+        public static let id:ClientPacket.Mojang.Java.Login = ClientPacket.Mojang.Java.Login.encryptionRequest
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let serverID:String = try packet.readString()
             let publicKeyLength:VariableIntegerJava = try packet.readVarInt()
-            let publicKey:[UInt8] = try packet.readByteArray(bytes: publicKeyLength)
+            let publicKey:[UInt8] = try packet.readByteArray(bytes: publicKeyLength.value_int)
             let verifyTokenLength:VariableIntegerJava = try packet.readVarInt()
-            let verifyToken:[UInt8] = try packet.readByteArray(bytes: verifyTokenLength)
+            let verifyToken:[UInt8] = try packet.readByteArray(bytes: verifyTokenLength.value_int)
             return Self(serverID: serverID, publicKeyLength: publicKeyLength, publicKey: publicKey, verifyTokenLength: verifyTokenLength, verifyToken: verifyToken)
         }
         
@@ -46,7 +46,7 @@ extension ClientPacket.Mojang.Java.Login {
             self.verifyToken = verifyToken
         }
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [serverID, publicKeyLength]
             array.append(contentsOf: publicKey)
             array.append(verifyTokenLength)

@@ -14,7 +14,7 @@ extension ServerPacket.Mojang.Java.Play {
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let transactionID:VariableIntegerJava = try packet.readVarInt()
-            let position:PositionPacketMojang = try packet.read_packet_decodable()
+            let position:PositionPacketMojang = try packet.readPacket()
             return Self(transactionID: transactionID, position: position)
         }
         
@@ -23,7 +23,7 @@ extension ServerPacket.Mojang.Java.Play {
         /// The location of the block to check.
         public let position:PositionPacketMojang
         
-        public func encoded_values() throws -> [(any PacketEncodableMojangJava)?] {
+        public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [transactionID, position]
         }
     }

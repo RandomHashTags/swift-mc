@@ -6,12 +6,12 @@
 //
 
 public protocol BlockBehavior {
-    var has_collision : Bool { get }
-    var explosion_resistance : Float { get }
-    var is_randomly_ticking : Bool { get }
-    var sound_type : any SoundType { get }
+    var hasCollision : Bool { get }
+    var explosionResistance : Float { get }
+    var isRandomlyTicking : Bool { get }
+    var soundType : any SoundType { get }
     var friction : Float { get set }
-    var speed_factor : Float { get set }
-    var jump_factor : Float { get set }
-    var dynamic_shape : Bool { get }
+    var speedFactor : Float { get set }
+    var jumpFactor : Float { get set }
+    var dynamicShape : Bool { get }
 }
