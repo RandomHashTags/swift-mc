@@ -8,7 +8,6 @@
 import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxMacros
-import SwiftSyntaxBuilder
 import SwiftDiagnostics
 
 @main

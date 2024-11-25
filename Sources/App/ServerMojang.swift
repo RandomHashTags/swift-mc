@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import Logging
 import Socket
 import SwiftASN1
-import Logging
 
 // BlueSocket TCP Server
 public final class ServerMojang {
@@ -171,7 +171,7 @@ final class ServerMojangHandler : ChannelInboundHandler {
     var state:ServerMojangStatus = .handshaking
     
     private func write_packet(context: ChannelHandlerContext, _ packet: any Packet, on_complete: (() -> Void)? = nil) throws {
-        let bytes:[UInt8] = try packet.packet_bytes()
+        let bytes:[UInt8] = try packet.packetBytes()
         print("ServerMojang;write_packet;packet.category=\(packet.category);bytes=" + bytes.debugDescription)
         let buffer:ByteBuffer = context.channel.allocator.buffer(bytes: bytes)
         context.write(self.wrapOutboundOut(buffer)).whenComplete { result in
@@ -239,7 +239,7 @@ final class ServerMojangHandler : ChannelInboundHandler {
             do {
                 let data:Data = try JSONEncoder().encode(status_request)
                 let string:String = String(data: data, encoding: .utf8)!
-                write(context: context, bytes: try string.packet_bytes()) {
+                write(context: context, bytes: try string.packetBytes()) {
                     print("ServerMojang;channelRead;state==.status;write onComplete, reading...")
                     context.read()
                 }
@@ -287,7 +287,7 @@ final class ServerMojangHandler : ChannelInboundHandler {
         let client_packet:any ServerPacketMojangHandshakingProtocol = try handshake_packet.parse(packet)
         if let handshake:ServerPacket.Mojang.Java.Handshaking.Handshake = client_packet as? ServerPacketMojang.Handshaking.Handshake {
             let next_state:ServerPacketMojang.Status = handshake.next_state
-            print("ServerMojang;parse_handshake;success;handshake;protocol_version=\(handshake.protocol_version);server_address=" + handshake.server_address + ";server_port=\(handshake.server_port);next_state=\(next_state)")
+            print("ServerMojang;parse_handshake;success;handshake;protocolVersion=\(handshake.protocolVersion);server_address=" + handshake.server_address + ";server_port=\(handshake.server_port);next_state=\(next_state)")
             switch next_state {
             case .status:
                 state = ServerMojangStatus.status
