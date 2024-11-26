@@ -9,5 +9,5 @@ public protocol AttributeActive : Hashable {
     var attribute_id : String { get }
     var attribute : (any Attribute)? { get }
     
-    var value : Double { get set }
+    var value : Double { get }
 }

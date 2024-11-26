@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol Difficulty : Identifiable, Nameable where ID == String {
+public protocol Difficulty : MinecraftIdentifiable, Nameable {
     var damageMultiplier : Double { get }
 }
 

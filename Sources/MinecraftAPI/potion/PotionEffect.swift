@@ -5,22 +5,13 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol PotionEffect : AnyObject, Tickable, Identifiable where ID == String {
+public protocol PotionEffect : AnyObject, Tickable, MinecraftIdentifiable {
     var typeID : String { get }
-    var hasIcon : Bool { get set }
-    var hasParticles : Bool { get set }
-    var isAmbient : Bool { get set }
+    var hasIcon : Bool { get }
+    var hasParticles : Bool { get }
+    var isAmbient : Bool { get }
     
-    var amplifier : Int { get set }
+    var amplifier : Int { get }
     /// Remaining duration of ticks for this potion effect.
-    var duration : Int { get set }
-}
-
-public extension PotionEffect {
-    func serverTPSSlowed(to tps: Int, divisor: Int) {
-        duration /= divisor
-    }
-    func serverTPSIncreased(to tps: Int, multiplier: Int) {
-        duration *= multiplier
-    }
+    var duration : Int { get }
 }

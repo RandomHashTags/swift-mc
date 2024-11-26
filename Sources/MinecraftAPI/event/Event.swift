@@ -6,5 +6,5 @@
 //
 
 public protocol Event {
-    var type : EventType { get }
+    var eventType : any EventType { get }
 }

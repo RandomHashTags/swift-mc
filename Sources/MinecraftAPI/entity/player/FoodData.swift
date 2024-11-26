@@ -6,7 +6,7 @@
 //
 
 public protocol FoodData : Tickable {
-    var foodLevel : Int { get set }
-    var saturationLevel : Float { get set }
-    var exhaustionLevel : Float { get set }
+    var foodLevel : Int { get }
+    var saturationLevel : Float { get }
+    var exhaustionLevel : Float { get }
 }

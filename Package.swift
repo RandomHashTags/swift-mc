@@ -55,15 +55,13 @@ let package = Package(
         ),
 
         .target(
-            name: "Utilities",
-            dependencies: [
-                .product(name: "NIO", package: "swift-nio")
-            ]
+            name: "MinecraftUtilities",
+            dependencies: []
         ),
         .target(
             name: "MinecraftPackets",
             dependencies: [
-                "Utilities"
+                "MinecraftUtilities"
             ]
         ),
         .target(
@@ -76,7 +74,8 @@ let package = Package(
         .target(
             name: "MinecraftPacketsJava",
             dependencies: [
-                "MinecraftPackets"
+                "MinecraftPackets",
+                .product(name: "NIO", package: "swift-nio")
             ]
         ),
         .target(

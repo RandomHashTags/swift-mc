@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public protocol Biome : Identifiable where ID == String {
+public protocol Biome : MinecraftIdentifiable {
 }
 
 // TODO: move to own file

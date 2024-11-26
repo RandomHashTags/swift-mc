@@ -8,7 +8,7 @@
 import Foundation
 import NIO
 import MinecraftPackets
-import Utilities
+import MinecraftUtilities
 
 fileprivate extension Array where Element == UInt8 {
     func readVarInt(byteOffset: Int = 0) throws -> (result: VariableIntegerJava, read_bytes: Int) {

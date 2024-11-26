@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public protocol BiomeConfiguration : Hashable, Identifiable where ID == String {
+public protocol BiomeConfiguration : Hashable, MinecraftIdentifiable {
     var temperature : Float { get }
     var temperatureStartingY : Int { get }
     var temperatureEndingY : Int { get }

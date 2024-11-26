@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol BlockFace : Identifiable where ID == String {
+public protocol BlockFace : MinecraftIdentifiable {
     var oppositeID : ID { get }
 }
 

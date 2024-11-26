@@ -5,8 +5,6 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-import Utilities
-
 public struct Color : Hashable {
     public let identifier:String
     public let id:Int

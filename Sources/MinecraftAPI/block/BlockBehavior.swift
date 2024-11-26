@@ -10,8 +10,8 @@ public protocol BlockBehavior {
     var explosionResistance : Float { get }
     var isRandomlyTicking : Bool { get }
     var soundType : any SoundType { get }
-    var friction : Float { get set }
-    var speedFactor : Float { get set }
-    var jumpFactor : Float { get set }
+    var friction : Float { get }
+    var speedFactor : Float { get }
+    var jumpFactor : Float { get }
     var dynamicShape : Bool { get }
 }

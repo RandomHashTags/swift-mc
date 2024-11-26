@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol GameMode : Identifiable, Nameable where ID == String {
+public protocol GameMode : MinecraftIdentifiable, Nameable {
     /// The `InventoryClickType` identifiers not allowed for this game mode.
     var disallowedInventoryClickTypes : Set<String> { get }
 

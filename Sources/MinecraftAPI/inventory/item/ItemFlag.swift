@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol ItemFlag : Hashable, Identifiable where ID == String {
+public protocol ItemFlag : Hashable, MinecraftIdentifiable {
 }

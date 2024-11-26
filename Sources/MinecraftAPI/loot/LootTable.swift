@@ -5,9 +5,10 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public struct LootTable {
-    public let entries:[LootTableEntry]
+public protocol LootTable {
+    var entries : [LootTableEntry] { get }
 }
+/*
 public extension LootTable {
     /// - Complexity: O(_n_)
     func lootNormal() -> [any ItemStack]? {
@@ -21,3 +22,4 @@ public extension LootTable {
         return loot.isEmpty ? nil : loot
     }
 }
+*/

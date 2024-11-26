@@ -5,6 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol Statistic : Identifiable, Nameable where ID == String {
+public protocol Statistic : MinecraftIdentifiable, Nameable {
+    var categories : [any StatisticCategory] { get }
     var value : ValueType { get }
 }

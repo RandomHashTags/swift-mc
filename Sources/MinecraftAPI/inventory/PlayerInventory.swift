@@ -6,13 +6,13 @@
 //
 
 public protocol PlayerInventory : Inventory {
-    var helmet : (any ItemStack)? { get set }
-    var chestplate : (any ItemStack)? { get set }
-    var leggings : (any ItemStack)? { get set }
-    var boots : (any ItemStack)? { get set }
+    var helmet : (any ItemStack)? { get }
+    var chestplate : (any ItemStack)? { get }
+    var leggings : (any ItemStack)? { get }
+    var boots : (any ItemStack)? { get }
     
-    var itemInMainHand : (any ItemStack)? { get set }
-    var itemInOffHand : (any ItemStack)? { get set }
+    var itemInMainHand : (any ItemStack)? { get }
+    var itemInOffHand : (any ItemStack)? { get }
     
-    var held_item_slot : Int { get set }
+    var held_item_slot : Int { get }
 }

@@ -6,7 +6,7 @@
 //
 
 public protocol BossBar : Hashable {
-    var title : String { get set }
-    var progress : Double { get set }
-    var color : Color { get set }
+    var title : String { get }
+    var progress : Double { get }
+    var color : Color { get }
 }

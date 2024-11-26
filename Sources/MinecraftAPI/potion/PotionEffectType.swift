@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol PotionEffectType : Identifiable, Nameable where ID == String {
+public protocol PotionEffectType : MinecraftIdentifiable, Nameable {
     var categoryID : String { get }
 }
 

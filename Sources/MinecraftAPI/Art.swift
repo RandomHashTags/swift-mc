@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol Art : Identifiable where ID == String {
+public protocol Art : MinecraftIdentifiable {
     /// Measured in blocks.
     var width : Int { get }
     /// Measured in blocks.

@@ -5,6 +5,6 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public protocol GameRule : Hashable, Identifiable where ID == String {
+public protocol GameRule : Hashable, MinecraftIdentifiable {
     var value : ValueType { get }
 }

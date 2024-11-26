@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol Material : Hashable, Identifiable, Nameable where ID == String {
+public protocol Material : Hashable, MinecraftIdentifiable, Nameable {
     var categories : [any MaterialCategory] { get }
     var configuration : any MaterialConfiguration { get }
 

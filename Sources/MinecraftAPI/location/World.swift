@@ -12,26 +12,26 @@ public protocol World : AnyObject, Hashable, Tickable {
     var seed : Int64 { get }
     var name : String { get }
     
-    var spawn_location : Vector { get set }
-    var difficulty : any Difficulty { get set }
-    var gameRules : [any GameRule] { get set }
-    var time : UInt64 { get set }
-    var border : WorldBorder? { get set }
+    var spawn_location : Vector { get }
+    var difficulty : any Difficulty { get }
+    var gameRules : [any GameRule] { get }
+    var time : UInt64 { get }
+    var border : WorldBorder? { get }
     
-    var yMin : Int { get set }
-    var yMax : Int { get set }
-    var ySeaLevel : Int { get set }
+    var yMin : Int { get }
+    var yMax : Int { get }
+    var ySeaLevel : Int { get }
     
-    var chunksLoaded : [any Chunk] { get set }
+    var chunksLoaded : [any Chunk] { get }
     
-    var allowsAnimals : Bool { get set }
-    var allowsMonsters : Bool { get set }
-    var allowsPVP : Bool { get set }
+    var allowsAnimals : Bool { get }
+    var allowsMonsters : Bool { get }
+    var allowsPVP : Bool { get }
     
     var bedsWork : Bool { get set}
     
-    var entities : [any Entity] { get set }
-    var livingEntities : [any LivingEntity] { get set }
+    var entities : [any Entity] { get }
+    var livingEntities : [any LivingEntity] { get }
     var players : [any Player] { get }
     
     func equals(_ world: any World) -> Bool
@@ -57,6 +57,7 @@ public protocol World : AnyObject, Hashable, Tickable {
     func getPlayers(uuids: Set<UUID>) -> [any Player]
 }
 
+/*
 public extension World {
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.uuid == rhs.uuid && lhs.seed == rhs.seed && lhs.name.elementsEqual(rhs.name)
@@ -87,14 +88,14 @@ public extension World {
         }
     }
     
-    /*func save() {
+    func save() {
         for chunk in chunksLoaded {
             chunk.save()
         }
         for entity in entities {
             entity.save()
         }
-    }*/
+    }
 }
 
 public extension World {
@@ -147,10 +148,10 @@ public extension World {
     }
     
     func getNearbyEntities(center: any Location, x: Double, y: Double, z: Double) -> [any Entity] {
-        return entities.filter({ $0.location.is_nearby(center: center, xRadius: x, yRadius: y, zRadius: z) })
+        return entities.filter({ $0.location.isNearby(center: center, xRadius: x, yRadius: y, zRadius: z) })
     }
     func getNearbyEntities(center: any Location, xRadius: Double, yRadius: Double, zRadius: Double) -> [any Entity] {
-        return entities.filter({ $0.location.is_nearby(center: center, xRadius: xRadius, yRadius: yRadius, zRadius: zRadius) })
+        return entities.filter({ $0.location.isNearby(center: center, xRadius: xRadius, yRadius: yRadius, zRadius: zRadius) })
     }
     
     func getEntity(uuid: UUID) -> (any Entity)? {
@@ -174,3 +175,4 @@ public extension World {
         return players.filter({ uuids.contains($0.uuid) })
     }
 }
+*/

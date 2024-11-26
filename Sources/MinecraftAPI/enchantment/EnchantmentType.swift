@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol EnchantmentType : Identifiable, Nameable where ID == String {
+public protocol EnchantmentType : MinecraftIdentifiable, Nameable {
 
     var weight : Int { get }
     var maxLevel : Int { get }

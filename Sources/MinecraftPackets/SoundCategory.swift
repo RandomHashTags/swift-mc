@@ -5,6 +5,8 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol SoundCategory : Codable, Hashable, Identifiable where ID == String {
+import MinecraftUtilities
+
+public protocol SoundCategory : Codable, Hashable, MinecraftIdentifiable {
     var packetID : Int { get }
 }

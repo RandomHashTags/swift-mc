@@ -9,19 +9,16 @@ public protocol Block : BlockBehavior, Tickable {
     var materialID : String { get }
     var material : (any Material)? { get }
     
-    var requiresCorrectToolForDrops : Bool { get }
-    
     var instrument : (any Instrument)? { get }
     
-    var mapColor : Color? { get }
     var stepSound : (any Sound)? { get }
     
-    var lightLevel : UInt8 { get set }
-    var location : any Location { get set }
+    var data : any BlockData { get }
+    var location : any Location { get }
     
-    var growableAge : Int? { get set }
+    var growableAge : Int? { get }
     
-    var lootTable : LootTable? { get set }
+    var lootTable : LootTable? { get }
     
     func breakNaturally()
     

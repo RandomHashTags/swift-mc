@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public protocol BoundaryType : Identifiable where ID == String {
+public protocol BoundaryType : MinecraftIdentifiable {
 }

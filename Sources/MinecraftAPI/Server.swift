@@ -7,7 +7,6 @@
 
 import Foundation
 import MinecraftPackets
-import Utilities
 
 public protocol Server : Tickable {
     
@@ -20,41 +19,41 @@ public protocol Server : Tickable {
     var serverIsAwake : Bool { get }
     var server_loop : Task<Void, Error>! { get }
     var gravity : Double { get }
-    var gravityPerTick : Double { get set }
-    var voidDamagePerTick : Double { get set }
-    var fireDamagePerSecond : Double { get set }
+    var gravityPerTick : Double { get }
+    var voidDamagePerTick : Double { get }
+    var fireDamagePerSecond : Double { get }
     
-    var maxPlayers : UInt64 { get set }
+    var maxPlayers : UInt64 { get }
     var port : Int { get }
-    var isWhitelisted : Bool { get set }
-    var whitelistedPlayers : Set<UUID> { get set }
-    //var bannedPlayers : Set<BanEntry> { get set }
-    //var bannedIPAddresses : Set<BanEntry> { get set }
+    var isWhitelisted : Bool { get }
+    var whitelistedPlayers : Set<UUID> { get }
+    //var bannedPlayers : Set<BanEntry> { get }
+    //var bannedIPAddresses : Set<BanEntry> { get }
     
-    var difficulties : [String : any Difficulty] { get set }
-    var worlds : [String : any World] { get set }
+    var difficulties : [String : any Difficulty] { get }
+    var worlds : [String : any World] { get }
     
-    var event_types : [String : EventType] { get set }
+    var event_types : [String : any EventType] { get }
     
-    var sound_categories : [String : any SoundCategory] { get set }
-    var sounds : [String : any Sound] { get set }
-    var materials : [String : any Material] { get set }
-    var biomes : [String : any Biome] { get set }
-    var enchantment_types : [String : any EnchantmentType] { get set }
-    var entity_types : [String : any EntityType] { mutating get set }
-    var inventory_types : [String : any InventoryType] { get set }
-    var potion_effect_types : [String : any PotionEffectType] { get set }
-    var game_modes : [String : any GameMode] { get set }
-    var advancements : [String : any Advancement] { get set }
-    var art : [String : any Art] { get set }
-    var attributes : [String : any Attribute] { get set }
-    var instruments : [String : any Instrument] { get set }
-    var statistics : [String : any Statistic] { get set }
-    var commands : [String : any Command] { get set }
-    var permissions : [String : any Permission] { get set }
-    var recipes : [String : any Recipe] { get set }
+    var sound_categories : [String : any SoundCategory] { get }
+    var sounds : [String : any Sound] { get }
+    var materials : [String : any Material] { get }
+    var biomes : [String : any Biome] { get }
+    var enchantment_types : [String : any EnchantmentType] { get }
+    var entity_types : [String : any EntityType] { get }
+    var inventory_types : [String : any InventoryType] { get }
+    var potion_effect_types : [String : any PotionEffectType] { get }
+    var game_modes : [String : any GameMode] { get }
+    var advancements : [String : any Advancement] { get }
+    var art : [String : any Art] { get }
+    var attributes : [String : any Attribute] { get }
+    var instruments : [String : any Instrument] { get }
+    var statistics : [String : any Statistic] { get }
+    var commands : [String : any Command] { get }
+    var permissions : [String : any Permission] { get }
+    var recipes : [String : any Recipe] { get }
     
-    var event_listeners : [String : [any EventListener]] { get set }
+    var event_listeners : [String : [any EventListener]] { get }
     
     func setTickRate(ticksPerSecond: UInt8)
     func wakeUp()
@@ -205,7 +204,7 @@ public extension Server {
 
 public extension Server {
     func getNearbyEntities(center: any Location, xRadius: Double, yRadius: Double, zRadius: Double) -> [any Entity] {
-        return center.world.entities.filter({ $0.location.is_nearby(center: center, xRadius: xRadius, yRadius: yRadius, zRadius: zRadius) })
+        return center.world.entities.filter({ $0.location.isNearby(center: center, xRadius: xRadius, yRadius: yRadius, zRadius: zRadius) })
     }
     
     func getEntity(uuid: UUID) -> (any Entity)? {

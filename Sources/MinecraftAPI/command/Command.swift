@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol Command : Hashable, Identifiable where ID == String {
+public protocol Command : Hashable, MinecraftIdentifiable {
     var label : String { get }
     var description : String { get }
     var aliases : Set<String> { get }
