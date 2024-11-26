@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol EntityType : Identifiable, MultilingualName, ServerTickChangeListener {
+public protocol EntityType : Identifiable, Nameable, ServerTickChangeListener where ID == String {
     var isAffectedByGravity : Bool { get }
     var isDamageable : Bool { get }
 

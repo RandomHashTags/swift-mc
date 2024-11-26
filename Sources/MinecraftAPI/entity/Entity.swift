@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Entity : AnyObject, Hashable, Nameable, Tickable {
+public protocol Entity : AnyObject, Hashable, CustomNameable, DisplayNameable, Tickable {
     var id : UInt64 { get }
     var uuid : UUID { get }
     /// the ``EntityType`` id

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Advancement : Identifiable, MultilingualName {    
+public protocol Advancement : Identifiable, Nameable where ID == String {    
     var description : String { get }
     var criteria : [String] { get }
     var completed : Date? { get }

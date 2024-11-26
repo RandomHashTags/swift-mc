@@ -5,10 +5,10 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public struct BlockMoveReaction : Identifiable {
-    public let id:String
+public protocol BlockMoveReaction : Identifiable where ID == String {
 }
 
+/*
 public extension BlockMoveReaction {
     private static func get(_ id: String) -> BlockMoveReaction {
         return BlockMoveReaction(id: id)
@@ -20,3 +20,4 @@ public extension BlockMoveReaction {
     static let ignore = get("ignore")
     static let pushOnly = get("pushOnly")
 }
+*/

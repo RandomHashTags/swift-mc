@@ -6,5 +6,5 @@
 //
 
 // test seed: -821619716921905758
-public protocol ChunkGenerator : Identifiable {
+public protocol ChunkGenerator : Identifiable where ID == String {
 }

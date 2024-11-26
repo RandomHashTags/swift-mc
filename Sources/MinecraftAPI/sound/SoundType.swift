@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 11/26/23.
 //
 
-public protocol SoundType : Identifiable {
+public protocol SoundType : Identifiable where ID == String {
     var volume : Float { get }
     var pitch : Float { get }
     var soundBreak : any SoundEvent { get }

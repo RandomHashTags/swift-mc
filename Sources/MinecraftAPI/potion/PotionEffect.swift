@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol PotionEffect : AnyObject, Tickable, Identifiable {
+public protocol PotionEffect : AnyObject, Tickable, Identifiable where ID == String {
     var typeID : String { get }
     var hasIcon : Bool { get set }
     var hasParticles : Bool { get set }

@@ -6,6 +6,6 @@
 //
 
 public protocol EnchantmentTarget : Hashable {
+    var materialCategoryIDs : Set<String> { get }
     var materialIDs : Set<String> { get }
-    var materials : [any Material] { get }
 }

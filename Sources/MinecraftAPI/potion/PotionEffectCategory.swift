@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 7/7/24.
 //
 
-public protocol PotionEffectCategory : Identifiable {
+public protocol PotionEffectCategory : Identifiable where ID == String {
 }
 
 // TODO: move to own file

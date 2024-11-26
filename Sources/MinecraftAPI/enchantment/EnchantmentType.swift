@@ -5,12 +5,10 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-import SwiftStringCatalogs
+public protocol EnchantmentType : Identifiable, Nameable where ID == String {
 
-public protocol EnchantmentType : Identifiable, MultilingualName {
-
-    var weight : UInt16 { get }
-    var maxLevel : UInt16 { get }
+    var weight : Int { get }
+    var maxLevel : Int { get }
 
     /// The `EnchantmentType` identifiers this enchantment type conflicts with.
     var conflictsWith : Set<String> { get }
@@ -22,7 +20,7 @@ public protocol EnchantmentType : Identifiable, MultilingualName {
 // TODO: move below to EnchantmentTypeJava file
 /*
 public extension EnchantmentType {
-    private static func get(_ id: String, maxLevel: UInt16) -> EnchantmentType {
+    private static func get(_ id: String, maxLevel: Int) -> EnchantmentType {
         return EnchantmentType(id: "minecraft." + id, name: String(stringLiteral: id), maxLevel: maxLevel)
     }
 

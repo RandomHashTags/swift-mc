@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol Command : Hashable, Identifiable {
+public protocol Command : Hashable, Identifiable where ID == String {
     var label : String { get }
     var description : String { get }
     var aliases : Set<String> { get }

@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 6/30/23.
 //
 
-public protocol PermissionDefaultValue : Hashable, Identifiable {
+public protocol PermissionDefaultValue : Hashable, Identifiable where ID == String {
 }

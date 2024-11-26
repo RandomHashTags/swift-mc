@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 11/26/23.
 //
 
-public protocol BlockFamily : Identifiable {
+public protocol BlockFamily : Identifiable where ID == String {
     associatedtype BlockFamilyVariantType : BlockFamilyVariant
     associatedtype BlockType : Block
     

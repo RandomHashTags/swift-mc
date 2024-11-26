@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol MaterialConfiguration : Hashable, Identifiable {
+public protocol MaterialConfiguration : Hashable, Identifiable where ID == String {
     var isOnlyItem : Bool { get }
     var isOnlyBlock : Bool { get }
     var isBlockAndItem : Bool { get }

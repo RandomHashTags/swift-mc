@@ -7,7 +7,7 @@
 
 public protocol MaterialBlockConfiguration {
     /// The reaction of this block when moved via in-game mechanics.
-    var blockMoveReaction : BlockMoveReaction { get }
+    var blockMoveReaction : any BlockMoveReaction { get }
     
     /// The growing configuration of this block, if it grows.
     var growable : MaterialBlockGrowableConfiguration? { get }

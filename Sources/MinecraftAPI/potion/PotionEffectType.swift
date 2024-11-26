@@ -5,9 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-import SwiftStringCatalogs
-
-public protocol PotionEffectType : Identifiable, MultilingualName {
+public protocol PotionEffectType : Identifiable, Nameable where ID == String {
     var categoryID : String { get }
 }
 

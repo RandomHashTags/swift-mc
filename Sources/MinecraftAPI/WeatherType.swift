@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol WeatherType : Identifiable, Hashable {
+public protocol WeatherType : Hashable, Identifiable where ID == String {
 }

@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol Particle : Identifiable {
+public protocol Particle : Identifiable where ID == String {
 }

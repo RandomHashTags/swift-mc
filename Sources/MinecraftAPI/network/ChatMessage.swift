@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol ChatMessage : Identifiable {
+public protocol ChatMessage : Identifiable where ID == String {
     var timestamp : Date { get }
     var sender : any CommandSender { get }
     var receiver : String? { get }
