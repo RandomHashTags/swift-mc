@@ -7,7 +7,7 @@
 
 import Logging
 
-public protocol Player : LivingEntity, CommandSender, Permissible {
+public protocol Player : CommandSender, InventoryHolder, LivingEntity, Permissible {
     var listName : String? { get }
     
     var experience : UInt64 { get }

@@ -22,12 +22,22 @@ public protocol MaterialBlockConfiguration {
     var passthroughVelocityDampenZ : Float { get }
     
     /// Whether an Entity receives fall damage when falling on this block or not.
-    var breaks_fall : Bool { get }
+    var breaksFall : Bool { get }
     
-    var resistance : Int { get }
+    var blastResistance : Float { get }
     var hardness : Float { get }
     var preferredBreakMaterials : [any Material]? { get }
+
+    var slipperiness : Float { get }
+
+    var hasGravity : Bool { get }
+    var isBurnable : Bool { get }
+    var isCompostable : Bool { get }
+    var isFlammable : Bool { get }
+    var isInteractable : Bool { get }
+    var isOccluding : Bool { get }
+    var isSolid : Bool { get }
     
     /// The items that can be dropped when this block is broken.
-    var loot : (LootTable)? { get }
+    var loot : (any LootTable)? { get }
 }

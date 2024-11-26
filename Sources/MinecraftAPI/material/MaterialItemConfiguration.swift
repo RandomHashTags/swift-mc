@@ -7,12 +7,12 @@
 
 public protocol MaterialItemConfiguration {
     /// Maximum amount of the same item that can be stacked in one slot.
-    var itemStackSizeMaximum : Int { get }
+    var maxStackSize : Int { get }
     
     /// Whether or not this item has durability.
     var hasDurability : Bool { get }
     /// The item's maximum durability.
-    var durability : Int { get }
+    var maxDurability : Int { get }
 
     /// The item's consumable configuration.
     var consumable : (any MaterialItemConsumableConfiguration)? { get }
