@@ -10,6 +10,7 @@ import Logging
 import Socket
 import SwiftASN1
 
+/*
 // BlueSocket TCP Server
 public final class ServerMojang {
     private static let domain:String = ""
@@ -299,4 +300,5 @@ final class ServerMojangHandler : ChannelInboundHandler {
         }
     }
 }
+*/
 */

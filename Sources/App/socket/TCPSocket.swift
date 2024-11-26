@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/*
 
 final class TCPSocket : Hashable { // TODO: support or remove
     static func == (lhs: TCPSocket, rhs: TCPSocket) -> Bool {
@@ -115,3 +116,4 @@ enum TCPSocketAddressFamily : Int {
     case ipv4
     case ipv6
 }
+*/

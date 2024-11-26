@@ -26,14 +26,6 @@ let package = Package(
     ],
     targets: [
         .macro(
-            name: "GluonMacros",
-            dependencies: [
-                .product(name: "SwiftSyntax", package: "swift-syntax"),
-                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
-            ]
-        ),
-        .macro(
             name: "MinecraftMacros",
             dependencies: [
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
@@ -45,7 +37,7 @@ let package = Package(
         .target(
             name: "App",
             dependencies: [
-                "GluonMacros",
+                "MinecraftAPI",
                 "MinecraftMacros",
                 //.product(name: "BlueSocket", package: "BlueSocket"),
                 .product(name: "Vapor", package: "vapor"),
@@ -69,29 +61,29 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Packets",
+            name: "MinecraftPackets",
             dependencies: [
                 "Utilities"
             ]
         ),
         .target(
-            name: "API",
+            name: "MinecraftAPI",
             dependencies: [
-                "Packets"
+                "MinecraftPackets"
             ]
         ),
 
         .target(
-            name: "PacketsJava",
+            name: "MinecraftPacketsJava",
             dependencies: [
-                "Packets"
+                "MinecraftPackets"
             ]
         ),
         .target(
-            name: "APIJava",
+            name: "MinecraftAPIJava",
             dependencies: [
-                "API",
-                "PacketsJava"
+                "MinecraftAPI",
+                "MinecraftPacketsJava"
             ]
         ),
 
