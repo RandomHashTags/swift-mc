@@ -6,9 +6,7 @@
 //
 
 public protocol ItemStack : Hashable {
-    /// The `Material` identifier of this itemstack.
-    var materialID : String { get }
-    /// The `ItemMeta` of this itemstack.
+    var material : any Material { get }
     var meta : (any ItemMeta)? { get }
     var amount : Int { get }
     var durability : Int { get }

@@ -6,7 +6,10 @@
 //
 
 public protocol BlockFace : MinecraftIdentifiable {
-    var oppositeID : ID { get }
+    var direction : Vector { get }
+    var alignment : Vector { get }
+    var opposite : any BlockFace { get }
+    var isCartesian : Bool { get }
 }
 
 /*

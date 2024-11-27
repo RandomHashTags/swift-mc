@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 11/26/24.
 //
 
-public protocol Zombie : Monster, Ageable {
+public protocol Zombie : Ageable, Monster {
     var canBreakDoors : Bool { get }
     /// Measured in ticks.
     var remainingConversionDuration : Int { get }

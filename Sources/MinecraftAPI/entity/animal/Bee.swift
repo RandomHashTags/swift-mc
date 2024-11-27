@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 11/26/24.
 //
 
-public protocol Bee : Animal {
+public protocol Bee : Animal, Flyable {
     var angerLevel : Int { get }
     var remainingCannotEnterHiveDuration : Int { get }
     var hasNectar : Bool { get }

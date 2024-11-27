@@ -9,7 +9,6 @@ import Logging
 
 public protocol Damageable : Entity {
     var health : Double { get }
-    var healthMaximum : Double { get }
         
     func tickDamageable(_ server: any Server)
     

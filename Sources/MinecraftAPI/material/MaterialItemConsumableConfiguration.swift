@@ -12,4 +12,7 @@ public protocol MaterialItemConsumableConfiguration : AnyObject, ServerTickChang
     var nutrition : Int { get }
     var saturationModifier : Float { get }
     var effects : [any PotionEffect] { get }
+
+    var drinkingSound : (any Sound)? { get }
+    var eatingSound : (any Sound)? { get }
 }

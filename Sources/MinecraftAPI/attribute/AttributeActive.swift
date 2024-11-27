@@ -5,9 +5,12 @@
 //  Created by Evan Anderson on 6/30/23.
 //
 
-public protocol AttributeActive : Hashable {
-    var attribute_id : String { get }
+public protocol AttributeActive : MinecraftIdentifiable {
     var attribute : (any Attribute)? { get }
     
+    var baseValue : Double { get }
+    var defaultValue : Double { get }
     var value : Double { get }
+
+    var modifiers : [any AttributeModifier] { get } // TODO: make Set
 }

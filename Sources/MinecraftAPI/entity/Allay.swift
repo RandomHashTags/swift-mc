@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 11/26/24.
 //
 
-public protocol Allay : Creature, InventoryHolder {
+public protocol Allay : Creature, Flyable, InventoryHolder {
     var inventory : any Inventory { get }
 
     var canDuplicate : Bool { get }
