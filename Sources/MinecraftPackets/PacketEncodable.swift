@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 8/6/23.
 //
 
-public protocol PacketEncodable : Hashable {
+public protocol PacketEncodable {
     func packetBytes() throws -> [UInt8]
     
     func unwrapOptional<T, R>(_ value: R?, key_path: KeyPath<Self, T>, precondition: String) throws -> R

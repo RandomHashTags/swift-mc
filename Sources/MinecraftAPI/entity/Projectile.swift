@@ -7,5 +7,5 @@
 
 public protocol Projectile : Entity {
     var source : ProjectileSource? { get }
-    func tickProjectile(_ server: any Server)
+    mutating func tickProjectile(_ server: any Server)
 }

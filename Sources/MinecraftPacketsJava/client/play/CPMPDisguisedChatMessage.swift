@@ -14,9 +14,9 @@ public extension ClientPacket.Mojang.Java.Play {
         
         public let message:ChatPacketMojang
         /// The chat message type.
-        public let chat_type:VariableIntegerJava
+        public let chatType:VariableIntegerJava
         /// The name associated with the chat type. Usually the message sender's display name.
-        public let chat_type_name:ChatPacketMojang
+        public let chatType_name:ChatPacketMojang
         /// True if target name is present.
         public let has_target_name:Bool
         /// The target name associated with the chat type. Usually the message target's display name. Only present if previous boolean is true.
@@ -25,8 +25,8 @@ public extension ClientPacket.Mojang.Java.Play {
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 message,
-                chat_type,
-                chat_type_name,
+                chatType,
+                chatType_name,
                 has_target_name,
                 target_name
             ]

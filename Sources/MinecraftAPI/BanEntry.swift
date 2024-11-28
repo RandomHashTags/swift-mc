@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol BanEntry : Hashable {
+public protocol BanEntry {
     /// The UUID that banned `target`. `nil` = console
     var bannedBy : UUID? { get }
     var target : String { get }

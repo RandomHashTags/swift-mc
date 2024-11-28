@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol GeneralPacket : Hashable {
+public protocol GeneralPacket {
     /// The number of bytes it takes to represent this packet.
     var count : Int { get }
 

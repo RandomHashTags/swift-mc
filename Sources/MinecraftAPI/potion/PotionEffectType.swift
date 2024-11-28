@@ -6,7 +6,9 @@
 //
 
 public protocol PotionEffectType : MinecraftIdentifiable, Nameable {
-    var categoryID : String { get }
+    var color : Color { get }
+    var isInstant : Bool { get }
+    var categories : [any MinecraftIdentifiable] { get } // TODO: make Set
 }
 
 // TODO: move to own file

@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol Location : Hashable {
+public protocol Location {
     var world : any World { get }
     var x : Double { get }
     var y : Double { get }

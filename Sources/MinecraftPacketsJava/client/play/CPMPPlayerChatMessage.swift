@@ -16,9 +16,9 @@ public extension ClientPacket.Mojang.Java.Play {
         /// Used by the Notchian client for the disableChat launch option. Setting both longs to 0 will always display the message regardless of the setting.
         public let sender:UUID
         public let index:VariableIntegerJava
-        public let message_signature_present:Bool
-        /// Only present if `message_signature_present` is true. Cryptography, the signature consists of the Sender UUID, Session UUID from the [Player Session](https://wiki.vg/Protocol#Player_Session) packet, Index, Salt, Timestamp in epoch seconds, the length of the original chat content, the original content itself, the length of Previous Messages, and all of the Previous message signatures. These values are hashed with [SHA-256](https://en.wikipedia.org/wiki/SHA-2) and signed using the [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) cryptosystem. Modifying any of these values in the packet will cause this signature to fail. This buffer is always 256 bytes long and it is not length-prefixed.
-        public let message_signature_bytes:[UInt8]?
+        public let messageSignaturePresent:Bool
+        /// Only present if `messageSignaturePresent` is true. Cryptography, the signature consists of the Sender UUID, Session UUID from the [Player Session](https://wiki.vg/Protocol#Player_Session) packet, Index, Salt, Timestamp in epoch seconds, the length of the original chat content, the original content itself, the length of Previous Messages, and all of the Previous message signatures. These values are hashed with [SHA-256](https://en.wikipedia.org/wiki/SHA-2) and signed using the [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) cryptosystem. Modifying any of these values in the packet will cause this signature to fail. This buffer is always 256 bytes long and it is not length-prefixed.
+        public let messageSignatureBytes:[UInt8]?
         
         // MARK: Body
         public let message:String
@@ -29,26 +29,26 @@ public extension ClientPacket.Mojang.Java.Play {
         
         // MARK: Previous Messages
         /// The maximum length is 20 in Notchian client.
-        public let total_previous_messages:VariableIntegerJava
+        public let totalPreviousMessages:VariableIntegerJava
         /// The message Id + 1, used for validating message signature. The next field is present only when value of this field is equal to -1.
-        public let message_ids:[VariableIntegerJava]
-        /// The previous message's signature. Contains the same type of data as `message_signature_bytes` above.
+        public let messageIDs:[VariableIntegerJava]
+        /// The previous message's signature. Contains the same type of data as `messageSignatureBytes` above.
         public let signatures:[Int8]?
         
         // MARK: Other
-        public let unsigned_content_present:Bool
-        public let unsigned_content:ChatPacketMojang?
+        public let unsignedContentPresent:Bool
+        public let unsignedContent:ChatPacketMojang?
         /// If the message has been filtered
-        public let filter_type:FilterType
+        public let filterType:FilterType
         /// Only present if the Filter Type is Partially Filtered.
-        public let filter_type_bits:Data? = nil // TODO: fix (make BitSet)
+        public let filterTypeBits:Data? = nil // TODO: fix (make BitSet)
         
         // MARK: Network target
         /// The chat type from the [Login (play)](https://wiki.vg/Protocol#Login_.28play.29) packet used for this message
-        public let chat_type:VariableIntegerJava
-        public let network_name:ChatPacketMojang
-        public let network_target_name_present:Bool
-        public let network_target_name:ChatPacketMojang?
+        public let chatType:VariableIntegerJava
+        public let networkName:ChatPacketMojang
+        public let networkTargetNamePresent:Bool
+        public let networkTargetName:ChatPacketMojang?
         
         public enum FilterType : Int, Codable, PacketEncodableMojangJava {
             case pass_through
@@ -60,11 +60,11 @@ public extension ClientPacket.Mojang.Java.Play {
             var array:[(any PacketEncodableMojangJava)?] = [
                 sender,
                 index,
-                message_signature_present
+                messageSignaturePresent
             ]
-            if message_signature_present {
-                let message_signature_bytes:[UInt8] = try unwrapOptional(message_signature_bytes, key_path: \Self.message_signature_bytes, precondition: "message_signature_present == true")
-                array.append(contentsOf: message_signature_bytes)
+            if messageSignaturePresent {
+                let messageSignatureBytes:[UInt8] = try unwrapOptional(messageSignatureBytes, key_path: \Self.messageSignatureBytes, precondition: "messageSignaturePresent == true")
+                array.append(contentsOf: messageSignatureBytes)
             }
             
             var secondary:[(any PacketEncodableMojangJava)?] = [
@@ -72,33 +72,33 @@ public extension ClientPacket.Mojang.Java.Play {
                 timestamp,
                 salt,
                 
-                total_previous_messages
+                totalPreviousMessages
             ]
-            secondary.append(contentsOf: message_ids)
-            if total_previous_messages.value == -1 {
-                let signatures:[Int8] = try unwrapOptional(signatures, key_path: \Self.signatures, precondition: "total_previous_messages.value == -1")
+            secondary.append(contentsOf: messageIDs)
+            if totalPreviousMessages.value == -1 {
+                let signatures:[Int8] = try unwrapOptional(signatures, key_path: \Self.signatures, precondition: "totalPreviousMessages.value == -1")
                 secondary.append(contentsOf: signatures)
             }
-            secondary.append(unsigned_content_present)
-            if unsigned_content_present {
-                let unsigned_content:ChatPacketMojang = try unwrapOptional(unsigned_content, key_path: \Self.unsigned_content, precondition: "unsigned_content_present == true")
-                secondary.append(unsigned_content)
+            secondary.append(unsignedContentPresent)
+            if unsignedContentPresent {
+                let unsignedContent:ChatPacketMojang = try unwrapOptional(unsignedContent, key_path: \Self.unsignedContent, precondition: "unsignedContentPresent == true")
+                secondary.append(unsignedContent)
             }
-            secondary.append(filter_type)
-            if filter_type == .partially_filtered {
-                let filter_type_bits:Data = try unwrapOptional(filter_type_bits, key_path: \Self.filter_type_bits, precondition: "filter_type == .partially_filtered")
-                secondary.append(filter_type_bits)
+            secondary.append(filterType)
+            if filterType == .partially_filtered {
+                let filterTypeBits:Data = try unwrapOptional(filterTypeBits, key_path: \Self.filterTypeBits, precondition: "filterType == .partially_filtered")
+                secondary.append(filterTypeBits)
             }
             array.append(contentsOf: secondary)
             
             secondary = [
-                chat_type,
-                network_name,
-                network_target_name_present
+                chatType,
+                networkName,
+                networkTargetNamePresent
             ]
-            if network_target_name_present {
-                let network_target_name:ChatPacketMojang = try unwrapOptional(network_target_name, key_path: \Self.network_target_name, precondition: "network_target_name_present == true")
-                secondary.append(network_target_name)
+            if networkTargetNamePresent {
+                let networkTargetName:ChatPacketMojang = try unwrapOptional(networkTargetName, key_path: \Self.networkTargetName, precondition: "networkTargetNamePresent == true")
+                secondary.append(networkTargetName)
             }
             array.append(contentsOf: secondary)
             

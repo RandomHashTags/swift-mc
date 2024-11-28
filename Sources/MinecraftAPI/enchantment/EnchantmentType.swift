@@ -11,10 +11,7 @@ public protocol EnchantmentType : MinecraftIdentifiable, Nameable {
     var maxLevel : Int { get }
 
     /// The `EnchantmentType` identifiers this enchantment type conflicts with.
-    var conflictsWith : Set<String> { get }
-
-    var isTreasure : Bool { get }
-    var isCursed : Bool { get }
+    var conflictsWith : Set<MinecraftIdentifiableID> { get }
 }
 
 // TODO: move below to EnchantmentTypeJava file

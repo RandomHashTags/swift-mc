@@ -43,7 +43,7 @@ private func test() {
         uuid: UUID(),
         seed: 420,
         name: "minecraft.overworld",
-        spawn_location: Vector.init(x: HugeFloat.zero, y: HugeFloat.zero, z: HugeFloat.zero),
+        spawnLocation: Vector.init(x: HugeFloat.zero, y: HugeFloat.zero, z: HugeFloat.zero),
         difficulty: difficulty,
         gameRules: [],
         time: 0,

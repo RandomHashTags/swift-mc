@@ -8,7 +8,7 @@
 public enum MinecraftProtocolVersion {
 }
 
-public protocol MinecraftProtocolVersionProtocol : Hashable, Codable, RawRepresentable where RawValue == Int {
+public protocol MinecraftProtocolVersionProtocol : Codable, RawRepresentable where RawValue == Int {
     var name : String { get }
 }
 public extension MinecraftProtocolVersionProtocol {

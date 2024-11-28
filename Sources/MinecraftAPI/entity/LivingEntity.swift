@@ -10,6 +10,7 @@ import Foundation
 public protocol LivingEntity : Attributable, Damageable, ProjectileSource {
     var canBreatheUnderwater : Bool { get }
     var canPickupItems : Bool { get }
+    /// The exempt `Entity` UUIDs where collision between this entity and them will be ignored.
     var collidableExemptions : Set<UUID> { get }
 
     var hasAI : Bool { get }
@@ -47,7 +48,7 @@ public protocol LivingEntity : Attributable, Damageable, ProjectileSource {
     var arrowCooldown : Int { get }
     var arrowsInBody : [any Entity] { get } // TODO: make Set
         
-    func tickLivingEntity(_ server: any Server)
+    mutating func tickLivingEntity(_ server: any Server)
     
-    func damageLivingEntity(cause: any DamageCause, amount: Double) -> DamageResult
+    mutating func damageLivingEntity(cause: any DamageCause, amount: Double) -> DamageResult
 }

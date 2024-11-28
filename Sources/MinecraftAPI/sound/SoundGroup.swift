@@ -1,11 +1,11 @@
 //
-//  SoundType.swift
+//  SoundGroup.swift
 //
 //
 //  Created by Evan Anderson on 11/26/23.
 //
 
-public protocol SoundType : MinecraftIdentifiable {
+public protocol SoundGroup : MinecraftIdentifiable {
     var volume : Float { get }
     var pitch : Float { get }
     var soundBreak : any SoundEvent { get }

@@ -7,20 +7,21 @@
 
 import Foundation
 
-public protocol Entity : AnyObject, Hashable, CustomNameable, DisplayNameable, Tickable {
+public protocol Entity : BlockMovable, CustomNameable, DisplayNameable, Tickable {
     var id : UInt64 { get }
     var uuid : UUID { get }
-    /// the ``EntityType`` id
-    var typeID : String { get }
-    var type : (any EntityType)? { get }
+    var type : any EntityType { get }
     
     var ticksLived : UInt64 { get }
     
-    var boundaries : [Boundary] { get }
+    var boundaries : [any Boundary] { get }
+
     /// The current location of this entity.
     var location : any Location { get }
+
     /// The current velocity of this entity.
     var velocity : Vector { get }
+
     /// The total fall distance of this entity, measured in blocks.
     var fallDistance : Float { get }
     
@@ -28,7 +29,8 @@ public protocol Entity : AnyObject, Hashable, CustomNameable, DisplayNameable, T
     var isOnFire : Bool { get }
     var isOnGround : Bool { get }
     
-    var height : Float { get }
+    /// The height of this entity, measured in blocks.
+    var height : Double { get }
     
     var fireTicks : Int { get }
     var fireTicksMaximum : Int { get }
@@ -36,19 +38,21 @@ public protocol Entity : AnyObject, Hashable, CustomNameable, DisplayNameable, T
     var freezeTicks : Int { get }
     var freezeTicksMaximum : Int { get }
     
-    /// The UUIDs of the entities currently riding this entity.
-    var passengerUUIDs : Set<UUID> { get }
-    var passengers : [any Entity] { get }
+    /// The entities currently riding this entity.
+    var passengers : [any Entity] { get } // TODO: make Set?
     
-    /// The vehicle UUID this entity is currently riding.
-    var vehicleUUID : UUID? { get }
+    /// The vehicle this entity is currently riding.
     var vehicle : (any Entity)? { get }
         
-    func tickEntity(_ server: any Server)
+    mutating func tickEntity(_ server: any Server)
     
     /// Removes this entity from the server. Like it never existed (or "despawned").
-    func remove()
+    mutating func remove()
     
     /// Teleport this entity to a certain location.
-    func teleport(_ location: any Location)
+    mutating func teleport(to location: any Location)
+}
+
+public extension Entity {
+    var world : any World { location.world }
 }

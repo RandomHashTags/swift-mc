@@ -13,7 +13,6 @@ import SwiftDiagnostics
 @main
 struct MacrosPlugin : CompilerPlugin {
     let providingMacros:[Macro.Type] = [
-        MinecraftPlugin.self,
-        MinecraftCommand.self
+        MinecraftIdentifiableMacro.self
     ]
 }

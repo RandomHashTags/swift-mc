@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol MinecraftClientHandler : AnyObject, Hashable {
+public protocol MinecraftClientHandler {
     
     associatedtype ProtocolVersion : MinecraftProtocolVersionProtocol
     

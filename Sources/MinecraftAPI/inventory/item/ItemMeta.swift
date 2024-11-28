@@ -5,16 +5,29 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol ItemMeta : Hashable {
+public protocol ItemMeta {
     var displayName : String? { get }
-    var lore : [String]? { get }
-    var flags : [any ItemFlag]? { get }
-    /// [`EnchantmentType` Identifier : Enchantment Level]
-    var enchants : [String : Int]? { get } // TODO: fix?
+    var lore : [String] { get }
+    var rarity : any ItemRarity { get }
+    var food : (any Food)? { get }
+
+    func hasFlag(_ id: MinecraftIdentifiableID) -> Bool
+    func getEnchant(_ id: MinecraftIdentifiableID) -> (any Enchantment)?
 }
+
 public extension ItemMeta {
-    static func == (left: any ItemMeta, right: any ItemMeta) -> Bool {
-        guard left.displayName == right.displayName && left.lore == right.lore && left.flags?.count == right.flags?.count && left.enchants == right.enchants else { return false }
-        return true // TODO: finish ItemFlag equivalence
+    var hasDisplayName : Bool { displayName != nil }
+
+    var hasLore : Bool { !lore.isEmpty }
+
+    func hasFlag(_ flag: any ItemFlag) -> Bool {
+        return hasFlag(flag.id)
+    }
+
+    func getEnchant(_ type: any EnchantmentType) -> (any Enchantment)? {
+        return getEnchant(type.id)
+    }
+    func hasEnchant(_ enchant: any EnchantmentType) -> Bool {
+        return getEnchant(enchant.id) != nil
     }
 }

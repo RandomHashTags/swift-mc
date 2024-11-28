@@ -38,7 +38,6 @@ let package = Package(
             name: "App",
             dependencies: [
                 "MinecraftAPI",
-                "MinecraftMacros",
                 //.product(name: "BlueSocket", package: "BlueSocket"),
                 .product(name: "Vapor", package: "vapor"),
                 
@@ -56,17 +55,21 @@ let package = Package(
 
         .target(
             name: "MinecraftUtilities",
-            dependencies: []
+            dependencies: [
+                "MinecraftMacros"
+            ]
         ),
         .target(
             name: "MinecraftPackets",
             dependencies: [
-                "MinecraftUtilities"
+                "MinecraftMacros",
+                "MinecraftUtilities",
             ]
         ),
         .target(
             name: "MinecraftAPI",
             dependencies: [
+                "MinecraftMacros",
                 "MinecraftPackets"
             ]
         ),
@@ -74,6 +77,7 @@ let package = Package(
         .target(
             name: "MinecraftPacketsJava",
             dependencies: [
+                "MinecraftMacros",
                 "MinecraftPackets",
                 .product(name: "NIO", package: "swift-nio")
             ]
@@ -82,6 +86,7 @@ let package = Package(
             name: "MinecraftAPIJava",
             dependencies: [
                 "MinecraftAPI",
+                "MinecraftMacros",
                 "MinecraftPacketsJava"
             ]
         ),

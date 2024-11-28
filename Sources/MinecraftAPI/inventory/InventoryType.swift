@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol InventoryType : Hashable, MinecraftIdentifiable {
+public protocol InventoryType : MinecraftIdentifiable {
     var categories : [String] { get }
     /// Maximum amount of slots this inventory type contains.
     var size : Int { get }

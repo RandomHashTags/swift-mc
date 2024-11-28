@@ -10,7 +10,7 @@ import Logging
 public protocol Damageable : Entity {
     var health : Double { get }
         
-    func tickDamageable(_ server: any Server)
+    mutating func tickDamageable(_ server: any Server)
     
-    func damage(cause: any DamageCause, amount: Double) -> DamageResult
+    mutating func damage(cause: any DamageCause, amount: Double) -> DamageResult
 }

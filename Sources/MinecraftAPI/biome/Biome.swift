@@ -6,6 +6,7 @@
 //
 
 public protocol Biome : MinecraftIdentifiable {
+    var configuration : any BiomeConfiguration { get }
 }
 
 // TODO: move to own file
