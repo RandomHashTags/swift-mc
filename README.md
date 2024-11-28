@@ -1,14 +1,14 @@
 # SwiftMC
 
 ## Table of Contents
-- [Why](why)
-  - [Why Swift](why-swift)
-- [Philosophy](philosophy)
-- [Current Features](current-features)
-  - [API](api)
-  - [Implementation](implementation)
-- [Contributing](contributing)
-- [Funding](funding)
+- [Why](#why)
+  - [Why Swift](#why-swift)
+- [Philosophy](#philosophy)
+- [Current Features](#current-features)
+  - [API](#api)
+  - [Implementation](#implementation)
+- [Contributing](#contributing)
+- [Funding](#funding)
 
 ## Why
 Minecraft performance is laughably poor. I also disagree with some of the changes Mojang has done to the game (chat reporting, server banning, EULA, etc).
