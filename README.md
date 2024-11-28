@@ -14,7 +14,7 @@
 Minecraft performance is laughably poor. I also disagree with some of the changes Mojang has done to the game (chat reporting, server banning, EULA, etc).
 
 ### Why Swift
-I considered using C or Rust initially. The problem with those languages is that they don't offer the best developer experience when writing mods/plugins. I want this project to offer the easiest entry for mods/plugins, while not compromising securiy, performance or syntax.
+I considered using C or Rust initially. The problem with those languages is that they don't offer the best developer experience when writing mods/plugins. I want this project to offer the easiest entry for mods/plugins, while not compromising security, performance or syntax.
 
 ## Philosophy
 This server is to mimic the vanilla Minecraft experience in all aspects, supporting all versions and the same world generation. The only logic added that doesn't adhere to vanilla Minecraft should be performance and memory improvements OR third-party additions.
