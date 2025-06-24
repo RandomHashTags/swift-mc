@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
-    struct SetBorderSize : ClientPacket.Mojang.Java.PlayProtocol {
+    struct SetBorderSize: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setBorderSize
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

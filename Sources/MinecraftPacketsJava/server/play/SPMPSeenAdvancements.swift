@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
-    struct SeenAdvancements : ServerPacketMojangJavaPlayProtocol {
+    struct SeenAdvancements: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.seenAdvancements
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -21,7 +21,7 @@ public extension ServerPacket.Mojang.Java.Play {
         /// Only present if action is Opened tab.
         public let tab_id:NamespaceJava?
         
-        public enum Action : Int, Codable, PacketEncodableMojangJava {
+        public enum Action: Int, Codable, PacketEncodableMojangJava {
             case opened_tab
             case closed_screen
         }

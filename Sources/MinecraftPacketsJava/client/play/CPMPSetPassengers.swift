@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
-    struct SetPassengers : ClientPacket.Mojang.Java.PlayProtocol {
+    struct SetPassengers: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setPassengers
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

@@ -15,7 +15,7 @@ extension ServerPacket.Mojang.Java.Configuration {
     /// Note that the length of Data is known only from the packet length, since the packet has no length field of any kind.
     ///
     /// - Note: In Notchian server, the maximum data length is 32767 bytes.
-    struct PluginMessage : ServerPacketMojangJavaConfigurationProtocol {
+    struct PluginMessage: ServerPacketMojangJavaConfigurationProtocol {
         public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.pluginMessage
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

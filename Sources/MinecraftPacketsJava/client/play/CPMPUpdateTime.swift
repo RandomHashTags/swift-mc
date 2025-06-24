@@ -13,7 +13,7 @@ public extension ClientPacket.Mojang.Java.Play {
     /// The time of day is based on the timestamp modulo 24000. 0 is sunrise, 6000 is noon, 12000 is sunset, and 18000 is midnight.
     ///
     /// The default SMP server increments the time by `20` every second.
-    struct UpdateTime : ClientPacket.Mojang.Java.PlayProtocol {
+    struct UpdateTime: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateTime
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

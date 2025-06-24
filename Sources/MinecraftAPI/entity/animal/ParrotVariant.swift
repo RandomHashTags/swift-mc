@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 11/26/24.
 //
 
-public protocol ParrotVariant : MinecraftIdentifiable {
+public protocol ParrotVariant: MinecraftIdentifiable {
 }

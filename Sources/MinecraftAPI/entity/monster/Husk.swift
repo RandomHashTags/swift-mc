@@ -5,12 +5,12 @@
 //  Created by Evan Anderson on 11/27/24.
 //
 
-public protocol Husk : Zombie {
+public protocol Husk: Zombie {
     /// Measured in ticks.
-    var remainingConversionDuration : Int { get }
-    var isConverting : Bool { get }
+    var remainingConversionDuration: Int { get }
+    var isConverting: Bool { get }
 }
 
 public extension Husk {
-    var isConverting : Bool { remainingConversionDuration > 0 }
+    var isConverting: Bool { remainingConversionDuration > 0 }
 }

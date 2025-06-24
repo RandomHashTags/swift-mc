@@ -9,7 +9,7 @@ import Foundation
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
-    struct PlayerSession : ServerPacketMojangJavaPlayProtocol {
+    struct PlayerSession: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.playerSession
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

@@ -6,19 +6,19 @@
 //
 
 public protocol ItemMeta {
-    var displayName : String? { get }
-    var lore : [String] { get }
-    var rarity : any ItemRarity { get }
-    var food : (any Food)? { get }
+    var displayName: String? { get }
+    var lore: [String] { get }
+    var rarity: any ItemRarity { get }
+    var food: (any Food)? { get }
 
     func hasFlag(_ id: MinecraftIdentifiableID) -> Bool
     func getEnchant(_ id: MinecraftIdentifiableID) -> (any Enchantment)?
 }
 
 public extension ItemMeta {
-    var hasDisplayName : Bool { displayName != nil }
+    var hasDisplayName: Bool { displayName != nil }
 
-    var hasLore : Bool { !lore.isEmpty }
+    var hasLore: Bool { !lore.isEmpty }
 
     func hasFlag(_ flag: any ItemFlag) -> Bool {
         return hasFlag(flag.id)

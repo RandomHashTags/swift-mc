@@ -75,7 +75,7 @@ final class GluonStorage<Key: Hashable, Value> {
 }
 
 private extension GluonStorage {
-    final class WrappedKey : NSObject {
+    final class WrappedKey: NSObject {
         let key:Key
         
         init(_ key: Key) {
@@ -106,7 +106,7 @@ public protocol GluonSharedInstance {
     init()
 }
 public extension GluonSharedInstance {
-    static var shared : Self {
+    static var shared: Self {
         let type:String = String(describing: Self.self)
         if let cached:Self = GluonStorageSharedInstances.instances[type] as? Self {
             return cached

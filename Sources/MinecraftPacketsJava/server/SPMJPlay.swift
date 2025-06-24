@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java {
-    enum Play : UInt8, PacketGameplayID {
+    enum Play: UInt8, PacketGameplayID {
         case confirmTeleportation = 0
         case queryBlockEntityTag = 1
         case changeDifficulty
@@ -61,7 +61,7 @@ public extension ServerPacket.Mojang.Java {
         case useItemOn
         case useItem
         
-        var packet : any ServerPacketMojangJavaPlayProtocol.Type {
+        var packet: any ServerPacketMojangJavaPlayProtocol.Type {
             switch self {
             case .confirmTeleportation:            return ServerPacket.Mojang.Java.Play.ConfirmTeleportation.self
             case .queryBlockEntityTag:           return ServerPacket.Mojang.Java.Play.QueryBlockEntityTag.self

@@ -21,7 +21,7 @@ public extension ClientPacket.Mojang.Java.Play {
     /// - Spider (and cave spider) → `shaders/post/spider.json`
     /// - Enderman → `shaders/post/invert.json`
     /// - Anything else → the current shader is unloaded
-    struct SetCamera : ClientPacket.Mojang.Java.PlayProtocol {
+    struct SetCamera: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setCamera
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

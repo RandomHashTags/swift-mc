@@ -5,10 +5,10 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol PotionEffectType : MinecraftIdentifiable, Nameable {
-    var color : Color { get }
-    var isInstant : Bool { get }
-    var categories : [any MinecraftIdentifiable] { get } // TODO: make Set
+public protocol PotionEffectType: MinecraftIdentifiable, Nameable {
+    var color: Color { get }
+    var isInstant: Bool { get }
+    var categories: [any MinecraftIdentifiable] { get } // TODO: make Set
 }
 
 // TODO: move to own file

@@ -13,7 +13,7 @@ public extension ClientPacket.Mojang.Java.Play {
     /// More information on how it works on Dinnerbone's blog (https://dinnerbone.com/blog/2012/01/13/minecraft-plugin-channels-messaging/ ). More documentation about internal and popular registered channels can be found at https://wiki.vg/Plugin_channel .
     ///
     /// In Notchian client, the maximum data length is 1048576 bytes.
-    struct PluginMessage : ClientPacket.Mojang.Java.PlayProtocol {
+    struct PluginMessage: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.pluginMessage
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

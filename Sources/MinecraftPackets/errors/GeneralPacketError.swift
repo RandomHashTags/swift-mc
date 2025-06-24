@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 8/5/23.
 //
 
-public enum GeneralPacketError : Error, CustomStringConvertible {
+public enum GeneralPacketError: Error, CustomStringConvertible {
     case varint_is_too_big
     case varlong_is_too_big
     case namespace_value_length_not_equal
@@ -15,7 +15,7 @@ public enum GeneralPacketError : Error, CustomStringConvertible {
     
     case not_implemented(packet_type: any Packet.Type)
     
-    public var description : String {
+    public var description: String {
         switch self {
         case .varint_is_too_big:
             return "VarInt is too big"

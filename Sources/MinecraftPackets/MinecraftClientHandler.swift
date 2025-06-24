@@ -9,11 +9,11 @@ import Foundation
 
 public protocol MinecraftClientHandler {
     
-    associatedtype ProtocolVersion : MinecraftProtocolVersionProtocol
+    associatedtype ProtocolVersion: MinecraftProtocolVersionProtocol
     
-    static var platform : PacketPlatform { get }
+    static var platform: PacketPlatform { get }
     
-    var protocolVersion : ProtocolVersion { get }
+    var protocolVersion: ProtocolVersion { get }
     
     func processPacket() throws
     

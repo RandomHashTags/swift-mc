@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 7/7/24.
 //
 
-public protocol PotionEffectCategory : MinecraftIdentifiable {
+public protocol PotionEffectCategory: MinecraftIdentifiable {
 }
 
 // TODO: move to own file

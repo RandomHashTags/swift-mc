@@ -9,7 +9,7 @@ import Foundation
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
-    struct UpdateRecipes : ClientPacket.Mojang.Java.PlayProtocol {
+    struct UpdateRecipes: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateRecipes
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -27,7 +27,7 @@ public extension ClientPacket.Mojang.Java.Play {
         public let count:VariableIntegerJava
         public let recipes:[UpdateRecipes.UpdateRecipe]
         
-        public struct UpdateRecipe : Codable, PacketEncodableMojangJava {
+        public struct UpdateRecipe: Codable, PacketEncodableMojangJava {
             public let identifier:NamespaceJava
             public let recipeID:NamespaceJava
             /// Additional data for the recipe.

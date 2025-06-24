@@ -5,8 +5,8 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public protocol Biome : MinecraftIdentifiable {
-    var configuration : any BiomeConfiguration { get }
+public protocol Biome: MinecraftIdentifiable {
+    var configuration: any BiomeConfiguration { get }
 }
 
 // TODO: move to own file

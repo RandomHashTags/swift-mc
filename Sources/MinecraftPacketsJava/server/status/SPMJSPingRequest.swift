@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 extension ServerPacket.Mojang.Java.Status {
-    struct PingRequest : ServerPacketMojangJavaStatusProtocol {
+    struct PingRequest: ServerPacketMojangJavaStatusProtocol {
         public static let id:ServerPacket.Mojang.Java.Status = ServerPacket.Mojang.Java.Status.pingRequest
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

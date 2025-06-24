@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
-    struct SetDefaultSpawnPosition : ClientPacket.Mojang.Java.PlayProtocol {
+    struct SetDefaultSpawnPosition: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setDefaultSpawnPosition
         
         /// Sent by the server after login to specify the coordinates of the spawn point (the point at which players spawn at, and which the compass points to). It can be sent at any time to update the point compasses point at.

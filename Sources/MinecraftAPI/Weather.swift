@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol Weather : MinecraftIdentifiable {
+public protocol Weather: MinecraftIdentifiable {
 }

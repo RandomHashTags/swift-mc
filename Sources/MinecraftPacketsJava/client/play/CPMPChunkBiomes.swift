@@ -8,14 +8,14 @@
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
-    struct ChunkBiomes : ClientPacket.Mojang.Java.PlayProtocol {
+    struct ChunkBiomes: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.chunkBiomes
         
         /// Number of elements in `data`.
         public let number_of_chunks:VariableIntegerJava
         public let data:[ChunkBiomes.BiomeData]
         
-        public struct BiomeData : Codable, PacketEncodableMojangJava {
+        public struct BiomeData: Codable, PacketEncodableMojangJava {
             /// Chunk coordinate (block coordinate divided by 16, rounded down)
             public let x:Int
             /// Chunk coordinate (block coordinate divided by 16, rounded down)

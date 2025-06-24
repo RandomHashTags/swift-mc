@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Configuration {
-    struct ResourcePack : ClientPacket.Mojang.Java.ConfigurationProtocol {
+    struct ResourcePack: ClientPacket.Mojang.Java.ConfigurationProtocol {
         public static let id:ClientPacket.Mojang.Java.Configuration = ClientPacket.Mojang.Java.Configuration.resourcePack
         
         /// The URL to the resource pack.

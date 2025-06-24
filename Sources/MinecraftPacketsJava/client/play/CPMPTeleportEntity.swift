@@ -9,7 +9,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     /// This packet is sent by the server when an entity moves more than 8 blocks.
-    struct TeleportEntity : ClientPacket.Mojang.Java.PlayProtocol {
+    struct TeleportEntity: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.teleportEntity
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

@@ -9,7 +9,7 @@ import MinecraftPackets
 
 extension ServerPacket.Mojang.Java.Login {
     /// In Notchian server, the maximum data length is 1048576 bytes.
-    struct LoginPluginResponse : ServerPacketMojangJavaLoginProtocol {
+    struct LoginPluginResponse: ServerPacketMojangJavaLoginProtocol {
         public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.loginPluginResponse
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

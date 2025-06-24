@@ -5,11 +5,11 @@
 //  Created by Evan Anderson on 2/11/23.
 //
 
-public protocol DamageCause : MinecraftIdentifiable {
+public protocol DamageCause: MinecraftIdentifiable {
 }
 
 /*
-public enum DamageCause : MinecraftIdentifiable {
+public enum DamageCause: MinecraftIdentifiable {
     case contact
     case entityAttack(damager: any Entity)
     case projectile(projectile: any Projectile)
@@ -34,7 +34,7 @@ public enum DamageCause : MinecraftIdentifiable {
     
     case custom(identifier: String, value: Any? = nil)
     
-    public var id : String {
+    public var id: String {
         switch self {
         case .contact,
                 .suffocation,

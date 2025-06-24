@@ -33,7 +33,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// y = -sin(pitch)
     /// z =  cos(pitch) * cos(yaw)
     /// ```
-    struct SetPlayerRotation : ServerPacketMojangJavaPlayProtocol {
+    struct SetPlayerRotation: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setPlayerRotation
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

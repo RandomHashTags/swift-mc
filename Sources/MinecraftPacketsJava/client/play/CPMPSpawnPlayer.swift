@@ -14,7 +14,7 @@ public extension ClientPacket.Mojang.Java.Play {
     /// This packet must be sent after the Player Info Update packet that adds the player data for the client to use when spawning a player. If the Player Info for the player spawned by this packet is not present when this packet arrives, Notchian clients will not spawn the player entity. The Player Info packet includes skin/cape data.
     ///
     /// Servers can, however, safely spawn player entities for players not in visible range. The client appears to handle it correctly.
-    struct SpawnPlayer : ClientPacket.Mojang.Java.PlayProtocol {
+    struct SpawnPlayer: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.spawnPlayer
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

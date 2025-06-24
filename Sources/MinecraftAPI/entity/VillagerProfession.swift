@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 11/27/24.
 //
 
-public protocol VillagerProfession : MinecraftIdentifiable {
+public protocol VillagerProfession: MinecraftIdentifiable {
 }

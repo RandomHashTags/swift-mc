@@ -7,8 +7,8 @@
 
 import Logging
 
-public protocol Damageable : Entity {
-    var health : Double { get }
+public protocol Damageable: Entity {
+    var health: Double { get }
         
     mutating func tickDamageable(_ server: any Server)
     

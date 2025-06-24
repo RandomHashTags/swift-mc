@@ -7,7 +7,7 @@
 
 import MinecraftPackets
 
-public enum SoundCategoryJava : Int, SoundCategory, PacketEncodableMojangJava {
+public enum SoundCategoryJava: Int, SoundCategory, PacketEncodableMojangJava {
     case master = 0
     case music
     case records
@@ -19,7 +19,7 @@ public enum SoundCategoryJava : Int, SoundCategory, PacketEncodableMojangJava {
     case ambient
     case voice
 
-    public var id : ID {
+    public var id: ID {
         switch self {
             case .master:  return #identifiable("minecraft.master")
             case .music:   return #identifiable("minecraft.music")
@@ -34,5 +34,5 @@ public enum SoundCategoryJava : Int, SoundCategory, PacketEncodableMojangJava {
         }
     }
 
-    public var packetID : Int { rawValue }
+    public var packetID: Int { rawValue }
 }

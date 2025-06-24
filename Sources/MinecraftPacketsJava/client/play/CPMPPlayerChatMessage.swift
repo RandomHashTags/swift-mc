@@ -9,7 +9,7 @@ import Foundation
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
-    struct PlayerChatMessage : ClientPacket.Mojang.Java.PlayProtocol {
+    struct PlayerChatMessage: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.playerChatMessage
         
         // MARK: Header
@@ -50,7 +50,7 @@ public extension ClientPacket.Mojang.Java.Play {
         public let networkTargetNamePresent:Bool
         public let networkTargetName:ChatPacketMojang?
         
-        public enum FilterType : Int, Codable, PacketEncodableMojangJava {
+        public enum FilterType: Int, Codable, PacketEncodableMojangJava {
             case pass_through
             case fully_filtered
             case partially_filtered

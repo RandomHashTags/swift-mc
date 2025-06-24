@@ -6,5 +6,5 @@
 //
 
 public protocol Cancellable {
-    var isCancelled : Bool { get }
+    var isCancelled: Bool { get }
 }

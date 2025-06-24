@@ -8,11 +8,11 @@
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java {
-    enum Status : UInt8, PacketGameplayID {
+    enum Status: UInt8, PacketGameplayID {
         case statusResponse = 0
         case pingResponse   = 1
         
-        var packet : any ClientPacketMojangJavaStatusProtocol.Type {
+        var packet: any ClientPacketMojangJavaStatusProtocol.Type {
             switch self {
             case .statusResponse: return ClientPacket.Mojang.Java.Status.StatusResponse.self
             case .pingResponse:   return ClientPacket.Mojang.Java.Status.PingResponse.self

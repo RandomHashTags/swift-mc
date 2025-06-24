@@ -7,7 +7,7 @@
 
 import MinecraftPackets
 
-public struct NamespaceJava : Namespace, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix (PacketEncodableMojangJava)
+public struct NamespaceJava: Namespace, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix (PacketEncodableMojangJava)
     public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
         return try (packet as! GeneralPacketMojang).readIdentifier()
     }
@@ -27,7 +27,7 @@ public struct NamespaceJava : Namespace, PacketEncodableMojangJava, PacketDecoda
         value = values[1]
     }
     
-    public var description : String {
+    public var description: String {
         return identifier + ":" + value
     }
     

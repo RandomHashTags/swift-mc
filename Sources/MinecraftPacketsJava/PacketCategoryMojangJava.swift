@@ -7,7 +7,7 @@
 
 import MinecraftPackets
 
-public enum PacketCategoryMojangJava : PacketCategory {
+public enum PacketCategoryMojangJava: PacketCategory {
     case clientHandshaking
     case clientLogin
     case clientConfiguration

@@ -33,7 +33,7 @@ fileprivate extension Array where Element == UInt8 {
     }
 }
 
-public final class GeneralPacketMojang : GeneralPacket {
+public final class GeneralPacketMojang: GeneralPacket {
     public static func == (lhs: GeneralPacketMojang, rhs: GeneralPacketMojang) -> Bool {
         return lhs.length == rhs.length && lhs.packetID == rhs.packetID && lhs.data.elementsEqual(rhs.data)
     }
@@ -42,7 +42,7 @@ public final class GeneralPacketMojang : GeneralPacket {
     public static let continue_bit:UInt8 = 0x80
     
     public let length:VariableIntegerJava
-    public var count : Int { length.value_int }
+    public var count: Int { length.value_int }
     public let packetID:VariableIntegerJava
     public let data:ArraySlice<UInt8>
     
@@ -110,7 +110,7 @@ public final class GeneralPacketMojang : GeneralPacket {
         return VariableLongJava(value: value) as! T
     }
     
-    private func from_bytes_integer<T : FixedWidthInteger>(bytes: Int) throws -> T {
+    private func from_bytes_integer<T: FixedWidthInteger>(bytes: Int) throws -> T {
         let slice:[UInt8] = [UInt8](data[reading_index..<reading_index + bytes])
         guard slice.count == MemoryLayout<T>.size else {
             throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "bruh;slice.count=\(slice.count);memorylayout.size=\(MemoryLayout<T>.size)")) // TODO: fix

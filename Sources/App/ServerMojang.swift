@@ -131,7 +131,7 @@ public final class ServerMojang {
     let host:String
     let port:Int
     
-    private var boostrap : ServerBootstrap {
+    private var boostrap: ServerBootstrap {
         return ServerBootstrap(group: group)
             .serverChannelOption(ChannelOptions.backlog, value: 256)
             .serverChannelOption(ChannelOptions.socket(SocketOptionLevel(SOL_SOCKET), SO_REUSEADDR), value: 1)
@@ -165,7 +165,7 @@ public final class ServerMojang {
     }
 }
 
-final class ServerMojangHandler : ChannelInboundHandler {
+final class ServerMojangHandler: ChannelInboundHandler {
     typealias InboundIn = ByteBuffer
     typealias OutboundOut = ByteBuffer
     

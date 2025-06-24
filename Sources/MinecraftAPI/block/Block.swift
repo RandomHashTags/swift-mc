@@ -5,24 +5,24 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public protocol Block : Tickable {
-    var instrument : (any Instrument)? { get }
+public protocol Block: Tickable {
+    var instrument: (any Instrument)? { get }
     
-    var stepSound : (any Sound)? { get }
+    var stepSound: (any Sound)? { get }
     
-    var data : any BlockData { get }
-    var location : any Location { get }
-    var boundary : any Boundary { get }
+    var data: any BlockData { get }
+    var location: any Location { get }
+    var boundary: any Boundary { get }
     
-    var growableAge : Int? { get }
+    var growableAge: Int? { get }
 
-    var isPowered : Bool { get }
-    var isPassable : Bool { get }
+    var isPowered: Bool { get }
+    var isPassable: Bool { get }
 
-    var temperature : Double { get }
-    var humidity : Double { get }
+    var temperature: Double { get }
+    var humidity: Double { get }
     
-    var lootTable : LootTable? { get }
+    var lootTable: LootTable? { get }
 
     // MARK: logic
     func breakNaturally() -> Bool
@@ -37,11 +37,11 @@ public protocol Block : Tickable {
 }
 
 public extension Block {
-    var world : any World {
+    var world: any World {
         location.world
     }
 
-    var isLiquid : Bool {
+    var isLiquid: Bool {
         data.material.configuration.block?.liquid != nil
     }
 }

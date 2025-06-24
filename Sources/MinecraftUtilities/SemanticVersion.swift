@@ -5,7 +5,7 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public struct SemanticVersion : Hashable, Comparable {
+public struct SemanticVersion: Hashable, Comparable {
     public static func < (lhs: SemanticVersion, rhs: SemanticVersion) -> Bool {
         let leftMajor:Int = lhs.major, rightMajor:Int = rhs.major
         let leftMinor:Int = lhs.minor, rightMinor:Int = rhs.minor
@@ -37,7 +37,7 @@ public struct SemanticVersion : Hashable, Comparable {
         self = SemanticVersion(string: string)
     }
     
-    public var description : String {
+    public var description: String {
         return "\(major).\(minor).\(patch)"
     }
 }

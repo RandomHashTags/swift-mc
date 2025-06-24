@@ -7,7 +7,7 @@
 
 public enum ServerPacketMojangErrors {
     
-    public enum VarIntEnum : Error, CustomStringConvertible {
+    public enum VarIntEnum: Error, CustomStringConvertible {
         case doesnt_exist(type: Any.Type, id: Int)
         
         public var description: String {

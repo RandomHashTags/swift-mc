@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java {
-    enum Configuration : UInt8, PacketGameplayID {
+    enum Configuration: UInt8, PacketGameplayID {
         case clientInformation
         case pluginMessage
         case finishConfiguration
@@ -16,7 +16,7 @@ public extension ServerPacket.Mojang.Java {
         case pong
         case resourcePackResponse
         
-        var packet : any ServerPacketMojangJavaConfigurationProtocol.Type {
+        var packet: any ServerPacketMojangJavaConfigurationProtocol.Type {
             switch self {
             case .clientInformation:     return ServerPacket.Mojang.Java.Configuration.ClientInformation.self
             case .pluginMessage:         return ServerPacket.Mojang.Java.Configuration.PluginMessage.self

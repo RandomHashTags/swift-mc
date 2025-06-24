@@ -12,7 +12,7 @@ extension ClientPacket.Mojang.Java.Configuration {
     /// More information on how it works on [Dinnerbone's blog](https://dinnerbone.com/blog/2012/01/13/minecraft-plugin-channels-messaging/ ). More documentation about internal and popular registered channels are [here](https://wiki.vg/Plugin_channel ).
     ///
     /// - Note: In Notchian client, the maximum data length is 1048576 bytes.
-    struct PluginMessage : ClientPacket.Mojang.Java.ConfigurationProtocol {
+    struct PluginMessage: ClientPacket.Mojang.Java.ConfigurationProtocol {
         public static let id:ClientPacket.Mojang.Java.Configuration = ClientPacket.Mojang.Java.Configuration.pluginMessage
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

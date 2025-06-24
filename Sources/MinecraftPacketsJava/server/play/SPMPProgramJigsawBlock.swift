@@ -9,7 +9,7 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     /// Sent when Done is pressed on the Jigsaw Block interface.
-    struct ProgramJigsawBlock : ServerPacketMojangJavaPlayProtocol {
+    struct ProgramJigsawBlock: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.programJigsawBlock
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

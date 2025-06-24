@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
-    struct UpdateTags : ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
+    struct UpdateTags: ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateTags
         
         /// Number of elements in `tags`.
@@ -16,11 +16,11 @@ public extension ClientPacket.Mojang.Java.Play {
         public let tagTypes:[NamespaceJava]
         public let tags:[UpdateTags.Tag]
         
-        public struct Tag : Codable, PacketEncodableMojangJava {
+        public struct Tag: Codable, PacketEncodableMojangJava {
             public let length:VariableIntegerJava
             public let entries:[UpdateTags.Tag.Entry]
             
-            public struct Entry : Codable, PacketEncodableMojangJava {
+            public struct Entry: Codable, PacketEncodableMojangJava {
                 public let tagName:NamespaceJava
                 public let count:VariableIntegerJava
                 /// Numeric ID of the given type (block, item, etc.).

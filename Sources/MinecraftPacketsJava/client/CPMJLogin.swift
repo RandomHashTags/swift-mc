@@ -8,14 +8,14 @@
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java {
-    enum Login : UInt8, PacketGameplayID {
+    enum Login: UInt8, PacketGameplayID {
         case disconnect = 0
         case encryptionRequest = 1
         case loginSuccess
         case setCompression
         case loginPluginRequest
         
-        var packet : any ClientPacketMojangJavaProtocol.Type {
+        var packet: any ClientPacketMojangJavaProtocol.Type {
             switch self {
             case .disconnect:           return ClientPacket.Mojang.Java.Login.Disconnect.self
             case .encryptionRequest:   return ClientPacket.Mojang.Java.Login.EncryptionRequest.self

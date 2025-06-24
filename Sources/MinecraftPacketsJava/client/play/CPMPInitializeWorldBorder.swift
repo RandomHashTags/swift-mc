@@ -11,7 +11,7 @@ public extension ClientPacket.Mojang.Java.Play {
     /// !
     ///
     /// The Notchian client determines how solid to display the warning by comparing to whichever is higher, the warning distance or whichever is lower, the distance from the current diameter to the target diameter or the place the border will be after warningTime seconds.
-    struct InitializeWorldBorder : ClientPacket.Mojang.Java.PlayProtocol {
+    struct InitializeWorldBorder: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.initializeWorldBorder
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

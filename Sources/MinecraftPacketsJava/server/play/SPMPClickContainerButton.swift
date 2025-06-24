@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
-    struct ClickContainerButton : ServerPacketMojangJavaPlayProtocol {
+    struct ClickContainerButton: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.clickContainerButton
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

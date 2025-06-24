@@ -7,28 +7,28 @@
 
 import Logging
 
-public protocol Player : CommandSender, Flyable, InventoryHolder, LivingEntity, Permissible {
-    var listName : String? { get }
+public protocol Player: CommandSender, Flyable, InventoryHolder, LivingEntity, Permissible {
+    var listName: String? { get }
     
-    var experience : UInt64 { get }
-    var experienceLevel : UInt64 { get }    
-    var foodLevel : Int { get }
-    var saturationLevel : Float { get }
-    var exhaustionLevel : Float { get }
+    var experience: UInt64 { get }
+    var experienceLevel: UInt64 { get }    
+    var foodLevel: Int { get }
+    var saturationLevel: Float { get }
+    var exhaustionLevel: Float { get }
     
-    var statistics : [String : any StatisticActive] { get }
+    var statistics: [String: any StatisticActive] { get }
     
     /// The current game mode of this player.
-    var gameMode : any GameMode { get }
-    var isBlocking : Bool { get }
-    var isFlying : Bool { get }
+    var gameMode: any GameMode { get }
+    var isBlocking: Bool { get }
+    var isFlying: Bool { get }
     /// Whether or not this player is a server operator.
-    var isOP : Bool { get }
-    var isSneaking : Bool { get }
-    var isSprinting : Bool { get }
-    var lastSleptLocation : (any Location)? { get }
+    var isOP: Bool { get }
+    var isSneaking: Bool { get }
+    var isSprinting: Bool { get }
+    var lastSleptLocation: (any Location)? { get }
     
-    var inventory : any PlayerInventory { get }
+    var inventory: any PlayerInventory { get }
     
     mutating func tickPlayer(_ server: any Server)
     

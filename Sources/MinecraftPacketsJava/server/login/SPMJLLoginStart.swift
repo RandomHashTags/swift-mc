@@ -9,7 +9,7 @@ import Foundation
 import MinecraftPackets
 
 extension ServerPacket.Mojang.Java.Login {
-    struct LoginStart : ServerPacketMojangJavaLoginProtocol {
+    struct LoginStart: ServerPacketMojangJavaLoginProtocol {
         public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.loginStart
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

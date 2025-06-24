@@ -5,13 +5,13 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol EnchantmentType : MinecraftIdentifiable, Nameable {
+public protocol EnchantmentType: MinecraftIdentifiable, Nameable {
 
-    var weight : Int { get }
-    var maxLevel : Int { get }
+    var weight: Int { get }
+    var maxLevel: Int { get }
 
     /// The `EnchantmentType` identifiers this enchantment type conflicts with.
-    var conflictsWith : Set<MinecraftIdentifiableID> { get }
+    var conflictsWith: Set<MinecraftIdentifiableID> { get }
 }
 
 // TODO: move below to EnchantmentTypeJava file

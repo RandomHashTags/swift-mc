@@ -6,20 +6,20 @@
 //
 
 public protocol DamageSource {
-    var type : any DamageType { get }
+    var type: any DamageType { get }
 
     /// The `Entity` that inflicted the damage.
-    var entity : (any Entity)? { get }
+    var entity: (any Entity)? { get }
 
     /// The `Entity` that threw/shot the `entity`.
-    var sourceEntity : (any Entity)? { get }
+    var sourceEntity: (any Entity)? { get }
 
     /// The `sourceEntity`'s location when they shot/threw the `entity`.
-    var sourceEntityLocation : (any Location)? { get }
+    var sourceEntityLocation: (any Location)? { get }
 
     /// Where the damage originated from.
-    var location : (any Location)? { get }
+    var location: (any Location)? { get }
 
-    var foodExhaustion : Float { get }
-    var scalesWithDifficulty : Bool { get }
+    var foodExhaustion: Float { get }
+    var scalesWithDifficulty: Bool { get }
 }

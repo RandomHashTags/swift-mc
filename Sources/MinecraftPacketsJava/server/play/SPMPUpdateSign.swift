@@ -11,7 +11,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// This message is sent from the client to the server when the “Done” button is pushed after placing a sign.
     ///
     /// The server only accepts this packet after [Open Sign Editor](https://wiki.vg/Protocol#Open_Sign_Editor ), otherwise this packet is silently ignored.
-    struct UpdateSign : ServerPacketMojangJavaPlayProtocol {
+    struct UpdateSign: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.updateSign
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

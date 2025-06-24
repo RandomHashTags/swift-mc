@@ -6,5 +6,5 @@
 //
 
 // test seed: -821619716921905758
-public protocol ChunkGenerator : MinecraftIdentifiable {
+public protocol ChunkGenerator: MinecraftIdentifiable {
 }

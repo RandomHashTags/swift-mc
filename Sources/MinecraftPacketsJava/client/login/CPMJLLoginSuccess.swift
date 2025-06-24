@@ -12,7 +12,7 @@ extension ClientPacket.Mojang.Java.Login {
     /// This packet switches the connection state to play.
     /// - Warning: The (notchian) server might take a bit to fully transition to the Play state, so it's recommended to wait for the Login (play) packet from the server.
     /// - Warning: The notchian client doesn't send any packets until the Login (play) packet.
-    struct LoginSuccess : ClientPacketMojangJavaLoginProtocol {
+    struct LoginSuccess: ClientPacketMojangJavaLoginProtocol {
         public static let id:ClientPacket.Mojang.Java.Login = ClientPacket.Mojang.Java.Login.loginSuccess
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -29,7 +29,7 @@ extension ClientPacket.Mojang.Java.Login {
         public let numberOfProperties:VariableIntegerJava
         public let properties:[LoginSuccess.Property]
         
-        public struct Property : Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
+        public struct Property: Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
             public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
                 let name:String = try packet.readString()
                 let value:String = try packet.readString()

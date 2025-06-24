@@ -8,29 +8,29 @@
 import Foundation
 import MinecraftPackets
 
-public protocol Server : Tickable {
+public protocol Server: Tickable {
     
-    var chatManager : ChatManager { get }
-    var version : SemanticVersion { get }
+    var chatManager: ChatManager { get }
+    var version: SemanticVersion { get }
     
-    var ticksPerSecond : UInt8 { get }
-    var ticksPerSecondMultiplier : Double { get }
-    var serverTickIntervalNano : UInt64 { get }
-    var serverIsAwake : Bool { get }
-    var serverLoop : Task<Void, Error> { get }
+    var ticksPerSecond: UInt8 { get }
+    var ticksPerSecondMultiplier: Double { get }
+    var serverTickIntervalNano: UInt64 { get }
+    var serverIsAwake: Bool { get }
+    var serverLoop: Task<Void, Error> { get }
 
-    var gravity : Double { get }
-    var gravityPerTick : Double { get }
+    var gravity: Double { get }
+    var gravityPerTick: Double { get }
 
-    var voidDamagePerTick : Double { get }
-    var fireDamagePerSecond : Double { get }
+    var voidDamagePerTick: Double { get }
+    var fireDamagePerSecond: Double { get }
     
-    var maxPlayers : Int { get }
-    var port : Int { get }
-    var isWhitelisted : Bool { get }
-    var whitelistedPlayers : Set<UUID> { get }
-    //var bannedPlayers : Set<BanEntry> { get }
-    //var bannedIPAddresses : Set<BanEntry> { get }
+    var maxPlayers: Int { get }
+    var port: Int { get }
+    var isWhitelisted: Bool { get }
+    var whitelistedPlayers: Set<UUID> { get }
+    //var bannedPlayers: Set<BanEntry> { get }
+    //var bannedIPAddresses: Set<BanEntry> { get }
     
     mutating func setTickRate(ticksPerSecond: UInt8)
     mutating func wakeUp()

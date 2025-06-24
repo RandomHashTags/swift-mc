@@ -5,11 +5,11 @@
 //  Created by Evan Anderson on 2/5/23.
 //
 
-public protocol BlockFace : MinecraftIdentifiable {
-    var direction : Vector { get }
-    var alignment : Vector { get }
-    var opposite : any BlockFace { get }
-    var isCartesian : Bool { get }
+public protocol BlockFace: MinecraftIdentifiable {
+    var direction: Vector { get }
+    var alignment: Vector { get }
+    var opposite: any BlockFace { get }
+    var isCartesian: Bool { get }
 }
 
 /*

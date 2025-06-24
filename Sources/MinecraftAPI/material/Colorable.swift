@@ -6,5 +6,5 @@
 //
 
 public protocol Colorable {
-    var color : Color { get }
+    var color: Color { get }
 }

@@ -16,8 +16,8 @@ internal extension Array {
         return try map(transform).as_set
     }
 }
-internal extension Array where Element : Hashable {
-    var as_set : Set<Element> {
+internal extension Array where Element: Hashable {
+    var as_set: Set<Element> {
         return Set<Element>(self)
     }
 }

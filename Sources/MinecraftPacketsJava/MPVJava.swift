@@ -9,7 +9,7 @@ import MinecraftPackets
 
 // https://wiki.vg/Protocol_version_numbers
 public extension MinecraftProtocolVersion {
-    enum Java : Int, MinecraftProtocolVersionProtocol, PacketEncodableMojangJava {
+    enum Java: Int, MinecraftProtocolVersionProtocol, PacketEncodableMojangJava {
         case unknown = -999
         
         // MARK: Releases

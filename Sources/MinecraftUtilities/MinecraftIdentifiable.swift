@@ -7,7 +7,7 @@
 
 public typealias MinecraftIdentifiableID = SIMD64<UInt8>
 
-public protocol MinecraftIdentifiable : Equatable, Identifiable where ID == MinecraftIdentifiableID {
+public protocol MinecraftIdentifiable: Equatable, Identifiable, Sendable where ID == MinecraftIdentifiableID {
 }
 
 public extension MinecraftIdentifiable {

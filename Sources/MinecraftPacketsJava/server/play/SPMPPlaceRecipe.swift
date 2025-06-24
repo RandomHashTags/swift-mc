@@ -9,7 +9,7 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     /// This packet is sent when a player clicks a recipe in the crafting book that is craftable (white border).
-    struct PlaceRecipe : ServerPacketMojangJavaPlayProtocol {
+    struct PlaceRecipe: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.placeRecipe
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

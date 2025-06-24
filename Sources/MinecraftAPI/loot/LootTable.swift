@@ -6,7 +6,7 @@
 //
 
 public protocol LootTable {
-    var entries : [LootTableEntry] { get }
+    var entries: [LootTableEntry] { get }
 }
 /*
 public extension LootTable {

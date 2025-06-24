@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 11/27/24.
 //
 
-public protocol Silverfish : Monster {
+public protocol Silverfish: Monster {
 }

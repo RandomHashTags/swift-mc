@@ -6,8 +6,8 @@
 //
 
 public protocol Inventory {
-    var type : any InventoryType { get }
-    var viewers : [any Player] { get }
+    var type: any InventoryType { get }
+    var viewers: [any Player] { get }
         
     func contains(_ material: any Material) -> Bool
     func contains(_ item: any ItemStack) -> Bool

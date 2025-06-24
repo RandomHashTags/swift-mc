@@ -8,13 +8,13 @@
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java {
-    enum Login : UInt8, PacketGameplayID {
+    enum Login: UInt8, PacketGameplayID {
         case loginStart         = 0
         case encryptionResponse = 1
         case loginPluginResponse
         case loginAcknowledged
         
-        var packet : any ServerPacketMojangJavaLoginProtocol.Type {
+        var packet: any ServerPacketMojangJavaLoginProtocol.Type {
             switch self {
             case .loginStart:           return ServerPacket.Mojang.Java.Login.LoginStart.self
             case .encryptionResponse:   return ServerPacket.Mojang.Java.Login.EncryptionResponse.self

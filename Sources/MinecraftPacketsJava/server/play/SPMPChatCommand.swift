@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
-    struct ChatCommand : ServerPacketMojangJavaPlayProtocol {
+    struct ChatCommand: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.chatCommand
         
         public static func parse(_ packet: any GeneralPacket) throws -> ServerPacket.Mojang.Java.Play.ChatCommand {

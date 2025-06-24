@@ -6,7 +6,7 @@
 //
 
 // https://wiki.vg/Entity_statuses
-public enum EntityStatusCodeMojangJava : UInt, Hashable, Codable { // TODO: fix
+public enum EntityStatusCodeMojangJava: UInt, Hashable, Codable { // TODO: fix
     case arrow = 0
     case minecart_spawner_or_rabbit
     case none

@@ -9,7 +9,7 @@ import Foundation
 
 public protocol GeneralPacket {
     /// The number of bytes it takes to represent this packet.
-    var count : Int { get }
+    var count: Int { get }
 
     init(bytes: [UInt8]) throws
 

@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java {
-    enum Play : UInt8, PacketGameplayID {
+    enum Play: UInt8, PacketGameplayID {
         case bundleDelimiter = 0
         case spawnEntity =     1
         case spawnExperienceOrb
@@ -121,7 +121,7 @@ public extension ClientPacket.Mojang.Java {
         case updateRecipes
         case updateTags
         
-        var packet : (any ClientPacketMojangJavaProtocol.Type)? {
+        var packet: (any ClientPacketMojangJavaProtocol.Type)? {
             switch self {
             case .spawnEntity:                   return ClientPacket.Mojang.Java.Play.SpawnEntity.self
             case .spawnExperienceOrb:           return ClientPacket.Mojang.Java.Play.SpawnExperienceOrb.self

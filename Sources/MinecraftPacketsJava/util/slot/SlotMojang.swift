@@ -9,7 +9,7 @@ import Foundation
 import MinecraftPackets
 
 /// The **Slot** data structure is how Minecraft represents an item and its associated data in the Minecraft Protocol.
-public struct SlotMojang : Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
+public struct SlotMojang: Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
     public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
         let present:Bool = try packet.readBool()
         let item_id:VariableIntegerJava?

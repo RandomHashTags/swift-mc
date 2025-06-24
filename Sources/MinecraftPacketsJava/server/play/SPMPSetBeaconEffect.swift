@@ -9,7 +9,7 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     /// Changes the effect of the current beacon.
-    struct SetBeaconEffect : ServerPacketMojangJavaPlayProtocol {
+    struct SetBeaconEffect: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setBeaconEffect
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

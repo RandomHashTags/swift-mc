@@ -6,5 +6,5 @@
 //
 
 public protocol GeneratedStructurePiece {
-    var boundary : any Boundary { get }
+    var boundary: any Boundary { get }
 }

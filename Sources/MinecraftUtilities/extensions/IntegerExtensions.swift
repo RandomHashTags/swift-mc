@@ -6,7 +6,7 @@
 //
 
 public extension UInt8 {
-    var char : Character {
+    var char: Character {
         return Character(UnicodeScalar(self))
     }
 }

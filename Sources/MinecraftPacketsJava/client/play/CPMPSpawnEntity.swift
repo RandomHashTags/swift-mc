@@ -10,7 +10,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     /// Sent by the server when a vehicle or other non-living entity is created.
-    struct SpawnEntity : ClientPacket.Mojang.Java.PlayProtocol {
+    struct SpawnEntity: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.spawnEntity
         
         /// A unique integer ID mostly used to identify the entity.

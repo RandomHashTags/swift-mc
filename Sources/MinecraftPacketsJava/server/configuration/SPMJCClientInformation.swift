@@ -9,7 +9,7 @@ import MinecraftPackets
 
 extension ServerPacket.Mojang.Java.Configuration {
     /// Sent when the player connects, or when settings are changed.
-    struct ClientInformation : ServerPacketMojangJavaConfigurationProtocol {
+    struct ClientInformation: ServerPacketMojangJavaConfigurationProtocol {
         public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.clientInformation
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -57,12 +57,12 @@ extension ServerPacket.Mojang.Java.Configuration {
             return [locale, view_distance, chat_mode, chat_colors, displayed_skin_parts, main_hand, enable_text_filtering, allow_server_listings]
         }
         
-        public enum ChatMode : Int, Codable, PacketEncodableMojangJava {
+        public enum ChatMode: Int, Codable, PacketEncodableMojangJava {
             case enabled
             case commands_only
             case hidden
         }
-        public enum MainHand : Int, Codable, PacketEncodableMojangJava {
+        public enum MainHand: Int, Codable, PacketEncodableMojangJava {
             case left
             case right
         }

@@ -16,7 +16,7 @@ import SwiftDiagnostics
 //    aliases: [String],
 //    description: String
 // )
-struct MinecraftCommand : MemberMacro {
+struct MinecraftCommand: MemberMacro {
     static func expansion(of node: AttributeSyntax, providingMembersOf declaration: some DeclGroupSyntax, conformingTo protocols: [TypeSyntax], in context: some MacroExpansionContext) throws -> [DeclSyntax] {
         return []
     }

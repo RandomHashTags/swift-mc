@@ -8,14 +8,14 @@
 import Foundation
 import MinecraftPackets
 
-public protocol PacketMojangJava : Packet where IDValue == UInt {
+public protocol PacketMojangJava: Packet where IDValue == UInt {
     
-    associatedtype GameplayID : PacketGameplayID
+    associatedtype GameplayID: PacketGameplayID
     
     static func serverReceived(_ client: any MinecraftClientHandler) throws
-    static var packetGameplayID : GameplayID.Type { get }
+    static var packetGameplayID: GameplayID.Type { get }
     
-    static var id : GameplayID { get }
+    static var id: GameplayID { get }
     
     func encodedValues() throws -> [(any PacketEncodableMojangJava)?]
 }
@@ -25,7 +25,7 @@ public extension PacketMojangJava {
         //ServerMojang.instance.logger.warning("missing `serverReceived` static function implementation for PacketMojangJava `\(Self.self)` with id \"\(id)\"")
     }
     
-    var platform : PacketPlatform {
+    var platform: PacketPlatform {
         return PacketPlatform.mojang_java
     }
     

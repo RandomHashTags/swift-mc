@@ -13,7 +13,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// Leave bed is only sent when the “Leave Bed” button is clicked on the sleep GUI, not when waking up due today time.
     /// 
     /// Open horse inventory is only sent when pressing the inventory key (default: E) while on a horse — all other methods of opening a horse's inventory (involving right-clicking or shift-right-clicking it) do not use this packet.
-    struct PlayerCommand : ServerPacketMojangJavaPlayProtocol {
+    struct PlayerCommand: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.playerCommand
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -27,7 +27,7 @@ public extension ServerPacket.Mojang.Java.Play {
         public let action:PlayerCommand.Action
         public let jump_boost:VariableIntegerJava
         
-        public enum Action : Int, Codable, PacketEncodableMojangJava {
+        public enum Action: Int, Codable, PacketEncodableMojangJava {
             case start_sneaking
             case stop_sneaking
             case leave_bed

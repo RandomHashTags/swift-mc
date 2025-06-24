@@ -11,7 +11,7 @@ import SwiftSyntaxMacros
 import SwiftDiagnostics
 
 @main
-struct MacrosPlugin : CompilerPlugin {
+struct MacrosPlugin: CompilerPlugin {
     let providingMacros:[Macro.Type] = [
         MinecraftIdentifiableMacro.self
     ]

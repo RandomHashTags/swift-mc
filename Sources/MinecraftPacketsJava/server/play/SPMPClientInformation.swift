@@ -20,7 +20,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// - Bit 6 (0x40): Hat enabled
     ///
     /// The most significant bit (bit 7, 0x80) appears to be unused.
-    struct ClientInformation : ServerPacketMojangJavaPlayProtocol {
+    struct ClientInformation: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.clientInformation
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -50,13 +50,13 @@ public extension ServerPacket.Mojang.Java.Play {
         /// Servers usually list online players, this option should let you not show up in that list.
         public let allow_server_listings:Bool
         
-        public enum ChatMode : Int, Codable, PacketEncodableMojangJava {
+        public enum ChatMode: Int, Codable, PacketEncodableMojangJava {
             case enabled
             case commands_only
             case hidden
         }
         
-        public enum MainHand : Int, Codable, PacketEncodableMojangJava {
+        public enum MainHand: Int, Codable, PacketEncodableMojangJava {
             case left
             case right
         }

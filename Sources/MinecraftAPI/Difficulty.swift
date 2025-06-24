@@ -5,8 +5,8 @@
 //  Created by Evan Anderson on 2/3/23.
 //
 
-public protocol Difficulty : MinecraftIdentifiable, Nameable {
-    var damageMultiplier : Double { get }
+public protocol Difficulty: MinecraftIdentifiable, Nameable {
+    var damageMultiplier: Double { get }
 }
 
 // TODO: move to own file

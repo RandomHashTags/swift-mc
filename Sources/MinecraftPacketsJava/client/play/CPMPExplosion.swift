@@ -12,7 +12,7 @@ public extension ClientPacket.Mojang.Java.Play {
     /// Sent when an explosion occurs (creepers, TNT, and ghast fireballs).
     ///
     /// Each block in Records is set to air. Coordinates for each axis in record is int(X) + record.x
-    struct Explosion : ClientPacket.Mojang.Java.PlayProtocol {
+    struct Explosion: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.explosion
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

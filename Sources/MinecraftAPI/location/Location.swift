@@ -6,16 +6,16 @@
 //
 
 public protocol Location {
-    var world : any World { get }
-    var x : Double { get }
-    var y : Double { get }
-    var z : Double { get }
-    var yaw : Double { get }
-    var pitch : Double { get }
+    var world: any World { get }
+    var x: Double { get }
+    var y: Double { get }
+    var z: Double { get }
+    var yaw: Double { get }
+    var pitch: Double { get }
     
     init(world: any World, x: Double, y: Double, z: Double, yaw: Double, pitch: Double)
     
-    var chunkCoordinates : (x: Int, z: Int) { get }
+    var chunkCoordinates: (x: Int, z: Int) { get }
     
     /// Whether or not the two locations are the same, regardless of `yaw` or `pitch`.
     func isSimilar(_ location: Self) -> Bool

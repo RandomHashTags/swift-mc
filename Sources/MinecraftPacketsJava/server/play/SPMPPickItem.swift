@@ -16,7 +16,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// - [Set Container Slot](https://wiki.vg/Protocol#Set_Container_Slot ), with window ID set to -2 and slot set to the newly chosen slot and the item set to the item that is now in that slot (which was previously at the slot the client requested)
     /// - Set Slot, with window ID set to -2 and slot set to the slot the player requested, with the item that is now in that slot and was previously on the hotbar slot
     /// - [Set Held Item](https://wiki.vg/Protocol#Set_Held_Item ), with the slot set to the newly chosen slot.
-    struct PickItem : ServerPacketMojangJavaPlayProtocol {
+    struct PickItem: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.pickItem
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

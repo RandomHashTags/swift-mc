@@ -9,7 +9,7 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     /// Response to the clientbound packet ([Ping](https://wiki.vg/Protocol#Ping_.28play.29 )) with the same id.
-    struct Pong : ServerPacketMojangJavaPlayProtocol {
+    struct Pong: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.pong
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

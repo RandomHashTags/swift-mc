@@ -8,7 +8,7 @@
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Login {
-    struct EncryptionRequest : ClientPacketMojangJavaLoginProtocol {
+    struct EncryptionRequest: ClientPacketMojangJavaLoginProtocol {
         public static let id:ClientPacket.Mojang.Java.Login = ClientPacket.Mojang.Java.Login.encryptionRequest
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

@@ -11,7 +11,7 @@ public extension ClientPacket.Mojang.Java.Play {
     /// Sent by the server to set the health of the player it is sent to.
     ///
     /// Food saturation acts as a food “overcharge”. Food values will not decrease while the saturation is over zero. New players logging in or respawning automatically get a saturation of 5.0. Eating food increases the saturation as well as the food bar.
-    struct SetHealth : ClientPacket.Mojang.Java.PlayProtocol {
+    struct SetHealth: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setHealth
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

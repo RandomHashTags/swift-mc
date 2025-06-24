@@ -8,7 +8,7 @@
 import Foundation
 /*
 
-final class TCPSocket : Hashable { // TODO: support or remove
+final class TCPSocket: Hashable { // TODO: support or remove
     static func == (lhs: TCPSocket, rhs: TCPSocket) -> Bool {
         return lhs.socket_id == rhs.socket_id && lhs.port == rhs.port
     }
@@ -101,7 +101,7 @@ final class TCPSocket : Hashable { // TODO: support or remove
     }
 }
 
-struct TCPSocketClient : Hashable {
+struct TCPSocketClient: Hashable {
     let server:TCPSocket
     let id:Int32
     let payload:[Int8]
@@ -112,7 +112,7 @@ struct TCPSocketClient : Hashable {
     }
 }
 
-enum TCPSocketAddressFamily : Int {
+enum TCPSocketAddressFamily: Int {
     case ipv4
     case ipv6
 }

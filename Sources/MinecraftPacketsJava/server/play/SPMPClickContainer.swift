@@ -22,7 +22,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// 3. packet with mode 5, slot -999, button (2 | 6);
     ///
     /// If any of the painting packets other than the “progress” ones are sent out of order (for example, a start, some slots, then another start; or a left-click in the middle) the painting status will be reset.
-    struct ClickContainer : ServerPacketMojangJavaPlayProtocol {
+    struct ClickContainer: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.clickContainer
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -54,7 +54,7 @@ public extension ServerPacket.Mojang.Java.Play {
         /// Item carried by the cursor. Has to be empty (item ID = -1) for drop mode, otherwise nothing will happen.
         public let carried_item:SlotMojang
         
-        public enum Mode : Int, Codable, PacketEncodableMojangJava {
+        public enum Mode: Int, Codable, PacketEncodableMojangJava {
             case mouse
             case shift_click
             case number_pad

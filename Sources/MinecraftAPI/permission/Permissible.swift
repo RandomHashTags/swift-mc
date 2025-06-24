@@ -6,7 +6,7 @@
 //
 
 public protocol Permissible {
-    var permissions : Set<String> { get }
+    var permissions: Set<String> { get }
 }
 
 public extension Permissible {

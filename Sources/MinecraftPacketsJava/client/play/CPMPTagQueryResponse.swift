@@ -10,7 +10,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     /// Sent in response to Query Block Entity Tag or Query Entity Tag.
-    struct TagQueryResponse : ClientPacket.Mojang.Java.PlayProtocol {
+    struct TagQueryResponse: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.tagQueryResponse
         
         /// Can be compared to the one sent in the original query packet.

@@ -19,7 +19,7 @@ import SwiftDiagnostics
 //    dependencies: [String]
 //    commands: [MinecraftCommand.Type]
 // )
-struct MinecraftPlugin : MemberMacro {
+struct MinecraftPlugin: MemberMacro {
     static func expansion(of node: AttributeSyntax, providingMembersOf declaration: some DeclGroupSyntax, conformingTo protocols: [TypeSyntax], in context: some MacroExpansionContext) throws -> [DeclSyntax] {
         return []
     }

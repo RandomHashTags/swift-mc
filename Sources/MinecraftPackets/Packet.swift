@@ -5,13 +5,13 @@
 //  Created by Evan Anderson on 8/2/23.
 //
 
-public protocol Packet : Codable, PacketEncodable {
-    associatedtype IDValue : Codable
+public protocol Packet: Codable, PacketEncodable {
+    associatedtype IDValue: Codable
     
     static func parse(_ packet: any GeneralPacket) throws -> Self
     
-    var platform : PacketPlatform { get }
-    var category : any PacketCategory { get }
+    var platform: PacketPlatform { get }
+    var category: any PacketCategory { get }
     
     func toGeneral() throws -> any GeneralPacket
 }

@@ -9,7 +9,7 @@ import Foundation
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Status {
-    struct StatusResponse : ClientPacketMojangJavaStatusProtocol {
+    struct StatusResponse: ClientPacketMojangJavaStatusProtocol {
         public static let id:ClientPacket.Mojang.Java.Status = ClientPacket.Mojang.Java.Status.statusResponse
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

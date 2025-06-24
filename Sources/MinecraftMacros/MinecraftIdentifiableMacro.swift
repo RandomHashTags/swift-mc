@@ -9,7 +9,7 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import SwiftDiagnostics
 
-enum MinecraftIdentifiableMacro : ExpressionMacro {
+enum MinecraftIdentifiableMacro: ExpressionMacro {
     static func expansion(of node: some FreestandingMacroExpansionSyntax, in context: some MacroExpansionContext) throws -> ExprSyntax {
         let string:String = "\(node.arguments.first!.expression.as(StringLiteralExprSyntax.self)!.segments)"
         var identifiable:SIMD64<UInt8> = .zero

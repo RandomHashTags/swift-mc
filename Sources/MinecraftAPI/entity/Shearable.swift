@@ -6,5 +6,5 @@
 //
 
 public protocol Shearable {
-    var isSheared : Bool { get }
+    var isSheared: Bool { get }
 }

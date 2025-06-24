@@ -21,7 +21,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// If the player is moving too fast, it will be logged that "<player> moved too quickly! " followed by the change in x, y, and z, and the player will be teleported back to their current (before this packet) serverside position.
     ///
     /// Also, if the absolute value of X or the absolute value of Z is a value greater than 3.2×107, or X, Y, or Z are not finite (either positive infinity, negative infinity, or NaN), the client will be kicked for “Invalid move player packet received”.
-    struct SetPlayerPosition : ServerPacketMojangJavaPlayProtocol {
+    struct SetPlayerPosition: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setPlayerPosition
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

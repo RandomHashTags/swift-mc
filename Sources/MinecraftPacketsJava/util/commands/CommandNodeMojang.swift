@@ -8,7 +8,7 @@
 import Foundation
 import MinecraftPackets
 
-public struct CommandNodeMojang : Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
+public struct CommandNodeMojang: Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
     public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
         let flags:Int8 = try packet.readByte()
         let children_count:VariableIntegerJava = try packet.readVarInt()
@@ -76,7 +76,7 @@ public struct CommandNodeMojang : Codable, PacketEncodableMojangJava, PacketDeco
         return array
     }
     
-    public enum Parser : Int, Codable, PacketEncodableMojangJava {
+    public enum Parser: Int, Codable, PacketEncodableMojangJava {
         case brigadier_bool = 0
         case brigadier_float = 1
         case brigadier_double
@@ -129,7 +129,7 @@ public struct CommandNodeMojang : Codable, PacketEncodableMojangJava, PacketDeco
     }
     public enum Properties {
         public enum Brigadier {
-            public struct Double : CommandNodeMojangProperty {
+            public struct Double: CommandNodeMojangProperty {
                 public let flags:UInt8
                 public let min:Swift.Double?
                 public let max:Swift.Double?
@@ -149,7 +149,7 @@ public struct CommandNodeMojang : Codable, PacketEncodableMojangJava, PacketDeco
     }
 }
 
-public protocol CommandNodeMojangProperty : Codable, PacketEncodableMojangJava {
+public protocol CommandNodeMojangProperty: Codable, PacketEncodableMojangJava {
     func encodedValues() throws -> [(any PacketEncodableMojangJava)?]
 }
 public extension CommandNodeMojangProperty {

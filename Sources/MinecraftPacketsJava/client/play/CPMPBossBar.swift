@@ -9,7 +9,7 @@ import Foundation
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
-    struct BossBar : ClientPacket.Mojang.Java.PlayProtocol {
+    struct BossBar: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.bossBar
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -67,7 +67,7 @@ public extension ClientPacket.Mojang.Java.Play {
         /// Bit mask. 0x1: should darken sky, 0x2: is dragon bar (used to play end music), 0x04: create fog (previously was also controlled by 0x02).
         public let flags:UInt8?
         
-        public enum Action : Int, Codable, PacketEncodableMojangJava {
+        public enum Action: Int, Codable, PacketEncodableMojangJava {
             case add = 0
             case remove
             case update_health
@@ -75,7 +75,7 @@ public extension ClientPacket.Mojang.Java.Play {
             case update_style
             case update_flags
         }
-        public enum Color : Int, Codable, PacketEncodableMojangJava {
+        public enum Color: Int, Codable, PacketEncodableMojangJava {
             case pink = 0
             case blue
             case red
@@ -84,7 +84,7 @@ public extension ClientPacket.Mojang.Java.Play {
             case purple
             case white
         }
-        public enum Division : Int, Codable, PacketEncodableMojangJava {
+        public enum Division: Int, Codable, PacketEncodableMojangJava {
             case no_division = 0
             case six_notches
             case ten_notches

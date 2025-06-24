@@ -9,7 +9,7 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     /// A combination of [Move Player Rotation](https://wiki.vg/Protocol#Set_Player_Rotation) and [Move Player Position](https://wiki.vg/Protocol#Set_Player_Position ).
-    struct SetPlayerPositionAndRotation : ServerPacketMojangJavaPlayProtocol {
+    struct SetPlayerPositionAndRotation: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setPlayerPositionAndRotation
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {

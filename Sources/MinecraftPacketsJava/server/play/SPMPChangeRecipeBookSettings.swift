@@ -9,7 +9,7 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     /// Replaces Recipe Book Data, type 1.
-    struct ChangeRecipeBookSettings : ServerPacketMojangJavaPlayProtocol {
+    struct ChangeRecipeBookSettings: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.changeRecipeBookSettings
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -23,7 +23,7 @@ public extension ServerPacket.Mojang.Java.Play {
         public let book_open:Bool
         public let filter_active:Bool
         
-        public enum BookID : Int, Codable, PacketEncodableMojangJava {
+        public enum BookID: Int, Codable, PacketEncodableMojangJava {
             case crafting
             case furnace
             case blast_furnace

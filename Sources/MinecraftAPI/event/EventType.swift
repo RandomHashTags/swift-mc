@@ -5,5 +5,5 @@
 //  Created by Evan Anderson on 2/4/23.
 //
 
-public protocol EventType : MinecraftIdentifiable {
+public protocol EventType: MinecraftIdentifiable {
 }

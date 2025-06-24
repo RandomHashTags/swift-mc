@@ -15,7 +15,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// The target X, Y, and Z fields represent the difference between the vector location of the cursor at the time of the packet and the entity's position.
     ///
     /// Note that middle-click in creative mode is interpreted by the client and sent as a [Set Creative Mode Slot](https://wiki.vg/Protocol#Set_Creative_Mode_Slot) packet instead.
-    struct Interact : ServerPacketMojangJavaPlayProtocol {
+    struct Interact: ServerPacketMojangJavaPlayProtocol {
         public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.interact
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
@@ -63,12 +63,12 @@ public extension ServerPacket.Mojang.Java.Play {
         /// If the client is sneaking.
         public let sneaking:Bool
         
-        public enum InteractType : Int, Codable, PacketEncodableMojangJava {
+        public enum InteractType: Int, Codable, PacketEncodableMojangJava {
             case interact
             case attack
             case interact_at
         }
-        public enum Hand : Int, Codable, PacketEncodableMojangJava {
+        public enum Hand: Int, Codable, PacketEncodableMojangJava {
             case main_hand
             case off_hand
         }
