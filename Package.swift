@@ -36,7 +36,7 @@ let package = Package(
         .target(
             name: "App",
             dependencies: [
-                "MinecraftAPI",
+                "MinecraftBlueprint",
                 //.product(name: "BlueSocket", package: "BlueSocket"),
                 .product(name: "Vapor", package: "vapor"),
                 
@@ -66,7 +66,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "MinecraftAPI",
+            name: "MinecraftBlueprint",
             dependencies: [
                 "MinecraftMacros",
                 "MinecraftPackets"
@@ -82,9 +82,9 @@ let package = Package(
             ]
         ),
         .target(
-            name: "MinecraftAPIJava",
+            name: "MinecraftBlueprintJava",
             dependencies: [
-                "MinecraftAPI",
+                "MinecraftBlueprint",
                 "MinecraftMacros",
                 "MinecraftPacketsJava"
             ]
