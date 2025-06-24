@@ -1,9 +1,3 @@
-//
-//  CLIHandler.swift
-//
-//
-//  Created by Evan Anderson on 4/8/24.
-//
 
 import MinecraftAPI
 import Logging

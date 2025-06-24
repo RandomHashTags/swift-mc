@@ -1,5 +1,4 @@
 // swift-tools-version:6.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 import CompilerPluginSupport
@@ -44,10 +43,10 @@ let package = Package(
                 .product(name: "Socket", package: "BlueSocket"),
                 .product(name: "SwiftASN1", package: "swift-asn1"),
                 .product(name: "SwiftStringCatalogs", package: "swift-string-catalogs")
-            ],
+            ],/*
             resources: [
                 .process("Resources")
-            ],
+            ],*/
             swiftSettings: [
                 .unsafeFlags(["-cross-module-optimization"], .when(configuration: .release))
             ]

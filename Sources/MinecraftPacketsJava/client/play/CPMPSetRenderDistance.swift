@@ -1,10 +1,3 @@
-//
-//  CPMPSetRenderDistance.swift
-//  
-//
-//  Created by Evan Anderson on 8/9/23.
-//
-
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {

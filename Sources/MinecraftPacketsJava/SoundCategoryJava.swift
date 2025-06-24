@@ -1,10 +1,3 @@
-//
-//  SoundCategoryJava.swift
-//  
-//
-//  Created by Evan Anderson on 11/25/24.
-//
-
 import MinecraftPackets
 
 public enum SoundCategoryJava: Int, SoundCategory, PacketEncodableMojangJava {

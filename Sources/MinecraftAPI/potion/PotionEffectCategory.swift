@@ -1,10 +1,3 @@
-//
-//  PotionEffectCategory.swift
-//  
-//
-//  Created by Evan Anderson on 7/7/24.
-//
-
 public protocol PotionEffectCategory: MinecraftIdentifiable {
 }
 

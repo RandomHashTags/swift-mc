@@ -1,10 +1,3 @@
-//
-//  Angle.swift
-//  
-//
-//  Created by Evan Anderson on 11/25/24.
-//
-
 public protocol Angle: Codable, PacketEncodable {
     var value: Int { get }
 }

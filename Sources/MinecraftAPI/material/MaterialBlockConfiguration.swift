@@ -1,10 +1,3 @@
-//
-//  MaterialBlockConfiguration.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public protocol MaterialBlockConfiguration: BlockMovable {
     /// The growing configuration of this block, if it grows.
     var growable: MaterialBlockGrowableConfiguration? { get }

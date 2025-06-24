@@ -1,10 +1,3 @@
-//
-//  NBTPotionEffect.swift
-//  
-//
-//  Created by Evan Anderson on 5/28/24.
-//
-
 public protocol NBTPotionEffect: NBTTag {
     var ambient: Bool { get }
     var amplifier: Bool { get }

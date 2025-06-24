@@ -1,10 +1,3 @@
-//
-//  SeedGenerator.swift
-//  
-//
-//  Created by Evan Anderson on 2/10/23.
-//
-
 /// https://minecraft.wiki/w/Seed_(level_generation)
 internal enum SeedGenerator {
     /// Returns a random number between `Int64.min` and `Int64.max`.

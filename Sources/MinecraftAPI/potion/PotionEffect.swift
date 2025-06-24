@@ -1,10 +1,3 @@
-//
-//  PotionEffect.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public protocol PotionEffect: MinecraftIdentifiable, Tickable {
     var type: any PotionEffectType { get }
     var hasIcon: Bool { get }

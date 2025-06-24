@@ -1,9 +1,3 @@
-//
-//  ChatMessage.swift
-//
-//
-//  Created by Evan Anderson on 6/30/23.
-//
 
 import Foundation
 

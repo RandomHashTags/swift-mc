@@ -1,10 +1,3 @@
-//
-//  ScoreboardTeamOption.swift
-//  
-//
-//  Created by Evan Anderson on 2/5/23.
-//
-
 public enum ScoreboardTeamOption: String {
     case nameTagVisibility
     case death_message_visibility

@@ -1,10 +1,3 @@
-//
-//  Packet.swift
-//  
-//
-//  Created by Evan Anderson on 8/2/23.
-//
-
 public protocol Packet: Codable, PacketEncodable {
     associatedtype IDValue: Codable
     

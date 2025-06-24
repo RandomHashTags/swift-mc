@@ -1,10 +1,3 @@
-//
-//  NBTRaidSpawnable.swift
-//  
-//
-//  Created by Evan Anderson on 5/28/24.
-//
-
 public protocol NBTRaidSpawnable: NBTEntity {
     var canJoinRaid: Bool { get }
     var patrolLeader: Bool { get }

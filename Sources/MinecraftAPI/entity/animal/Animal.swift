@@ -1,10 +1,3 @@
-//
-//  Animal.swift
-//  
-//
-//  Created by Evan Anderson on 11/26/24.
-//
-
 import Foundation
 
 public protocol Animal: Breedable {

@@ -1,10 +1,3 @@
-//
-//  SPMPSetBeaconEffect.swift
-//  
-//
-//  Created by Evan Anderson on 8/9/23.
-//
-
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {

@@ -1,9 +1,3 @@
-//
-//  EnchantmentType..swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
 
 public protocol EnchantmentType: MinecraftIdentifiable, Nameable {
 

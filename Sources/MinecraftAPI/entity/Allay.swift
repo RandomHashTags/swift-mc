@@ -1,10 +1,3 @@
-//
-//  Allay.swift
-//  
-//
-//  Created by Evan Anderson on 11/26/24.
-//
-
 public protocol Allay: Creature, Flyable, InventoryHolder {
     var inventory: any Inventory { get }
 

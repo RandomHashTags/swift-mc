@@ -1,10 +1,3 @@
-//
-//  Wolf.swift
-//  
-//
-//  Created by Evan Anderson on 11/26/24.
-//
-
 public protocol Wolf: Sittable, Tameable, Variantable {
     var collarColor: Color { get }
     var tailAngle: Float { get }

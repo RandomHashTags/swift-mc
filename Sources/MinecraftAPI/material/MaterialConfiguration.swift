@@ -1,10 +1,3 @@
-//
-//  MaterialConfiguration.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public protocol MaterialConfiguration: MinecraftIdentifiable {
     var isOnlyItem: Bool { get }
     var isOnlyBlock: Bool { get }

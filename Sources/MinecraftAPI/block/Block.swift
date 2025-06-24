@@ -1,10 +1,3 @@
-//
-//  Block.swift
-//  
-//
-//  Created by Evan Anderson on 2/4/23.
-//
-
 public protocol Block: Tickable {
     var instrument: (any Instrument)? { get }
     

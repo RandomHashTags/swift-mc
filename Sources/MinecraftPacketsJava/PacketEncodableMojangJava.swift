@@ -1,9 +1,3 @@
-//
-//  PacketEncodableMojangJava.swift
-//
-//
-//  Created by Evan Anderson on 8/6/23.
-//
 
 import Foundation
 import MinecraftPackets

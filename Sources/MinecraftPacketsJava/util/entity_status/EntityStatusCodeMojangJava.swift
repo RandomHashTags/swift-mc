@@ -1,10 +1,3 @@
-//
-//  EntityStatusCodeMojangJava.swift
-//  
-//
-//  Created by Evan Anderson on 8/3/23.
-//
-
 // https://wiki.vg/Entity_statuses
 public enum EntityStatusCodeMojangJava: UInt, Hashable, Codable { // TODO: fix
     case arrow = 0

@@ -1,10 +1,3 @@
-//
-//  BlockPopulator.swift
-//  
-//
-//  Created by Evan Anderson on 3/1/23.
-//
-
 public struct BlockPopulator {
     
     static func populate(chunk: any Chunk) {

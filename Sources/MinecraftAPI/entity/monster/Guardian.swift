@@ -1,10 +1,3 @@
-//
-//  Guardian.swift
-//  
-//
-//  Created by Evan Anderson on 11/26/24.
-//
-
 public protocol Guardian: Monster {
     /// Measured in ticks.
     var laserChargeDuration: Int { get }

@@ -1,10 +1,3 @@
-//
-//  CPMPPlayerChatMessage.swift
-//  
-//
-//  Created by Evan Anderson on 8/8/23.
-//
-
 import Foundation
 import MinecraftPackets
 

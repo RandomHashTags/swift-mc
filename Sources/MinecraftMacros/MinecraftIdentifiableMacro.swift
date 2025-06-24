@@ -1,10 +1,3 @@
-//
-//  MinecraftIdentifiable.swift
-//  
-//
-//  Created by Evan Anderson on 11/28/24.
-//
-
 import SwiftSyntax
 import SwiftSyntaxMacros
 import SwiftDiagnostics

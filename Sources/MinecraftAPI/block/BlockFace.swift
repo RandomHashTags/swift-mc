@@ -1,10 +1,3 @@
-//
-//  BlockFace.swift
-//  
-//
-//  Created by Evan Anderson on 2/5/23.
-//
-
 public protocol BlockFace: MinecraftIdentifiable {
     var direction: Vector { get }
     var alignment: Vector { get }

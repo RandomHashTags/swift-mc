@@ -1,10 +1,3 @@
-//
-//  PositionPacketMojang.swift
-//  
-//
-//  Created by Evan Anderson on 8/6/23.
-//
-
 import MinecraftPackets
 
 /// An integer/block position: x (-33554432 to 33554431), z (-33554432 to 33554431), y (-2048 to 2047).

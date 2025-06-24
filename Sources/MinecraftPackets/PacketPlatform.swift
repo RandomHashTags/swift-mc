@@ -1,11 +1,5 @@
-//
-//  PacketPlatform.swift
-//
-//
-//  Created by Evan Anderson on 2/4/23.
-//
 
-public struct PacketPlatform: Hashable {
+public struct PacketPlatform: Hashable, Sendable {
     public let id:UInt8
 
     public static let mojang_java:PacketPlatform = PacketPlatform(id: 0)

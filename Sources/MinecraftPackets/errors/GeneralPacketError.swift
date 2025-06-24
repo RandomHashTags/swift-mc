@@ -1,10 +1,3 @@
-//
-//  GeneralPacketError.swift
-//  
-//
-//  Created by Evan Anderson on 8/5/23.
-//
-
 public enum GeneralPacketError: Error, CustomStringConvertible {
     case varint_is_too_big
     case varlong_is_too_big

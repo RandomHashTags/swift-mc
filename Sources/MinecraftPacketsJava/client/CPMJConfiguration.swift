@@ -1,9 +1,3 @@
-//
-//  CPMJConfiguration.swift
-//
-//
-//  Created by Evan Anderson on 11/15/23.
-//
 
 import MinecraftPackets
 

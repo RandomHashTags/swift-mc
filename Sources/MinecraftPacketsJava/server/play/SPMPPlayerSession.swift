@@ -1,10 +1,3 @@
-//
-//  SPMPPlayerSession.swift
-//  
-//
-//  Created by Evan Anderson on 8/9/23.
-//
-
 import Foundation
 import MinecraftPackets
 

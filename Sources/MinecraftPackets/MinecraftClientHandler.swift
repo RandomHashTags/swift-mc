@@ -1,9 +1,3 @@
-//
-//  MinecraftClientHandler.swift
-//
-//
-//  Created by Evan Anderson on 11/25/23.
-//
 
 import Foundation
 

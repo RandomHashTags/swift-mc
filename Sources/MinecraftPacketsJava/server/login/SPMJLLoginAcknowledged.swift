@@ -1,9 +1,3 @@
-//
-//  SPMJLLoginAcknowledged.swift
-//
-//
-//  Created by Evan Anderson on 11/6/23.
-//
 
 import MinecraftPackets
 

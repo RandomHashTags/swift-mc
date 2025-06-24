@@ -1,9 +1,3 @@
-//
-//  MinecraftProtocolVersion.swift
-//
-//
-//  Created by Evan Anderson on 11/25/23.
-//
 
 public enum MinecraftProtocolVersion {
 }

@@ -1,10 +1,3 @@
-//
-//  Location.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public protocol Location {
     var world: any World { get }
     var x: Double { get }

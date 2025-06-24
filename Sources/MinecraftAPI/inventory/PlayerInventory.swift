@@ -1,10 +1,3 @@
-//
-//  PlayerInventory.swift
-//  
-//
-//  Created by Evan Anderson on 4/23/23.
-//
-
 public protocol PlayerInventory: Inventory {
     var helmet: (any ItemStack)? { get }
     var chestplate: (any ItemStack)? { get }

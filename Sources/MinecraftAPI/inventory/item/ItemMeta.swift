@@ -1,10 +1,3 @@
-//
-//  ItemMeta.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public protocol ItemMeta {
     var displayName: String? { get }
     var lore: [String] { get }

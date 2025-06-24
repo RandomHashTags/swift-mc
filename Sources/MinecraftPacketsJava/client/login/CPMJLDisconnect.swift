@@ -1,9 +1,3 @@
-//
-//  CPMJLDisconnect.swift
-//
-//
-//  Created by Evan Anderson on 8/3/23.
-//
 
 import MinecraftPackets
 

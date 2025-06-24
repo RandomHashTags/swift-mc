@@ -1,10 +1,3 @@
-//
-//  CPMPSetContainerProperty.swift
-//  
-//
-//  Created by Evan Anderson on 8/3/23.
-//
-
 /// This packet is used to inform the client that part of a GUI window should be updated.
 import MinecraftPackets
 

@@ -1,10 +1,3 @@
-//
-//  GeneralPacketMojang.swift
-//  
-//
-//  Created by Evan Anderson on 8/5/23.
-//
-
 import Foundation
 import NIO
 import MinecraftPackets

@@ -1,9 +1,3 @@
-//
-//  BlockFamily.swift
-//
-//
-//  Created by Evan Anderson on 11/26/23.
-//
 
 public protocol BlockFamily: MinecraftIdentifiable {
     /*associatedtype BlockFamilyVariantType: BlockFamilyVariant

@@ -1,10 +1,3 @@
-//
-//  EnderDragon.swift
-//  
-//
-//  Created by Evan Anderson on 11/27/24.
-//
-
 public protocol EnderDragon: Boss, Flying, Hostile, LivingEntityPartable, Mob {
     /// Measured in ticks.
     var deathAnimationDuration: Int { get }

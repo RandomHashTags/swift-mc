@@ -1,10 +1,3 @@
-//
-//  AngleMojang.swift
-//  
-//
-//  Created by Evan Anderson on 8/6/23.
-//
-
 import MinecraftPackets
 
 /// A rotation angle in steps of 1/256 of a full turn

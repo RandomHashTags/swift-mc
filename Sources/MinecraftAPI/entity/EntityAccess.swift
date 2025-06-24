@@ -1,9 +1,3 @@
-//
-//  EntityAccess.swift
-//
-//
-//  Created by Evan Anderson on 11/26/23.
-//
 
 import Foundation
 

@@ -1,10 +1,3 @@
-//
-//  Sniffer.swift
-//  
-//
-//  Created by Evan Anderson on 11/26/24.
-//
-
 public protocol Sniffer: Animal {
     var canDig: Bool { get }
     var findDigLocation: (any Location)? { get }

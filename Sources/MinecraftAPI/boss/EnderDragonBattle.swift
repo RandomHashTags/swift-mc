@@ -1,10 +1,3 @@
-//
-//  EnderDragonBattle.swift
-//  
-//
-//  Created by Evan Anderson on 11/27/24.
-//
-
 public protocol EnderDragonBattle {
     var bossBar: any BossBar { get }
     var enderDragon: any EnderDragon { get }

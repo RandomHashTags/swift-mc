@@ -1,10 +1,3 @@
-//
-//  CPMJPlay.swift
-//  
-//
-//  Created by Evan Anderson on 2/4/23.
-//
-
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java {

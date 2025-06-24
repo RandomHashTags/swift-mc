@@ -1,10 +1,3 @@
-//
-//  SPMPChatCommand.swift
-//  
-//
-//  Created by Evan Anderson on 8/10/23.
-//
-
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {

@@ -1,10 +1,3 @@
-//
-//  ArmorStand.swift
-//  
-//
-//  Created by Evan Anderson on 11/27/24.
-//
-
 public protocol ArmorStand: LivingEntity {
     var headPose: Vector { get }
     var pose: Vector { get }

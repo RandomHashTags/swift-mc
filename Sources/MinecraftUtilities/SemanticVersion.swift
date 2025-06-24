@@ -1,10 +1,3 @@
-//
-//  SemanticVersion.swift
-//  
-//
-//  Created by Evan Anderson on 2/5/23.
-//
-
 public struct SemanticVersion: Hashable, Comparable {
     public static func < (lhs: SemanticVersion, rhs: SemanticVersion) -> Bool {
         let leftMajor:Int = lhs.major, rightMajor:Int = rhs.major

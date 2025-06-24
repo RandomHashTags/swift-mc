@@ -1,10 +1,3 @@
-//
-//  NamespaceJava.swift
-//  
-//
-//  Created by Evan Anderson on 11/25/23.
-//
-
 import MinecraftPackets
 
 public struct NamespaceJava: Namespace, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix (PacketEncodableMojangJava)

@@ -1,11 +1,4 @@
-//
-//  Color.swift
-//  
-//
-//  Created by Evan Anderson on 2/5/23.
-//
-
-public struct Color: Hashable {
+public struct Color: Hashable, Sendable {
     public let identifier:String
     public let id:Int
     public let red:UInt8
@@ -29,9 +22,9 @@ public struct Color: Hashable {
 }
 
 
-public extension Color {
+extension Color {
     /// Hardcoded color values from Vanilla Minecraft.
-    enum Mojang {
+    public enum Mojang {
         /// Hardcoded map color values from Vanilla Minecraft.
         public enum Map {
             private static func get(_ identifier: String, id: Int, color: Int) -> Color {

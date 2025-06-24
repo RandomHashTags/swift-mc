@@ -1,9 +1,3 @@
-//
-//  Explosion.swift
-//
-//
-//  Created by Evan Anderson on 6/30/23.
-//
 
 public protocol Explosion: MinecraftIdentifiable {
     var location: any Location { get }

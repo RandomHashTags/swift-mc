@@ -1,10 +1,3 @@
-//
-//  CollectionExtensions.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public extension Collection {
     func get(_ index: Self.Index) -> Element? {
         return index < endIndex && index >= startIndex ? self[index] : nil

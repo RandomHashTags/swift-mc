@@ -1,10 +1,3 @@
-//
-//  Creeper.swift
-//  
-//
-//  Created by Evan Anderson on 11/26/24.
-//
-
 public protocol Creeper: Monster {
     /// Measured in blocks.
     var explosionRadius: Int { get }

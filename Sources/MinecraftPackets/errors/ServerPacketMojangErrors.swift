@@ -1,10 +1,3 @@
-//
-//  ServerPacketMojangErrors.swift
-//  
-//
-//  Created by Evan Anderson on 8/6/23.
-//
-
 public enum ServerPacketMojangErrors {
     
     public enum VarIntEnum: Error, CustomStringConvertible {

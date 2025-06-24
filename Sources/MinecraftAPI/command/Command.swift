@@ -1,10 +1,3 @@
-//
-//  Command.swift
-//  
-//
-//  Created by Evan Anderson on 2/5/23.
-//
-
 public protocol Command: MinecraftIdentifiable {
     var label: String { get }
     var description: String { get }

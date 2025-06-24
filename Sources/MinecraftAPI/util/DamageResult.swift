@@ -1,10 +1,3 @@
-//
-//  DamageResult.swift
-//  
-//
-//  Created by Evan Anderson on 2/11/23.
-//
-
 public enum DamageResult {
     case success(SuccessResult)
     case failure(FailureReason)

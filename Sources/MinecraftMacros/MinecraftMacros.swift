@@ -1,10 +1,3 @@
-//
-//  MinecraftMacros.swift
-//  
-//
-//  Created by Evan Anderson on 7/7/24.
-//
-
 import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxMacros

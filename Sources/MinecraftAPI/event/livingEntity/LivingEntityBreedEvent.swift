@@ -1,10 +1,3 @@
-//
-//  LivingEntityBreedEvent.swift
-//  
-//
-//  Created by Evan Anderson on 11/26/24.
-//
-
 public protocol LivingEntityBreedEvent: LivingEntityEventCancellable {
     var breeder: (any LivingEntity)? { get }
     var experience: Int { get }

@@ -1,10 +1,3 @@
-//
-//  Zombie.swift
-//  
-//
-//  Created by Evan Anderson on 11/26/24.
-//
-
 public protocol Zombie: Ageable, Monster {
     var canBreakDoors: Bool { get }
     /// Measured in ticks.

@@ -1,10 +1,3 @@
-//
-//  VariableIntegerJava.swift
-//  
-//
-//  Created by Evan Anderson on 8/6/23.
-//
-
 import MinecraftPackets
 
 /// An integer between -2147483648 and 2147483647.

@@ -1,10 +1,3 @@
-//
-//  PotionEffectType.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public protocol PotionEffectType: MinecraftIdentifiable, Nameable {
     var color: Color { get }
     var isInstant: Bool { get }

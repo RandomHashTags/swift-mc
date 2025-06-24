@@ -1,10 +1,3 @@
-//
-//  Villager.swift
-//  
-//
-//  Created by Evan Anderson on 11/27/24.
-//
-
 public protocol Villager: Merchantable {
     var experience: Int { get }
     var level: Int { get }

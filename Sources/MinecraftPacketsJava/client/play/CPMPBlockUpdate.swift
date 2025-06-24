@@ -1,10 +1,3 @@
-//
-//  CPMPBlockUpdate.swift
-//  
-//
-//  Created by Evan Anderson on 8/2/23.
-//
-
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {

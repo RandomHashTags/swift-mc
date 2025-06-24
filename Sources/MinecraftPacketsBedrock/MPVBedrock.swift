@@ -1,9 +1,3 @@
-//
-//  MPVBedrock.swift
-//
-//
-//  Created by Evan Anderson on 11/25/23.
-//
 
 // https://wiki.vg/Bedrock_Protocol_version_numbers
 public extension MinecraftProtocolVersion {

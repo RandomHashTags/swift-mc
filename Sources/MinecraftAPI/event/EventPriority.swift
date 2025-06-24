@@ -1,10 +1,3 @@
-//
-//  EventPriority.swift
-//  
-//
-//  Created by Evan Anderson on 3/8/23.
-//
-
 public enum EventPriority {
     public static let highest:UInt8 = 50
     public static let high:UInt8 = 100

@@ -1,10 +1,3 @@
-//
-//  BoundingBox.swift
-//  
-//
-//  Created by Evan Anderson on 2/11/23.
-//
-
 public class BoundingBox {
     public var x:Float
     public var y:Float

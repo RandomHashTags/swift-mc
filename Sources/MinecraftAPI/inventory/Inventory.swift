@@ -1,10 +1,3 @@
-//
-//  Inventory.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public protocol Inventory {
     var type: any InventoryType { get }
     var viewers: [any Player] { get }

@@ -1,10 +1,3 @@
-//
-//  MaterialItemConfiguration.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public protocol MaterialItemConfiguration {
     /// Maximum amount of the same item that can be stacked in one slot.
     var maxStackSize: Int { get }

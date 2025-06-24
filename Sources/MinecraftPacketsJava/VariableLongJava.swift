@@ -1,10 +1,3 @@
-//
-//  VariableLongJava.swift
-//  
-//
-//  Created by Evan Anderson on 8/8/23.
-//
-
 import MinecraftPackets
 
 /// An integer between -9223372036854775808 and 9223372036854775807.

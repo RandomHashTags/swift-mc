@@ -1,10 +1,3 @@
-//
-//  ValueType.swift
-//  
-//
-//  Created by Evan Anderson on 2/3/23.
-//
-
 public enum ValueType {
     case string(String)
     case char(Int8)
