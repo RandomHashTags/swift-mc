@@ -68,6 +68,6 @@ extension ClientPacket.Mojang.Java.Play.SpawnPlayer {
         let z = try packet.readDouble()
         let yaw:AngleMojang = try packet.readAngle()
         let pitch:AngleMojang = try packet.readAngle()
-        return Self(entityID: entityID, player_uuid: playerUUID, x: x, y: y, z: z, yaw: yaw, pitch: pitch)
+        return Self(entityID: entityID, playerUUID: playerUUID, x: x, y: y, z: z, yaw: yaw, pitch: pitch)
     }
 }

@@ -7,19 +7,14 @@ import Foundation
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Status {
-    struct StatusResponse: ClientPacketMojangJavaStatusProtocol {
+    public struct StatusResponse: ClientPacketMojangJavaStatusProtocol {
         public static let id = ClientPacket.Mojang.Java.Status.statusResponse
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let json_response:String = try packet.readString()
-            return Self(json_response: json_response)
-        }
-        
         /// See https://wiki.vg/Server_List_Ping#Response ; as with all strings this is prefixed by its length as a VarInt.
-        public let json_response:String
+        public let jsonResponse:String
         
-        init(json_response: String) {
-            self.json_response = json_response
+        public init(jsonResponse: String) {
+            self.jsonResponse = jsonResponse
         }
         /*init(version: MinecraftProtocolVersion.Java, motd: String, enforces_secure_chat: Bool, online_players_count: Int) throws {
             let statusRequest:ServerPacketMojangStatusResponse = ServerPacketMojangStatusResponse(
@@ -61,9 +56,19 @@ extension ClientPacket.Mojang.Java.Status {
             }
             json_response = string
         }*/
-        
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [json_response]
+            return [jsonResponse]
         }
+    }
+}
+
+// MARK: Parse
+extension ClientPacket.Mojang.Java.Status.StatusResponse {
+    @inlinable
+    public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        let jsonResponse:String = try packet.readString()
+        return Self(jsonResponse: jsonResponse)
     }
 }

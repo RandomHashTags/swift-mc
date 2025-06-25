@@ -6,17 +6,27 @@ extension ClientPacket.Mojang.Java.Configuration {
     /// The Notchian server uses a system-dependent time in milliseconds to generate the keep alive ID value.
     public struct KeepAlive: ClientPacket.Mojang.Java.ConfigurationProtocol {
         public static let id = ClientPacket.Mojang.Java.Configuration.keepAlive
-        
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let keepAliveID = try packet.readLong()
-            return Self(keepAliveID: keepAliveID)
-        }
-        
+
         public let keepAliveID:Int64
+
+        public init(
+            keepAliveID: Int64
+        ) {
+            self.keepAliveID = keepAliveID
+        }
 
         @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [keepAliveID]
         }
+    }
+}
+
+// MARK: Parse
+extension ClientPacket.Mojang.Java.Configuration.KeepAlive {
+    @inlinable
+    public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        let keepAliveID = try packet.readLong()
+        return Self(keepAliveID: keepAliveID)
     }
 }

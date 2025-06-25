@@ -12,18 +12,19 @@ extension ClientPacket.Mojang.Java {
         case resourcePack
         case featureFlags
         case updateTags
-        
+
+        @inlinable
         public var packet: any ClientPacket.Mojang.Java.ConfigurationProtocol.Type {
             switch self {
-            case .pluginMessage:       return ClientPacket.Mojang.Java.Configuration.PluginMessage.self
-            case .disconnect:          return ClientPacket.Mojang.Java.Configuration.Disconnect.self
-            case .finishConfiguration: return ClientPacket.Mojang.Java.Configuration.FinishConfiguration.self
-            case .keepAlive:           return ClientPacket.Mojang.Java.Configuration.KeepAlive.self
-            case .ping:                return ClientPacket.Mojang.Java.Configuration.Ping.self
-            case .registryData:        return ClientPacket.Mojang.Java.Configuration.RegistryData.self
-            case .resourcePack:        return ClientPacket.Mojang.Java.Configuration.ResourcePack.self
-            case .featureFlags:        return ClientPacket.Mojang.Java.Configuration.FeatureFlags.self
-            case .updateTags:          return ClientPacket.Mojang.Java.Configuration.UpdateTags.self
+            case .pluginMessage:       ClientPacket.Mojang.Java.Configuration.PluginMessage.self
+            case .disconnect:          ClientPacket.Mojang.Java.Configuration.Disconnect.self
+            case .finishConfiguration: ClientPacket.Mojang.Java.Configuration.FinishConfiguration.self
+            case .keepAlive:           ClientPacket.Mojang.Java.Configuration.KeepAlive.self
+            case .ping:                ClientPacket.Mojang.Java.Configuration.Ping.self
+            case .registryData:        ClientPacket.Mojang.Java.Configuration.RegistryData.self
+            case .resourcePack:        ClientPacket.Mojang.Java.Configuration.ResourcePack.self
+            case .featureFlags:        ClientPacket.Mojang.Java.Configuration.FeatureFlags.self
+            case .updateTags:          ClientPacket.Mojang.Java.Configuration.UpdateTags.self
             }
         }
     }

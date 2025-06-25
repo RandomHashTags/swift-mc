@@ -1,3 +1,3 @@
-public protocol Nameable {
+public protocol Nameable: Sendable {
     var name: String { get }
 }

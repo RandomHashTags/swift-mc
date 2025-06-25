@@ -8,11 +8,19 @@ extension ClientPacket.Mojang.Java.Configuration {
     /// - minecraft:vanilla - enables vanilla features
     /// - minecraft:bundle - enables support for the bundle
     /// - minecraft:trade\_rebalance - enables support for the rebalanced villager trades
-    struct FeatureFlags: ClientPacket.Mojang.Java.ConfigurationProtocol {
+    public struct FeatureFlags: ClientPacket.Mojang.Java.ConfigurationProtocol {
         public static let id = ClientPacket.Mojang.Java.Configuration.featureFlags
 
         public let totalFeatures:VariableIntegerJava
         public let featureFlags:[NamespaceJava]
+
+        public init(
+            totalFeatures: VariableIntegerJava,
+            featureFlags: [NamespaceJava]
+        ) {
+            self.totalFeatures = totalFeatures
+            self.featureFlags = featureFlags
+        }
 
         @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {

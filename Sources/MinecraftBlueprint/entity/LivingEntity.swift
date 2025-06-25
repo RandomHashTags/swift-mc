@@ -47,5 +47,8 @@ public protocol LivingEntity: Attributable, Damageable, ProjectileSource {
         
     mutating func tickLivingEntity(_ server: any Server)
     
-    mutating func damageLivingEntity(cause: any DamageCause, amount: Double) -> DamageResult
+    mutating func damageLivingEntity(
+        cause: any DamageCause,
+        amount: Double
+    ) -> DamageResult
 }
