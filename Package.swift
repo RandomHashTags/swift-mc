@@ -11,11 +11,7 @@ let package = Package(
     ],
     dependencies: [
         // Networking & Server
-        .package(url: "https://github.com/apple/swift-nio", from: "2.76.1"),
-        .package(url: "https://github.com/vapor/vapor", from: "4.106.4"),
-        .package(url: "https://github.com/Kitura/BlueSocket", from: "2.0.4"),
         .package(url: "https://github.com/apple/swift-asn1", from: "1.3.0"),
-        .package(url: "https://github.com/vapor/console-kit", from: "4.14.2"),
 
         // Macros
         .package(url: "https://github.com/apple/swift-syntax", from: "600.0.1"),
@@ -37,10 +33,7 @@ let package = Package(
             name: "App",
             dependencies: [
                 "MinecraftBlueprint",
-                //.product(name: "BlueSocket", package: "BlueSocket"),
-                .product(name: "Vapor", package: "vapor"),
                 
-                .product(name: "Socket", package: "BlueSocket"),
                 .product(name: "SwiftASN1", package: "swift-asn1"),
                 .product(name: "SwiftStringCatalogs", package: "swift-string-catalogs")
             ],/*
@@ -77,8 +70,7 @@ let package = Package(
             name: "MinecraftPacketsJava",
             dependencies: [
                 "MinecraftMacros",
-                "MinecraftPackets",
-                .product(name: "NIO", package: "swift-nio")
+                "MinecraftPackets"
             ]
         ),
         .target(
@@ -90,10 +82,15 @@ let package = Package(
             ]
         ),
 
-        .executableTarget(name: "Run", dependencies: [.target(name: "App")]),
-        .testTarget(name: "swift_gluon-serverTests", dependencies: [
-            .target(name: "App"),
-            .product(name: "XCTVapor", package: "vapor")
-        ]),
+        .executableTarget(
+            name: "Run",
+            dependencies: ["App"]
+        ),
+        .testTarget(
+            name: "swift_gluon-serverTests",
+            dependencies: [
+                "App"
+            ]
+        ),
     ]
 )

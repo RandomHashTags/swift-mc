@@ -1,7 +1,5 @@
 
 import App
-import Vapor
-import NIO
 
 /*let server:ServerMojang = ServerMojang(host: "192.168.1.96", port: 25565)
 defer {

@@ -4,7 +4,6 @@ import FoundationEssentials
 import Foundation
 #endif
 
-import NIO
 import MinecraftPackets
 import MinecraftUtilities
 
