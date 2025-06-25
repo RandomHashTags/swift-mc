@@ -3,7 +3,7 @@ import MinecraftPackets
 public extension ClientPacket.Mojang.Java.Play {
     /// This is sent to the client when it should update a scoreboard item.
     struct UpdateScore: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateScore
+        public static let id = ClientPacket.Mojang.Java.Play.updateScore
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let entityName:String = try packet.readString()

@@ -3,7 +3,7 @@ import MinecraftPackets
 public extension ClientPacket.Mojang.Java.Play {
     /// This is sent to the client when it should display a scoreboard.
     struct DisplayObjective: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.displayObjective
+        public static let id = ClientPacket.Mojang.Java.Play.displayObjective
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let position:Int8 = try packet.readByte()

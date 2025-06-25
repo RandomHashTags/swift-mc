@@ -6,20 +6,20 @@ public protocol BlockFace: MinecraftIdentifiable {
 }
 
 /*
-public extension BlockFace {
+extension BlockFace {
     private static func get(_ id: BlockFace.ID, oppositeID: BlockFace.ID) -> BlockFace {
         return BlockFace(id: "minecraft." + id, oppositeID: oppositeID)
     }
 
-    static let none = get("none", oppositeID: "none")
+    public static let none = get("none", oppositeID: "none")
 
-    static let up = get("up", oppositeID: "down")
-    static let down = get("down", oppositeID: "up")
+    public static let up = get("up", oppositeID: "down")
+    public static let down = get("down", oppositeID: "up")
 
-    static let north = get("north", oppositeID: "south")
-    static let south = get("south", oppositeID: "north")
+    public static let north = get("north", oppositeID: "south")
+    public static let south = get("south", oppositeID: "north")
 
-    static let east = get("east", oppositeID: "west")
-    static let west = get("west", oppositeID: "east")
+    public static let east = get("east", oppositeID: "west")
+    public static let west = get("west", oppositeID: "east")
 }
 */

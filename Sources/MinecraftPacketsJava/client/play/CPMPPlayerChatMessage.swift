@@ -1,9 +1,13 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     struct PlayerChatMessage: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.playerChatMessage
+        public static let id = ClientPacket.Mojang.Java.Play.playerChatMessage
         
         // MARK: Header
         /// Used by the Notchian client for the disableChat launch option. Setting both longs to 0 will always display the message regardless of the setting.

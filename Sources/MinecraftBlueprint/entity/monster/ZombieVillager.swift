@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 
 public protocol ZombieVillager: Zombie {
     var conversionInitiator: UUID { get }
@@ -11,6 +15,9 @@ public protocol ZombieVillager: Zombie {
     var villagerVariant: any VillagerVariant { get }
 }
 
-public extension ZombieVillager {
-    var isConverting: Bool { remainingConversionDuration > 0 }
+extension ZombieVillager {
+    @inlinable
+    public var isConverting: Bool {
+        remainingConversionDuration > 0
+    }
 }

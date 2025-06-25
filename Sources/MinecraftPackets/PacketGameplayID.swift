@@ -1,2 +1,2 @@
-public protocol PacketGameplayID: RawRepresentable where RawValue == UInt8 {
+public protocol PacketGameplayID: Sendable, RawRepresentable where RawValue == UInt8 {
 }

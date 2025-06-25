@@ -2,7 +2,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     struct SetBorderCenter: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setBorderCenter
+        public static let id = ClientPacket.Mojang.Java.Play.setBorderCenter
         
         public static func parse(_ packet: GeneralPacketMojang) throws -> ClientPacket.Mojang.Java.Play.SetBorderCenter {
             let x:Double = try packet.readDouble()

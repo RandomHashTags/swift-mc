@@ -1,8 +1,7 @@
 
-
 import Foundation
 
-final class GluonStorage<Key: Hashable, Value> {
+final class GluonStorage<Key: Hashable, Value>: @unchecked Sendable {
     private let wrapped:NSCache<WrappedKey, Entry> = NSCache<WrappedKey, Entry>()
     private let lifetime:TimeInterval!
     
@@ -100,8 +99,8 @@ private extension GluonStorage {
 public protocol GluonSharedInstance {
     init()
 }
-public extension GluonSharedInstance {
-    static var shared: Self {
+extension GluonSharedInstance {
+    public static var shared: Self {
         let type:String = String(describing: Self.self)
         if let cached:Self = GluonStorageSharedInstances.instances[type] as? Self {
             return cached
@@ -113,5 +112,5 @@ public extension GluonSharedInstance {
 }
 
 enum GluonStorageSharedInstances {
-    fileprivate static var instances:GluonStorage<String, GluonSharedInstance> = GluonStorage<String, GluonSharedInstance>()
+    fileprivate static let instances:GluonStorage<String, GluonSharedInstance> = GluonStorage<String, GluonSharedInstance>()
 }

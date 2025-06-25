@@ -1,12 +1,20 @@
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
+extension ClientPacket.Mojang.Java.Play {
     /// Changes the difficulty setting in the client's option menu.
-    struct ChangeDifficulty: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.changeDifficulty
+    public struct ChangeDifficulty: ClientPacket.Mojang.Java.PlayProtocol {
+        public static let id = ClientPacket.Mojang.Java.Play.changeDifficulty
         
         public let difficulty:ChangeDifficulty.Difficulty
-        public let difficulty_locked:Bool
+        public let difficultyLocked:Bool
+
+        public init(
+            difficulty: ChangeDifficulty.Difficulty,
+            difficultyLocked: Bool
+        ) {
+            self.difficulty = difficulty
+            self.difficultyLocked = difficultyLocked
+        }
         
         public enum Difficulty: UInt8, Codable, PacketEncodableMojangJava {
             case peaceful = 0
@@ -14,9 +22,10 @@ public extension ClientPacket.Mojang.Java.Play {
             case normal
             case hard
         }
-        
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [difficulty, difficulty_locked]
+            return [difficulty, difficultyLocked]
         }
     }
 }

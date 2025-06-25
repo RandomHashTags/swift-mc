@@ -2,12 +2,12 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     struct SetPassengers: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setPassengers
+        public static let id = ClientPacket.Mojang.Java.Play.setPassengers
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let entityID:VariableIntegerJava = try packet.readVarInt()
             let passengerCount:VariableIntegerJava = try packet.readVarInt()
-            let passengers:[VariableIntegerJava] = try packet.readPacketArray(count: passengerCount.value_int)
+            let passengers:[VariableIntegerJava] = try packet.readPacketArray(count: passengerCount.valueInt)
             return Self(entityID: entityID, passengerCount: passengerCount, passengers: passengers)
         }
         

@@ -2,8 +2,8 @@
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Configuration {
-    struct ResourcePack: ClientPacket.Mojang.Java.ConfigurationProtocol {
-        public static let id:ClientPacket.Mojang.Java.Configuration = ClientPacket.Mojang.Java.Configuration.resourcePack
+    public struct ResourcePack: ClientPacket.Mojang.Java.ConfigurationProtocol {
+        public static let id = ClientPacket.Mojang.Java.Configuration.resourcePack
         
         /// The URL to the resource pack.
         public let url:String
@@ -13,14 +13,15 @@ extension ClientPacket.Mojang.Java.Configuration {
         /// The notchian client will be forced to use the resource pack from the server. If they decline they will be kicked from the server.
         public let forced:Bool
         /// `true` If the next field will be sent `false` otherwise. When `false`, this is the end of the packet.
-        public let has_prompt_message:Bool
+        public let hasPromptMessage:Bool
         /// This is shown in the prompt making the client accept or decline the resource pack.
-        public let prompt_message:ChatPacketMojang?
-        
+        public let promptMessage:ChatPacketMojang?
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            var values:[(any PacketEncodableMojangJava)?] = [url, hash, forced, has_prompt_message]
-            if has_prompt_message {
-                values.append(prompt_message)
+            var values:[(any PacketEncodableMojangJava)?] = [url, hash, forced, hasPromptMessage]
+            if hasPromptMessage {
+                values.append(promptMessage)
             }
             return values
         }

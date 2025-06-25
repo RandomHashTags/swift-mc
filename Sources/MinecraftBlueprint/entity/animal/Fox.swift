@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 
 public protocol Fox: Animal, Sittable, Variantable {
     var isCrouching: Bool { get }

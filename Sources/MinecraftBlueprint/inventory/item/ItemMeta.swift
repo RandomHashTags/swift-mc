@@ -8,19 +8,28 @@ public protocol ItemMeta {
     func getEnchant(_ id: MinecraftIdentifiableID) -> (any Enchantment)?
 }
 
-public extension ItemMeta {
-    var hasDisplayName: Bool { displayName != nil }
+extension ItemMeta {
+    @inlinable
+    public var hasDisplayName: Bool {
+        displayName != nil
+    }
 
-    var hasLore: Bool { !lore.isEmpty }
+    @inlinable
+    public var hasLore: Bool {
+        !lore.isEmpty
+    }
 
-    func hasFlag(_ flag: any ItemFlag) -> Bool {
+    @inlinable
+    public func hasFlag(_ flag: any ItemFlag) -> Bool {
         return hasFlag(flag.id)
     }
 
-    func getEnchant(_ type: any EnchantmentType) -> (any Enchantment)? {
+    @inlinable
+    public func getEnchant(_ type: any EnchantmentType) -> (any Enchantment)? {
         return getEnchant(type.id)
     }
-    func hasEnchant(_ enchant: any EnchantmentType) -> Bool {
+    @inlinable
+    public func hasEnchant(_ enchant: any EnchantmentType) -> Bool {
         return getEnchant(enchant.id) != nil
     }
 }

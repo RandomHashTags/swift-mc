@@ -1,10 +1,14 @@
 
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Status {
     struct StatusResponse: ClientPacketMojangJavaStatusProtocol {
-        public static let id:ClientPacket.Mojang.Java.Status = ClientPacket.Mojang.Java.Status.statusResponse
+        public static let id = ClientPacket.Mojang.Java.Status.statusResponse
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let json_response:String = try packet.readString()

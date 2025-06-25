@@ -2,7 +2,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     struct SetActionBarText: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setActionBarText
+        public static let id = ClientPacket.Mojang.Java.Play.setActionBarText
         
         public static func parse(_ packet: any GeneralPacket) throws -> ClientPacket.Mojang.Java.Play.SetActionBarText {
             let action_bar_text:ChatPacketMojang = try packet.readPacket()

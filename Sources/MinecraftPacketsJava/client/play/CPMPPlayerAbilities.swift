@@ -3,7 +3,7 @@ import MinecraftPackets
 public extension ClientPacket.Mojang.Java.Play {
     /// The latter 2 floats are used to indicate the flying speed and field of view respectively, while the first byte is used to determine the value of 4 booleans.
     struct PlayerAbilities: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.playerAbilities
+        public static let id = ClientPacket.Mojang.Java.Play.playerAbilities
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let flags:Flags = try packet.readEnum()

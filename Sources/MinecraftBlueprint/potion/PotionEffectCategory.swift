@@ -3,11 +3,11 @@ public protocol PotionEffectCategory: MinecraftIdentifiable {
 
 // TODO: move to own file
 /*
-public extension PotionEffectCategory {
+extension PotionEffectCategory {
     private static func get(_ id: String) -> PotionEffectCategory {
         return PotionEffectCategory(id: id)
     }
-    static let beneficial = get("beneficial")
-    static let harmful = get("harmful")
-    static let neutral = get("neutral")
+    public static let beneficial = get("beneficial")
+    public static let harmful = get("harmful")
+    public static let neutral = get("neutral")
 }*/

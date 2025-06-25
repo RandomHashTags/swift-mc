@@ -9,9 +9,9 @@ public extension ServerPacket.Mojang.Java.Play {
             let timestamp:Int64 = try packet.readLong()
             let salt:Int64 = try packet.readLong()
             let array_length:VariableIntegerJava = try packet.readVarInt()
-            let argument_names:[String] = try packet.readStringArray(count: array_length.value_int)
+            let argument_names:[String] = try packet.readStringArray(count: array_length.valueInt)
             let signature_byte_count:Int = 256
-            let signatures:[[UInt8]] = try packet.readMap(count: array_length.value_int, transform: {
+            let signatures:[[UInt8]] = try packet.readMap(count: array_length.valueInt, transform: {
                 return try packet.readByteArray(bytes: signature_byte_count)
             })
             let message_count:VariableIntegerJava = try packet.readVarInt()

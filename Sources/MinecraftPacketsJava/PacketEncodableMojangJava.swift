@@ -1,24 +1,33 @@
 
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 import MinecraftPackets
 
 public protocol PacketEncodableMojangJava: PacketEncodable {
 }
-public extension PacketEncodableMojangJava where Self: RawRepresentable, RawValue: PacketEncodableMojangJava {
-    func packetBytes() throws -> [UInt8] { try rawValue.packetBytes() }
+
+extension PacketEncodableMojangJava where Self: RawRepresentable, RawValue: PacketEncodableMojangJava {
+    @inlinable
+    public func packetBytes() throws -> [UInt8] {
+        try rawValue.packetBytes()
+    }
 }
 
 extension FixedWidthInteger {
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
         var array:[UInt8] = []
         var value:Self = self
-        let segment_bits:Self = Self(GeneralPacketMojang.segment_bits)
+        let segmentBits = Self(GeneralPacketMojang.segmentBits)
         while true {
-            if (value & ~segment_bits) == 0 {
+            if (value & ~segmentBits) == 0 {
                 array.append(UInt8(value))
                 break
             }
-            array.append(UInt8( (value & segment_bits) | Self(GeneralPacketMojang.continue_bit)) )
+            array.append(UInt8( (value & segmentBits) | Self(GeneralPacketMojang.continueBit)) )
             value >>= 7
         }
         return array
@@ -28,6 +37,7 @@ extension FixedWidthInteger {
 extension Int: PacketEncodableMojangJava {}
 extension Int8: PacketEncodableMojangJava {}
 extension Int16: PacketEncodableMojangJava, PacketDecodableMojangJava {
+    @inlinable
     public static func decode<T: GeneralPacket>(from packet: T) throws -> Int16 {
         return try packet.readShort()
     }
@@ -41,6 +51,7 @@ extension UInt64: PacketEncodableMojangJava {}
 
 extension Double: PacketEncodableMojangJava {
     // TODO: support
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
         var array:[UInt8] = []
         return array
@@ -48,6 +59,7 @@ extension Double: PacketEncodableMojangJava {
 }
 extension Float: PacketEncodableMojangJava {
     // TODO: support
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
         var array:[UInt8] = []
         return array
@@ -55,13 +67,15 @@ extension Float: PacketEncodableMojangJava {
 }
 
 extension String: PacketEncodableMojangJava {
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
-        var array:[UInt8] = Array(self.utf8)
+        var array = Array(self.utf8)
         array.insert(contentsOf: try VariableIntegerJava(value: Int32(count)).packetBytes(), at: 0)
         return array
     }
 }
 extension UUID: PacketEncodableMojangJava {
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
         let bytes:(UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) = self.uuid
         return [
@@ -72,12 +86,14 @@ extension UUID: PacketEncodableMojangJava {
 }
 
 extension Data: PacketEncodableMojangJava {
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
         return Array(self)
     }
 }
 
 extension Bool: PacketEncodableMojangJava {
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
         return [self ? 1 : 0]
     }

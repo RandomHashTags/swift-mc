@@ -7,6 +7,9 @@ public protocol Hoglin: Animal, Hostile {
     var isImmuneToZombification: Bool { get }
 }
 
-public extension Hoglin {
-    var isConverting: Bool { remainingConversionTime > 0 }
+extension Hoglin {
+    @inlinable
+    public var isConverting: Bool {
+        remainingConversionTime > 0
+    }
 }

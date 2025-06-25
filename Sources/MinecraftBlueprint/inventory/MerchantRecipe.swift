@@ -13,6 +13,9 @@ public protocol MerchantRecipe: Recipe {
     func adjustTrade(for item: any ItemStack)
 }
 
-public extension MerchantRecipe {
-    var hasRewardExperience: Bool { rewardExperience > 0 }
+extension MerchantRecipe {
+    @inlinable
+    public var hasRewardExperience: Bool {
+        rewardExperience > 0
+    }
 }

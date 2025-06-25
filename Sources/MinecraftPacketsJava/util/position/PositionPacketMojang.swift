@@ -4,12 +4,20 @@ import MinecraftPackets
 ///
 /// x as a 26-bit integer, followed by z as a 26-bit integer, followed by y as a 12-bit integer (all signed, two's complement).
 public struct PositionPacketMojang: Codable, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> PositionPacketMojang { // TODO: fix
-        return Self()
+    @inlinable
+    public init() {
     }
     
-    
+    @inlinable
     public func packetBytes() throws -> [UInt8] { // TODO: fix
         return []
+    }
+}
+
+// MARK: Decode
+extension PositionPacketMojang {
+    @inlinable
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> PositionPacketMojang { // TODO: fix
+        return Self()
     }
 }

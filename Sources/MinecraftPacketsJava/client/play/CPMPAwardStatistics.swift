@@ -4,7 +4,7 @@ import MinecraftPackets
 public extension ClientPacket.Mojang.Java.Play {
     /// Sent as a response to Client Command (id 1). Will only send the changed values if previously requested.
     struct AwardStatistics: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.awardStatistic
+        public static let id = ClientPacket.Mojang.Java.Play.awardStatistic
         
         /// Number of elements in `statistics`.
         public let count:VariableIntegerJava

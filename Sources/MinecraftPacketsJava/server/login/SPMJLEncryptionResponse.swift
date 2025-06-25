@@ -8,9 +8,9 @@ extension ServerPacket.Mojang.Java.Login {
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let shared_secret_length:VariableIntegerJava = try packet.readVarInt()
-            let shared_secret:[UInt8] = try packet.readByteArray(bytes: shared_secret_length.value_int)
+            let shared_secret:[UInt8] = try packet.readByteArray(bytes: shared_secret_length.valueInt)
             let verifyTokenLength:VariableIntegerJava = try packet.readVarInt()
-            let verifyToken:[UInt8] = try packet.readByteArray(bytes: verifyTokenLength.value_int)
+            let verifyToken:[UInt8] = try packet.readByteArray(bytes: verifyTokenLength.valueInt)
             return Self(shared_secret_length: shared_secret_length, shared_secret: shared_secret, verifyTokenLength: verifyTokenLength, verifyToken: verifyToken)
         }
         

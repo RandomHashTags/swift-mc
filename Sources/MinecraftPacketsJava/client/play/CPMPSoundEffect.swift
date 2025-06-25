@@ -4,7 +4,7 @@ public extension ClientPacket.Mojang.Java.Play {
     /// Plays a sound effect at the given location, either by hardcoded ID or Identifier. Sound IDs and names can be found at https://pokechu22.github.io/Burger/1.20.1.html#sounds .
     /// - Warning: Numeric sound effect IDs are liable to change between versions
     struct SoundEffect: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.soundEffect
+        public static let id = ClientPacket.Mojang.Java.Play.soundEffect
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let soundID:VariableIntegerJava = try packet.readVarInt()

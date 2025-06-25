@@ -4,4 +4,9 @@ import MinecraftPackets
 public struct AngleMojang: Angle, PacketEncodableMojangJava {
     /// Whether or not this is signed does not matter, since the resulting angles are the same.
     public let value:Int
+
+    @inlinable
+    public init(value: Int) {
+        self.value = value
+    }
 }

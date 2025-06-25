@@ -3,14 +3,15 @@ import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Configuration {
     // TODO: fix
-    struct UpdateTags: ClientPacket.Mojang.Java.ConfigurationProtocol {
-        public static let id:ClientPacket.Mojang.Java.Configuration = ClientPacket.Mojang.Java.Configuration.updateTags
+    public struct UpdateTags: ClientPacket.Mojang.Java.ConfigurationProtocol {
+        public static let id = ClientPacket.Mojang.Java.Configuration.updateTags
         
-        public let length_of_the_array:VariableIntegerJava
-        public let tag_identifiers:[NamespaceJava]
-        
+        public let lengthOfTheArray:VariableIntegerJava
+        public let tagIdentifiers:[NamespaceJava]
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [length_of_the_array]
+            return [lengthOfTheArray]
         }
     }
 }

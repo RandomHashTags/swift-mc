@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 import MinecraftPackets
 
 public protocol PacketMojangJava: Packet where IDValue == UInt {
@@ -13,27 +17,31 @@ public protocol PacketMojangJava: Packet where IDValue == UInt {
     func encodedValues() throws -> [(any PacketEncodableMojangJava)?]
 }
 
-public extension PacketMojangJava {
-    static func serverReceived(_ client: any MinecraftClientHandler) throws {
+extension PacketMojangJava {
+    @inlinable
+    public static func serverReceived(_ client: any MinecraftClientHandler) throws {
         //ServerMojang.instance.logger.warning("missing `serverReceived` static function implementation for PacketMojangJava `\(Self.self)` with id \"\(id)\"")
     }
     
-    var platform: PacketPlatform {
-        return PacketPlatform.mojang_java
+    @inlinable
+    public var platform: PacketPlatform {
+        PacketPlatform.mojangJava
     }
     
-    func packetBytes() throws -> [UInt8] {
-        let encodable_bytes:[any PacketEncodableMojangJava] = try encodedValues().compactMap({ $0 })
-        return try encodable_bytes.flatMap({ try $0.packetBytes() })
+    @inlinable
+    public func packetBytes() throws -> [UInt8] {
+        let encodableBytes:[any PacketEncodableMojangJava] = try encodedValues().compactMap({ $0 })
+        return try encodableBytes.flatMap({ try $0.packetBytes() })
     }
     
     // TODO: support compression
-    func as_client_response() throws -> Data {
+    @inlinable
+    public func as_client_response() throws -> Data {
         let packet_id_bytes:[UInt8] = try VariableIntegerJava(value: Int32(Self.id.rawValue)).packetBytes()
-        let data:[UInt8] = try packetBytes()
+        let data = try packetBytes()
         
         let length:Int = packet_id_bytes.count + data.count
-        var bytes:[UInt8] = try VariableIntegerJava(value: Int32(length)).packetBytes()
+        var bytes = try VariableIntegerJava(value: Int32(length)).packetBytes()
         bytes.append(contentsOf: packet_id_bytes)
         bytes.append(contentsOf: data)
         
@@ -41,7 +49,8 @@ public extension PacketMojangJava {
         return Data(bytes)
     }
 
-    func toGeneral() throws -> any GeneralPacket {
-        return try GeneralPacketMojang(bytes: packetBytes())
+    @inlinable
+    public func toGeneral() throws -> any GeneralPacket {
+        try GeneralPacketMojang(bytes: packetBytes())
     }
 }

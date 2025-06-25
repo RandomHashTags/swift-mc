@@ -5,6 +5,9 @@ public protocol Zombie: Ageable, Monster {
     var isConverting: Bool { get }
 }
 
-public extension Zombie {
-    var isConverting: Bool { remainingConversionDuration > 0 }
+extension Zombie {
+    @inlinable
+    public var isConverting: Bool {
+        remainingConversionDuration > 0
+    }
 }

@@ -1,10 +1,17 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 
 public protocol Tameable: Animal {
     var owner: UUID? { get }
     var isTamed: Bool { get }
 }
 
-public extension Tameable {
-    var isTamed: Bool { owner != nil }
+extension Tameable {
+    @inlinable
+    public var isTamed: Bool {
+        owner != nil
+    }
 }

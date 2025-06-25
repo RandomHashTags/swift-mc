@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     ///
     /// It is legal to send this packet even if the given chunk is not currently loaded.
     struct UnloadChunk: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.unloadChunk
+        public static let id = ClientPacket.Mojang.Java.Play.unloadChunk
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let chunk_x:Int32 = try packet.readInt()

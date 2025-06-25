@@ -3,6 +3,9 @@ public protocol EventListener {
     func handle(event: any Event)
 }
 
-public extension EventListener {
-    var priority: UInt8 { EventPriority.normal }
+extension EventListener {
+    @inlinable
+    public var priority: UInt8 {
+        EventPriority.normal
+    }
 }

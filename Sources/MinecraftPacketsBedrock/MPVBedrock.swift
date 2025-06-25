@@ -1,7 +1,7 @@
 
 // https://wiki.vg/Bedrock_Protocol_version_numbers
-public extension MinecraftProtocolVersion {
-    enum Bedrock: Int, MinecraftProtocolVersionProtocol {
+extension MinecraftProtocolVersion {
+    public enum Bedrock: Int, MinecraftProtocolVersionProtocol {
         case v1_19_83    = 582
         case v1_19_70    = 575
         

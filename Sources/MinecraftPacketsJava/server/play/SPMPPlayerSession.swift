@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
@@ -9,9 +13,9 @@ public extension ServerPacket.Mojang.Java.Play {
             let session_id:UUID = try packet.readUUID()
             let expires_at:Int64 = try packet.readLong()
             let publicKeyLength:VariableIntegerJava = try packet.readVarInt()
-            let publicKey:[UInt8] = try packet.readByteArray(bytes: publicKeyLength.value_int)
+            let publicKey:[UInt8] = try packet.readByteArray(bytes: publicKeyLength.valueInt)
             let key_signature_length:VariableIntegerJava = try packet.readVarInt()
-            let key_signature:[UInt8] = try packet.readByteArray(bytes: key_signature_length.value_int)
+            let key_signature:[UInt8] = try packet.readByteArray(bytes: key_signature_length.valueInt)
             return Self(session_id: session_id, expires_at: expires_at, publicKeyLength: publicKeyLength, publicKey: publicKey, key_signature_length: key_signature_length, key_signature: key_signature)
         }
         

@@ -1,74 +1,113 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 import MinecraftPackets
 
 public struct CommandNodeMojang: Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
-        let flags:Int8 = try packet.readByte()
-        let children_count:VariableIntegerJava = try packet.readVarInt()
-        let children:[VariableIntegerJava] = try packet.readMap(count: children_count.value_int) {
-            return try packet.readVarInt()
-        }
-        let redirect_node:VariableIntegerJava?
-        if (flags & 0x08) != 0 {
-            redirect_node = try packet.readVarInt()
-        } else {
-            redirect_node = nil
-        }
-        
-        let flag_node_type:Int8 = flags & 0x03
-        
-        let name:String?
-        let parser:CommandNodeMojang.Parser?
-        let properties:Data?
-        switch flag_node_type {
-        case 1:
-            name = try packet.readString()
-            parser = nil
-            properties = nil
-            break
-        case 2:
-            name = try packet.readString()
-            parser = try packet.readEnum()
-            properties = nil // TODO: fix
-            break
-        default:
-            name = nil
-            parser = nil
-            properties = nil
-            break
-        }
-        
-        let suggestions_type:NamespaceJava?
-        if (flags & 0x10) != 0 {
-            suggestions_type = try packet.readIdentifier()
-        } else {
-            suggestions_type = nil
-        }
-        return Self(flags: flags, children_count: children_count, children: children, redirect_node: redirect_node, name: name, parser: parser, properties: properties, suggestions_type: suggestions_type)
+    public let flags:Int8
+    public let childrenCount:VariableIntegerJava
+    public let children:[VariableIntegerJava]
+    public let redirectNode:VariableIntegerJava?
+    public let name:String?
+    public let parser:Parser?
+    public let properties:Data?
+    public let suggestionsType:NamespaceJava?
+
+    @inlinable
+    public init(
+        flags: Int8,
+        childrenCount: VariableIntegerJava,
+        children: [VariableIntegerJava],
+        redirectNode: VariableIntegerJava?,
+        name: String?,
+        parser: Parser?,
+        properties: Data?,
+        suggestionsType: NamespaceJava?
+    ) {
+        self.flags = flags
+        self.childrenCount = childrenCount
+        self.children = children
+        self.redirectNode = redirectNode
+        self.name = name
+        self.parser = parser
+        self.properties = properties
+        self.suggestionsType = suggestionsType
     }
-    
-    let flags:Int8
-    let children_count:VariableIntegerJava
-    let children:[VariableIntegerJava]
-    let redirect_node:VariableIntegerJava?
-    let name:String?
-    let parser:CommandNodeMojang.Parser?
-    let properties:Data?
-    let suggestions_type:NamespaceJava?
-    
+
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
-        var array:[UInt8] = try flags.packetBytes()
-        array.append(contentsOf: try children_count.packetBytes())
+        var array = try flags.packetBytes()
+        array.append(contentsOf: try childrenCount.packetBytes())
         for child in children {
             array.append(contentsOf: try child.packetBytes())
         }
         if (flags & 0x08) != 0 {
-            let redirect_node:VariableIntegerJava = try unwrapOptional(redirect_node, key_path: \Self.redirect_node, precondition: "(flags & 0x08) != 0")
-            array.append(contentsOf: try redirect_node.packetBytes())
+            let redirectNode:VariableIntegerJava = try unwrapOptional(redirectNode, key_path: \Self.redirectNode, precondition: "(flags & 0x08) != 0")
+            array.append(contentsOf: try redirectNode.packetBytes())
         }
         return array
     }
-    
+}
+
+// MARK: Decode
+extension CommandNodeMojang {
+    @inlinable
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
+        let flags:Int8 = try packet.readByte()
+        let childrenCount:VariableIntegerJava = try packet.readVarInt()
+        let children:[VariableIntegerJava] = try packet.readMap(count: childrenCount.valueInt) {
+            return try packet.readVarInt()
+        }
+        let redirectNode:VariableIntegerJava?
+        if (flags & 0x08) != 0 {
+            redirectNode = try packet.readVarInt()
+        } else {
+            redirectNode = nil
+        }
+        
+        let flagNodeType:Int8 = flags & 0x03
+        
+        let name:String?
+        let parser:CommandNodeMojang.Parser?
+        let properties:Data?
+        switch flagNodeType {
+        case 1:
+            name = try packet.readString()
+            parser = nil
+            properties = nil
+        case 2:
+            name = try packet.readString()
+            parser = try packet.readEnum()
+            properties = nil // TODO: fix
+        default:
+            name = nil
+            parser = nil
+            properties = nil
+        }
+        
+        let suggestionsType:NamespaceJava?
+        if (flags & 0x10) != 0 {
+            suggestionsType = try packet.readIdentifier()
+        } else {
+            suggestionsType = nil
+        }
+        return Self(
+            flags: flags,
+            childrenCount: childrenCount,
+            children: children,
+            redirectNode: redirectNode,
+            name: name,
+            parser: parser,
+            properties: properties,
+            suggestionsType: suggestionsType
+        )
+    }
+}
+
+// MARK: Parser
+extension CommandNodeMojang {
     public enum Parser: Int, Codable, PacketEncodableMojangJava {
         case brigadier_bool = 0
         case brigadier_float = 1
@@ -120,13 +159,18 @@ public struct CommandNodeMojang: Codable, PacketEncodableMojangJava, PacketDecod
         case minecraft_heightmap
         case minecraft_uuid
     }
+}
+
+// MARK: Properties
+extension CommandNodeMojang {
     public enum Properties {
         public enum Brigadier {
             public struct Double: CommandNodeMojangProperty {
                 public let flags:UInt8
                 public let min:Swift.Double?
                 public let max:Swift.Double?
-                
+
+                @inlinable
                 public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
                     var array:[(any PacketEncodableMojangJava)?] = [flags]
                     if (flags & 0x01) != 0 {
@@ -142,11 +186,13 @@ public struct CommandNodeMojang: Codable, PacketEncodableMojangJava, PacketDecod
     }
 }
 
+// MARK: CommandNodeMojangProperty
 public protocol CommandNodeMojangProperty: Codable, PacketEncodableMojangJava {
     func encodedValues() throws -> [(any PacketEncodableMojangJava)?]
 }
-public extension CommandNodeMojangProperty {
-    func packetBytes() throws -> [UInt8] {
+extension CommandNodeMojangProperty {
+    @inlinable
+    public func packetBytes() throws -> [UInt8] {
         return try encodedValues().compactMap({ $0 }).map({ try $0.packetBytes() }).flatMap({ $0 })
     }
 }

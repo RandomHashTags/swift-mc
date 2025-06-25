@@ -12,20 +12,24 @@ public enum SoundCategoryJava: Int, SoundCategory, PacketEncodableMojangJava {
     case ambient
     case voice
 
+    @inlinable
     public var id: ID {
         switch self {
-            case .master:  return #identifiable("minecraft.master")
-            case .music:   return #identifiable("minecraft.music")
-            case .records: return #identifiable("minecraft.records")
-            case .weather: return #identifiable("minecraft.weather")
-            case .blocks:  return #identifiable("minecraft.blocks")
-            case .hostile: return #identifiable("minecraft.hostile")
-            case .neutral: return #identifiable("minecraft.neutral")
-            case .players: return #identifiable("minecraft.players")
-            case .ambient: return #identifiable("minecraft.ambient")
-            case .voice:   return #identifiable("minecraft.voice")
+        case .master:  #identifiable("minecraft.master")
+        case .music:   #identifiable("minecraft.music")
+        case .records: #identifiable("minecraft.records")
+        case .weather: #identifiable("minecraft.weather")
+        case .blocks:  #identifiable("minecraft.blocks")
+        case .hostile: #identifiable("minecraft.hostile")
+        case .neutral: #identifiable("minecraft.neutral")
+        case .players: #identifiable("minecraft.players")
+        case .ambient: #identifiable("minecraft.ambient")
+        case .voice:   #identifiable("minecraft.voice")
         }
     }
 
-    public var packetID: Int { rawValue }
+    @inlinable
+    public var packetID: Int {
+        rawValue
+    }
 }

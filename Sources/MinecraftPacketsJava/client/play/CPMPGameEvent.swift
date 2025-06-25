@@ -2,7 +2,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     struct GameEvent: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.gameEvent
+        public static let id = ClientPacket.Mojang.Java.Play.gameEvent
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let event:GameEvent.Event = try packet.readEnum()

@@ -25,8 +25,8 @@ public extension ServerPacket.Mojang.Java.Play {
             let button:Int8 = try packet.readByte()
             let mode:ClickContainer.Mode = try packet.readEnum()
             let slots_count:VariableIntegerJava = try packet.readVarInt()
-            let slot_numbers:[Int16] = try packet.readPacketArray(count: slots_count.value_int)
-            let slot_data:[SlotMojang] = try packet.readPacketArray(count: slots_count.value_int)
+            let slot_numbers:[Int16] = try packet.readPacketArray(count: slots_count.valueInt)
+            let slot_data:[SlotMojang] = try packet.readPacketArray(count: slots_count.valueInt)
             let carried_item:SlotMojang = try packet.readPacket()
             return Self(windowID: windowID, stateID: stateID, slot: slot, button: button, mode: mode, slots_count: slots_count, slot_numbers: slot_numbers, slot_data: slot_data, carried_item: carried_item)
         }

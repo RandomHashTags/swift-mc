@@ -1,5 +1,5 @@
 
-import MinecraftAPI
+import MinecraftBlueprint
 import Logging
 
 enum CLIHandler {

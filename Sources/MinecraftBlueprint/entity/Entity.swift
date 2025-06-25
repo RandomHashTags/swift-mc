@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 
 public protocol Entity: BlockMovable, CustomNameable, DisplayNameable, Tickable {
     var id: UInt64 { get }
@@ -46,6 +50,9 @@ public protocol Entity: BlockMovable, CustomNameable, DisplayNameable, Tickable 
     mutating func teleport(to location: any Location)
 }
 
-public extension Entity {
-    var world: any World { location.world }
+extension Entity {
+    @inlinable
+    public var world: any World {
+        location.world
+    }
 }

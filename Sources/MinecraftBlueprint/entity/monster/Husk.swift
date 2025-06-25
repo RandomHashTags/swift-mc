@@ -4,6 +4,9 @@ public protocol Husk: Zombie {
     var isConverting: Bool { get }
 }
 
-public extension Husk {
-    var isConverting: Bool { remainingConversionDuration > 0 }
+extension Husk {
+    @inlinable
+    public var isConverting: Bool {
+        remainingConversionDuration > 0
+    }
 }

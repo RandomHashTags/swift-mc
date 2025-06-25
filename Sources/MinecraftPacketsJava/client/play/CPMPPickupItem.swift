@@ -3,7 +3,7 @@ import MinecraftPackets
 public extension ClientPacket.Mojang.Java.Play {
     /// Sent by the server when someone picks up an item lying on the ground — its sole purpose appears to be the animation of the item flying towards you. It doesn't destroy the entity in the client memory, and it doesn't add it to your inventory. The server only checks for items to be picked up after each Set Player Position (and Set Player Position And Rotation) packet sent by the client. The collector entity can be any entity; it does not have to be a player. The collected entity also can be any entity, but the Notchian server only uses this for items, experience orbs, and the different varieties of arrows.
     struct PickupItem: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.pickupItem
+        public static let id = ClientPacket.Mojang.Java.Play.pickupItem
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let collected_entity_id:VariableIntegerJava = try packet.readVarInt()

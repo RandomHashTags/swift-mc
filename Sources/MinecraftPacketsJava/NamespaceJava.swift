@@ -1,25 +1,22 @@
 import MinecraftPackets
 
 public struct NamespaceJava: Namespace, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix (PacketEncodableMojangJava)
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
-        return try (packet as! GeneralPacketMojang).readIdentifier()
-    }
-    
     public let identifier:Substring
     public let value:Substring
-    
+
+    @inlinable
     public init(identifier: Substring, value: Substring) {
         self.identifier = identifier
         self.value = value
     }
-    
+
     public init?(_ description: String) {
-        let values:[Substring] = description.split(separator: ":")
+        let values = description.split(separator: ":")
         guard values.count == 2 else { return nil }
         identifier = values[0]
         value = values[1]
     }
-    
+
     public var description: String {
         return identifier + ":" + value
     }
@@ -36,8 +33,17 @@ public struct NamespaceJava: Namespace, PacketEncodableMojangJava, PacketDecodab
         }
         self = namespace
     }
-    
+
+    @inlinable
     public func packetBytes() throws -> [UInt8] {
         return try description.packetBytes()
+    }
+}
+
+// MARK: Decode
+extension NamespaceJava {
+    @inlinable
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
+        return try (packet as! GeneralPacketMojang).readIdentifier()
     }
 }

@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 
 public protocol Animal: Breedable {
     var breeder: UUID? { get }
@@ -6,6 +10,9 @@ public protocol Animal: Breedable {
     var remainingLoveModeDuration: Int { get }
 }
 
-public extension Animal {
-    var isLoveMode: Bool { remainingLoveModeDuration > 0 }
+extension Animal {
+    @inlinable
+    public var isLoveMode: Bool {
+        remainingLoveModeDuration > 0
+    }
 }

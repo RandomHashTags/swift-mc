@@ -3,7 +3,7 @@ import MinecraftPackets
 public extension ClientPacket.Mojang.Java.Play {
     /// Creates and updates teams.
     struct UpdateTeams: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateTeams
+        public static let id = ClientPacket.Mojang.Java.Play.updateTeams
         
         /// A unique name for the team. (Shared with scoreboard).
         public let team_name:String

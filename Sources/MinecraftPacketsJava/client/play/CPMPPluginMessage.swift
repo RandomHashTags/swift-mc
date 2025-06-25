@@ -7,7 +7,7 @@ public extension ClientPacket.Mojang.Java.Play {
     ///
     /// In Notchian client, the maximum data length is 1048576 bytes.
     struct PluginMessage: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.pluginMessage
+        public static let id = ClientPacket.Mojang.Java.Play.pluginMessage
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let channel:NamespaceJava = try packet.readIdentifier()

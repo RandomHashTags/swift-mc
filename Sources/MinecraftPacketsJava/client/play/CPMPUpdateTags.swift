@@ -3,7 +3,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     struct UpdateTags: ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.updateTags
+        public static let id = ClientPacket.Mojang.Java.Play.updateTags
         
         /// Number of elements in `tags`.
         public let count:VariableIntegerJava

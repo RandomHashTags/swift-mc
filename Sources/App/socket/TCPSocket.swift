@@ -1,5 +1,9 @@
 
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 /*
 
 final class TCPSocket: Hashable { // TODO: support or remove

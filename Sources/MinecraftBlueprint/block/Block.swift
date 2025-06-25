@@ -29,12 +29,12 @@ public protocol Block: Tickable {
     func getBreakingSpeed(_ player: any Player) -> Float
 }
 
-public extension Block {
-    var world: any World {
+extension Block {
+    public var world: any World {
         location.world
     }
 
-    var isLiquid: Bool {
+    public var isLiquid: Bool {
         data.material.configuration.block?.liquid != nil
     }
 }

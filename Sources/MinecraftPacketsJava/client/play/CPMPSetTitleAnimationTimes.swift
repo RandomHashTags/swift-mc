@@ -2,7 +2,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     struct SetTitleAnimationTimes: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.setTitleAnimationTimes
+        public static let id = ClientPacket.Mojang.Java.Play.setTitleAnimationTimes
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let fadeIn:Int32 = try packet.readInt()

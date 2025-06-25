@@ -1,19 +1,20 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 import MinecraftPackets
 
 public struct ChatPacketMojang: ChatPacket, PacketMojangJava, PacketEncodableMojangJava, PacketDecodableMojangJava {
     public typealias GameplayID = ClientPacket.Mojang.Java.Status
-    
+
     // TODO: fix
-    public static let id:ClientPacket.Mojang.Java.Status = ClientPacket.Mojang.Java.Status.pingResponse
-    public static let packetGameplayID:ClientPacket.Mojang.Java.Status.Type = ClientPacket.Mojang.Java.Status.self
-    
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> ChatPacketMojang {
-        throw GeneralPacketError.not_implemented(packet_type: Self.self)
-    }
-    
+    public static let id = ClientPacket.Mojang.Java.Status.pingResponse
+    public static let packetGameplayID = ClientPacket.Mojang.Java.Status.self
+
+    @inlinable
     public var category: any PacketCategory {
-        return PacketCategoryMojangJava.middleware
+        PacketCategoryMojangJava.middleware
     }
     
     public let text:String
@@ -35,7 +36,7 @@ public struct ChatPacketMojang: ChatPacket, PacketMojangJava, PacketEncodableMoj
     public let translate:String?
     public let with:[ChatPacketMojang]?
     
-    public let score:ChatPacketMojang.Score?
+    public let score:Score?
     
     public let bold:Bool?
     public let italic:Bool?
@@ -45,17 +46,27 @@ public struct ChatPacketMojang: ChatPacket, PacketMojangJava, PacketEncodableMoj
     public let font:String?
     public let color:String?
     public let insertion:String?
-    public let clickEvent:ChatPacketMojang.ClickEvent?
-    public let hoverEvent:ChatPacketMojang.HoverEvent?
+    public let clickEvent:ClickEvent?
+    public let hoverEvent:HoverEvent?
     
     public let extra:[ChatPacketMojang]?
-    
+
+    @inlinable
     public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] { // TODO: fix
         return []
     }
 }
 
-public extension ChatPacketMojang {
+// MARK: Decode
+extension ChatPacketMojang {
+    @inlinable
+    public static func decode<T: GeneralPacket>(from packet: T) throws -> ChatPacketMojang {
+        throw GeneralPacketError.not_implemented(packet_type: Self.self)
+    }
+}
+
+// MARK: Score
+extension ChatPacketMojang {
     /// Displays a score. If the JSON contains a score key, then the component is a score component.
     ///
     /// The score JSON object contains data about the objective.
@@ -63,20 +74,31 @@ public extension ChatPacketMojang {
     /// When being sent to the client, it must contain `name`, `objective`, and `value` keys. `name` is a player username or entity UUID (if it is a player, it is a username); `objective` is the name of the objective; `value` is the resolved value of that objective.
     ///
     /// When being sent to the server, `value` is not used. `name` can be an entity selector (that selects one entity), or alternatively `*` which matches the sending player.
-    struct Score: Hashable, Codable {
+    public struct Score: Codable, Hashable, Sendable {
         public let name:String
         public let objective:String
         public let value:Float
+
+        public init(
+            name: String,
+            objective: String,
+            value: Float
+        ) {
+            self.name = name
+            self.objective = objective
+            self.value = value
+        }
     }
 }
 
-public extension ChatPacketMojang {
+// MARK: Click Event
+extension ChatPacketMojang {
     /// Defines an event that occurs when this component is clicked. Contains an `action` key and a `value` key. `value` is internally handled as a String, although it can be any type of JSON primitive.
-    struct ClickEvent: Hashable, Codable {
+    public struct ClickEvent: Codable, Hashable, Sendable {
         public let action:ClickEventAction
         public let value:String
     }
-    enum ClickEventAction: String, Hashable, Codable {
+    public enum ClickEventAction: String, Codable, Hashable, Sendable {
         /// Opens the given URL in the default web browser. Ignored if the player has opted to disable links in chat; may open a GUI prompting the user if the setting for that is enabled. The link's protocol must be set and must be `http` or `https`, for security reasons.
         case open_url
         
@@ -102,23 +124,24 @@ public extension ChatPacketMojang {
     }
 }
 
-public extension ChatPacketMojang {
+// MARK: Hover Event
+extension ChatPacketMojang {
     /// Defines an event that occurs when this component hovered over. Contains an `action` key and a `contents` key; `action` is a String and `contents` is a JSON object. However, since text components can be serialized as primitives as well as arrays and objects, this can directly be a String.
-    struct HoverEvent: Hashable, Codable {
+    public struct HoverEvent: Codable, Hashable, Sendable {
         let action:HoverEventAction
         let value:Data?
         let contents:Data?
         
-        var contents_string: String? {
+        var contentsString: String? {
             guard let data:Data = value ?? contents else { return nil }
             return String(data: data, encoding: .utf8)
         }
-        func contents_json<T: Decodable>() -> T? {
+        func contentsJSON<T: Decodable>() -> T? {
             guard let data:Data = value ?? contents else { return nil }
             return try? JSONDecoder().decode(T.self, from: data)
         }
     }
-    enum HoverEventAction: String, Hashable, Codable {
+    public enum HoverEventAction: String, Codable, Hashable, Sendable {
         /// The text to display. Can either be a string directly (`"contents":"la"`) or a full component (`"contents":{"text":"la","color":"red"}`).
         /// > Note: Versions prior to 1.16 use the `value` field instead of `contents` but value is still supported.
         case show_text

@@ -7,7 +7,7 @@ public extension ServerPacket.Mojang.Java.Play {
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let slot:VariableIntegerJava = try packet.readVarInt()
             let count:VariableIntegerJava = try packet.readVarInt()
-            let entries:[String] = try packet.readStringArray(count: count.value_int)
+            let entries:[String] = try packet.readStringArray(count: count.valueInt)
             let has_title:Bool = try packet.readBool()
             let title:String? = has_title ? try packet.readString() : nil
             return Self(slot: slot, count: count, entries: entries, has_title: has_title, title: title)

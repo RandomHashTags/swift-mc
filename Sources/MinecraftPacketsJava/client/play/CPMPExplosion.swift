@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
@@ -6,7 +10,7 @@ public extension ClientPacket.Mojang.Java.Play {
     ///
     /// Each block in Records is set to air. Coordinates for each axis in record is int(X) + record.x
     struct Explosion: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.explosion
+        public static let id = ClientPacket.Mojang.Java.Play.explosion
         
         public static func parse(_ packet: any GeneralPacket) throws -> Self {
             let x:Double = try packet.readDouble()
@@ -14,7 +18,7 @@ public extension ClientPacket.Mojang.Java.Play {
             let z:Double = try packet.readDouble()
             let strength:Float = try packet.readFloat()
             let record_count:VariableIntegerJava = try packet.readVarInt()
-            let data:Data = try packet.readData(bytes: record_count.value_int * 3)
+            let data:Data = try packet.readData(bytes: record_count.valueInt * 3)
             let player_motion_x:Float = try packet.readFloat()
             let player_motion_y:Float = try packet.readFloat()
             let player_motion_z:Float = try packet.readFloat()

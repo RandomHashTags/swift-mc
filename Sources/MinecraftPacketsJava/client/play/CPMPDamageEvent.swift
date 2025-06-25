@@ -2,7 +2,7 @@ import MinecraftPackets
 
 public extension ClientPacket.Mojang.Java.Play {
     struct DamageEvent: ClientPacket.Mojang.Java.PlayProtocol {
-        public static let id:ClientPacket.Mojang.Java.Play = ClientPacket.Mojang.Java.Play.damageEvent
+        public static let id = ClientPacket.Mojang.Java.Play.damageEvent
         
         /// The ID of the entity taking damage.
         public let entityID:VariableIntegerJava

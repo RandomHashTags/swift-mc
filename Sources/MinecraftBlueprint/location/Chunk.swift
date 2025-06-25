@@ -19,7 +19,13 @@ public protocol Chunk: Tickable {
     func unload() async
 }
 
-public extension Chunk {
-    var livingEntities: [any LivingEntity] { entities.compactMap({ $0 as? any LivingEntity })}
-    var players: [any Player] { livingEntities.compactMap({ $0 as? any Player }) }
+extension Chunk {
+    @inlinable
+    public var livingEntities: [any LivingEntity] {
+        entities.compactMap({ $0 as? any LivingEntity })
+    }
+    @inlinable
+    public var players: [any Player] {
+        livingEntities.compactMap({ $0 as? any Player })
+    }
 }

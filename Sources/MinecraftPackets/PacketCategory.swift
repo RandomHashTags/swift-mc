@@ -1,2 +1,2 @@
-public protocol PacketCategory: CaseIterable, Codable {
+public protocol PacketCategory: CaseIterable, Codable, Sendable {
 }

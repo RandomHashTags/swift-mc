@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 
 public protocol World: Tickable {
     var uuid: UUID { get }
@@ -24,10 +28,26 @@ public protocol World: Tickable {
     var variant: any WorldVariant { get }
 
     /// - Returns: The chunk that is loaded at the given coordinates. Returns `nil` if the chunk is not loaded.
-    func getChunk(x: Int, z: Int) -> (any Chunk)?
-    mutating func getOrLoadChunk(x: Int, z: Int) async -> any Chunk
-    mutating func loadChunk(x: Int, z: Int) async
-    mutating func unloadChunk(x: Int, z: Int) async
+    func getChunk(
+        x: Int,
+        z: Int
+    ) -> (any Chunk)?
+
+    mutating func getOrLoadChunk(
+        x: Int,
+        z: Int
+    ) async -> any Chunk
+
+    mutating func loadChunk(
+        x: Int,
+        z: Int
+    ) async
+
+    mutating func unloadChunk(
+        x: Int,
+        z: Int
+    ) async
+
 
     func save() async
     

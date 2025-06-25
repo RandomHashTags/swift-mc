@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#elseif canImport(Foundation)
 import Foundation
+#endif
 
 public protocol Merchant {
     var trades: [any MerchantRecipe] { get }
@@ -6,6 +10,9 @@ public protocol Merchant {
     var isTrading: Bool { get }
 }
 
-public extension Merchant {
-    var isTrading: Bool { !traders.isEmpty }
+extension Merchant {
+    @inlinable
+    public var isTrading: Bool {
+        !traders.isEmpty
+    }
 }

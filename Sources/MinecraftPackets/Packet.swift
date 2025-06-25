@@ -8,8 +8,10 @@ public protocol Packet: Codable, PacketEncodable {
     
     func toGeneral() throws -> any GeneralPacket
 }
-public extension Packet {
-    static func parse(_ packet: any GeneralPacket) throws -> Self {
+
+extension Packet {
+    @inlinable
+    public static func parse(_ packet: any GeneralPacket) throws -> Self {
         throw GeneralPacketError.not_implemented(packet_type: Self.self)
     }
 }

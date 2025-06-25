@@ -6,8 +6,20 @@ public protocol MaterialConfiguration: MinecraftIdentifiable {
     var item: (any MaterialItemConfiguration)? { get }
     var block: (any MaterialBlockConfiguration)? { get }
 }
-public extension MaterialConfiguration {
-    var isOnlyItem: Bool { item != nil && block == nil }
-    var isOnlyBlock: Bool { item == nil && block != nil }
-    var isBlockAndItem: Bool { item != nil && block != nil }
+
+extension MaterialConfiguration {
+    @inlinable
+    public var isOnlyItem: Bool {
+        item != nil && block == nil
+    }
+
+    @inlinable
+    public var isOnlyBlock: Bool {
+        item == nil && block != nil
+    }
+
+    @inlinable
+    public var isBlockAndItem: Bool {
+        item != nil && block != nil
+    }
 }
