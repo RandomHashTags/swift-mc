@@ -1,4 +1,5 @@
-public protocol Enchantment {
+
+public protocol Enchantment: Sendable, ~Copyable {
     /// The level of this enchantment.
     var level: Int { get }
 

@@ -1,5 +1,5 @@
+
 public struct BlockPopulator {
-    
     static func populate(chunk: any Chunk) {
         /*let world = chunk.world
         let world_name = world.name

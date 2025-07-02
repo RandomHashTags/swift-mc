@@ -1,2 +1,3 @@
-public protocol EntityPart: Entity {
+
+public protocol EntityPart: Entity, ~Copyable {
 }

@@ -1,3 +1,4 @@
+
 public protocol GameMode: MinecraftIdentifiable, Nameable {
     /// The `InventoryClickType` identifiers not allowed for this game mode.
     //var disallowedInventoryClickTypes: Set<String> { get }

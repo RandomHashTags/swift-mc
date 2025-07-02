@@ -1,10 +1,11 @@
+
 #if canImport(FoundationEssentials)
 import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
 
-public protocol LivingEntity: Attributable, Damageable, ProjectileSource {
+public protocol LivingEntity: Attributable, Damageable, ProjectileSource, ~Copyable {
     var canBreatheUnderwater: Bool { get }
     var canPickupItems: Bool { get }
     /// The exempt `Entity` UUIDs where collision between this entity and them will be ignored.

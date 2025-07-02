@@ -1,2 +1,3 @@
-public protocol LivingEntityEventCancellable: LivingEntityEvent, Cancellable {
+
+public protocol LivingEntityEventCancellable: LivingEntityEvent, Cancellable, ~Copyable {
 }

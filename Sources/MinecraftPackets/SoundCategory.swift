@@ -1,3 +1,4 @@
+
 import MinecraftUtilities
 
 public protocol SoundCategory: Codable, MinecraftIdentifiable {

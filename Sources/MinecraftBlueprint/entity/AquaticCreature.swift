@@ -1,2 +1,3 @@
-public protocol AquaticCreature: Aquatic, Creature {
+
+public protocol AquaticCreature: Aquatic, Creature, ~Copyable {
 }

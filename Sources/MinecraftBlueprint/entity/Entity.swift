@@ -1,10 +1,11 @@
+
 #if canImport(FoundationEssentials)
 import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
 
-public protocol Entity: BlockMovable, CustomNameable, DisplayNameable, Tickable {
+public protocol Entity: BlockMovable, CustomNameable, DisplayNameable, Tickable, ~Copyable {
     var id: UInt64 { get }
     var uuid: UUID { get }
     var type: any EntityType { get }

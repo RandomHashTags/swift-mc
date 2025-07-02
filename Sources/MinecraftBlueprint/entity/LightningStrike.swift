@@ -1,2 +1,3 @@
-public protocol LightningStrike: Entity {
+
+public protocol LightningStrike: Entity, ~Copyable {
 }

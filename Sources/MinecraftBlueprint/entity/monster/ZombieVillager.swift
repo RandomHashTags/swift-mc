@@ -1,10 +1,11 @@
+
 #if canImport(FoundationEssentials)
 import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
 
-public protocol ZombieVillager: Zombie {
+public protocol ZombieVillager: Zombie, ~Copyable {
     var conversionInitiator: UUID { get }
 
     /// Measured in ticks.

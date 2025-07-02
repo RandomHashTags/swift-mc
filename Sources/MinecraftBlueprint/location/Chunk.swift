@@ -1,4 +1,5 @@
-public protocol Chunk: Tickable {
+
+public protocol Chunk: Tickable, ~Copyable {
     var world: any World { get }
     var x: Int { get }
     var z: Int { get }

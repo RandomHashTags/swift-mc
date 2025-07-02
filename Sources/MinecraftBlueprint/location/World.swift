@@ -1,10 +1,11 @@
+
 #if canImport(FoundationEssentials)
 import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
 
-public protocol World: Tickable {
+public protocol World: Tickable, ~Copyable {
     var uuid: UUID { get }
     var seed: Int64 { get }
     var name: String { get }

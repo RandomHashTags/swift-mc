@@ -1,4 +1,5 @@
-public protocol BlockData: BlockMovable {
+
+public protocol BlockData: BlockMovable, ~Copyable {
     var material: any Material { get }
     var placementMaterial: any Material { get }
 

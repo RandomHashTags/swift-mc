@@ -1,4 +1,5 @@
-public protocol Block: Tickable {
+
+public protocol Block: Tickable, ~Copyable {
     var instrument: (any Instrument)? { get }
     
     var stepSound: (any Sound)? { get }
@@ -30,10 +31,12 @@ public protocol Block: Tickable {
 }
 
 extension Block {
+    @inlinable
     public var world: any World {
         location.world
     }
 
+    @inlinable
     public var isLiquid: Bool {
         data.material.configuration.block?.liquid != nil
     }

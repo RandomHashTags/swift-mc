@@ -1,2 +1,3 @@
-public protocol Pig: Steerable, Vehicle {
+
+public protocol Pig: Steerable, Vehicle, ~Copyable {
 }

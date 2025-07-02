@@ -1,4 +1,5 @@
-public protocol DamageSource {
+
+public protocol DamageSource: Sendable, ~Copyable {
     var type: any DamageType { get }
 
     /// The `Entity` that inflicted the damage.

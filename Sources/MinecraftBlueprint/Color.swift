@@ -1,3 +1,4 @@
+
 public struct Color: Hashable, Sendable {
     public let identifier:String
     public let id:Int
@@ -27,17 +28,19 @@ extension Color {
     public enum Mojang {
         /// Hardcoded map color values from Vanilla Minecraft.
         public enum Map {
-            private static func get(_ identifier: String, id: Int, color: Int) -> Color {
+            @inlinable
+            static func get(_ identifier: String, id: Int, color: Int) -> Color {
                 return Color(identifier: "map." + identifier, id: id, color: color)
             }
-            public static func from_identifier(_ identifier: String) throws -> Color? {
+            @inlinable
+            public static func fromIdentifier(_ identifier: String) throws -> Color? {
                 // TODO: finish
                 guard identifier.prefix(4).elementsEqual("map.") else { return nil }
                 switch identifier {
                 default: return nil
                 }
             }
-            public static func from_id(_ id: Int) throws -> Color {
+            public static func fromID(_ id: Int) throws -> Color {
                 guard id >= 0 && id <= 63 else {
                     throw MinecraftError(sender: "Color.Mojang.Map.from_id", message: "Map color ID must be between 0 and 63 (inclusive)")
                 }
@@ -109,68 +112,68 @@ extension Color {
                 }
             }
             
-            public static let none:Color = Color(identifier: "nil", id: 0, color: 0)
-            public static let grass:Color = get("grass", id: 1, color: 8368696)
-            public static let sand:Color = get("sand", id: 2, color: 16247203)
-            public static let wool:Color = get("wool", id: 3, color: 13092807)
-            public static let fire:Color = get("fire", id: 4, color: 16711680)
-            public static let ice:Color = get("ice", id: 5, color: 10526975)
-            public static let metal:Color = get("metal", id: 6, color: 10987431)
-            public static let plant:Color = get("plant", id: 7, color: 31744)
-            public static let snow:Color = get("snow", id: 8, color: 16777215)
-            public static let clay:Color = get("clay", id: 9, color: 10791096)
-            public static let dirt:Color = get("dirt", id: 10, color: 9923917)
-            public static let stone:Color = get("stone", id: 11, color: 7368816)
-            public static let water:Color = get("water", id: 12, color: 4210943)
-            public static let wood:Color = get("wood", id: 13, color: 9402184)
-            public static let quartz:Color = get("quartz", id: 14, color: 16776437)
-            public static let color_orange:Color = get("color_orange", id: 15, color: 14188339)
-            public static let color_magenta:Color = get("color_magenta", id: 16, color: 11685080)
-            public static let color_light_blue:Color = get("color_light_blue", id: 17, color: 6724056)
-            public static let color_yellow:Color = get("color_yellow", id: 18, color: 15066419)
-            public static let color_light_green:Color = get("color_light_green", id: 19, color: 8375321)
-            public static let color_pink:Color = get("color_pink", id: 20, color: 15892389)
-            public static let color_gray:Color = get("color_gray", id: 21, color: 5000268)
-            public static let color_light_gray:Color = get("color_light_gray", id: 22, color: 100066329)
-            public static let color_cyan:Color = get("color_cyan", id: 23, color: 5013401)
-            public static let color_purple:Color = get("color_purple", id: 24, color: 8339378)
-            public static let color_blue:Color = get("color_blue", id: 25, color: 3361970)
-            public static let color_brown:Color = get("color_brown", id: 26, color: 6704179)
-            public static let color_green:Color = get("color_green", id: 27, color: 6717235)
-            public static let color_red:Color = get("color_red", id: 28, color: 10040115)
-            public static let color_black:Color = get("color_black", id: 29, color: 1644825)
-            public static let gold:Color = get("gold", id: 30, color: 16445005)
-            public static let diamond:Color = get("diamond", id: 31, color: 6085589)
-            public static let lapis:Color = get("lapis", id: 32, color: 4882687)
-            public static let emerald:Color = get("emerald", id: 33, color: 55610)
-            public static let podzol:Color = get("podzol", id: 34, color: 8476209)
-            public static let nether:Color = get("nether", id: 35, color: 7340544)
-            public static let terracotta_white:Color = get("terracotta_white", id: 36, color: 13742497)
-            public static let terracotta_orange:Color = get("terracotta_orange", id: 37, color: 10441252)
-            public static let terracotta_megenta:Color = get("terracotta_magenta", id: 38, color: 9787244)
-            public static let terracotta_light_blue:Color = get("terracotta_light_blue", id: 39, color: 7367818)
-            public static let terracotta_yellow:Color = get("terracotta_yellow", id: 40, color: 122223780)
-            public static let terracotta_light_green:Color = get("terracotta_light_green", id: 41, color: 6780213)
-            public static let terracotta_pink:Color = get("terracotta_pink", id: 42, color: 10505550)
-            public static let terracotta_gray:Color = get("terracotta_gray", id: 43, color: 3746083)
-            public static let terracotta_light_gray:Color = get("terracotta_light_gray", id: 44, color: 8874850)
-            public static let terracotta_cyan:Color = get("terracotta_cyan", id: 45, color: 5725276)
-            public static let terracotta_purple:Color = get("terracotta_purple", id: 46, color: 8014168)
-            public static let terracotta_blue:Color = get("terracotta_blue", id: 47, color: 4996700)
-            public static let terracotta_brown:Color = get("terracotta_brown", id: 48, color: 4993571)
-            public static let terracotta_green:Color = get("terracotta_green", id: 49, color: 5001770)
-            public static let terracotta_red:Color = get("terracotta_red", id: 50, color: 9321518)
-            public static let terracotta_black:Color = get("terracotta_black", id: 51, color: 2430480)
-            public static let crimson_nylium:Color = get("crimson_nylium", id: 52, color: 12398641)
-            public static let crimson_stem:Color = get("crimson_stem", id: 53, color: 9715553)
-            public static let crimson_hyphae:Color = get("crimson_hyphae", id: 54, color: 6035741)
-            public static let warped_nylium:Color = get("warped_nylium", id: 55, color: 1474182)
-            public static let warped_stem:Color = get("warped_stem", id: 56, color: 3837580)
-            public static let warped_hyphae:Color = get("warped_hyphae", id: 57, color: 5647422)
-            public static let warped_wart_block:Color = get("warped_wart_block", id: 58, color: 1356933)
-            public static let deepslate:Color = get("deepslate", id: 59, color: 6579300)
-            public static let raw_iron:Color = get("raw_iron", id: 60, color: 14200723)
-            public static let glow_lichen:Color = get("glow_lichen", id: 61, color: 8365974)
+            public static let none = Color(identifier: "nil", id: 0, color: 0)
+            public static let grass = get("grass", id: 1, color: 8368696)
+            public static let sand = get("sand", id: 2, color: 16247203)
+            public static let wool = get("wool", id: 3, color: 13092807)
+            public static let fire = get("fire", id: 4, color: 16711680)
+            public static let ice = get("ice", id: 5, color: 10526975)
+            public static let metal = get("metal", id: 6, color: 10987431)
+            public static let plant = get("plant", id: 7, color: 31744)
+            public static let snow = get("snow", id: 8, color: 16777215)
+            public static let clay = get("clay", id: 9, color: 10791096)
+            public static let dirt = get("dirt", id: 10, color: 9923917)
+            public static let stone = get("stone", id: 11, color: 7368816)
+            public static let water = get("water", id: 12, color: 4210943)
+            public static let wood = get("wood", id: 13, color: 9402184)
+            public static let quartz = get("quartz", id: 14, color: 16776437)
+            public static let color_orange = get("color_orange", id: 15, color: 14188339)
+            public static let color_magenta = get("color_magenta", id: 16, color: 11685080)
+            public static let color_light_blue = get("color_light_blue", id: 17, color: 6724056)
+            public static let color_yellow = get("color_yellow", id: 18, color: 15066419)
+            public static let color_light_green = get("color_light_green", id: 19, color: 8375321)
+            public static let color_pink = get("color_pink", id: 20, color: 15892389)
+            public static let color_gray = get("color_gray", id: 21, color: 5000268)
+            public static let color_light_gray = get("color_light_gray", id: 22, color: 100066329)
+            public static let color_cyan = get("color_cyan", id: 23, color: 5013401)
+            public static let color_purple = get("color_purple", id: 24, color: 8339378)
+            public static let color_blue = get("color_blue", id: 25, color: 3361970)
+            public static let color_brown = get("color_brown", id: 26, color: 6704179)
+            public static let color_green = get("color_green", id: 27, color: 6717235)
+            public static let color_red = get("color_red", id: 28, color: 10040115)
+            public static let color_black = get("color_black", id: 29, color: 1644825)
+            public static let gold = get("gold", id: 30, color: 16445005)
+            public static let diamond = get("diamond", id: 31, color: 6085589)
+            public static let lapis = get("lapis", id: 32, color: 4882687)
+            public static let emerald = get("emerald", id: 33, color: 55610)
+            public static let podzol = get("podzol", id: 34, color: 8476209)
+            public static let nether = get("nether", id: 35, color: 7340544)
+            public static let terracotta_white = get("terracotta_white", id: 36, color: 13742497)
+            public static let terracotta_orange = get("terracotta_orange", id: 37, color: 10441252)
+            public static let terracotta_megenta = get("terracotta_magenta", id: 38, color: 9787244)
+            public static let terracotta_light_blue = get("terracotta_light_blue", id: 39, color: 7367818)
+            public static let terracotta_yellow = get("terracotta_yellow", id: 40, color: 122223780)
+            public static let terracotta_light_green = get("terracotta_light_green", id: 41, color: 6780213)
+            public static let terracotta_pink = get("terracotta_pink", id: 42, color: 10505550)
+            public static let terracotta_gray = get("terracotta_gray", id: 43, color: 3746083)
+            public static let terracotta_light_gray = get("terracotta_light_gray", id: 44, color: 8874850)
+            public static let terracotta_cyan = get("terracotta_cyan", id: 45, color: 5725276)
+            public static let terracotta_purple = get("terracotta_purple", id: 46, color: 8014168)
+            public static let terracotta_blue = get("terracotta_blue", id: 47, color: 4996700)
+            public static let terracotta_brown = get("terracotta_brown", id: 48, color: 4993571)
+            public static let terracotta_green = get("terracotta_green", id: 49, color: 5001770)
+            public static let terracotta_red = get("terracotta_red", id: 50, color: 9321518)
+            public static let terracotta_black = get("terracotta_black", id: 51, color: 2430480)
+            public static let crimson_nylium = get("crimson_nylium", id: 52, color: 12398641)
+            public static let crimson_stem = get("crimson_stem", id: 53, color: 9715553)
+            public static let crimson_hyphae = get("crimson_hyphae", id: 54, color: 6035741)
+            public static let warped_nylium = get("warped_nylium", id: 55, color: 1474182)
+            public static let warped_stem = get("warped_stem", id: 56, color: 3837580)
+            public static let warped_hyphae = get("warped_hyphae", id: 57, color: 5647422)
+            public static let warped_wart_block = get("warped_wart_block", id: 58, color: 1356933)
+            public static let deepslate = get("deepslate", id: 59, color: 6579300)
+            public static let raw_iron = get("raw_iron", id: 60, color: 14200723)
+            public static let glow_lichen = get("glow_lichen", id: 61, color: 8365974)
         }
     }
 }

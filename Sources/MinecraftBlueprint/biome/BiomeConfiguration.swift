@@ -1,3 +1,4 @@
+
 public protocol BiomeConfiguration: MinecraftIdentifiable {
     var temperature: Float { get }
     var temperatureStartingY: Int { get }

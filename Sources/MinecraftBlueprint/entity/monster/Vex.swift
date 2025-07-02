@@ -1,4 +1,5 @@
-public protocol Vex: Monster {
+
+public protocol Vex: Monster, ~Copyable {
     var boundLocation: (any Location)? { get }
     /// Measured in ticks.
     var remainingLifespan: Int { get }

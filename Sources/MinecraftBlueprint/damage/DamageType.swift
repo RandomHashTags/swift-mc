@@ -1,2 +1,3 @@
+
 public protocol DamageType: MinecraftIdentifiable {
 }

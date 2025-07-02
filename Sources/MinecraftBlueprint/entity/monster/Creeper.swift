@@ -1,4 +1,5 @@
-public protocol Creeper: Monster {
+
+public protocol Creeper: Monster, ~Copyable {
     /// Measured in blocks.
     var explosionRadius: Int { get }
 

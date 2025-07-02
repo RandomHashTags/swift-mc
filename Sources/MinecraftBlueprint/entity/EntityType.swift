@@ -1,3 +1,4 @@
+
 public protocol EntityType: MinecraftIdentifiable, Nameable, ServerTickChangeListener {
     var isAffectedByGravity: Bool { get }
     var isDamageable: Bool { get }

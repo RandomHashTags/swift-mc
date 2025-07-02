@@ -1,2 +1,3 @@
-public protocol PolarBear: Animal {
+
+public protocol PolarBear: Animal, ~Copyable {
 }

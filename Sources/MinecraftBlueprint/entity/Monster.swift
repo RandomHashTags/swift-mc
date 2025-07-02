@@ -1,2 +1,3 @@
-public protocol Monster: Creature, Hostile {
+
+public protocol Monster: Creature, Hostile, ~Copyable {
 }

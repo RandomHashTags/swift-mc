@@ -1,4 +1,5 @@
-public protocol BossBar {
+
+public protocol BossBar: Sendable, ~Copyable {
     var title: String { get }
     var progress: Double { get }
     var color: Color { get }

@@ -1,3 +1,4 @@
+
 public protocol Angle: Codable, PacketEncodable {
     var value: Int { get }
 }

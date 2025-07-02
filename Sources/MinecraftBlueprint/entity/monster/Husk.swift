@@ -1,4 +1,5 @@
-public protocol Husk: Zombie {
+
+public protocol Husk: Zombie, ~Copyable {
     /// Measured in ticks.
     var remainingConversionDuration: Int { get }
     var isConverting: Bool { get }

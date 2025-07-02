@@ -1,2 +1,3 @@
-public protocol Armadillo: Animal {
+
+public protocol Armadillo: Animal, ~Copyable {
 }

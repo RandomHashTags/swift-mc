@@ -1,12 +1,13 @@
-public enum ScoreboardTeamOption: String {
+
+public enum ScoreboardTeamOption: String, Sendable {
     case nameTagVisibility
-    case death_message_visibility
+    case deathMessageVisibility
     case collisionRule
 
-    public enum Status: String {
+    public enum Status: String, Sendable {
         case always
         case never
-        case for_other_teams
-        case for_own_team
+        case forOtherTeams
+        case forOwnTeam
     }
 }

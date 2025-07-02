@@ -1,2 +1,3 @@
-public protocol PlayerEventCancellable: PlayerEvent, Cancellable {
+
+public protocol PlayerEventCancellable: PlayerEvent, Cancellable, ~Copyable {
 }

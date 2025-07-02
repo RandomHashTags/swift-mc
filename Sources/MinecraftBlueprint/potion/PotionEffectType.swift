@@ -1,3 +1,4 @@
+
 public protocol PotionEffectType: MinecraftIdentifiable, Nameable {
     var color: Color { get }
     var isInstant: Bool { get }

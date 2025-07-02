@@ -1,4 +1,5 @@
-public protocol PlayerInventory: Inventory {
+
+public protocol PlayerInventory: Inventory, ~Copyable {
     var helmet: (any ItemStack)? { get }
     var chestplate: (any ItemStack)? { get }
     var leggings: (any ItemStack)? { get }

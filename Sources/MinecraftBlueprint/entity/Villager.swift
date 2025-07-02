@@ -1,4 +1,5 @@
-public protocol Villager: Merchantable {
+
+public protocol Villager: Merchantable, ~Copyable {
     var experience: Int { get }
     var level: Int { get }
     var profession: any VillagerProfession { get }

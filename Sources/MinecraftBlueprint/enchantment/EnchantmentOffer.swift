@@ -1,4 +1,5 @@
-public protocol EnchantmentOffer {
+
+public protocol EnchantmentOffer: Sendable, ~Copyable {
     /// The `Enchantment` of this offer.
     var enchant: any Enchantment { get }
     

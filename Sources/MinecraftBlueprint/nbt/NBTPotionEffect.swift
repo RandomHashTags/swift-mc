@@ -1,3 +1,4 @@
+
 public protocol NBTPotionEffect: NBTTag {
     var ambient: Bool { get }
     var amplifier: Bool { get }

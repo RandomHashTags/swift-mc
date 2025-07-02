@@ -1,2 +1,3 @@
-public protocol Cod: Fish {
+
+public protocol Cod: Fish, ~Copyable {
 }

@@ -1,4 +1,5 @@
-public protocol Panda: Animal, Sittable {
+
+public protocol Panda: Animal, Sittable, ~Copyable {
     /// Measured in ticks.
     var unhappyDuration: Int { get }
 

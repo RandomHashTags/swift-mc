@@ -1,2 +1,3 @@
-public protocol Drowned: Zombie {
+
+public protocol Drowned: Zombie, ~Copyable {
 }

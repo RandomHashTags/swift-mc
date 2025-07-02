@@ -1,3 +1,4 @@
+
 public protocol BlockFace: MinecraftIdentifiable {
     var direction: Vector { get }
     var alignment: Vector { get }

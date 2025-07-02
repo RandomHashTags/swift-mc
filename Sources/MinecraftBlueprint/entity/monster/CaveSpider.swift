@@ -1,2 +1,3 @@
-public protocol CaveSpider: Spider {
+
+public protocol CaveSpider: Spider, ~Copyable {
 }

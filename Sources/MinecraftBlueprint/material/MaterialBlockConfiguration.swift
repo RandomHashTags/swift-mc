@@ -1,4 +1,5 @@
-public protocol MaterialBlockConfiguration: BlockMovable {
+
+public protocol MaterialBlockConfiguration: BlockMovable, ~Copyable {
     /// The growing configuration of this block, if it grows.
     var growable: MaterialBlockGrowableConfiguration? { get }
     

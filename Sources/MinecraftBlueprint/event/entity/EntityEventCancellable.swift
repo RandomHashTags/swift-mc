@@ -1,2 +1,3 @@
-public protocol EntityEventCancellable: EntityEvent, Cancellable {
+
+public protocol EntityEventCancellable: EntityEvent, Cancellable, ~Copyable {
 }

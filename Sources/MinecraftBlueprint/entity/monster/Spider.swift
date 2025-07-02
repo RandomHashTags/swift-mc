@@ -1,2 +1,3 @@
-public protocol Spider: Monster {
+
+public protocol Spider: Monster, ~Copyable {
 }

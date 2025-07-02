@@ -1,4 +1,5 @@
-public protocol ProjectileSource {
+
+public protocol ProjectileSource: Sendable, ~Copyable {
     var block: (any Block)? { get }
     var entity: (any Entity)? { get }
 

@@ -1,4 +1,5 @@
-public protocol Allay: Creature, Flyable, InventoryHolder {
+
+public protocol Allay: Creature, Flyable, InventoryHolder, ~Copyable {
     var inventory: any Inventory { get }
 
     var canDuplicate: Bool { get }

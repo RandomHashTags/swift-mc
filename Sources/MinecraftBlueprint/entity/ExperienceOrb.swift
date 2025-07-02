@@ -1,3 +1,4 @@
-public protocol ExperienceOrb: Entity {
+
+public protocol ExperienceOrb: Entity, ~Copyable {
     var experience: Int { get }
 }

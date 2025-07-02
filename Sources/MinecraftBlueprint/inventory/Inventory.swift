@@ -1,4 +1,5 @@
-public protocol Inventory {
+
+public protocol Inventory: Sendable, ~Copyable {
     var type: any InventoryType { get }
     var viewers: [any Player] { get }
         

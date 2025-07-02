@@ -1,3 +1,4 @@
-public protocol Strider: Steerable, Vehicle {
+
+public protocol Strider: Steerable, Vehicle, ~Copyable {
     var isShivering: Bool { get }
 }

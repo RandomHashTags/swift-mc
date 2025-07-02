@@ -1,2 +1,3 @@
-public protocol Endermite: Monster {
+
+public protocol Endermite: Monster, ~Copyable{
 }

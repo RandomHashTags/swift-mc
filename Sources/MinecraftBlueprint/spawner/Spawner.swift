@@ -1,4 +1,5 @@
-public protocol Spawner {
+
+public protocol Spawner: Sendable, ~Copyable {
     /// Measured in ticks.
     var delay: Int { get }
 

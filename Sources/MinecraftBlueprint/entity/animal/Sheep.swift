@@ -1,2 +1,3 @@
-public protocol Sheep: Animal, Colorable, Shearable {
+
+public protocol Sheep: Animal, Colorable, Shearable, ~Copyable {
 }

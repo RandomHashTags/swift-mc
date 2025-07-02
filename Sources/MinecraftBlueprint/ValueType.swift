@@ -1,3 +1,4 @@
+
 public enum ValueType {
     case string(String)
     case char(Int8)

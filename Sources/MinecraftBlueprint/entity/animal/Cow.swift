@@ -1,2 +1,3 @@
-public protocol Cow: Animal {
+
+public protocol Cow: Animal, ~Copyable {
 }

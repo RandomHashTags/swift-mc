@@ -1,3 +1,4 @@
+
 public protocol NBTRaidSpawnable: NBTEntity {
     var canJoinRaid: Bool { get }
     var patrolLeader: Bool { get }

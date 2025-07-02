@@ -1,2 +1,3 @@
-public protocol MagmaCube: Slime {
+
+public protocol MagmaCube: Slime, ~Copyable {
 }

@@ -1,4 +1,5 @@
-public protocol ScoreboardTeam {
+
+public protocol ScoreboardTeam: Sendable, ~Copyable {
     var name: String { get }
     var displayName: String { get }
     var prefix: String? { get }

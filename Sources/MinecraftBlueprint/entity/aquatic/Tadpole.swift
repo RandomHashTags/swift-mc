@@ -1,3 +1,4 @@
-public protocol Tadpole: Fish {
+
+public protocol Tadpole: Fish, ~Copyable {
     var age: Int { get }
 }

@@ -1,6 +1,5 @@
-import Logging
 
-public protocol Player: CommandSender, Flyable, InventoryHolder, LivingEntity, Permissible {
+public protocol Player: CommandSender, Flyable, InventoryHolder, LivingEntity, Permissible, ~Copyable {
     var listName: String? { get }
     
     var experience: UInt64 { get }

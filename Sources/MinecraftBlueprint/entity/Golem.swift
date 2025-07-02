@@ -1,2 +1,3 @@
-public protocol Golem: Creature {
+
+public protocol Golem: Creature, ~Copyable {
 }

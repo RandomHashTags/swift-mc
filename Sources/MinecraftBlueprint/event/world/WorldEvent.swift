@@ -1,3 +1,4 @@
-public protocol WorldEvent: Event {
+
+public protocol WorldEvent: Event, ~Copyable {
     var world: any World { get }
 }

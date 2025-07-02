@@ -1,2 +1,3 @@
-public protocol Silverfish: Monster {
+
+public protocol Silverfish: Monster, ~Copyable {
 }

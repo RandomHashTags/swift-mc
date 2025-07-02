@@ -1,2 +1,3 @@
-public protocol Creaking: Monster {
+
+public protocol Creaking: Monster, ~Copyable {
 }

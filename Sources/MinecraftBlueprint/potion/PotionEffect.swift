@@ -1,3 +1,4 @@
+
 public protocol PotionEffect: MinecraftIdentifiable, Tickable {
     var type: any PotionEffectType { get }
     var hasIcon: Bool { get }

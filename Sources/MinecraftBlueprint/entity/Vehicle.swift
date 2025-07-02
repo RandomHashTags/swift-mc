@@ -1,3 +1,4 @@
-public protocol Vehicle: Entity {
+
+public protocol Vehicle: Entity, ~Copyable {
     var velocity: Vector { get }
 }

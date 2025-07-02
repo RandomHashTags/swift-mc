@@ -1,4 +1,5 @@
-public protocol Food {
+
+public protocol Food: Sendable, ~Copyable {
     /// The food restored when this item is consumed.
     var nutrition: Int { get }
 

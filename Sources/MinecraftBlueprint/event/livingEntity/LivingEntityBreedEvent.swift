@@ -1,4 +1,5 @@
-public protocol LivingEntityBreedEvent: LivingEntityEventCancellable {
+
+public protocol LivingEntityBreedEvent: LivingEntityEventCancellable, ~Copyable {
     var breeder: (any LivingEntity)? { get }
     var experience: Int { get }
     var father: any LivingEntity { get }

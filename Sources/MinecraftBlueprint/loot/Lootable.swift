@@ -1,4 +1,5 @@
-public protocol Lootable {
+
+public protocol Lootable: Sendable, ~Copyable {
     var seed: Int { get }
     var lootTable: (any LootTable)? { get }
 }

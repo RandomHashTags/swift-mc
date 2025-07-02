@@ -1,3 +1,4 @@
-public protocol DisplayNameable: Nameable {
+
+public protocol DisplayNameable: Nameable, ~Copyable {
     var displayName: String? { get }
 }

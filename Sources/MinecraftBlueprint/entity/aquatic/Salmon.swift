@@ -1,3 +1,4 @@
-public protocol Salmon: Fish {
+
+public protocol Salmon: Fish, ~Copyable {
     var variant: any SalmonVariant { get }
 }

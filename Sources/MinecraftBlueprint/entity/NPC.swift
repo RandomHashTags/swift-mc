@@ -1,2 +1,3 @@
-public protocol NPC: Creature {
+
+public protocol NPC: Creature, ~Copyable {
 }

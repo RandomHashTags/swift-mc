@@ -1,4 +1,5 @@
-public protocol EnderDragon: Boss, Flying, Hostile, LivingEntityPartable, Mob {
+
+public protocol EnderDragon: Boss, Flying, Hostile, LivingEntityPartable, Mob, ~Copyable {
     /// Measured in ticks.
     var deathAnimationDuration: Int { get }
     var battle: (any EnderDragonBattle)? { get }

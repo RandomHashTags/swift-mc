@@ -1,2 +1,3 @@
-public protocol Creature: Mob {
+
+public protocol Creature: Mob, ~Copyable {
 }

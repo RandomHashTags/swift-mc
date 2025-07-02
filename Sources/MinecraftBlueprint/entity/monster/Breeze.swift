@@ -1,2 +1,3 @@
-public protocol Breeze: Monster {
+
+public protocol Breeze: Monster, ~Copyable {
 }

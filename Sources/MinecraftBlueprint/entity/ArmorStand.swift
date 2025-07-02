@@ -1,4 +1,5 @@
-public protocol ArmorStand: LivingEntity {
+
+public protocol ArmorStand: LivingEntity, ~Copyable {
     var headPose: Vector { get }
     var pose: Vector { get }
     var leftArmPose: Vector { get }

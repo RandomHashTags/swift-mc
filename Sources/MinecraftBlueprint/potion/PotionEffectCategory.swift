@@ -1,3 +1,4 @@
+
 public protocol PotionEffectCategory: MinecraftIdentifiable {
 }
 

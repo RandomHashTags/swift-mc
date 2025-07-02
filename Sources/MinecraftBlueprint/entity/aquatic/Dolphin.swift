@@ -1,2 +1,3 @@
-public protocol Dolphin: Ageable, AquaticCreature {
+
+public protocol Dolphin: Ageable, AquaticCreature, ~Copyable {
 }

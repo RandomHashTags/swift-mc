@@ -1,4 +1,5 @@
-public protocol Guardian: Monster {
+
+public protocol Guardian: Monster, ~Copyable {
     /// Measured in ticks.
     var laserChargeDuration: Int { get }
     /// Measured in ticks.

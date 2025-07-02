@@ -1,2 +1,3 @@
-public protocol ElderGuardian: Guardian {
+
+public protocol ElderGuardian: Guardian, ~Copyable {
 }

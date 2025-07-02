@@ -1,2 +1,3 @@
-public protocol Squid: Ageable, AquaticCreature {
+
+public protocol Squid: Ageable, AquaticCreature, ~Copyable {
 }

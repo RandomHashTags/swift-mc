@@ -1,4 +1,5 @@
-public protocol ItemMeta {
+
+public protocol ItemMeta: Sendable, ~Copyable {
     var displayName: String? { get }
     var lore: [String] { get }
     var rarity: any ItemRarity { get }

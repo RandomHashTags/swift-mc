@@ -1,3 +1,4 @@
+
 public protocol MaterialConfiguration: MinecraftIdentifiable {
     var isOnlyItem: Bool { get }
     var isOnlyBlock: Bool { get }

@@ -1,2 +1,3 @@
-public protocol Zoglin: Ageable, Monster {
+
+public protocol Zoglin: Ageable, Monster, ~Copyable {
 }

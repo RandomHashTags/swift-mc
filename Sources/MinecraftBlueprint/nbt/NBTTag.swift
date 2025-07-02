@@ -1,2 +1,3 @@
-public protocol NBTTag: Codable {
+
+public protocol NBTTag: Codable, Sendable {
 }

@@ -1,2 +1,3 @@
-public protocol Blaze: Monster {
+
+public protocol Blaze: Monster, ~Copyable {
 }

@@ -1,3 +1,4 @@
+
 public protocol Hoglin: Animal, Hostile {
     /// Measured in ticks.
     var remainingConversionTime: Int { get }

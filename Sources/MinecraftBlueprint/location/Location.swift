@@ -1,4 +1,5 @@
-public protocol Location {
+
+public protocol Location: Sendable, ~Copyable {
     var world: any World { get }
     var x: Double { get }
     var y: Double { get }
@@ -18,7 +19,7 @@ public protocol Location {
     var chunkCoordinates: (x: Int, z: Int) { get }
     
     /// Whether or not the two locations are the same, regardless of `yaw` or `pitch`.
-    func isSimilar(_ location: Self) -> Bool
+    func isSimilar(_ location: borrowing Self) -> Bool
     
     func isNearby(
         center: any Location,

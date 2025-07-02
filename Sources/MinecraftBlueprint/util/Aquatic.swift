@@ -1,2 +1,3 @@
-public protocol Aquatic: MinecraftIdentifiable {
+
+public protocol Aquatic: Sendable, ~Copyable {
 }

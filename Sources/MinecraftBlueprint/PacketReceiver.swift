@@ -1,5 +1,6 @@
+
 import MinecraftPackets
 
-public protocol PacketReceiver {
+public protocol PacketReceiver: Sendable, ~Copyable {
     func sendPacket(_ packet: any Packet) throws
 }

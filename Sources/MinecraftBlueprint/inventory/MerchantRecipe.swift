@@ -1,3 +1,4 @@
+
 public protocol MerchantRecipe: Recipe {
     var demand: Int { get }
     var maxTrades: Int { get }

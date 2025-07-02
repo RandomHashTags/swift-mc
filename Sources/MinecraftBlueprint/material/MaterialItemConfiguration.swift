@@ -1,4 +1,5 @@
-public protocol MaterialItemConfiguration {
+
+public protocol MaterialItemConfiguration: Sendable, ~Copyable {
     /// Maximum amount of the same item that can be stacked in one slot.
     var maxStackSize: Int { get }
     

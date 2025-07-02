@@ -277,7 +277,7 @@ extension GeneralPacketMojang {
         let varint:VariableIntegerJava = try readVarInt()
         let integer = varint.valueInt
         guard let value = T.init(rawValue: integer) else {
-            throw ServerPacketMojangErrors.VarIntEnum.doesnt_exist(type: T.self, id: integer)
+            throw ServerPacketMojangErrors.VarIntEnum.doesntExist(type: T.self, id: integer)
         }
         return value
     }

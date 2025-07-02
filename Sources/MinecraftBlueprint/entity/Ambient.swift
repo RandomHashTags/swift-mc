@@ -1,2 +1,3 @@
-public protocol Ambient: Mob {
+
+public protocol Ambient: Mob, ~Copyable {
 }

@@ -1,2 +1,3 @@
-public protocol ChunkLoadEvent: ChunkEvent, Cancellable {
+
+public protocol ChunkLoadEvent: ChunkEvent, Cancellable, ~Copyable {
 }

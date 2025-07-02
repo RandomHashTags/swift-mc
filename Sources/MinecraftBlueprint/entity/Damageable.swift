@@ -1,6 +1,5 @@
-import Logging
 
-public protocol Damageable: Entity {
+public protocol Damageable: Entity, ~Copyable {
     var health: Double { get }
         
     mutating func tickDamageable(_ server: any Server)

@@ -1,4 +1,5 @@
-public protocol LootTable {
+
+public protocol LootTable: Sendable, ~Copyable {
     var entries: [LootTableEntry] { get }
 }
 /*

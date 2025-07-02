@@ -1,4 +1,5 @@
-public protocol Zombie: Ageable, Monster {
+
+public protocol Zombie: Ageable, Monster , ~Copyable{
     var canBreakDoors: Bool { get }
     /// Measured in ticks.
     var remainingConversionDuration: Int { get }

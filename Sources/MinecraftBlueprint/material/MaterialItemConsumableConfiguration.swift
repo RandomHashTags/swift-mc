@@ -1,3 +1,4 @@
+
 public protocol MaterialItemConsumableConfiguration: MinecraftIdentifiable, ServerTickChangeListener {
     /// Amount of ticks required of consuming to consider this item to be consumed.
     var duration: UInt64 { get }

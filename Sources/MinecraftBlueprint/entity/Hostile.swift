@@ -1,3 +1,4 @@
+
 /// Indicates the Entity is hostile.
-public protocol Hostile: LivingEntity {
+public protocol Hostile: LivingEntity, ~Copyable {
 }

@@ -1,3 +1,4 @@
-public protocol CustomNameable: Nameable {
+
+public protocol CustomNameable: Nameable, ~Copyable {
     var customName: String? { get }
 }

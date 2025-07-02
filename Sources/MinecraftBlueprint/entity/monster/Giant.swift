@@ -1,2 +1,3 @@
-public protocol Giant: Monster {
+
+public protocol Giant: Monster, ~Copyable {
 }

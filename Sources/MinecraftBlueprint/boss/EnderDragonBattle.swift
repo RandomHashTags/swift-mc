@@ -1,4 +1,5 @@
-public protocol EnderDragonBattle {
+
+public protocol EnderDragonBattle: Sendable, ~Copyable {
     var bossBar: any BossBar { get }
     var enderDragon: any EnderDragon { get }
     var endPortalLocation: (any Location)? { get }

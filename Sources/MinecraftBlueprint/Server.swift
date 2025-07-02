@@ -1,3 +1,4 @@
+
 #if canImport(FoundationEssentials)
 import FoundationEssentials
 #elseif canImport(Foundation)
@@ -6,7 +7,7 @@ import Foundation
 
 import MinecraftPackets
 
-public protocol Server: Tickable {
+public protocol Server: Tickable, ~Copyable {
     
     var chatManager: ChatManager { get }
     var version: SemanticVersion { get }

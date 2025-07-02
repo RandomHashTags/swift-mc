@@ -1,5 +1,5 @@
 
-public protocol Permissible {
+public protocol Permissible: Sendable, ~Copyable {
     var permissions: Set<String> { get }
 }
 

@@ -1,4 +1,5 @@
-public protocol Steerable: Animal {
+
+public protocol Steerable: Animal, ~Copyable {
     /// Measured in ticks.
     var remainingBoostDuration: Int { get }
     var currentBoostDuration: Int { get }

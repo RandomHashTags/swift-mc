@@ -1,4 +1,5 @@
-public protocol Bee: Animal, Flyable {
+
+public protocol Bee: Animal, Flyable, ~Copyable {
     var angerLevel: Int { get }
     var remainingCannotEnterHiveDuration: Int { get }
     var hasNectar: Bool { get }

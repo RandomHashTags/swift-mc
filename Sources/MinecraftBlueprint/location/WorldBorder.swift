@@ -1,4 +1,5 @@
-public protocol WorldBorder {
+
+public protocol WorldBorder: Sendable, ~Copyable {
     var size: Double { get }
     var center: Vector { get }
 

@@ -1,3 +1,4 @@
-public protocol Slime: Hostile, Mob {
+
+public protocol Slime: Hostile, Mob, ~Copyable {
     var size: Int { get }
 }

@@ -1,4 +1,5 @@
-public protocol ItemStack {
+
+public protocol ItemStack: Sendable, ~Copyable {
     var material: any Material { get }
     var meta: (any ItemMeta)? { get }
     var amount: Int { get }

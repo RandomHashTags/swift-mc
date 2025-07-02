@@ -1,2 +1,3 @@
-public protocol InventoryView {
+
+public protocol InventoryView: Sendable, ~Copyable {
 }
