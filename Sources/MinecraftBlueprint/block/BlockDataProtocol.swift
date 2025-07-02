@@ -1,7 +1,10 @@
 
 public protocol BlockDataProtocol: BlockMovableProtocol, ~Copyable {
-    var material: any MaterialProtocol { get }
-    var placementMaterial: any MaterialProtocol { get }
+    associatedtype Material: MaterialProtocol
+    associatedtype SoundGroup: SoundGroupProtocol
+
+    var material: Material { get }
+    var placementMaterial: Material { get }
 
     var hasCollision: Bool { get }
 
@@ -9,7 +12,7 @@ public protocol BlockDataProtocol: BlockMovableProtocol, ~Copyable {
 
     var isRandomlyTicking: Bool { get }
 
-    var soundGroup: any SoundGroupProtocol { get }
+    var soundGroup: SoundGroup { get }
 
     var friction: Float { get }
 

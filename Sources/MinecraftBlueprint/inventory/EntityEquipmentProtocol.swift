@@ -1,17 +1,17 @@
 
 public protocol EntityEquipmentProtocol: Sendable, ~Copyable {
-    func item(
-        for slot: any EquipmentSlotProtocol
+    func item<T: EquipmentSlotProtocol>(
+        for slot: T
     ) -> (any ItemStackProtocol)?
 
-    func itemDropChance(
-        for slot: any EquipmentSlotProtocol
+    func itemDropChance<T: EquipmentSlotProtocol>(
+        for slot: T
     ) -> Float
 
-    func setItem(
-        for slot: any EquipmentSlotProtocol,
+    func setItem<T: EquipmentSlotProtocol, I: ItemStackProtocol>(
+        for slot: T,
         silent: Bool,
-        item: (any ItemStackProtocol)?
+        item: I?
     )
 
     func clear()

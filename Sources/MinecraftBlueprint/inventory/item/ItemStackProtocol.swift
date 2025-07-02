@@ -1,10 +1,15 @@
 
 public protocol ItemStackProtocol: Sendable, ~Copyable {
-    var material: any MaterialProtocol { get }
-    var meta: (any ItemMetaProtocol)? { get }
+    associatedtype Material: MaterialProtocol
+    associatedtype Meta: ItemMetaProtocol
+
+    var material: Material { get }
+    var meta: Meta? { get }
     var amount: Int { get }
     var durability: Int { get }
     
     /// Whether or not the two `ItemStack`s are equal, regardless of amount and durability.
-    func isSimilar(_ itemStack: (any ItemStackProtocol)?) -> Bool
+    func isSimilar<T: ItemStackProtocol>(
+        _ itemStack: T?
+    ) -> Bool
 }

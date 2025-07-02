@@ -1,11 +1,14 @@
 
 public protocol MaterialConfigurationProtocol: MinecraftIdentifiable {
+    associatedtype BlockConfiguration: MaterialBlockConfigurationProtocol
+    associatedtype ItemConfiguration: MaterialItemConfigurationProtocol
+
     var isOnlyItem: Bool { get }
     var isOnlyBlock: Bool { get }
     var isBlockAndItem: Bool { get }
     
-    var item: (any MaterialItemConfigurationProtocol)? { get }
-    var block: (any MaterialBlockConfigurationProtocol)? { get }
+    var item: ItemConfiguration? { get }
+    var block: BlockConfiguration? { get }
 }
 
 extension MaterialConfigurationProtocol {

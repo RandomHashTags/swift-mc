@@ -1,7 +1,9 @@
 
 public protocol SnifferProtocol: AnimalProtocol, ~Copyable {
+    associatedtype State: SnifferStateProtocol
+
     var canDig: Bool { get }
-    var findDigLocation: (any LocationProtocol)? { get }
-    var exploredLocations: [any LocationProtocol] { get } // TODO: make set
-    var state: any SnifferStateProtocol { get }
+    var findDigLocation: Location? { get }
+    var exploredLocations: [Location] { get } // TODO: make set
+    var state: State { get }
 }

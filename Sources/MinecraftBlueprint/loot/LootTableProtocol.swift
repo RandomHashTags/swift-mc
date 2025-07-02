@@ -1,6 +1,8 @@
 
 public protocol LootTableProtocol: Sendable, ~Copyable {
-    var entries: [LootTableEntryProtocol] { get }
+    associatedtype Entry: LootTableEntryProtocol
+
+    var entries: [Entry] { get }
 }
 /*
 extension LootTable {

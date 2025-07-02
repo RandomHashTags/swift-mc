@@ -1,6 +1,9 @@
 
 public protocol DamageSourceProtocol: Sendable, ~Copyable {
-    var type: any DamageTypeProtocol { get }
+    associatedtype DamageType: DamageTypeProtocol
+    associatedtype Location: LocationProtocol
+
+    var type: DamageType { get }
 
     /// The `Entity` that inflicted the damage.
     var entity: (any EntityProtocol)? { get }
@@ -9,10 +12,10 @@ public protocol DamageSourceProtocol: Sendable, ~Copyable {
     var sourceEntity: (any EntityProtocol)? { get }
 
     /// The `sourceEntity`'s location when they shot/threw the `entity`.
-    var sourceEntityLocation: (any LocationProtocol)? { get }
+    var sourceEntityLocation: Location? { get }
 
     /// Where the damage originated from.
-    var location: (any LocationProtocol)? { get }
+    var location: Location? { get }
 
     var foodExhaustion: Float { get }
     var scalesWithDifficulty: Bool { get }

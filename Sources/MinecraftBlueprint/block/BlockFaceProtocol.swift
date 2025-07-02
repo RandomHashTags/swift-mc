@@ -2,7 +2,7 @@
 public protocol BlockFaceProtocol: MinecraftIdentifiable {
     var direction: Vector { get }
     var alignment: Vector { get }
-    var opposite: any BlockFaceProtocol { get }
+    var opposite: Self { get }
     var isCartesian: Bool { get }
 }
 

@@ -1,5 +1,8 @@
 
 public protocol PandaProtocol: AnimalProtocol, Sittable, ~Copyable {
+    associatedtype HiddenGene: PandaGene
+    associatedtype MainGene: PandaGene
+
     /// Measured in ticks.
     var unhappyDuration: Int { get }
 
@@ -9,6 +12,6 @@ public protocol PandaProtocol: AnimalProtocol, Sittable, ~Copyable {
     var isScared: Bool { get }
     var isSneezing: Bool { get }
 
-    var hiddenGene: any PandaGene { get }
-    var mainGene: any PandaGene { get }
+    var hiddenGene: HiddenGene { get }
+    var mainGene: MainGene { get }
 }

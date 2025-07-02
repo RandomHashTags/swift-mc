@@ -1,12 +1,21 @@
 
 public protocol VillagerProtocol: Merchantable, ~Copyable {
+    associatedtype Profession: VillagerProfessionProtocol
+    associatedtype Variant: VillagerVariantProtocol
+    associatedtype Zombified: ZombieVillagerProtocol
+
     var experience: Int { get }
     var level: Int { get }
-    var profession: any VillagerProfessionProtocol { get }
-    var variant: any VillagerVariantProtocol { get }
+    var profession: Profession { get }
+    var variant: Variant { get }
 
     func shakeHead()
-    func sleep(at location: any LocationProtocol) -> Bool
+
+    func sleep(
+        at location: Location
+    ) -> Bool
+
     func wakeUp()
-    func zombify() -> any ZombieVillagerProtocol
+
+    func zombify() -> Zombified
 }

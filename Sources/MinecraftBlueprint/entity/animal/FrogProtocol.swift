@@ -1,5 +1,5 @@
 
-public protocol FrogProtocol: AnimalProtocol, Variantable {
+public protocol FrogProtocol: AnimalProtocol, Variantable where Variant: FrogVariantProtocol {
     var tongueTarget: (any EntityProtocol)? { get }
-    var variant: any FrogVariantProtocol { get }
+    var variant: Variant { get }
 }

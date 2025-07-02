@@ -1,5 +1,7 @@
 
 public protocol RecipeProtocol: MinecraftIdentifiable {
+    associatedtype ItemStack: ItemStackProtocol
+
     /// The `ItemStack` crafted by this recipe.
-    var result: any ItemStackProtocol { get }
+    var result: ItemStack { get }
 }

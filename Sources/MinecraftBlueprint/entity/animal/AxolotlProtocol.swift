@@ -1,5 +1,5 @@
 
-public protocol AxolotlProtocol: AnimalProtocol, Variantable {
+public protocol AxolotlProtocol: AnimalProtocol, Variantable where Variant: AxolotlVariantProtocol {
     var isPlayingDead: Bool { get }
-    var variant: any AxolotlVariantProtocol { get }
+    var variant: Variant { get }
 }

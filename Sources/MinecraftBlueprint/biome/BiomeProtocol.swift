@@ -1,6 +1,8 @@
 
 public protocol BiomeProtocol: MinecraftIdentifiable {
-    var configuration: any BiomeConfigurationProtocol { get }
+    associatedtype ConcreteConfiguration: BiomeConfigurationProtocol
+
+    var configuration: ConcreteConfiguration { get }
 }
 
 // TODO: move to own file

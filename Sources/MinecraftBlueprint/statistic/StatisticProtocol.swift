@@ -1,5 +1,7 @@
 
 public protocol StatisticProtocol: MinecraftIdentifiable, Nameable {
-    var categories: [any StatisticCategoryProtocol] { get }
+    associatedtype Category: StatisticCategoryProtocol
+
+    var categories: [Category] { get }
     var value: ValueType { get }
 }

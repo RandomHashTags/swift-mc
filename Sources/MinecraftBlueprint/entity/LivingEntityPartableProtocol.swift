@@ -1,4 +1,6 @@
 
 public protocol LivingEntityPartableProtocol: LivingEntityProtocol, ~Copyable {
-    var parts: [any EntityPartProtocol] { get } // TODO: make Set
+    associatedtype Part: EntityPartProtocol
+
+    var parts: [Part] { get } // TODO: make Set
 }

@@ -6,7 +6,9 @@ import Foundation
 #endif
 
 public protocol MerchantProtocol: Sendable, ~Copyable {
-    var trades: [any MerchantRecipeProtocol] { get }
+    associatedtype Recipe: MerchantRecipeProtocol
+
+    var trades: [Recipe] { get }
     var traders: [UUID] { get }
     var isTrading: Bool { get }
 }

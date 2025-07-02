@@ -1,6 +1,9 @@
 
 public protocol GeneratedStructureProtocol: Sendable, ~Copyable {
+    associatedtype Structure: StructureProtocol
+    associatedtype Piece: GeneratedStructurePieceProtocol
+
     var boundary: any BoundaryProtocol { get }
-    var structure: any StructureProtocol { get }
-    var pieces: [any GeneratedStructurePieceProtocol] { get } // TODO: make Set
+    var structure: Structure { get }
+    var pieces: [Piece] { get } // TODO: make Set
 }

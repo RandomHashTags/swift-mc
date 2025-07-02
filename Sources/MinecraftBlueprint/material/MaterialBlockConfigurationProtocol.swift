@@ -1,10 +1,14 @@
 
 public protocol MaterialBlockConfigurationProtocol: BlockMovableProtocol, ~Copyable {
+    associatedtype GrowableConfiguration: MaterialBlockGrowableConfigurationProtocol
+    associatedtype LiquidConfiguration: MaterialBlockLiquidConfigurationProtocol
+    associatedtype LootTable: LootTableProtocol
+
     /// The growing configuration of this block, if it grows.
-    var growable: MaterialBlockGrowableConfigurationProtocol? { get }
+    var growable: GrowableConfiguration? { get }
     
     /// The liquid configuration of this block, if it is a liquid.
-    var liquid: (any MaterialBlockLiquidConfigurationProtocol)? { get }
+    var liquid: LiquidConfiguration? { get }
     
     /// If entities can passthrough (walk/sprint/swim through) this block or not.
     var canPassthrough: Bool { get }
@@ -30,5 +34,5 @@ public protocol MaterialBlockConfigurationProtocol: BlockMovableProtocol, ~Copya
     var isSolid: Bool { get }
     
     /// The items that can be dropped when this block is broken.
-    var loot: (any LootTableProtocol)? { get }
+    var loot: LootTable? { get }
 }

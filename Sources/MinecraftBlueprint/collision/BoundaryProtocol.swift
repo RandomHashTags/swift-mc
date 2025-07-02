@@ -1,6 +1,8 @@
 
 public protocol BoundaryProtocol: Sendable, ~Copyable {
-    var type: any BoundaryTypeProtocol { get }
+    associatedtype BoundaryType: BoundaryTypeProtocol
+
+    var type: BoundaryType { get }
 
     func contains(_ boundary: any BoundaryProtocol) -> Bool
 }

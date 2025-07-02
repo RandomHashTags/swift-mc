@@ -1,4 +1,6 @@
 
 public protocol WorldEventProtocol: EventProtocol, ~Copyable {
-    var world: any WorldProtocol { get }
+    associatedtype World: WorldProtocol
+
+    var world: World { get }
 }

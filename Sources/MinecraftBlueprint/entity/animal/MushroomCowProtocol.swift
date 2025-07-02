@@ -1,5 +1,5 @@
 
-public protocol MushroomCowProtocol: CowProtocol, Variantable {
+public protocol MushroomCowProtocol: CowProtocol, Variantable where Variant: MushroomCowVariantProtocol {
     var milkedPotionEffects: [any PotionEffectProtocol] { get } // TODO: make Set
-    var variant: any MushroomCowVariant { get }
+    var variant: Variant { get }
 }

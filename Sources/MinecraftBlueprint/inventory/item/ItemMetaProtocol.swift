@@ -1,12 +1,21 @@
 
 public protocol ItemMetaProtocol: Sendable, ~Copyable {
+    associatedtype Enchantment: EnchantmentProtocol
+    associatedtype Food: FoodProtocol
+    associatedtype Rarity: ItemRarityProtocol
+
     var displayName: String? { get }
     var lore: [String] { get }
-    var rarity: any ItemRarityProtocol { get }
-    var food: (any FoodProtocol)? { get }
+    var rarity: Rarity { get }
+    var food: Food? { get }
 
-    func hasFlag(_ id: MinecraftIdentifiableID) -> Bool
-    func getEnchant(_ id: MinecraftIdentifiableID) -> (any EnchantmentProtocol)?
+    func hasFlag(
+        _ id: MinecraftIdentifiableID
+    ) -> Bool
+
+    func getEnchant(
+        _ id: MinecraftIdentifiableID
+    ) -> Enchantment?
 }
 
 extension ItemMetaProtocol {
@@ -21,16 +30,16 @@ extension ItemMetaProtocol {
     }
 
     @inlinable
-    public func hasFlag(_ flag: any ItemFlagProtocol) -> Bool {
+    public func hasFlag<T: ItemFlagProtocol>(_ flag: T) -> Bool {
         return hasFlag(flag.id)
     }
 
     @inlinable
-    public func getEnchant(_ type: any EnchantmentTypeProtocol) -> (any EnchantmentProtocol)? {
+    public func getEnchant<T: EnchantmentTypeProtocol>(_ type: T) -> Enchantment? {
         return getEnchant(type.id)
     }
     @inlinable
-    public func hasEnchant(_ enchant: any EnchantmentTypeProtocol) -> Bool {
+    public func hasEnchant<T: EnchantmentTypeProtocol>(_ enchant: T) -> Bool {
         return getEnchant(enchant.id) != nil
     }
 }

@@ -1,5 +1,5 @@
 
-public protocol ParrotProtocol: Flyable, Sittable, Tameable, Variantable {
+public protocol ParrotProtocol: Flyable, Sittable, Tameable, Variantable where Variant: ParrotVariantProtocol {
     var isDancing: Bool { get }
-    var variant: any ParrotVariantProtocol { get }
+    var variant: Variant { get }
 }

@@ -1,5 +1,6 @@
 
-public protocol CatProtocol: Sittable, Tameable, Variantable {
+public protocol CatProtocol: Sittable, Tameable, Variantable where Variant: CatVariantProtocol {    
+
     var collarColor: Color { get }
-    var variant: any CatVariantProtocol { get }
+    var variant: Variant { get }
 }

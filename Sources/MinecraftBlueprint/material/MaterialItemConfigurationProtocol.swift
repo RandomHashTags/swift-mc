@@ -1,5 +1,7 @@
 
 public protocol MaterialItemConfigurationProtocol: Sendable, ~Copyable {
+    associatedtype ConsumableConfiguration: MaterialItemConsumableConfigurationProtocol
+
     /// Maximum amount of the same item that can be stacked in one slot.
     var maxStackSize: Int { get }
     
@@ -10,7 +12,7 @@ public protocol MaterialItemConfigurationProtocol: Sendable, ~Copyable {
     var maxDurability: Int { get }
 
     /// The item's consumable configuration.
-    var consumable: (any MaterialItemConsumableConfigurationProtocol)? { get }
+    var consumable: ConsumableConfiguration? { get }
     
     /// Amount of health points this item inflicts to a `LivingEntity`.
     var attackDamage: Double { get }

@@ -14,5 +14,8 @@ public protocol CreeperProtocol: MonsterProtocol, ~Copyable {
     var isCharged: Bool { get }
 
     func explode()
-    func ignite(igniter: (any EntityProtocol)?)
+
+    func ignite<T: EntityProtocol>(
+        igniter: inout T?
+    )
 }

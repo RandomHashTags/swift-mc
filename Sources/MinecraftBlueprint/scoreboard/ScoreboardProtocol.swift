@@ -1,5 +1,8 @@
 
 public protocol ScoreboardProtocol: Sendable, ~Copyable {
-    var objectives: [ScoreboardObjectiveProtocol] { get }
-    var teams: [ScoreboardTeamProtocol] { get }
+    associatedtype Objective: ScoreboardObjectiveProtocol
+    associatedtype Team: ScoreboardTeamProtocol
+
+    var objectives: [Objective] { get }
+    var teams: [Team] { get }
 }

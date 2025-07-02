@@ -1,9 +1,12 @@
 
 public protocol BossBarProtocol: Sendable, ~Copyable {
+    associatedtype BarFlag: BarFlagProtocol
+    associatedtype BarStyle: BarStyleProtocol
+
     var title: String { get }
     var progress: Double { get }
     var color: Color { get }
-    var flags: [any BarFlagProtocol] { get } // TODO: make Set
+    var flags: [BarFlag] { get } // TODO: make Set
     var isVisible: Bool { get }
-    var style: any BarStyleProtocol { get }
+    var style: BarStyle { get }
 }

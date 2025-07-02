@@ -1,6 +1,10 @@
 
 public protocol MaterialProtocol: MinecraftIdentifiable, Nameable {
-    var categories: [any MaterialCategoryProtocol] { get }
-    var configuration: any MaterialConfigurationProtocol { get }
-    var recipe: (any RecipeProtocol)? { get }
+    associatedtype Category: MaterialCategoryProtocol
+    associatedtype Configuration: MaterialConfigurationProtocol
+    associatedtype Recipe: RecipeProtocol
+
+    var categories: [Category] { get }
+    var configuration: Configuration { get }
+    var recipe: Recipe? { get }
 }

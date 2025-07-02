@@ -1,11 +1,15 @@
 
 public protocol BlockProtocol: Tickable, ~Copyable {
-    var instrument: (any InstrumentProtocol)? { get }
+    associatedtype BlockData: BlockDataProtocol
+    associatedtype Instrument: InstrumentProtocol
+    associatedtype Location: LocationProtocol
+
+    var instrument: Instrument? { get }
     
     var stepSound: (any SoundProtocol)? { get }
     
-    var data: any BlockDataProtocol { get }
-    var location: any LocationProtocol { get }
+    var data: BlockData { get }
+    var location: Location { get }
     var boundary: any BoundaryProtocol { get }
     
     var growableAge: Int? { get }
@@ -21,18 +25,25 @@ public protocol BlockProtocol: Tickable, ~Copyable {
     // MARK: logic
     func breakNaturally() -> Bool
     func breakNaturally(item: (any ItemStackProtocol)?) -> Bool
-    
-    func isPreferredTool(_ material: any MaterialProtocol) -> Bool
+
+    func isPreferredTool<T: MaterialProtocol>(
+        _ material: T
+    ) -> Bool
+
     /// Measured in ticks.
-    
-    func getBreakingSpeed(_ itemStack: any ItemStackProtocol) -> Float
+    func getBreakingSpeed<T: ItemStackProtocol>(
+        _ itemStack: T)
+     -> Float
+
     /// Measured in ticks.
-    func getBreakingSpeed(_ player: any PlayerProtocol) -> Float
+    func getBreakingSpeed<T: PlayerProtocol>(
+        _ player: T
+    ) -> Float
 }
 
 extension BlockProtocol {
     @inlinable
-    public var world: any WorldProtocol {
+    public var world: Location.World {
         location.world
     }
 

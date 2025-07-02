@@ -8,8 +8,9 @@ import Foundation
 import MinecraftPackets
 
 public protocol ServerProtocol: Tickable, ~Copyable {
+    associatedtype ChatManager: ChatManagerProtocol
     
-    var chatManager: any ChatManagerProtocol { get }
+    var chatManager: ChatManager { get }
     var version: SemanticVersion { get }
     
     var ticksPerSecond: UInt8 { get }
@@ -36,8 +37,8 @@ public protocol ServerProtocol: Tickable, ~Copyable {
     
     func callEvent(event: some EventProtocol)
     
-    func getNearbyEntities(
-        center: any LocationProtocol,
+    func getNearbyEntities<T: LocationProtocol>(
+        center: T,
         xRadius: Double,
         yRadius: Double,
         zRadius: Double

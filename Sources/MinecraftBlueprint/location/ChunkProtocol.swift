@@ -1,6 +1,10 @@
 
 public protocol ChunkProtocol: Tickable, ~Copyable {
-    var world: any WorldProtocol { get }
+    associatedtype Block: BlockProtocol
+    associatedtype LoadLevel: ChunkLoadLevelProtocol
+    associatedtype World: WorldProtocol
+
+    var world: World { get }
     var x: Int { get }
     var z: Int { get }
 
@@ -10,11 +14,11 @@ public protocol ChunkProtocol: Tickable, ~Copyable {
     var isLoaded: Bool { get }
     var isSlime: Bool { get }
     
-    var blocks: [any BlockProtocol] { get } // TODO: make Set    
+    var blocks: [Block] { get } // TODO: make Set    
     var entities: [any EntityProtocol] { get } // TODO: make Set
     var structures: [any GeneratedStructureProtocol] { get } // TODO: make Set
     
-    var loadLevel: any ChunkLoadLevelProtocol { get }
+    var loadLevel: LoadLevel { get }
     
     func load() async
     func unload() async

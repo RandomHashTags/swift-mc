@@ -6,16 +6,19 @@ import Foundation
 #endif
 
 public protocol EntityProtocol: BlockMovableProtocol, CustomNameable, DisplayNameable, Tickable, ~Copyable {
+    associatedtype EntityType: EntityTypeProtocol
+    associatedtype Location: LocationProtocol
+
     var id: UInt64 { get }
     var uuid: UUID { get }
-    var type: any EntityTypeProtocol { get }
+    var type: EntityType { get }
     
     var ticksLived: UInt64 { get }
     
     var boundaries: [any BoundaryProtocol] { get }
 
     /// The current location of this entity.
-    var location: any LocationProtocol { get }
+    var location: Location { get }
 
     /// The current velocity of this entity.
     var velocity: Vector { get }
@@ -48,12 +51,14 @@ public protocol EntityProtocol: BlockMovableProtocol, CustomNameable, DisplayNam
     mutating func remove()
     
     /// Teleport this entity to a certain location.
-    mutating func teleport(to location: any LocationProtocol)
+    mutating func teleport<T: LocationProtocol>(
+        to location: T
+    )
 }
 
 extension EntityProtocol {
     @inlinable
-    public var world: any WorldProtocol {
+    public var world: Location.World {
         location.world
     }
 }

@@ -6,6 +6,8 @@ import Foundation
 #endif
 
 public protocol LivingEntityProtocol: Attributable, Damageable, ProjectileSourceProtocol, ~Copyable {
+    associatedtype PotionEffect: PotionEffectProtocol
+
     var canBreatheUnderwater: Bool { get }
     var canPickupItems: Bool { get }
     /// The exempt `Entity` UUIDs where collision between this entity and them will be ignored.
@@ -28,9 +30,9 @@ public protocol LivingEntityProtocol: Attributable, Damageable, ProjectileSource
 
     var equipment: (any EntityEquipmentProtocol)? { get }
     var eyeHeight: Double { get }
-    var eyeLocation: any LocationProtocol { get }
+    var eyeLocation: Location { get }
     
-    var potionEffects:[any PotionEffectProtocol] { get } // TODO: make Set
+    var potionEffects:[PotionEffect] { get } // TODO: make Set
     
     var noActionTicks: Int { get }
     var noDamageTicks: Int { get }
@@ -48,8 +50,8 @@ public protocol LivingEntityProtocol: Attributable, Damageable, ProjectileSource
         
     mutating func tickLivingEntity(_ server: any ServerProtocol)
     
-    mutating func damageLivingEntity(
-        cause: any DamageCauseProtocol,
+    mutating func damageLivingEntity<T: DamageCauseProtocol>(
+        cause: T,
         amount: Double
     ) -> DamageResult
 }

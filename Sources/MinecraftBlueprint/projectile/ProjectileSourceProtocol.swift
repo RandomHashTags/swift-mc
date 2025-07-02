@@ -1,7 +1,13 @@
 
 public protocol ProjectileSourceProtocol: Sendable, ~Copyable {
-    var block: (any BlockProtocol)? { get }
-    var entity: (any EntityProtocol)? { get }
+    associatedtype Block: BlockProtocol
+    associatedtype Entity: EntityProtocol
 
-    func launch(projectile: any ProjectileProtocol, velocity: Vector)
+    var block: Block? { get }
+    var entity: EntityProtocol? { get }
+
+    func launch(
+        projectile: any ProjectileProtocol,
+        velocity: Vector
+    )
 }

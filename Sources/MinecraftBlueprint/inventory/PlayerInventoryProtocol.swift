@@ -1,12 +1,12 @@
 
 public protocol PlayerInventoryProtocol: InventoryProtocol, ~Copyable {
-    var helmet: (any ItemStackProtocol)? { get }
-    var chestplate: (any ItemStackProtocol)? { get }
-    var leggings: (any ItemStackProtocol)? { get }
-    var boots: (any ItemStackProtocol)? { get }
+    var helmet: ItemStack? { get }
+    var chestplate: ItemStack? { get }
+    var leggings: ItemStack? { get }
+    var boots: ItemStack? { get }
     
-    var itemInMainHand: (any ItemStackProtocol)? { get }
-    var itemInOffHand: (any ItemStackProtocol)? { get }
+    var itemInMainHand: ItemStack? { get }
+    var itemInOffHand: ItemStack? { get }
     
     var heldItemSlot: Int { get }
 }

@@ -1,5 +1,7 @@
 
 public protocol MerchantRecipeProtocol: RecipeProtocol {
+    associatedtype Ingredient: ItemStackProtocol
+
     var demand: Int { get }
     var maxTrades: Int { get }
     var tradesConducted: Int { get }
@@ -8,10 +10,12 @@ public protocol MerchantRecipeProtocol: RecipeProtocol {
     var earnedExperience: Int { get }
     var hasRewardExperience: Bool { get }
     var rewardExperience: Int { get }
-    var ingredients: [any ItemStackProtocol] { get }
-    var adjustedIngredients: [any ItemStackProtocol] { get }
+    var ingredients: [Ingredient] { get }
+    var adjustedIngredients: [Ingredient] { get }
 
-    func adjustTrade(for item: any ItemStackProtocol)
+    func adjustTrade<T: ItemStackProtocol>(
+        for item: T
+    )
 }
 
 extension MerchantRecipeProtocol {

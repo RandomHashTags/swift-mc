@@ -5,10 +5,12 @@ import FoundationEssentials
 import Foundation
 #endif
 
-public protocol FoxProtocol: AnimalProtocol, Sittable, Variantable {
+public protocol FoxProtocol: AnimalProtocol, Sittable, Variantable where Variant: FoxVariantProtocol {
+    
+
     var isCrouching: Bool { get }
     var isFaceplanted: Bool { get }
     var isSleeping: Bool { get }
     var trustedEntities: [UUID] { get }
-    var variant: any FoxVariantProtocol { get }
+    var variant: Variant { get }
 }

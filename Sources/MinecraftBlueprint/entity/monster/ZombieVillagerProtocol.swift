@@ -6,14 +6,17 @@ import Foundation
 #endif
 
 public protocol ZombieVillagerProtocol: ZombieProtocol, ~Copyable {
+    associatedtype Profession:VillagerProfessionProtocol
+    associatedtype Variant: VillagerVariantProtocol
+
     var conversionInitiator: UUID { get }
 
     /// Measured in ticks.
     var remainingConversionDuration: Int { get }
     var isConverting: Bool { get }
 
-    var villagerProfession: (any VillagerProfessionProtocol)? { get }
-    var villagerVariant: any VillagerVariantProtocol { get }
+    var villagerProfession: Profession? { get }
+    var villagerVariant: Variant { get }
 }
 
 extension ZombieVillagerProtocol {

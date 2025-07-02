@@ -1,5 +1,7 @@
 
 public protocol InventoryTypeProtocol: MinecraftIdentifiable {
+    associatedtype Recipe: RecipeProtocol
+
     var categories: [String] { get }
 
     /// Maximum amount of slots this inventory type contains.
@@ -12,5 +14,5 @@ public protocol InventoryTypeProtocol: MinecraftIdentifiable {
     var materialRestrictions: [Int:Set<String>]? { get }
 
     /// The allowed `Recipe`s that can be created when inside this inventory type, if applicable.
-    var allowedRecipes: [any RecipeProtocol]? { get }
+    var allowedRecipes: [Recipe]? { get }
 }

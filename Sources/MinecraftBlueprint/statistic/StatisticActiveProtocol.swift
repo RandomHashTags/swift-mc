@@ -1,5 +1,7 @@
 
 public protocol StatisticActiveProtocol: Codable, MinecraftIdentifiable {
-    var type: (any StatisticProtocol)? { get }
+    associatedtype Statistic: StatisticProtocol
+
+    var type: Statistic? { get }
     var value: Float { get }
 }

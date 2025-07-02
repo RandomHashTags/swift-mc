@@ -1,5 +1,5 @@
 
-public protocol PlayerProtocol: CommandSenderProtocol, Flyable, InventoryHolderProtocol, LivingEntityProtocol, Permissible, ~Copyable {
+public protocol PlayerProtocol: CommandSenderProtocol, Flyable, InventoryHolderProtocol, LivingEntityProtocol, Permissible, ~Copyable where Inventory: PlayerInventoryProtocol {    
     var listName: String? { get }
     
     var experience: UInt64 { get }
@@ -18,18 +18,24 @@ public protocol PlayerProtocol: CommandSenderProtocol, Flyable, InventoryHolderP
     var isOP: Bool { get }
     var isSneaking: Bool { get }
     var isSprinting: Bool { get }
-    var lastSleptLocation: (any LocationProtocol)? { get }
+    var lastSleptLocation: Location? { get }
     
-    var inventory: any PlayerInventoryProtocol { get }
+    var inventory: Inventory { get }
     
-    mutating func tickPlayer(_ server: any ServerProtocol)
+    mutating func tickPlayer(
+        _ server: any ServerProtocol
+    )
     
-    func setGameMode(_ gameMode: any GameModeProtocol)
+    func setGameMode<T: GameModeProtocol>(
+        _ gameMode: T
+    )
     
     func ban(reason: String)
     func kick(reason: String)
     
-    func consumed(item: inout any ItemStackProtocol)
+    func consumed<T: ItemStackProtocol>(
+        item: inout T
+    )
 
     func sendChat(message: String)
 }
