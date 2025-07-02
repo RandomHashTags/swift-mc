@@ -1,19 +1,28 @@
+
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
-    struct SetActionBarText: ClientPacket.Mojang.Java.PlayProtocol {
+extension ClientPacket.Mojang.Java.Play {
+    public struct SetActionBarText: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setActionBarText
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> ClientPacket.Mojang.Java.Play.SetActionBarText {
-            let action_bar_text:ChatPacketMojang = try packet.readPacket()
-            return Self(action_bar_text: action_bar_text)
+            let actionBarText:ChatPacketMojang = try packet.readPacket()
+            return Self(actionBarText: actionBarText)
         }
         
         /// Displays a message above the hotbar (the same as position 2 in [Player Chat Message](https://wiki.vg/Protocol#Player_Chat_Message )).
-        public let action_bar_text:ChatPacketMojang
-        
+        public let actionBarText:ChatPacketMojang
+
+        public init(
+            actionBarText: ChatPacketMojang
+        ) {
+            self.actionBarText = actionBarText
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [action_bar_text]
+            return [actionBarText]
         }
     }
 }

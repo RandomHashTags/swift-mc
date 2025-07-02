@@ -1,18 +1,27 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
+extension ServerPacket.Mojang.Java.Play {
     /// Sent when the player changes the slot selection.
-    struct SetHeldItem: ServerPacketMojangJavaPlayProtocol {
+    public struct SetHeldItem: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.setHeldItem
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let slot:Int16 = try packet.readShort()
+            let slot = try packet.readShort()
             return Self(slot: slot)
         }
         
         /// The slot which the player has selected (0–8).
         public let slot:Int16
-        
+
+        public init(
+            slot: Int16
+        ) {
+            self.slot = slot
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [slot]
         }

@@ -4,6 +4,7 @@ import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
+
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Play {

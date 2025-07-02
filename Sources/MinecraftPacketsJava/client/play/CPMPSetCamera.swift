@@ -1,6 +1,7 @@
+
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
+extension ClientPacket.Mojang.Java.Play {
     /// Sets the entity that the player renders from. This is normally used when the player left-clicks an entity while in spectator mode.
     ///
     /// The player's camera will move with the entity and look where it is looking. The entity is often another player, but can be any type of entity. The player is unable to move this entity (move packets will act as if they are coming from the other entity).
@@ -14,19 +15,27 @@ public extension ClientPacket.Mojang.Java.Play {
     /// - Spider (and cave spider) → `shaders/post/spider.json`
     /// - Enderman → `shaders/post/invert.json`
     /// - Anything else → the current shader is unloaded
-    struct SetCamera: ClientPacket.Mojang.Java.PlayProtocol {
+    public struct SetCamera: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setCamera
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let camera_id:VariableIntegerJava = try packet.readVarInt()
-            return Self(camera_id: camera_id)
+            let cameraID:VariableIntegerJava = try packet.readVarInt()
+            return Self(cameraID: cameraID)
         }
         
         /// ID of the entity to set the client's camera to.
-        public let camera_id:VariableIntegerJava
-        
+        public let cameraID:VariableIntegerJava
+
+        public init(
+            cameraID: VariableIntegerJava
+        ) {
+            self.cameraID = cameraID
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [camera_id]
+            return [cameraID]
         }
     }
 }

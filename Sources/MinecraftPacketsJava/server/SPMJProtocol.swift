@@ -7,71 +7,79 @@ public protocol ServerPacketMojangJavaProtocol: ServerPacketProtocol, PacketMoja
 // MARK: ServerPacketMojangJavaHandshakingProtocol
 public protocol ServerPacketMojangJavaHandshakingProtocol: ServerPacketMojangJavaProtocol where GameplayID == ServerPacket.Mojang.Java.Handshaking {
 }
-public extension ServerPacketMojangJavaHandshakingProtocol {
-    static var packetGameplayID: GameplayID.Type {
-        get {
-            return ServerPacket.Mojang.Java.Handshaking.self
-        }
+extension ServerPacketMojangJavaHandshakingProtocol {
+    @inlinable
+    public static var packetGameplayID: GameplayID.Type {
+        ServerPacket.Mojang.Java.Handshaking.self
     }
 }
-public extension ServerPacketMojangJavaHandshakingProtocol {
-    var category: any PacketCategory {
-        return PacketCategoryMojangJava.serverHandshaking
+extension ServerPacketMojangJavaHandshakingProtocol {
+    @inlinable
+    public var category: any PacketCategory {
+        PacketCategoryMojangJava.serverHandshaking
     }
 }
 
 // MARK: ServerPacketMojangJavaLoginProtocol
 public protocol ServerPacketMojangJavaLoginProtocol: ServerPacketMojangJavaProtocol where GameplayID == ServerPacket.Mojang.Java.Login {
 }
-public extension ServerPacketMojangJavaLoginProtocol {
-    static var packetGameplayID: GameplayID.Type {
-        get {
-            return ServerPacket.Mojang.Java.Login.self
-        }
+extension ServerPacketMojangJavaLoginProtocol {
+    @inlinable
+    public static var packetGameplayID: GameplayID.Type {
+        ServerPacket.Mojang.Java.Login.self
     }
 }
-public extension ServerPacketMojangJavaLoginProtocol {
-    var category: any PacketCategory { PacketCategoryMojangJava.serverLogin }
+extension ServerPacketMojangJavaLoginProtocol {
+    @inlinable
+    public var category: any PacketCategory {
+        PacketCategoryMojangJava.serverLogin
+    }
 }
 
 // MARK: ServerPacketMojangJavaConfigurationProtocol
 public protocol ServerPacketMojangJavaConfigurationProtocol: ServerPacketMojangJavaProtocol where GameplayID == ServerPacket.Mojang.Java.Configuration {
 }
-public extension ServerPacketMojangJavaConfigurationProtocol {
-    static var packetGameplayID: GameplayID.Type {
-        get {
-            return ServerPacket.Mojang.Java.Configuration.self
-        }
+extension ServerPacketMojangJavaConfigurationProtocol {
+    @inlinable
+    public static var packetGameplayID: GameplayID.Type {
+        ServerPacket.Mojang.Java.Configuration.self
     }
 }
-public extension ServerPacketMojangJavaConfigurationProtocol {
-    var category: any PacketCategory { PacketCategoryMojangJava.serverConfiguration }
+extension ServerPacketMojangJavaConfigurationProtocol {
+    @inlinable
+    public var category: any PacketCategory {
+        PacketCategoryMojangJava.serverConfiguration
+    }
 }
 
 // MARK: ServerPacketMojangJavaPlayProtocol
 public protocol ServerPacketMojangJavaPlayProtocol: ServerPacketMojangJavaProtocol where GameplayID == ServerPacket.Mojang.Java.Play {
 }
-public extension ServerPacketMojangJavaPlayProtocol {
-    static var packetGameplayID: GameplayID.Type {
-        get {
-            return ServerPacket.Mojang.Java.Play.self
-        }
+extension ServerPacketMojangJavaPlayProtocol {
+    @inlinable
+    public static var packetGameplayID: GameplayID.Type {
+        ServerPacket.Mojang.Java.Play.self
     }
 }
-public extension ServerPacketMojangJavaPlayProtocol {
-    var category: any PacketCategory { PacketCategoryMojangJava.serverPlay }
+extension ServerPacketMojangJavaPlayProtocol {
+    @inlinable
+    public var category: any PacketCategory {
+        PacketCategoryMojangJava.serverPlay
+    }
 }
 
 // MARK: ServerPacketMojangJavaStatusProtocol
 public protocol ServerPacketMojangJavaStatusProtocol: ServerPacketMojangJavaProtocol where GameplayID == ServerPacket.Mojang.Java.Status {
 }
-public extension ServerPacketMojangJavaStatusProtocol {
-    static var packetGameplayID: GameplayID.Type {
-        get {
-            return ServerPacket.Mojang.Java.Status.self
-        }
+extension ServerPacketMojangJavaStatusProtocol {
+    @inlinable
+    public static var packetGameplayID: GameplayID.Type {
+        ServerPacket.Mojang.Java.Status.self
     }
 }
-public extension ServerPacketMojangJavaStatusProtocol {
-    var category: any PacketCategory { PacketCategoryMojangJava.serverStatus }
+extension ServerPacketMojangJavaStatusProtocol {
+    @inlinable
+    public var category: any PacketCategory {
+        PacketCategoryMojangJava.serverStatus
+    }
 }

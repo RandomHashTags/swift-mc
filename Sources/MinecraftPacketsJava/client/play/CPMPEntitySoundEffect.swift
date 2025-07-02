@@ -1,9 +1,10 @@
+
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
+extension ClientPacket.Mojang.Java.Play {
     /// Plays a sound effect from an entity, either by hardcoded ID or Identifier. Sound IDs and names can be found at https://pokechu22.github.io/Burger/1.20.1.html#sounds .
     /// - Warning: Numeric sound effect IDs are liable to change between versions
-    struct EntitySoundEffect: ClientPacket.Mojang.Java.PlayProtocol {
+    public struct EntitySoundEffect: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.entitySoundEffect
         
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
@@ -26,9 +27,9 @@ public extension ClientPacket.Mojang.Java.Play {
             }
             let soundCategory:SoundCategoryJava = try packet.readEnum()
             let entityID:VariableIntegerJava = try packet.readVarInt()
-            let volume:Float = try packet.readFloat()
-            let pitch:Float = try packet.readFloat()
-            let seed:Int64 = try packet.readLong()
+            let volume = try packet.readFloat()
+            let pitch = try packet.readFloat()
+            let seed = try packet.readLong()
             return Self(soundID: soundID, soundName: soundName, hasFixedRange: hasFixedRange, range: range, soundCategory: soundCategory, entityID: entityID, volume: volume, pitch: pitch, seed: seed)
         }
         
@@ -49,7 +50,8 @@ public extension ClientPacket.Mojang.Java.Play {
         public let pitch:Float
         /// Seed used to pick sound variant.
         public let seed:Int64
-        
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [soundID]
             if soundID.value == 0 {
@@ -59,14 +61,14 @@ public extension ClientPacket.Mojang.Java.Play {
                     array.append(range)
                 }
             }
-            let final_array:[(any PacketEncodableMojangJava)?] = [
+            let finalArray:[(any PacketEncodableMojangJava)?] = [
                 soundCategory,
                 entityID,
                 volume,
                 pitch,
                 seed
             ]
-            array.append(contentsOf: final_array)
+            array.append(contentsOf: finalArray)
             return array
         }
     }

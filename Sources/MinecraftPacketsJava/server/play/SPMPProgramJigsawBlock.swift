@@ -2,10 +2,11 @@
 import MinecraftPackets
 
 extension ServerPacket.Mojang.Java.Play {
-    /// Sent when Done is pressed on the Jigsaw Block interface.
+    /// Sent when 'Done' is pressed on the Jigsaw Block interface.
     public struct ProgramJigsawBlock: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.programJigsawBlock
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let location:PositionPacketMojang = try packet.readPacket()
             let name:NamespaceJava = try packet.readIdentifier()
@@ -31,6 +32,23 @@ extension ServerPacket.Mojang.Java.Play {
         /// `rollable` if the attached piece can be rotated, else `aligned`.
         public let jointType:String
 
+        public init(
+            location: PositionPacketMojang,
+            name: NamespaceJava,
+            target: NamespaceJava,
+            pool: NamespaceJava,
+            finalState: String,
+            jointType: String
+        ) {
+            self.location = location
+            self.name = name
+            self.target = target
+            self.pool = pool
+            self.finalState = finalState
+            self.jointType = jointType
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [location, name, target, pool, finalState, jointType]
         }

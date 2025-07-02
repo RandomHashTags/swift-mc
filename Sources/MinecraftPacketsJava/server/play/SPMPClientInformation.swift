@@ -1,6 +1,7 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
+extension ServerPacket.Mojang.Java.Play {
     /// Sent when the player connects, or when settings are changed.
     ///
     /// _Displayed Skin Parts_ flags:
@@ -13,7 +14,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// - Bit 6 (0x40): Hat enabled
     ///
     /// The most significant bit (bit 7, 0x80) appears to be unused.
-    struct ClientInformation: ServerPacketMojangJavaPlayProtocol {
+    public struct ClientInformation: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.clientInformation
         
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
@@ -52,7 +53,7 @@ public extension ServerPacket.Mojang.Java.Play {
         
         public enum ChatMode: Int, Codable, PacketEncodableMojangJava {
             case enabled
-            case commands_only
+            case commandsOnly
             case hidden
         }
         

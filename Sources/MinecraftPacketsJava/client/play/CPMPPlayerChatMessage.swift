@@ -1,12 +1,14 @@
+
 #if canImport(FoundationEssentials)
 import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
+
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
-    struct PlayerChatMessage: ClientPacket.Mojang.Java.PlayProtocol {
+extension ClientPacket.Mojang.Java.Play {
+    public struct PlayerChatMessage: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.playerChatMessage
         
         // MARK: Header
@@ -52,7 +54,8 @@ public extension ClientPacket.Mojang.Java.Play {
             case fully_filtered
             case partially_filtered
         }
-        
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] { // TODO: fix
             var array:[(any PacketEncodableMojangJava)?] = [
                 sender,

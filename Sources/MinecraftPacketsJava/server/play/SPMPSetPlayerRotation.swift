@@ -1,6 +1,7 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
+extension ServerPacket.Mojang.Java.Play {
     /// Updates the direction the player is looking in.
     ///
     /// Yaw is measured in degrees, and does not follow classical trigonometry rules. The unit circle of yaw on the XZ-plane starts at (0, 1) and turns counterclockwise, with 90 at (-1, 0), 180 at (0,-1) and 270 at (1, 0). Additionally, yaw is not clamped to between 0 and 360 degrees; any number is valid, including negative numbers and numbers greater than 360.
@@ -26,23 +27,37 @@ public extension ServerPacket.Mojang.Java.Play {
     /// y = -sin(pitch)
     /// z =  cos(pitch) * cos(yaw)
     /// ```
-    struct SetPlayerRotation: ServerPacketMojangJavaPlayProtocol {
+    public struct SetPlayerRotation: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.setPlayerRotation
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let yaw:Float = try packet.readFloat()
-            let pitch:Float = try packet.readFloat()
-            let onGround:Bool = try packet.readBool()
+            let yaw = try packet.readFloat()
+            let pitch = try packet.readFloat()
+            let onGround = try packet.readBool()
             return Self(yaw: yaw, pitch: pitch, onGround: onGround)
         }
         
         /// Absolute rotation on the X Axis, in degrees.
         public let yaw:Float
+
         /// Absolute rotation on the Y Axis, in degrees.
         public let pitch:Float
+
         /// True if the client is on the ground, false otherwise.
         public let onGround:Bool
-        
+
+        public init(
+            yaw: Float,
+            pitch: Float,
+            onGround: Bool
+        ) {
+            self.yaw = yaw
+            self.pitch = pitch
+            self.onGround = onGround
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [yaw, pitch, onGround]
         }

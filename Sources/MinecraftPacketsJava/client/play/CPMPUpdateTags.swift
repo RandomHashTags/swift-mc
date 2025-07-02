@@ -1,8 +1,8 @@
 
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
-    struct UpdateTags: ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
+extension ClientPacket.Mojang.Java.Play {
+    public struct UpdateTags: ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
         public static let id = ClientPacket.Mojang.Java.Play.updateTags
         
         /// Number of elements in `tags`.
@@ -19,9 +19,10 @@ public extension ClientPacket.Mojang.Java.Play {
                 public let count:VariableIntegerJava
                 /// Numeric ID of the given type (block, item, etc.).
                 public let entries:[VariableIntegerJava]
-                
+
+                @inlinable
                 public func packetBytes() throws -> [UInt8] {
-                    var array:[UInt8] = try tagName.packetBytes()
+                    var array = try tagName.packetBytes()
                     array.append(contentsOf: try count.packetBytes())
                     for entry in entries {
                         array.append(contentsOf: try entry.packetBytes())
@@ -29,16 +30,18 @@ public extension ClientPacket.Mojang.Java.Play {
                     return array
                 }
             }
-            
+
+            @inlinable
             public func packetBytes() throws -> [UInt8] {
-                var array:[UInt8] = try length.packetBytes()
+                var array = try length.packetBytes()
                 for entry in entries {
                     array.append(contentsOf: try entry.packetBytes())
                 }
                 return array
             }
         }
-        
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [count]
             array.append(contentsOf: tagTypes)

@@ -7,7 +7,8 @@ extension ServerPacket.Mojang.Java.Play {
     /// The server only accepts this packet after [Open Sign Editor](https://wiki.vg/Protocol#Open_Sign_Editor ), otherwise this packet is silently ignored.
     public struct UpdateSign: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.updateSign
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let location:PositionPacketMojang = try packet.readPacket()
             let isFrontText = try packet.readBool()
@@ -29,6 +30,23 @@ extension ServerPacket.Mojang.Java.Play {
         public let line3:String
         public let line4:String
 
+        public init(
+            location: PositionPacketMojang,
+            isFrontText: Bool,
+            line1: String,
+            line2: String,
+            line3: String,
+            line4: String
+        ) {
+            self.location = location
+            self.isFrontText = isFrontText
+            self.line1 = line1
+            self.line2 = line2
+            self.line3 = line3
+            self.line4 = line4
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 location,

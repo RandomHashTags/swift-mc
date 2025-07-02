@@ -1,6 +1,7 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
+extension ServerPacket.Mojang.Java.Play {
     /// This packet is sent from the client to the server when the client attacks or right-clicks another entity (a player, minecart, etc).
     ///
     /// A Notchian server only accepts this packet if the entity being attacked/used is visible without obstruction and within a 4-unit radius of the player's position.
@@ -8,7 +9,7 @@ public extension ServerPacket.Mojang.Java.Play {
     /// The target X, Y, and Z fields represent the difference between the vector location of the cursor at the time of the packet and the entity's position.
     ///
     /// Note that middle-click in creative mode is interpreted by the client and sent as a [Set Creative Mode Slot](https://wiki.vg/Protocol#Set_Creative_Mode_Slot) packet instead.
-    struct Interact: ServerPacketMojangJavaPlayProtocol {
+    public struct Interact: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.interact
         
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {

@@ -1,25 +1,37 @@
+
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
+extension ClientPacket.Mojang.Java.Play {
     /// Tells the client to unload a chunk column.
     ///
     /// It is legal to send this packet even if the given chunk is not currently loaded.
-    struct UnloadChunk: ClientPacket.Mojang.Java.PlayProtocol {
+    public struct UnloadChunk: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.unloadChunk
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let chunk_x:Int32 = try packet.readInt()
-            let chunk_z:Int32 = try packet.readInt()
-            return Self(chunk_x: chunk_x, chunk_z: chunk_z)
+            let chunkX = try packet.readInt()
+            let chunkZ = try packet.readInt()
+            return Self(chunkX: chunkX, chunkZ: chunkZ)
         }
         
         /// Block coordinate divided by 16, rounded down.
-        public let chunk_x:Int32
+        public let chunkX:Int32
+
         /// Block coordinate divided by 16, rounded down.
-        public let chunk_z:Int32
-        
+        public let chunkZ:Int32
+
+        public init(
+            chunkX: Int32,
+            chunkZ: Int32
+        ) {
+            self.chunkX = chunkX
+            self.chunkZ = chunkX
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [chunk_x, chunk_z]
+            return [chunkX, chunkZ]
         }
     }
 }

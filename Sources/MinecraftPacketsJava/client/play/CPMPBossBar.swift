@@ -3,6 +3,7 @@ import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
+
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Play {
@@ -11,7 +12,7 @@ extension ClientPacket.Mojang.Java.Play {
 
         @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let uuid:UUID = try packet.readUUID()
+            let uuid = try packet.readUUID()
             let action:BossBar.Action = try packet.readEnum()
             var title:ChatPacketMojang? = nil
             var health:Float? = nil

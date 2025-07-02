@@ -1,7 +1,8 @@
+
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
-    struct StopSound: ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
+extension ClientPacket.Mojang.Java.Play {
+    public struct StopSound: ClientPacket.Mojang.Java.PlayProtocol { // TODO: fix
         public static let id = ClientPacket.Mojang.Java.Play.stopSound
         
         /// Controls which fields are present.
@@ -10,20 +11,18 @@ public extension ClientPacket.Mojang.Java.Play {
         public let source:VariableIntegerJava?
         /// Only if flags is 2 or 3 (bit mask 0x2). A sound effect name, see [Custom Sound Effect](https://wiki.vg/Protocol#Custom_Sound_Effect ). If not present, then all sounds are cleared.
         public let sound:NamespaceJava?
-        
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [flags]
             switch flags {
             case 1:
                 array.append(source)
-                break
             case 2:
                 array.append(sound)
-                break
             case 3:
                 array.append(source)
                 array.append(sound)
-                break
             default:
                 break
             }

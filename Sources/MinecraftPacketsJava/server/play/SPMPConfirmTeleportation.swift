@@ -1,13 +1,14 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
+extension ServerPacket.Mojang.Java.Play {
     /// Sent by client as confirmation of [Synchronize Player Position](https://wiki.vg/Protocol#Synchronize_Player_Position ).
-    struct ConfirmTeleportation: ServerPacketMojangJavaPlayProtocol {
+    public struct ConfirmTeleportation: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.confirmTeleportation
         
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let teleport_id:VariableIntegerJava = try packet.readVarInt()
-            return Self(teleport_id: teleport_id)
+            let teleportID:VariableIntegerJava = try packet.readVarInt()
+            return Self(teleportID: teleportID)
         }
 
         /*static func serverReceived(_ client: MinecraftClientHandler) throws {
@@ -15,10 +16,10 @@ public extension ServerPacket.Mojang.Java.Play {
         }*/
         
         /// The ID given by the [Synchronize Player Position](https://wiki.vg/Protocol#Synchronize_Player_Position) packet.
-        public let teleport_id:VariableIntegerJava
+        public let teleportID:VariableIntegerJava
         
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [teleport_id]
+            return [teleportID]
         }
     }
 }

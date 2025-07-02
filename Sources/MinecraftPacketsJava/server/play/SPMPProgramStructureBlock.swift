@@ -10,8 +10,8 @@ extension ServerPacket.Mojang.Java.Play {
         
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let location:PositionPacketMojang = try packet.readPacket()
-            let action:ProgramStructureBlock.Action = try packet.readEnum()
-            let mode:ProgramStructureBlock.Mode = try packet.readEnum()
+            let action:Action = try packet.readEnum()
+            let mode:Mode = try packet.readEnum()
             let name = try packet.readString()
             let offset_x = try packet.readByte()
             let offset_y = try packet.readByte()
@@ -19,8 +19,8 @@ extension ServerPacket.Mojang.Java.Play {
             let size_x = try packet.readByte()
             let size_y = try packet.readByte()
             let size_z = try packet.readByte()
-            let mirror:ProgramStructureBlock.Mirror = try packet.readEnum()
-            let rotation:ProgramStructureBlock.Rotation = try packet.readEnum()
+            let mirror:Mirror = try packet.readEnum()
+            let rotation:Rotation = try packet.readEnum()
             let metadata = try packet.readString()
             let integrity = try packet.readFloat()
             let seed:VariableLongJava = try packet.readVarLong()
@@ -94,7 +94,8 @@ extension ServerPacket.Mojang.Java.Play {
             case clockwise180
             case counterclockwise90
         }
-        
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [
                 location,

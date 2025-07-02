@@ -4,17 +4,26 @@ import MinecraftPackets
 extension ServerPacket.Mojang.Java.Play {
     public struct SeenAdvancements: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.seenAdvancements
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let action:SeenAdvancements.Action = try packet.readEnum()
-            let tabId:NamespaceJava? = action == .openedTab ? try packet.readIdentifier() : nil
-            return Self(action: action, tabId: tabId)
+            let action:Action = try packet.readEnum()
+            let tabID:NamespaceJava? = action == .openedTab ? try packet.readIdentifier() : nil
+            return Self(action: action, tabID: tabID)
         }
         
-        public let action:SeenAdvancements.Action
+        public let action:Action
 
         /// Only present if action is Opened tab.
-        public let tabId:NamespaceJava?
+        public let tabID:NamespaceJava?
+
+        public init(
+            action: Action,
+            tabID: NamespaceJava?
+        ) {
+            self.action = action
+            self.tabID = tabID
+        }
         
         public enum Action: Int, Codable, PacketEncodableMojangJava {
             case openedTab
@@ -25,8 +34,8 @@ extension ServerPacket.Mojang.Java.Play {
             var array:[any PacketEncodableMojangJava] = [action]
             switch action {
             case .openedTab:
-                let tabId = try unwrapOptional(tabId, key: \Self.tabId, precondition: "action == .opened_tab")
-                array.append(tabId)
+                let tabID = try unwrapOptional(tabID, key: \Self.tabID, precondition: "action == .opened_tab")
+                array.append(tabID)
             case .closedScreen:
                 break
             }

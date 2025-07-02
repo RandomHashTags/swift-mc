@@ -1,6 +1,7 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
+extension ServerPacket.Mojang.Java.Play {
     /// This packet is sent by the client when the player clicks on a slot in a window.
     ///
     /// See [Inventory](https://wiki.vg/Inventory) for further information about how slots are indexed.
@@ -15,20 +16,20 @@ public extension ServerPacket.Mojang.Java.Play {
     /// 3. packet with mode 5, slot -999, button (2 | 6);
     ///
     /// If any of the painting packets other than the “progress” ones are sent out of order (for example, a start, some slots, then another start; or a left-click in the middle) the painting status will be reset.
-    struct ClickContainer: ServerPacketMojangJavaPlayProtocol {
+    public struct ClickContainer: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.clickContainer
         
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let windowID:UInt8 = try packet.readUnsignedByte()
+            let windowID = try packet.readUnsignedByte()
             let stateID:VariableIntegerJava = try packet.readVarInt()
-            let slot:Int16 = try packet.readShort()
-            let button:Int8 = try packet.readByte()
-            let mode:ClickContainer.Mode = try packet.readEnum()
-            let slots_count:VariableIntegerJava = try packet.readVarInt()
-            let slot_numbers:[Int16] = try packet.readPacketArray(count: slots_count.valueInt)
-            let slot_data:[SlotMojang] = try packet.readPacketArray(count: slots_count.valueInt)
-            let carried_item:SlotMojang = try packet.readPacket()
-            return Self(windowID: windowID, stateID: stateID, slot: slot, button: button, mode: mode, slots_count: slots_count, slot_numbers: slot_numbers, slot_data: slot_data, carried_item: carried_item)
+            let slot = try packet.readShort()
+            let button = try packet.readByte()
+            let mode:Mode = try packet.readEnum()
+            let slotsCount:VariableIntegerJava = try packet.readVarInt()
+            let slotNumbers:[Int16] = try packet.readPacketArray(count: slotsCount.valueInt)
+            let slotData:[SlotMojang] = try packet.readPacketArray(count: slotsCount.valueInt)
+            let carriedItem:SlotMojang = try packet.readPacket()
+            return Self(windowID: windowID, stateID: stateID, slot: slot, button: button, mode: mode, slotsCount: slotsCount, slotNumbers: slotNumbers, slotData: slotData, carriedItem: carriedItem)
         }
         
         /// The ID of the window which was clicked. 0 for player inventory.
@@ -39,29 +40,30 @@ public extension ServerPacket.Mojang.Java.Play {
         public let slot:Int16
         /// The button used in the click
         public let button:Int8
-        public let mode:ClickContainer.Mode
+        public let mode:Mode
         /// Maximum value for Notchian server is 128 slots.
-        public let slots_count:VariableIntegerJava
-        public let slot_numbers:[Int16]
-        public let slot_data:[SlotMojang]
+        public let slotsCount:VariableIntegerJava
+        public let slotNumbers:[Int16]
+        public let slotData:[SlotMojang]
         /// Item carried by the cursor. Has to be empty (item ID = -1) for drop mode, otherwise nothing will happen.
-        public let carried_item:SlotMojang
+        public let carriedItem:SlotMojang
         
         public enum Mode: Int, Codable, PacketEncodableMojangJava {
             case mouse
-            case shift_click
-            case number_pad
-            case middle_click
+            case shiftClick
+            case numberPad
+            case middleClick
             case drop
             case drag
             case other
         }
-        
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            var array:[any PacketEncodableMojangJava] = [windowID, stateID, slot, button, mode, slots_count]
-            array.append(contentsOf: slot_numbers)
-            array.append(contentsOf: slot_data)
-            array.append(carried_item)
+            var array:[any PacketEncodableMojangJava] = [windowID, stateID, slot, button, mode, slotsCount]
+            array.append(contentsOf: slotNumbers)
+            array.append(contentsOf: slotData)
+            array.append(carriedItem)
             return array
         }
     }

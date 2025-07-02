@@ -1,6 +1,7 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
+extension ServerPacket.Mojang.Java.Play {
     /// Updates the player's XYZ position on the server.
     ///
     /// Checking for moving too fast is achieved like this:
@@ -14,28 +15,45 @@ public extension ServerPacket.Mojang.Java.Play {
     /// If the player is moving too fast, it will be logged that "<player> moved too quickly! " followed by the change in x, y, and z, and the player will be teleported back to their current (before this packet) serverside position.
     ///
     /// Also, if the absolute value of X or the absolute value of Z is a value greater than 3.2×107, or X, Y, or Z are not finite (either positive infinity, negative infinity, or NaN), the client will be kicked for “Invalid move player packet received”.
-    struct SetPlayerPosition: ServerPacketMojangJavaPlayProtocol {
+    public struct SetPlayerPosition: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.setPlayerPosition
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let x:Double = try packet.readDouble()
-            let feet_y:Double = try packet.readDouble()
-            let z:Double = try packet.readDouble()
-            let onGround:Bool = try packet.readBool()
-            return Self(x: x, feet_y: feet_y, z: z, onGround: onGround)
+            let x = try packet.readDouble()
+            let feetY = try packet.readDouble()
+            let z = try packet.readDouble()
+            let onGround = try packet.readBool()
+            return Self(x: x, feetY: feetY, z: z, onGround: onGround)
         }
         
         /// Absolute position.
         public let x:Double
+
         /// Absolute feet position, normally Head Y - 1.62.
-        public let feet_y:Double
+        public let feetY:Double
+
         /// Absolute position.
         public let z:Double
+
         /// True if the client is on the ground, false otherwise.
         public let onGround:Bool
-        
+
+        public init(
+            x: Double,
+            feetY: Double,
+            z: Double,
+            onGround: Bool
+        ) {
+            self.x = x
+            self.feetY = feetY
+            self.z = z
+            self.onGround = onGround
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [x, feet_y, z, onGround]
+            return [x, feetY, z, onGround]
         }
     }
 }

@@ -3,9 +3,10 @@ import MinecraftPackets
 
 extension ServerPacket.Mojang.Java.Configuration {
     /// Sent when the player connects, or when settings are changed.
-    struct ClientInformation: ServerPacketMojangJavaConfigurationProtocol {
-        public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.clientInformation
-        
+    public struct ClientInformation: ServerPacketMojangJavaConfigurationProtocol {
+        public static let id = ServerPacket.Mojang.Java.Configuration.clientInformation
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let locale = try packet.readString()
             let viewDistance = try packet.readByte()
@@ -53,7 +54,27 @@ extension ServerPacket.Mojang.Java.Configuration {
         /// Servers usually list online players, this option should let you not show up in that list.
         public let allowServerListings:Bool
 
-        
+        public init(
+            locale: String,
+            viewDistance: Int8,
+            chatMode: ChatMode,
+            chatColors: Bool,
+            displayedSkinParts: UInt8,
+            mainHand: MainHand,
+            enableTextFiltering: Bool,
+            allowServerListings: Bool
+        ) {
+            self.locale = locale
+            self.viewDistance = viewDistance
+            self.chatMode = chatMode
+            self.chatColors = chatColors
+            self.displayedSkinParts = displayedSkinParts
+            self.mainHand = mainHand
+            self.enableTextFiltering = enableTextFiltering
+            self.allowServerListings = allowServerListings
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [locale, viewDistance, chatMode, chatColors, displayedSkinParts, mainHand, enableTextFiltering, allowServerListings]
         }

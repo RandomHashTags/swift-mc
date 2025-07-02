@@ -3,9 +3,10 @@ import MinecraftPackets
 
 extension ServerPacket.Mojang.Java.Handshaking {
     /// This causes the server to switch into the target state.
-    struct Handshake: ServerPacketMojangJavaHandshakingProtocol {
-        public static let id:ServerPacket.Mojang.Java.Handshaking = ServerPacket.Mojang.Java.Handshaking.handshake
-        
+    public struct Handshake: ServerPacketMojangJavaHandshakingProtocol {
+        public static let id = ServerPacket.Mojang.Java.Handshaking.handshake
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let protocolVersion:MinecraftProtocolVersion.Java = try packet.readEnum()
             let serverAddress = try packet.readString()
@@ -25,7 +26,20 @@ extension ServerPacket.Mojang.Java.Handshaking {
         public let serverPort:UInt16
 
         public let nextState:State
-        
+
+        public init(
+            protocolVersion: MinecraftProtocolVersion.Java,
+            serverAddress: String,
+            serverPort: UInt16,
+            nextState: State
+        ) {
+            self.protocolVersion = protocolVersion
+            self.serverAddress = serverAddress
+            self.serverPort = serverPort
+            self.nextState = nextState
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             return [protocolVersion, serverAddress, serverPort, nextState]
         }

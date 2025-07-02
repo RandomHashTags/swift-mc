@@ -1,27 +1,45 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
+extension ServerPacket.Mojang.Java.Play {
     /// Changes the effect of the current beacon.
-    struct SetBeaconEffect: ServerPacketMojangJavaPlayProtocol {
+    public struct SetBeaconEffect: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.setBeaconEffect
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let has_primary_effect:Bool = try packet.readBool()
-            let primary_effect:VariableIntegerJava = try packet.readVarInt()
-            let has_secondary_effect:Bool = try packet.readBool()
-            let secondary_effect:VariableIntegerJava = try packet.readVarInt()
-            return Self(has_primary_effect: has_primary_effect, primary_effect: primary_effect, has_secondary_effect: has_secondary_effect, secondary_effect: secondary_effect)
+            let hasPrimaryEffect = try packet.readBool()
+            let primaryEffect:VariableIntegerJava = try packet.readVarInt()
+            let hasSecondaryEffect = try packet.readBool()
+            let secondaryEffect:VariableIntegerJava = try packet.readVarInt()
+            return Self(hasPrimaryEffect: hasPrimaryEffect, primaryEffect: primaryEffect, hasSecondaryEffect: hasSecondaryEffect, secondaryEffect: secondaryEffect)
         }
         
-        public let has_primary_effect:Bool
+        public let hasPrimaryEffect:Bool
+
         /// A [Potion ID](https://minecraft.gamepedia.com/Data_values#Potions ). (Was a full Integer for the plugin message).
-        public let primary_effect:VariableIntegerJava
-        public let has_secondary_effect:Bool
+        public let primaryEffect:VariableIntegerJava
+
+        public let hasSecondaryEffect:Bool
+
         /// A [Potion ID](https://minecraft.gamepedia.com/Data_values#Potions ). (Was a full Integer for the plugin message).
-        public let secondary_effect:VariableIntegerJava
-        
+        public let secondaryEffect:VariableIntegerJava
+
+        public init(
+            hasPrimaryEffect: Bool,
+            primaryEffect: VariableIntegerJava,
+            hasSecondaryEffect: Bool,
+            secondaryEffect: VariableIntegerJava
+        ) {
+            self.hasPrimaryEffect = hasPrimaryEffect
+            self.primaryEffect = primaryEffect
+            self.hasSecondaryEffect = hasSecondaryEffect
+            self.secondaryEffect = secondaryEffect
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [has_primary_effect, primary_effect, has_secondary_effect, secondary_effect]
+            return [hasPrimaryEffect, primaryEffect, hasSecondaryEffect, secondaryEffect]
         }
     }
 }

@@ -1,16 +1,17 @@
+
 import MinecraftPackets
 
-public extension ServerPacket.Mojang.Java.Play {
-    struct EditBook: ServerPacketMojangJavaPlayProtocol {
+extension ServerPacket.Mojang.Java.Play {
+    public struct EditBook: ServerPacketMojangJavaPlayProtocol {
         public static let id = ServerPacket.Mojang.Java.Play.editBook
         
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let slot:VariableIntegerJava = try packet.readVarInt()
             let count:VariableIntegerJava = try packet.readVarInt()
-            let entries:[String] = try packet.readStringArray(count: count.valueInt)
-            let has_title:Bool = try packet.readBool()
-            let title:String? = has_title ? try packet.readString() : nil
-            return Self(slot: slot, count: count, entries: entries, hasTitle: has_title, title: title)
+            let entries = try packet.readStringArray(count: count.valueInt)
+            let hasTitle = try packet.readBool()
+            let title = hasTitle ? try packet.readString() : nil
+            return Self(slot: slot, count: count, entries: entries, hasTitle: hasTitle, title: title)
         }
         
         /// The hotbar slot where the written book is located.

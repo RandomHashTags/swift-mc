@@ -1,26 +1,41 @@
+
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
-    struct ServerData: ClientPacket.Mojang.Java.PlayProtocol {
+extension ClientPacket.Mojang.Java.Play {
+    public struct ServerData: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.serverData
-        
+
+        @inlinable
         public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
-            let message_of_the_day:ChatPacketMojang = try packet.readPacket()
-            let has_icon:Bool = try packet.readBool()
-            let icon:[UInt8]? = has_icon ? try packet.readByteArray(bytes: packet.count) : nil // TODO: fix
-            let enforces_secure_chat:Bool = try packet.readBool()
-            return Self(message_of_the_day: message_of_the_day, has_icon: has_icon, icon: icon, enforces_secure_chat: enforces_secure_chat)
+            let messageOfTheDay:ChatPacketMojang = try packet.readPacket()
+            let hasIcon = try packet.readBool()
+            let icon = hasIcon ? try packet.readByteArray(bytes: packet.count) : nil // TODO: fix
+            let enforcesSecureChat = try packet.readBool()
+            return Self(messageOfTheDay: messageOfTheDay, hasIcon: hasIcon, icon: icon, enforcesSecureChat: enforcesSecureChat)
         }
         
-        public let message_of_the_day:ChatPacketMojang
-        public let has_icon:Bool
+        public let messageOfTheDay:ChatPacketMojang
+        public let hasIcon:Bool
         public let icon:[UInt8]?
-        public let enforces_secure_chat:Bool
-        
+        public let enforcesSecureChat:Bool
+
+        public init(
+            messageOfTheDay: ChatPacketMojang,
+            hasIcon: Bool,
+            icon: [UInt8]?,
+            enforcesSecureChat: Bool
+        ) {
+            self.messageOfTheDay = messageOfTheDay
+            self.hasIcon = hasIcon
+            self.icon = icon
+            self.enforcesSecureChat = enforcesSecureChat
+        }
+
+        @inlinable
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            var array:[(any PacketEncodableMojangJava)?] = [message_of_the_day, has_icon]
+            var array:[(any PacketEncodableMojangJava)?] = [messageOfTheDay, hasIcon]
             array.append(contentsOf: array)
-            array.append(enforces_secure_chat)
+            array.append(enforcesSecureChat)
             return array
         }
     }

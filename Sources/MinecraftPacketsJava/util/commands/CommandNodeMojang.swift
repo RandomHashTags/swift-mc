@@ -3,6 +3,7 @@ import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
+
 import MinecraftPackets
 
 public struct CommandNodeMojang: Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
