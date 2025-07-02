@@ -1,3 +1,3 @@
 
-public protocol PacketCodable: PacketEncodable, PacketDecodable {
+public protocol PacketCodable: PacketEncodable, PacketDecodable, ~Copyable {
 }

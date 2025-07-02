@@ -4,7 +4,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetPassengers: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setPassengers
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let entityID:VariableIntegerJava = try packet.readVarInt()
             let passengerCount:VariableIntegerJava = try packet.readVarInt()
             let passengers:[VariableIntegerJava] = try packet.readPacketArray(count: passengerCount.valueInt)

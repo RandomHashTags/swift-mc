@@ -6,14 +6,14 @@ extension ClientPacket.Mojang.Java.Play {
         public static let id = ClientPacket.Mojang.Java.Play.commandSuggestionsResponse
 
         @inlinable
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let id:VariableIntegerJava = try packet.readVarInt()
             let start:VariableIntegerJava = try packet.readVarInt()
             let length:VariableIntegerJava = try packet.readVarInt()
             let count:VariableIntegerJava = try packet.readVarInt()
-            let matches:[CommandSuggestionsResponse.Match] = try packet.readMap(count: count.valueInt) {
-                let match:String = try packet.readString()
-                let hasTooltip:Bool = try packet.readBool()
+            let matches:[CommandSuggestionsResponse.Match] = try packet.readMap(count: count.valueInt) { packet in
+                let match = try packet.readString()
+                let hasTooltip = try packet.readBool()
                 let tooltip:ChatPacketMojang? = nil // TODO: fix
                 return .init(match: match, hasTooltip: hasTooltip, tooltip: tooltip)
             }
@@ -45,7 +45,7 @@ extension ClientPacket.Mojang.Java.Play {
             self.matches = matches
         }
         
-        public struct Match: Codable, PacketEncodableMojangJava {
+        public struct Match: PacketEncodableMojangJava {
             /// One eligible value to insert, note that each command is sent separately instead of in a single string, hence the need for `count`.
             /// > Note: Doesn't include a leading `/` on commands.
             public let match:String
@@ -68,7 +68,7 @@ extension ClientPacket.Mojang.Java.Play {
                 var array:[UInt8] = try match.packetBytes()
                 array.append(contentsOf: try hasTooltip.packetBytes())
                 if hasTooltip {
-                    let tooltip:ChatPacketMojang = try unwrapOptional(tooltip, key_path: \Self.tooltip, precondition: "hasTooltip == true")
+                    let tooltip = try unwrapOptional(tooltip, key: \Self.tooltip, precondition: "hasTooltip == true")
                     array.append(contentsOf: try tooltip.packetBytes())
                 }
                 return array

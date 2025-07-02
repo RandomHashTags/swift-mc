@@ -9,81 +9,82 @@ public extension ServerPacket.Mojang.Java.Play {
     ///
     /// Note that middle-click in creative mode is interpreted by the client and sent as a [Set Creative Mode Slot](https://wiki.vg/Protocol#Set_Creative_Mode_Slot) packet instead.
     struct Interact: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.interact
+        public static let id = ServerPacket.Mojang.Java.Play.interact
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let entityID:VariableIntegerJava = try packet.readVarInt()
             let type:Interact.InteractType = try packet.readEnum()
-            let target_x:Float?
-            let target_y:Float?
-            let target_z:Float?
+            let targetX:Float?
+            let targetY:Float?
+            let targetZ:Float?
             let hand:Interact.Hand?
             switch type {
             case .interact:
-                target_x = nil
-                target_y = nil
-                target_z = nil
+                targetX = nil
+                targetY = nil
+                targetZ = nil
                 hand = try packet.readEnum()
-                break
             case .attack:
-                target_x = nil
-                target_y = nil
-                target_z = nil
+                targetX = nil
+                targetY = nil
+                targetZ = nil
                 hand = nil
-                break
-            case .interact_at:
-                target_x = try packet.readFloat()
-                target_y = try packet.readFloat()
-                target_z = try packet.readFloat()
+            case .interactAt:
+                targetX = try packet.readFloat()
+                targetY = try packet.readFloat()
+                targetZ = try packet.readFloat()
                 hand = try packet.readEnum()
-                break
             }
-            let sneaking:Bool = try packet.readBool()
-            return Self(entityID: entityID, type: type, target_x: target_x, target_y: target_y, target_z: target_z, hand: hand, sneaking: sneaking)
+            let sneaking = try packet.readBool()
+            return Self(entityID: entityID, type: type, targetX: targetX, targetY: targetY, targetZ: targetZ, hand: hand, sneaking: sneaking)
         }
         
         /// The ID of the entity to interact.
         public let entityID:VariableIntegerJava
+
         public let type:Interact.InteractType
+
         /// Only if Type is interact at.
-        public let target_x:Float?
+        public let targetX:Float?
+
         /// Only if Type is interact at.
-        public let target_y:Float?
+        public let targetY:Float?
+
         /// Only if Type is interact at.
-        public let target_z:Float?
+        public let targetZ:Float?
+
         /// Only if Type is interact or interact at.
         public let hand:Interact.Hand?
+
         /// If the client is sneaking.
         public let sneaking:Bool
         
-        public enum InteractType: Int, Codable, PacketEncodableMojangJava {
+        public enum InteractType: Int, PacketEncodableMojangJava {
             case interact
             case attack
-            case interact_at
+            case interactAt
         }
-        public enum Hand: Int, Codable, PacketEncodableMojangJava {
-            case main_hand
-            case off_hand
+        public enum Hand: Int, PacketEncodableMojangJava {
+            case mainHand
+            case offHand
         }
         
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[any PacketEncodableMojangJava] = [entityID, type]
             switch type {
             case .interact:
-                let hand:Interact.Hand = try unwrapOptional(hand, key_path: \Self.hand, precondition: "type == .interact")
+                let hand = try unwrapOptional(hand, key: \Self.hand, precondition: "type == .interact")
                 array.append(hand)
-                break
             case .attack:
                 break
-            case .interact_at:
-                let precondition:String = "type == .interact_at"
-                let x:Float = try unwrapOptional(target_x, key_path: \Self.target_x, precondition: precondition)
-                let y:Float = try unwrapOptional(target_y, key_path: \Self.target_y, precondition: precondition)
-                let z:Float = try unwrapOptional(target_z, key_path: \Self.target_z, precondition: precondition)
-                let hand:Interact.Hand = try unwrapOptional(hand, key_path: \Self.hand, precondition: precondition)
+            case .interactAt:
+                let precondition = "type == .interact_at"
+                let x = try unwrapOptional(targetX, key: \Self.targetX, precondition: precondition)
+                let y = try unwrapOptional(targetY, key: \Self.targetY, precondition: precondition)
+                let z = try unwrapOptional(targetZ, key: \Self.targetZ, precondition: precondition)
+                let hand = try unwrapOptional(hand, key: \Self.hand, precondition: precondition)
                 array.append(contentsOf: [x, y, z])
                 array.append(hand)
-                break
             }
             array.append(sneaking)
             return array

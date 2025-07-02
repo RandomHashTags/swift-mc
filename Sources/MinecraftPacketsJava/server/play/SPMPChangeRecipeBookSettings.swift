@@ -3,9 +3,9 @@ import MinecraftPackets
 public extension ServerPacket.Mojang.Java.Play {
     /// Replaces Recipe Book Data, type 1.
     struct ChangeRecipeBookSettings: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.changeRecipeBookSettings
+        public static let id = ServerPacket.Mojang.Java.Play.changeRecipeBookSettings
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let book:ChangeRecipeBookSettings.BookID = try packet.readEnum()
             let book_open:Bool = try packet.readBool()
             let filter_active:Bool = try packet.readBool()

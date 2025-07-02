@@ -7,7 +7,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct InitializeWorldBorder: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.initializeWorldBorder
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let x:Double = try packet.readDouble()
             let z:Double = try packet.readDouble()
             let old_diameter:Double = try packet.readDouble()

@@ -4,7 +4,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetBorderLerpSize: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setBorderLerpSize
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let old_diameter:Double = try packet.readDouble()
             let new_diameter:Double = try packet.readDouble()
             let speed:VariableLongJava = try packet.readVarLong()

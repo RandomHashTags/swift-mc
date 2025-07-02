@@ -6,26 +6,30 @@ extension ServerPacket.Mojang.Java.Configuration {
     struct ClientInformation: ServerPacketMojangJavaConfigurationProtocol {
         public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.clientInformation
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let locale:String = try packet.readString()
-            let view_distance:Int8 = try packet.readByte()
-            let chat_mode:ChatMode = try packet.readEnum()
-            let chat_colors:Bool = try packet.readBool()
-            let displayed_skin_parts:UInt8 = try packet.readUnsignedByte()
-            let main_hand:MainHand = try packet.readEnum()
-            let enable_text_filtering:Bool = try packet.readBool()
-            let allow_server_listings:Bool = try packet.readBool()
-            return Self(locale: locale, view_distance: view_distance, chat_mode: chat_mode, chat_colors: chat_colors, displayed_skin_parts: displayed_skin_parts, main_hand: main_hand, enable_text_filtering: enable_text_filtering, allow_server_listings: allow_server_listings)
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
+            let locale = try packet.readString()
+            let viewDistance = try packet.readByte()
+            let chatMode:ChatMode = try packet.readEnum()
+            let chatColors = try packet.readBool()
+            let displayedSkinParts = try packet.readUnsignedByte()
+            let mainHand:MainHand = try packet.readEnum()
+            let enableTextFiltering = try packet.readBool()
+            let allowServerListings = try packet.readBool()
+            return Self(locale: locale, viewDistance: viewDistance, chatMode: chatMode, chatColors: chatColors, displayedSkinParts: displayedSkinParts, mainHand: mainHand, enableTextFiltering: enableTextFiltering, allowServerListings: allowServerListings)
         }
         
         /// e.g. `en_GB`.
         public let locale:String
+
         /// Client-side render distance, in chunks.
-        public let view_distance:Int8
+        public let viewDistance:Int8
+
         /// See [processing chat](https://wiki.vg/Chat#Processing_chat) for more information.
-        public let chat_mode:ChatMode
+        public let chatMode:ChatMode
+
         /// “Colors” multiplayer setting. Can the chat be colored?
-        public let chat_colors:Bool
+        public let chatColors:Bool
+
         /// Bit mask, see below.
         ///
         /// Displayed Skin Parts flags:
@@ -39,21 +43,24 @@ extension ServerPacket.Mojang.Java.Configuration {
         /// - Bit 6 (0x40): Hat enabled
         ///
         /// The most significant bit (bit 7, 0x80) appears to be unused.
-        public let displayed_skin_parts:UInt8
-        public let main_hand:MainHand
+        public let displayedSkinParts:UInt8
+
+        public let mainHand:MainHand
+
         /// Enables filtering of text on signs and written book titles. Currently always false (i.e. the filtering is disabled).
-        public let enable_text_filtering:Bool
+        public let enableTextFiltering:Bool
+
         /// Servers usually list online players, this option should let you not show up in that list.
-        public let allow_server_listings:Bool
-        
+        public let allowServerListings:Bool
+
         
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
-            return [locale, view_distance, chat_mode, chat_colors, displayed_skin_parts, main_hand, enable_text_filtering, allow_server_listings]
+            return [locale, viewDistance, chatMode, chatColors, displayedSkinParts, mainHand, enableTextFiltering, allowServerListings]
         }
         
         public enum ChatMode: Int, Codable, PacketEncodableMojangJava {
             case enabled
-            case commands_only
+            case commandsOnly
             case hidden
         }
         public enum MainHand: Int, Codable, PacketEncodableMojangJava {

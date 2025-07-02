@@ -7,9 +7,9 @@ public extension ServerPacket.Mojang.Java.Play {
     /// 
     /// This action can be described as "set inventory slot". Picking up an item sets the slot to item ID -1. Placing an item into an inventory slot sets the slot to the specified item. Dropping an item (by clicking outside the window) effectively sets slot -1 to the specified item, which causes the server to spawn the item entity, etc.. All other inventory slots are numbered the same as the non-creative inventory (including slots for the 2x2 crafting menu, even though they aren't visible in the vanilla client).
     struct SetCreativeMoveSlot: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setCreativeModeSlot
+        public static let id = ServerPacket.Mojang.Java.Play.setCreativeModeSlot
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let slot:Int16 = try packet.readShort()
             let clicked_item:SlotMojang = try packet.readPacket()
             return Self(slot: slot, clicked_item: clicked_item)

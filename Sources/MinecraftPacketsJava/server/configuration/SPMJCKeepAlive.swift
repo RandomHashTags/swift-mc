@@ -6,7 +6,7 @@ extension ServerPacket.Mojang.Java.Configuration {
     struct KeepAlive: ServerPacketMojangJavaConfigurationProtocol {
         public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.keepAlive
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let keep_alive_id:Int64 = try packet.readLong()
             return Self(keep_alive_id: keep_alive_id)
         }

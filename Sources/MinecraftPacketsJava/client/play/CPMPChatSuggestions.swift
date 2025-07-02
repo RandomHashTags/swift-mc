@@ -6,7 +6,7 @@ extension ClientPacket.Mojang.Java.Play {
         public static let id = ClientPacket.Mojang.Java.Play.chatSuggestions
 
         @inlinable
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let action:ChatSuggestions.Action = try packet.readEnum()
             let count:VariableIntegerJava = try packet.readVarInt()
             let entries:[String] = try packet.readStringArray(count: count.valueInt)

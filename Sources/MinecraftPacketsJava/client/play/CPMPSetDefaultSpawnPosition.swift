@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
         public static let id = ClientPacket.Mojang.Java.Play.setDefaultSpawnPosition
         
         /// Sent by the server after login to specify the coordinates of the spawn point (the point at which players spawn at, and which the compass points to). It can be sent at any time to update the point compasses point at.
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let location:PositionPacketMojang = try packet.readPacket()
             let angle:Float = try packet.readFloat()
             return Self(location: location, angle: angle)

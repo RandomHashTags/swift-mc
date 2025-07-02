@@ -62,14 +62,14 @@ public extension ClientPacket.Mojang.Java.Play {
             var secondary:[(any PacketEncodableMojangJava)?]
             switch mode {
             case .create_team, .update_team_info:
-                let precondition:String = "mode == .\(mode)"
-                let teamDisplayName:ChatPacketMojang = try unwrapOptional(teamDisplayName, key_path: \UpdateTeams.teamDisplayName, precondition: precondition)
-                let friendly_flags:Int8 = try unwrapOptional(friendly_flags, key_path: \UpdateTeams.friendly_flags, precondition: precondition)
-                let nameTagVisibility:UpdateTeams.NameTagVisibility = try unwrapOptional(nameTagVisibility, key_path: \UpdateTeams.nameTagVisibility, precondition: precondition)
-                let collisionRule:UpdateTeams.CollisionRule = try unwrapOptional(collisionRule, key_path: \UpdateTeams.collisionRule, precondition: precondition)
-                let teamColor:VariableIntegerJava = try unwrapOptional(teamColor, key_path: \UpdateTeams.teamColor, precondition: precondition)
-                let teamPrefix:ChatPacketMojang = try unwrapOptional(teamPrefix, key_path: \UpdateTeams.teamPrefix, precondition: precondition)
-                let teamSuffix:ChatPacketMojang = try unwrapOptional(teamSuffix, key_path: \UpdateTeams.teamSuffix, precondition: precondition)
+                let precondition = "mode == .\(mode)"
+                let teamDisplayName = try unwrapOptional(teamDisplayName, key: \UpdateTeams.teamDisplayName, precondition: precondition)
+                let friendly_flags = try unwrapOptional(friendly_flags, key: \UpdateTeams.friendly_flags, precondition: precondition)
+                let nameTagVisibility = try unwrapOptional(nameTagVisibility, key: \UpdateTeams.nameTagVisibility, precondition: precondition)
+                let collisionRule = try unwrapOptional(collisionRule, key: \UpdateTeams.collisionRule, precondition: precondition)
+                let teamColor = try unwrapOptional(teamColor, key: \UpdateTeams.teamColor, precondition: precondition)
+                let teamPrefix = try unwrapOptional(teamPrefix, key: \UpdateTeams.teamPrefix, precondition: precondition)
+                let teamSuffix = try unwrapOptional(teamSuffix, key: \UpdateTeams.teamSuffix, precondition: precondition)
                 secondary = [
                     teamDisplayName,
                     friendly_flags,
@@ -80,22 +80,19 @@ public extension ClientPacket.Mojang.Java.Play {
                     teamSuffix
                 ]
                 if mode == .create_team {
-                    let entityCount:VariableIntegerJava = try unwrapOptional(entityCount, key_path: \UpdateTeams.entityCount, precondition: precondition)
-                    let entities:[String] = try unwrapOptional(entities, key_path: \UpdateTeams.entities, precondition: precondition)
+                    let entityCount = try unwrapOptional(entityCount, key: \UpdateTeams.entityCount, precondition: precondition)
+                    let entities = try unwrapOptional(entities, key: \UpdateTeams.entities, precondition: precondition)
                     secondary.append(entityCount)
                     secondary.append(contentsOf: entities)
                 }
-                break
             case .remove_team:
                 secondary = []
-                break
             case .add_entities_to_team, .remove_entities_from_team:
-                let precondition:String = "mode == .\(mode)"
-                let entityCount:VariableIntegerJava = try unwrapOptional(entityCount, key_path: \UpdateTeams.entityCount, precondition: precondition)
-                let entities:[String] = try unwrapOptional(entities, key_path: \UpdateTeams.entities, precondition: precondition)
+                let precondition = "mode == .\(mode)"
+                let entityCount = try unwrapOptional(entityCount, key: \UpdateTeams.entityCount, precondition: precondition)
+                let entities = try unwrapOptional(entities, key: \UpdateTeams.entities, precondition: precondition)
                 secondary = [entityCount]
                 secondary.append(contentsOf: entities)
-                break
             }
             array.append(contentsOf: secondary)
             

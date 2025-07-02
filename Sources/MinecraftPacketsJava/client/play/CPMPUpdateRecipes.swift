@@ -6,23 +6,24 @@ import Foundation
 #endif
 import MinecraftPackets
 
-public extension ClientPacket.Mojang.Java.Play {
-    struct UpdateRecipes: ClientPacket.Mojang.Java.PlayProtocol {
+extension ClientPacket.Mojang.Java.Play {
+    public struct UpdateRecipes: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.updateRecipes
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let count:VariableIntegerJava = try packet.readVarInt()
             let recipes:[UpdateRecipes.UpdateRecipe] = try packet.readMap(count: count.valueInt) {
-                let identifier:NamespaceJava = try packet.readIdentifier()
-                let recipeID:NamespaceJava = try packet.readIdentifier()
+                let identifier:NamespaceJava = try $0.readIdentifier()
+                let recipeID:NamespaceJava = try $0.readIdentifier()
                 let data:Data = Data() // TODO: fix
-                return UpdateRecipes.UpdateRecipe(identifier: identifier, recipeID: recipeID, data: data)
+                return .init(identifier: identifier, recipeID: recipeID, data: data)
             }
             return Self(count: count, recipes: recipes)
         }
         
         /// Number of elements in `recipes`.
         public let count:VariableIntegerJava
+
         public let recipes:[UpdateRecipes.UpdateRecipe]
         
         public struct UpdateRecipe: Codable, PacketEncodableMojangJava {

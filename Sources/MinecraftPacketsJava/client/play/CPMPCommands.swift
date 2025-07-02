@@ -1,3 +1,4 @@
+
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java.Play {
@@ -8,10 +9,10 @@ extension ClientPacket.Mojang.Java.Play {
         public static let id = ClientPacket.Mojang.Java.Play.commands
 
         @inlinable
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let count:VariableIntegerJava = try packet.readVarInt()
             let nodes:[CommandNodeMojang] = try packet.readMap(count: count.valueInt) {
-                return try packet.readPacket()
+                return try $0.readPacket()
             }
             let rootIndex:VariableIntegerJava = try packet.readVarInt()
             return Self(count: count, nodes: nodes, rootIndex: rootIndex)

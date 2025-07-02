@@ -50,8 +50,8 @@ extension ClientPacket.Mojang.Java.Status {
                 enforcesSecureChat: enforces_secure_chat,
                 previewsChat: true
             )
-            let data:Data = try JSONEncoder().encode(statusRequest)
-            guard let string:String = String(data: data, encoding: .utf8) else {
+            let data = try JSONEncoder().encode(statusRequest)
+            guard let string = String(data: data, encoding: .utf8) else {
                 throw DecodingError.valueNotFound(String.self, DecodingError.Context.init(codingPath: [], debugDescription: "couldn't convert statusRequest packet to JSON"))
             }
             json_response = string
@@ -67,8 +67,8 @@ extension ClientPacket.Mojang.Java.Status {
 // MARK: Parse
 extension ClientPacket.Mojang.Java.Status.StatusResponse {
     @inlinable
-    public static func parse(_ packet: any GeneralPacket) throws -> Self {
-        let jsonResponse:String = try packet.readString()
+    public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
+        let jsonResponse = try packet.readString()
         return Self(jsonResponse: jsonResponse)
     }
 }

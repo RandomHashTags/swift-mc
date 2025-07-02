@@ -9,7 +9,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetContainerSlot: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setContainerSlot
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let windowID:Int8 = try packet.readByte()
             let stateID:VariableIntegerJava = try packet.readVarInt()
             let slot:Int16 = try packet.readShort()

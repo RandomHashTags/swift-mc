@@ -17,7 +17,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetCamera: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setCamera
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let camera_id:VariableIntegerJava = try packet.readVarInt()
             return Self(camera_id: camera_id)
         }

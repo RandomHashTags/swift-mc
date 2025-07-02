@@ -10,7 +10,7 @@ extension ClientPacket.Mojang.Java.Play {
         public static let id = ClientPacket.Mojang.Java.Play.bossBar
 
         @inlinable
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let uuid:UUID = try packet.readUUID()
             let action:BossBar.Action = try packet.readEnum()
             var title:ChatPacketMojang? = nil

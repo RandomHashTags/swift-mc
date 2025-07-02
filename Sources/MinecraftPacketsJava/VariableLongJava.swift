@@ -19,7 +19,7 @@ public struct VariableLongJava: VariableLong, PacketEncodableMojangJava, PacketD
 // MARK: Decode
 extension VariableLongJava {
     @inlinable
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
+    public static func decode<T: GeneralPacket>(from packet: inout T) throws -> Self {
         return try packet.readVarLong()
     }
 }

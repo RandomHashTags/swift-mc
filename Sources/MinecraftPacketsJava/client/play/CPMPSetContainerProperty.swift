@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetContainerProperty: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setContainerProperty
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let windowID:UInt8 = try packet.readUnsignedByte()
             let property:Int16 = try packet.readShort()
             let value:Int16 = try packet.readShort()

@@ -60,7 +60,7 @@ public extension ClientPacket.Mojang.Java.Play {
 // MARK: Parse
 extension ClientPacket.Mojang.Java.Play.SpawnPlayer {
     @inlinable
-    public static func parse(_ packet: any GeneralPacket) throws -> Self {
+    public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
         let entityID:VariableIntegerJava = try packet.readVarInt()
         let playerUUID = try packet.readUUID()
         let x = try packet.readDouble()

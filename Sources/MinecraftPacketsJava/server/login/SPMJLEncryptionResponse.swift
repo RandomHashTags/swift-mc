@@ -6,7 +6,7 @@ extension ServerPacket.Mojang.Java.Login {
     struct EncryptionResponse: ServerPacketMojangJavaLoginProtocol {
         public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.encryptionResponse
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let shared_secret_length:VariableIntegerJava = try packet.readVarInt()
             let shared_secret:[UInt8] = try packet.readByteArray(bytes: shared_secret_length.valueInt)
             let verifyTokenLength:VariableIntegerJava = try packet.readVarInt()

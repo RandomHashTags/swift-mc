@@ -14,9 +14,9 @@ extension ClientPacket.Mojang.Java.Login {
         public static let id = ClientPacket.Mojang.Java.Login.loginSuccess
 
         @inlinable
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let uuid:UUID = try packet.readUUID()
-            let username:String = try packet.readString()
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
+            let uuid = try packet.readUUID()
+            let username = try packet.readString()
             let numberOfProperties:VariableIntegerJava = try packet.readVarInt()
             let properties:[Property] = try packet.readPacketArray(count: numberOfProperties.valueInt)
             return Self(uuid: uuid, username: username, numberOfProperties: numberOfProperties, properties: properties)
@@ -53,11 +53,11 @@ extension ClientPacket.Mojang.Java.Login {
 extension ClientPacket.Mojang.Java.Login.LoginSuccess {
     public struct Property: Codable, PacketEncodableMojangJava, PacketDecodableMojangJava {
         @inlinable
-        public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
-            let name:String = try packet.readString()
-            let value:String = try packet.readString()
-            let isSigned:Bool = try packet.readBool()
-            let signature:String? = isSigned ? try packet.readString() : nil
+        public static func decode<T: GeneralPacket>(from packet: inout T) throws -> Self {
+            let name = try packet.readString()
+            let value = try packet.readString()
+            let isSigned = try packet.readBool()
+            let signature = isSigned ? try packet.readString() : nil
             return Self(name: name, value: value, isSigned: isSigned, signature: signature)
         }
         
@@ -86,7 +86,7 @@ extension ClientPacket.Mojang.Java.Login.LoginSuccess {
             array.append(contentsOf: try value.packetBytes())
             array.append(contentsOf: try isSigned.packetBytes())
             if isSigned {
-                let signature:String = try unwrapOptional(signature, key_path: \Self.signature, precondition: "isSigned == true")
+                let signature = try unwrapOptional(signature, key: \Self.signature, precondition: "isSigned == true")
                 array.append(contentsOf: try signature.packetBytes())
             }
             return array

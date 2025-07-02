@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct PickupItem: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.pickupItem
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let collected_entity_id:VariableIntegerJava = try packet.readVarInt()
             let collector_entity_id:VariableIntegerJava = try packet.readVarInt()
             let pickup_item_count:VariableIntegerJava = try packet.readVarInt()

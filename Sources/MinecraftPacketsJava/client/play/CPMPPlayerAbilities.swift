@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct PlayerAbilities: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.playerAbilities
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let flags:Flags = try packet.readEnum()
             let flying_speed:Float = try packet.readFloat()
             let field_of_view_modifier:Float = try packet.readFloat()

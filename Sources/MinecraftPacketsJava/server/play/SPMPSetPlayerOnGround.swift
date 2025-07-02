@@ -7,7 +7,7 @@ public extension ServerPacket.Mojang.Java.Play {
     ///
     /// When dropping from sufficient height, fall damage is applied when this state goes from false to true. The amount of damage applied is based on the point where it last changed from true to false. Note that there are several movement related packets containing this state.
     struct SetPlayerOnGround: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setPlayerOnGround
+        public static let id = ServerPacket.Mojang.Java.Play.setPlayerOnGround
         
         /// True if the client is on the ground, false otherwise.
         public let onGround:Bool

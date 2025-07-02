@@ -9,7 +9,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetCenterChunk: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setCenterChunk
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let chunk_x:VariableIntegerJava = try packet.readVarInt()
             let chunk_z:VariableIntegerJava = try packet.readVarInt()
             return Self(chunk_x: chunk_x, chunk_z: chunk_z)

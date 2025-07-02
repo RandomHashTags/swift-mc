@@ -11,7 +11,7 @@ import SwiftASN1
 /*
 // BlueSocket TCP Server
 public final class ServerMojang {
-    private static let domain:String = ""
+    private static let domain = ""
     public private(set) static var instance:ServerMojang!
     public private(set) static var publicKey:String!, private_key:String!
     
@@ -226,7 +226,7 @@ final class ServerMojangHandler: ChannelInboundHandler {
             }
             break
         case .status:
-            let version:MinecraftProtocolVersion.Java = MinecraftProtocolVersion.v1_20_2
+            let version = MinecraftProtocolVersion.v1_20_2
             let statusRequest:ServerPacketMojangStatusResponse = ServerPacketMojangStatusResponse(
                 version: ServerPacketMojangStatusResponse.Version(name: version.name, protocol: version.rawValue),
                 players: ServerPacketMojangStatusResponse.Players(max: 10, online: 1, sample: [ServerPacketMojangStatusResponse.Player(name: "thinkofdeath", id: UUID("4566e69f-c907-48ee-8d71-d7ba5aa00d20")!)]),
@@ -236,8 +236,8 @@ final class ServerMojangHandler: ChannelInboundHandler {
                 previewsChat: true
             )
             do {
-                let data:Data = try JSONEncoder().encode(statusRequest)
-                let string:String = String(data: data, encoding: .utf8)!
+                let data = try JSONEncoder().encode(statusRequest)
+                let string = String(data: data, encoding: .utf8)!
                 write(context: context, bytes: try string.packetBytes()) {
                     print("ServerMojang;channelRead;state==.status;write onComplete, reading...")
                     context.read()

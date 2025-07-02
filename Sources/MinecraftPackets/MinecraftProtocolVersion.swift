@@ -9,7 +9,7 @@ public protocol MinecraftProtocolVersionProtocol: Codable, RawRepresentable wher
 extension MinecraftProtocolVersionProtocol {
     @inlinable
     public var name: String {
-        let string:String = "\(self)".replacing("_", with: ".")
+        let string = "\(self)".replacing("_", with: ".")
         return String(string[string.index(after: string.startIndex)..<string.endIndex])
     }
 }

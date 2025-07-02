@@ -12,7 +12,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct Explosion: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.explosion
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let x:Double = try packet.readDouble()
             let y:Double = try packet.readDouble()
             let z:Double = try packet.readDouble()

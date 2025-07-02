@@ -1,3 +1,4 @@
+
 import MinecraftPackets
 
 public struct NamespaceJava: Namespace, PacketEncodableMojangJava, PacketDecodableMojangJava { // TODO: fix (PacketEncodableMojangJava)
@@ -22,13 +23,13 @@ public struct NamespaceJava: Namespace, PacketEncodableMojangJava, PacketDecodab
     }
     
     public func encode(to encoder: Encoder) throws {
-        var container:SingleValueEncodingContainer = encoder.singleValueContainer()
+        var container = encoder.singleValueContainer()
         try container.encode(description)
     }
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        let string:String = try container.decode(String.self)
-        guard let namespace:NamespaceJava = NamespaceJava(string) else {
+        let string = try container.decode(String.self)
+        guard let namespace = NamespaceJava(string) else {
             throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "invalid string: \(string)"))
         }
         self = namespace
@@ -43,7 +44,7 @@ public struct NamespaceJava: Namespace, PacketEncodableMojangJava, PacketDecodab
 // MARK: Decode
 extension NamespaceJava {
     @inlinable
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
-        return try (packet as! GeneralPacketMojang).readIdentifier()
+    public static func decode<T: GeneralPacket>(from packet: inout T) throws -> Self {
+        return try packet.readIdentifier()
     }
 }

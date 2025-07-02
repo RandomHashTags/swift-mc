@@ -9,7 +9,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct FeatureFlags: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.featureFlags
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let total_features:VariableIntegerJava = try packet.readVarInt()
             let featureFlags:[NamespaceJava] = try packet.readPacketArray(count: total_features.valueInt)
             return Self(total_features: total_features, featureFlags: featureFlags)

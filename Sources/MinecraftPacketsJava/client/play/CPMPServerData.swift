@@ -4,7 +4,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct ServerData: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.serverData
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let message_of_the_day:ChatPacketMojang = try packet.readPacket()
             let has_icon:Bool = try packet.readBool()
             let icon:[UInt8]? = has_icon ? try packet.readByteArray(bytes: packet.count) : nil // TODO: fix

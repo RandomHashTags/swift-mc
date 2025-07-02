@@ -6,7 +6,7 @@ extension ServerPacket.Mojang.Java.Status {
     struct StatusRequest: ServerPacketMojangJavaStatusProtocol {
         public static let id:ServerPacket.Mojang.Java.Status = ServerPacket.Mojang.Java.Status.statusRequest
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             return StatusRequest()
         }
         

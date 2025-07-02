@@ -2,9 +2,9 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     struct MessageAcknowledgment: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.messageAcknowledgement
+        public static let id = ServerPacket.Mojang.Java.Play.messageAcknowledgement
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let message_count:VariableIntegerJava = try packet.readVarInt()
             return Self(message_count: message_count)
         }

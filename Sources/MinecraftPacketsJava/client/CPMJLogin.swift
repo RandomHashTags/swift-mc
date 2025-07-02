@@ -1,3 +1,4 @@
+
 import MinecraftPackets
 
 extension ClientPacket.Mojang.Java {

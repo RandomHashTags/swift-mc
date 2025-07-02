@@ -1,3 +1,4 @@
+
 import MinecraftPackets
 
 public protocol ClientPacketMojangJavaProtocol: ClientPacketProtocol, PacketMojangJava {

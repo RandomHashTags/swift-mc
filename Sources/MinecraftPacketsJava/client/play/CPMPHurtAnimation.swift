@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct HurtAnimation: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.hurtAnimation
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let entityID:VariableIntegerJava = try packet.readVarInt()
             let yaw:Float = try packet.readFloat()
             return Self(entityID: entityID, yaw: yaw)

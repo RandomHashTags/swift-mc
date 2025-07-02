@@ -1,2 +1,3 @@
-public protocol ClientPacketProtocol: Packet {
+
+public protocol ClientPacketProtocol: Packet, ~Copyable {
 }

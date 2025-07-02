@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct OpenHorseScreen: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.openHorseScreen
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let windowID:UInt8 = try packet.readUnsignedByte()
             let slotCount:VariableIntegerJava = try packet.readVarInt()
             let entityID:Int32 = try packet.readInt()

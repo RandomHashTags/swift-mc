@@ -12,7 +12,7 @@ extension ServerPacket.Mojang.Java.Configuration {
     struct PluginMessage: ServerPacketMojangJavaConfigurationProtocol {
         public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.pluginMessage
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let channel:NamespaceJava = try packet.readIdentifier()
             let data:[UInt8] = try packet.readRemainingByteArray()
             return Self(channel: channel, data: data)

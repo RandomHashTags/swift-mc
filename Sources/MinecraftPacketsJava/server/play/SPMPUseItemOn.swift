@@ -9,9 +9,9 @@ public extension ServerPacket.Mojang.Java.Play {
     ///
     /// Inside block is true when a player's head (specifically eyes) are inside of a block's collision. In 1.13 and later versions, collision is rather complicated and individual blocks can have multiple collision boxes. For instance, a ring of vines has a non-colliding hole in the middle. This value is only true when the player is directly in the box. In practice, though, this value is only used by scaffolding to place in front of the player when sneaking inside of it (other blocks will place behind when you intersect with them -- try with glass for instance).
     struct UseItemOn: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.useItemOn
+        public static let id = ServerPacket.Mojang.Java.Play.useItemOn
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let hand:UseItemOn.Hand = try packet.readEnum()
             let location:PositionPacketMojang = try packet.readPacket()
             let face:PlayerAction.Face = try packet.readEnum()

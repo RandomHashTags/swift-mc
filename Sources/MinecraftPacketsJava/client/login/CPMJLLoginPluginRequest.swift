@@ -11,7 +11,7 @@ extension ClientPacket.Mojang.Java.Login {
         public static let id = ClientPacket.Mojang.Java.Login.loginPluginRequest
 
         @inlinable
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let messageID:VariableIntegerJava = try packet.readVarInt()
             let channel:NamespaceJava = try packet.readIdentifier()
             let data:[UInt8] = try packet.readRemainingByteArray()

@@ -2,9 +2,9 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     struct ClickContainerButton: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.clickContainerButton
+        public static let id = ServerPacket.Mojang.Java.Play.clickContainerButton
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let windowID:Int8 = try packet.readByte()
             let button_id:Int8 = try packet.readByte()
             return Self(windowID: windowID, button_id: button_id)

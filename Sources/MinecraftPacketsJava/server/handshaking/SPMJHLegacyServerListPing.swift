@@ -7,7 +7,7 @@ extension ServerPacket.Mojang.Java.Handshaking {
     struct LegacyServerListPing: ServerPacketMojangJavaHandshakingProtocol {
         public static let id:ServerPacket.Mojang.Java.Handshaking = ServerPacket.Mojang.Java.Handshaking.legacyServerListPing
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let payload:UInt8 = try packet.readUnsignedByte()
             return Self(payload: payload)
         }

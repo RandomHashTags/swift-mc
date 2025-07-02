@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetRenderDistance: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setRenderDistance
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let view_distance:VariableIntegerJava = try packet.readVarInt()
             return Self(view_distance: view_distance)
         }

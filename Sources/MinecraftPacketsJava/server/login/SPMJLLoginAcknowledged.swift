@@ -8,7 +8,7 @@ extension ServerPacket.Mojang.Java.Login {
     struct LoginAcknowledged: ServerPacketMojangJavaLoginProtocol {
         public static let id:ServerPacket.Mojang.Java.Login = ServerPacket.Mojang.Java.Login.loginAcknowledged
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             return Self()
         }
         

@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct Ping: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.ping
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let id:Int32 = try packet.readInt()
             return Self(id: id)
         }

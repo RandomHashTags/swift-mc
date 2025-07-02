@@ -25,7 +25,7 @@ extension ClientPacket.Mojang.Java.Configuration {
 // MARK: Parse
 extension ClientPacket.Mojang.Java.Configuration.KeepAlive {
     @inlinable
-    public static func parse(_ packet: any GeneralPacket) throws -> Self {
+    public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
         let keepAliveID = try packet.readLong()
         return Self(keepAliveID: keepAliveID)
     }

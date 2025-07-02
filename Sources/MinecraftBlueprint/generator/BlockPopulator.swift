@@ -1,7 +1,8 @@
 public struct BlockPopulator {
     
     static func populate(chunk: any Chunk) {
-        /*let world:any World = chunk.world, world_name:String = world.name
+        /*let world = chunk.world
+        let world_name = world.name
         let seed:UInt64 = UInt64(world.seed)
         let yMax:HugeFloat = world.yMax, yMin:HugeFloat = world.yMin
         
@@ -11,11 +12,11 @@ public struct BlockPopulator {
         for x in 0..<16 {
             let x_double:HugeInt = HugeInt(x)
             let location_x:HugeInt = (chunk.x * 16) + x_double
-            let location_x_string:String = location_x.description
+            let location_x_string = location_x.description
             for z in 0..<16 {
                 let z_double:HugeInt = HugeInt(z)
                 let location_z:HugeInt = (chunk.z * 16) + z_double
-                let location_z_string:String = location_z.description
+                let location_z_string = location_z.description
                 
                 let height:Int = Int( (noise.octavePerlin(x: location_x / 64, y: 0, z: location_z / 64, octaves: 5, persistence: 0.5) + 1.0) * 32.0 )
                 print("BlockPopulator;populate;x=" + x.description + ";z=" + z.description + ";height=" + height.description)

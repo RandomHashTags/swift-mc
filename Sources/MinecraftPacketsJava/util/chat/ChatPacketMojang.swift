@@ -60,8 +60,8 @@ public struct ChatPacketMojang: ChatPacket, PacketMojangJava, PacketEncodableMoj
 // MARK: Decode
 extension ChatPacketMojang {
     @inlinable
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> ChatPacketMojang {
-        throw GeneralPacketError.not_implemented(packet_type: Self.self)
+    public static func decode<T: GeneralPacket>(from packet: inout T) throws -> ChatPacketMojang {
+        throw GeneralPacketError.notImplemented(packetType: Self.self)
     }
 }
 

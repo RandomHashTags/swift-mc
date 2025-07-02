@@ -3,9 +3,9 @@ import MinecraftPackets
 public extension ServerPacket.Mojang.Java.Play {
     /// Sent when pressing the Use Item key (default: right click) with an item in hand.
     struct UseItem: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.useItem
+        public static let id = ServerPacket.Mojang.Java.Play.useItem
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let hand:UseItem.Hand = try packet.readEnum()
             let sequence:VariableIntegerJava = try packet.readVarInt()
             return Self(hand: hand, sequence: sequence)

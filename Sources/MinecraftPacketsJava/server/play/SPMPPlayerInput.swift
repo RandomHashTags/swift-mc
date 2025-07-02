@@ -5,9 +5,9 @@ public extension ServerPacket.Mojang.Java.Play {
     ///
     /// Also known as 'Input' packet.
     struct PlayerInput: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.playerInput
+        public static let id = ServerPacket.Mojang.Java.Play.playerInput
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let sideways:Float = try packet.readFloat()
             let forward:Float = try packet.readFloat()
             let flags:UInt8 = try packet.readUnsignedByte()

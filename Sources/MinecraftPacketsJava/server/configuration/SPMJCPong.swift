@@ -6,7 +6,7 @@ extension ServerPacket.Mojang.Java.Configuration {
     struct Pong: ServerPacketMojangJavaConfigurationProtocol {
         public static let id:ServerPacket.Mojang.Java.Configuration = ServerPacket.Mojang.Java.Configuration.pong
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let id:Int32 = try packet.readInt()
             return Self(id: id)
         }

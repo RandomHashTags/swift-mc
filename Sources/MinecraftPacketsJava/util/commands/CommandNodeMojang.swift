@@ -44,7 +44,7 @@ public struct CommandNodeMojang: Codable, PacketEncodableMojangJava, PacketDecod
             array.append(contentsOf: try child.packetBytes())
         }
         if (flags & 0x08) != 0 {
-            let redirectNode:VariableIntegerJava = try unwrapOptional(redirectNode, key_path: \Self.redirectNode, precondition: "(flags & 0x08) != 0")
+            let redirectNode = try unwrapOptional(redirectNode, key: \Self.redirectNode, precondition: "(flags & 0x08) != 0")
             array.append(contentsOf: try redirectNode.packetBytes())
         }
         return array
@@ -54,11 +54,11 @@ public struct CommandNodeMojang: Codable, PacketEncodableMojangJava, PacketDecod
 // MARK: Decode
 extension CommandNodeMojang {
     @inlinable
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
-        let flags:Int8 = try packet.readByte()
+    public static func decode<T: GeneralPacket>(from packet: inout T) throws -> Self {
+        let flags = try packet.readByte()
         let childrenCount:VariableIntegerJava = try packet.readVarInt()
         let children:[VariableIntegerJava] = try packet.readMap(count: childrenCount.valueInt) {
-            return try packet.readVarInt()
+            return try $0.readVarInt()
         }
         let redirectNode:VariableIntegerJava?
         if (flags & 0x08) != 0 {
@@ -67,7 +67,7 @@ extension CommandNodeMojang {
             redirectNode = nil
         }
         
-        let flagNodeType:Int8 = flags & 0x03
+        let flagNodeType = flags & 0x03
         
         let name:String?
         let parser:CommandNodeMojang.Parser?
@@ -193,6 +193,6 @@ public protocol CommandNodeMojangProperty: Codable, PacketEncodableMojangJava {
 extension CommandNodeMojangProperty {
     @inlinable
     public func packetBytes() throws -> [UInt8] {
-        return try encodedValues().compactMap({ $0 }).map({ try $0.packetBytes() }).flatMap({ $0 })
+        return try encodedValues().compactMap({ try $0?.packetBytes() }).flatMap({ $0 })
     }
 }

@@ -3,9 +3,9 @@ import MinecraftPackets
 public extension ServerPacket.Mojang.Java.Play {
     /// Sent when the player changes the slot selection.
     struct SetHeldItem: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setHeldItem
+        public static let id = ServerPacket.Mojang.Java.Play.setHeldItem
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let slot:Int16 = try packet.readShort()
             return Self(slot: slot)
         }

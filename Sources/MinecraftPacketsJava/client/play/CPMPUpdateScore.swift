@@ -5,10 +5,10 @@ public extension ClientPacket.Mojang.Java.Play {
     struct UpdateScore: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.updateScore
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
-            let entityName:String = try packet.readString()
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
+            let entityName = try packet.readString()
             let action:UpdateScore.Action = try packet.readEnum()
-            let objectiveName:String = try packet.readString()
+            let objectiveName = try packet.readString()
             let value:VariableIntegerJava?
             if action != .remove_item {
                 value = try packet.readVarInt()
@@ -34,7 +34,7 @@ public extension ClientPacket.Mojang.Java.Play {
         public func encodedValues() throws -> [(any PacketEncodableMojangJava)?] {
             var array:[(any PacketEncodableMojangJava)?] = [entityName, action, objectiveName]
             if action != .remove_item {
-                let value:VariableIntegerJava = try unwrapOptional(value, key_path: \Self.value, precondition: "action.rawValue != 1")
+                let value = try unwrapOptional(value, key: \Self.value, precondition: "action.rawValue != 1")
                 array.append(value)
             }
             return array

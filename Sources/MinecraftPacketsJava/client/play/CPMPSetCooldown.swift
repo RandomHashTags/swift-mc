@@ -6,7 +6,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetCooldown: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setCooldown
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let item_id:VariableIntegerJava = try packet.readVarInt()
             let cooldown_ticks:VariableIntegerJava = try packet.readVarInt()
             return Self(item_id: item_id, cooldown_ticks: cooldown_ticks)

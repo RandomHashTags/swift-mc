@@ -1,3 +1,4 @@
+
 #if canImport(FoundationEssentials)
 import FoundationEssentials
 #elseif canImport(Foundation)
@@ -5,9 +6,13 @@ import Foundation
 #endif
 import MinecraftPackets
 
-public protocol PacketMojangJava: Packet where IDValue == UInt {
-    
+public protocol PacketMojangJava: Packet, ~Copyable where IDValue == UInt {
+
     associatedtype GameplayID: PacketGameplayID
+
+    static func parse(
+        _ packet: inout GeneralPacketMojang
+    ) throws -> Self
     
     static func serverReceived(_ client: any MinecraftClientHandler) throws
     static var packetGameplayID: GameplayID.Type { get }
@@ -15,6 +20,13 @@ public protocol PacketMojangJava: Packet where IDValue == UInt {
     static var id: GameplayID { get }
     
     func encodedValues() throws -> [(any PacketEncodableMojangJava)?]
+}
+
+extension PacketMojangJava {
+    @inlinable
+    public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
+        throw GeneralPacketError.notImplemented(packetType: Self.self)
+    }
 }
 
 extension PacketMojangJava {
@@ -36,16 +48,16 @@ extension PacketMojangJava {
     
     // TODO: support compression
     @inlinable
-    public func as_client_response() throws -> Data {
-        let packet_id_bytes:[UInt8] = try VariableIntegerJava(value: Int32(Self.id.rawValue)).packetBytes()
+    public func asClientResponse() throws -> Data {
+        let packetIdBytes:[UInt8] = try VariableIntegerJava(value: Int32(Self.id.rawValue)).packetBytes()
         let data = try packetBytes()
         
-        let length:Int = packet_id_bytes.count + data.count
+        let length:Int = packetIdBytes.count + data.count
         var bytes = try VariableIntegerJava(value: Int32(length)).packetBytes()
-        bytes.append(contentsOf: packet_id_bytes)
+        bytes.append(contentsOf: packetIdBytes)
         bytes.append(contentsOf: data)
         
-        print("PacketMojangJava;as_client_response;id=\(Self.id);packet_id_bytes.count=\(packet_id_bytes.count);data.count=\(data.count);length=\(length)")
+        print("PacketMojangJava;asClientResponse;id=\(Self.id);packetIdBytes.count=\(packetIdBytes.count);data.count=\(data.count);length=\(length)")
         return Data(bytes)
     }
 

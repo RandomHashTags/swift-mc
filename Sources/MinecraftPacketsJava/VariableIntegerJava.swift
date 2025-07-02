@@ -1,9 +1,10 @@
+
 import MinecraftPackets
 
 /// An integer between -2147483648 and 2147483647.
 ///
 /// Variable-length data encoding a two's complement signed 32-bit integer.
-public struct VariableIntegerJava: Hashable, VariableInteger, PacketEncodableMojangJava, PacketDecodableMojangJava {
+public struct VariableIntegerJava: Codable, Hashable, VariableInteger, PacketEncodableMojangJava, PacketDecodableMojangJava {
     public let value:Int32
 
     @inlinable
@@ -25,7 +26,7 @@ public struct VariableIntegerJava: Hashable, VariableInteger, PacketEncodableMoj
 // MARK: Decode
 extension VariableIntegerJava {
     @inlinable
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> Self {
+    public static func decode<T: GeneralPacket>(from packet: inout T) throws -> Self {
         try packet.readVarInt()
     }
 }

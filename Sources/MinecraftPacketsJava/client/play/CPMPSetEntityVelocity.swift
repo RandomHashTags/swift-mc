@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetEntityVelocity: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setEntityVelocity
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let entityID:VariableIntegerJava = try packet.readVarInt()
             let velocityX:Int16 = try packet.readShort()
             let velocityY:Int16 = try packet.readShort()

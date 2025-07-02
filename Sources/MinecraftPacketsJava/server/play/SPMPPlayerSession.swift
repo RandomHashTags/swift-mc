@@ -7,9 +7,9 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     struct PlayerSession: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.playerSession
+        public static let id = ServerPacket.Mojang.Java.Play.playerSession
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let session_id:UUID = try packet.readUUID()
             let expires_at:Int64 = try packet.readLong()
             let publicKeyLength:VariableIntegerJava = try packet.readVarInt()

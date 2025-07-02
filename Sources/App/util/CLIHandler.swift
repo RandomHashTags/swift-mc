@@ -5,8 +5,8 @@ import Logging
 enum CLIHandler {
     static func listen() {
         /*
-        guard let line:String = get_input() else { return }
-        if let label:Substring = line.split(separator: " ").first {
+        guard let line = get_input() else { return }
+        if let label = line.split(separator: " ").first {
             if let command:any Command = GluonServer.shared.commands[String(label)] {
                 /*Task {
                     let succeeded:Bool = await command.execute(sender: /* console sender */)

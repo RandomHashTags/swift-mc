@@ -24,7 +24,7 @@ extension ClientPacket.Mojang.Java.Status {
 // MARK: Parse
 extension ClientPacket.Mojang.Java.Status.PingResponse {
     @inlinable
-    public static func parse(_ packet: any GeneralPacket) throws -> Self {
+    public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
         let payload = try packet.readLong()
         return Self(payload: payload)
     }

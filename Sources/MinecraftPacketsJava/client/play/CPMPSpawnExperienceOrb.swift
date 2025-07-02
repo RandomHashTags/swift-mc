@@ -44,7 +44,7 @@ extension ClientPacket.Mojang.Java.Play {
 // MARK: Parse
 extension ClientPacket.Mojang.Java.Play.SpawnExperienceOrb {
     @inlinable
-    public static func parse(_ packet: any GeneralPacket) throws -> Self {
+    public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
         let entityID:VariableIntegerJava = try packet.readVarInt()
         let x = try packet.readDouble()
         let y = try packet.readDouble()

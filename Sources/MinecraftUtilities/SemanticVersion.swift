@@ -1,8 +1,9 @@
+
 public struct SemanticVersion: Hashable, Comparable {
     public static func < (lhs: SemanticVersion, rhs: SemanticVersion) -> Bool {
-        let leftMajor:Int = lhs.major, rightMajor:Int = rhs.major
-        let leftMinor:Int = lhs.minor, rightMinor:Int = rhs.minor
-        let leftPatch:Int = lhs.patch, rightPatch:Int = rhs.patch
+        let leftMajor = lhs.major, rightMajor = rhs.major
+        let leftMinor = lhs.minor, rightMinor = rhs.minor
+        let leftPatch = lhs.patch, rightPatch = rhs.patch
         return leftMajor < rightMajor || leftMajor == rightMajor && (leftMinor < rightMinor || leftMinor == rightMinor && leftPatch < rightPatch)
     }
     
@@ -14,19 +15,19 @@ public struct SemanticVersion: Hashable, Comparable {
         self.patch = patch
     }
     public init(string: String) {
-        let values:[Substring] = string.split(separator: ".")
+        let values = string.split(separator: ".")
         major = Int(values[0]) ?? 0
         minor = Int(values[1]) ?? 0
         patch = Int(values[2]) ?? 0
     }
     
     public func encode(to encoder: Encoder) throws {
-        var container:SingleValueEncodingContainer = encoder.singleValueContainer()
+        var container = encoder.singleValueContainer()
         try container.encode(description)
     }
     public init(from decoder: Decoder) throws {
-        let container:SingleValueDecodingContainer = try decoder.singleValueContainer()
-        let string:String = try container.decode(String.self)
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
         self = SemanticVersion(string: string)
     }
     

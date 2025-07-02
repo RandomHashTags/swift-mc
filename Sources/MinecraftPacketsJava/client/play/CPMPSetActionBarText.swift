@@ -4,7 +4,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetActionBarText: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setActionBarText
         
-        public static func parse(_ packet: any GeneralPacket) throws -> ClientPacket.Mojang.Java.Play.SetActionBarText {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> ClientPacket.Mojang.Java.Play.SetActionBarText {
             let action_bar_text:ChatPacketMojang = try packet.readPacket()
             return Self(action_bar_text: action_bar_text)
         }

@@ -35,7 +35,7 @@ extension ClientPacket.Mojang.Java.Configuration {
 // MARK: Parse
 extension ClientPacket.Mojang.Java.Configuration.PluginMessage {
     @inlinable
-    public static func parse(_ packet: any GeneralPacket) throws -> Self {
+    public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
         let channel:NamespaceJava = try packet.readIdentifier()
         let data = try packet.readRemainingByteArray()
         return Self(channel: channel, data: data)

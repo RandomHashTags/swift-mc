@@ -15,9 +15,9 @@ public extension ServerPacket.Mojang.Java.Play {
     ///
     /// Also, if the absolute value of X or the absolute value of Z is a value greater than 3.2×107, or X, Y, or Z are not finite (either positive infinity, negative infinity, or NaN), the client will be kicked for “Invalid move player packet received”.
     struct SetPlayerPosition: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setPlayerPosition
+        public static let id = ServerPacket.Mojang.Java.Play.setPlayerPosition
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let x:Double = try packet.readDouble()
             let feet_y:Double = try packet.readDouble()
             let z:Double = try packet.readDouble()

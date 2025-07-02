@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct TeleportEntity: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.teleportEntity
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let entityID:VariableIntegerJava = try packet.readVarInt()
             let x:Double = try packet.readDouble()
             let y:Double = try packet.readDouble()

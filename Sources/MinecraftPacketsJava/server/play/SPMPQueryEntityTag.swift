@@ -3,9 +3,9 @@ import MinecraftPackets
 public extension ServerPacket.Mojang.Java.Play {
     /// Used when F3+I is pressed while looking at an entity.
     struct QueryEntityTag: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.queryEntityTag
+        public static let id = ServerPacket.Mojang.Java.Play.queryEntityTag
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let transactionID:VariableIntegerJava = try packet.readVarInt()
             let entityID:VariableIntegerJava = try packet.readVarInt()
             return Self(transactionID: transactionID, entityID: entityID)

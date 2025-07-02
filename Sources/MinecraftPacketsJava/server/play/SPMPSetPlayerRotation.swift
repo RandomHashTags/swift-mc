@@ -27,9 +27,9 @@ public extension ServerPacket.Mojang.Java.Play {
     /// z =  cos(pitch) * cos(yaw)
     /// ```
     struct SetPlayerRotation: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.setPlayerRotation
+        public static let id = ServerPacket.Mojang.Java.Play.setPlayerRotation
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let yaw:Float = try packet.readFloat()
             let pitch:Float = try packet.readFloat()
             let onGround:Bool = try packet.readBool()

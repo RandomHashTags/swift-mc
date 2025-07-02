@@ -5,7 +5,7 @@ public extension ServerPacket.Mojang.Java.Play {
     ///
     /// The server will broadcast the same chat message to all players on the server (including the player that sent the message), prepended with player's name. Specifically, it will respond with a translate chat component, "chat.type.text" with the first parameter set to the display name of the player (including some chat component logic to support clicking the name to send a PM) and the second parameter set to the message. See [processing chat](https://wiki.vg/Chat#Processing_chat) for more information.
     struct ChatMessage: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.chatMessage
+        public static let id = ServerPacket.Mojang.Java.Play.chatMessage
         
         public let message:String
         public let timestamp:Int64
@@ -25,7 +25,7 @@ public extension ServerPacket.Mojang.Java.Play {
                 has_signature
             ]
             if has_signature {
-                let signature:[UInt8] = try unwrapOptional(signature, key_path: \Self.signature, precondition: "has_signature == true")
+                let signature = try unwrapOptional(signature, key: \Self.signature, precondition: "has_signature == true")
                 array.append(contentsOf: signature)
             }
             array.append(message_count)

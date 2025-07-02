@@ -1,11 +1,12 @@
+
 // https://wiki.vg/Entity_statuses
-public enum EntityStatusCodeMojangJava: UInt, Hashable, Codable { // TODO: fix
+public enum EntityStatusCodeMojangJava: UInt, Hashable { // TODO: fix
     case arrow = 0
-    case minecart_spawner_or_rabbit
+    case minecartSpawnerOrRabbit
     case none
-    case egg_or_living_entity_or_snowball
-    case evoker_fangs_or_hoglin_or_iron_golem_or_ravager_or_warden_or_zoglin
-    case none_2
-    case abstract_horse_or_tameable_animal
-    case abstract_horse_or_tameable_animal_2
+    case eggOrLivingEntityOrSnowball
+    case evokerFangsOrHoglinOrIronGolemOrRavagerOrWardenOrZoglin
+    case none2
+    case abstractHorseOrTameableAnimal
+    case abstractHorseOrTameableAnimal2
 }

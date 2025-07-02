@@ -7,7 +7,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct KeepAlive: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.keepAlive
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let keep_alive_id:Int64 = try packet.readLong()
             return Self(keep_alive_id: keep_alive_id)
         }

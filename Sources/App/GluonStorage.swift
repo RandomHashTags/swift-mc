@@ -101,11 +101,11 @@ public protocol GluonSharedInstance {
 }
 extension GluonSharedInstance {
     public static var shared: Self {
-        let type:String = String(describing: Self.self)
-        if let cached:Self = GluonStorageSharedInstances.instances[type] as? Self {
+        let type = String(describing: Self.self)
+        if let cached = GluonStorageSharedInstances.instances[type] as? Self {
             return cached
         }
-        let bro:Self = Self.init()
+        let bro = Self.init()
         GluonStorageSharedInstances.instances[type] = bro
         return bro
     }

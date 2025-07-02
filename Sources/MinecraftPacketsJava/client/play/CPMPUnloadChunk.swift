@@ -7,7 +7,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct UnloadChunk: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.unloadChunk
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let chunk_x:Int32 = try packet.readInt()
             let chunk_z:Int32 = try packet.readInt()
             return Self(chunk_x: chunk_x, chunk_z: chunk_z)

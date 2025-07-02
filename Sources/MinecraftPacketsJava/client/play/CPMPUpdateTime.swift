@@ -9,7 +9,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct UpdateTime: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.updateTime
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let worldAge:Int64 = try packet.readLong()
             let timeOfDay:Int64 = try packet.readLong()
             return Self(worldAge: worldAge, timeOfDay: timeOfDay)

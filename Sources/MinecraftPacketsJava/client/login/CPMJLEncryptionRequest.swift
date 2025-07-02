@@ -48,7 +48,7 @@ extension ClientPacket.Mojang.Java.Login {
 // MARK: Parse
 extension ClientPacket.Mojang.Java.Login.EncryptionRequest {
     @inlinable
-    public static func parse(_ packet: any GeneralPacket) throws -> Self {
+    public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
         let serverID = try packet.readString()
         let publicKeyLength:VariableIntegerJava = try packet.readVarInt()
         let publicKey = try packet.readByteArray(bytes: publicKeyLength.valueInt)

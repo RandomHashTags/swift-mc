@@ -16,9 +16,9 @@ public extension ServerPacket.Mojang.Java.Play {
     ///
     /// If any of the painting packets other than the “progress” ones are sent out of order (for example, a start, some slots, then another start; or a left-click in the middle) the painting status will be reset.
     struct ClickContainer: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.clickContainer
+        public static let id = ServerPacket.Mojang.Java.Play.clickContainer
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let windowID:UInt8 = try packet.readUnsignedByte()
             let stateID:VariableIntegerJava = try packet.readVarInt()
             let slot:Int16 = try packet.readShort()

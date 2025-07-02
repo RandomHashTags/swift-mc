@@ -6,7 +6,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SoundEffect: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.soundEffect
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let soundID:VariableIntegerJava = try packet.readVarInt()
             var soundName:NamespaceJava? = nil
             var hasFixedRange:Bool? = nil

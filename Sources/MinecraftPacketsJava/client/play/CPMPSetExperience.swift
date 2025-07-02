@@ -4,7 +4,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetExperience: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setExperience
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let experienceBar:Float = try packet.readFloat()
             let totalExperience:VariableIntegerJava = try packet.readVarInt()
             let level:VariableIntegerJava = try packet.readVarInt()

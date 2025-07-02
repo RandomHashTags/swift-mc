@@ -7,7 +7,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetHealth: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setHealth
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let health:Float = try packet.readFloat()
             let food:VariableIntegerJava = try packet.readVarInt()
             let food_saturation:Float = try packet.readFloat()

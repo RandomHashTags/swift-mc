@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct PlaceGhostRecipe: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.placeGhostRecipe
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let windowID:Int8 = try packet.readByte()
             let recipe:NamespaceJava = try packet.readIdentifier()
             return Self(windowID: windowID, recipe: recipe)

@@ -5,7 +5,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct SetHeldItem: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.setHeldItem
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let slot:Int8 = try packet.readByte()
             return Self(slot: slot)
         }

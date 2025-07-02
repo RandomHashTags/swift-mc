@@ -2,9 +2,9 @@ import MinecraftPackets
 
 public extension ServerPacket.Mojang.Java.Play {
     struct ClientCommand: ServerPacketMojangJavaPlayProtocol {
-        public static let id:ServerPacket.Mojang.Java.Play = ServerPacket.Mojang.Java.Play.clientCommand
+        public static let id = ServerPacket.Mojang.Java.Play.clientCommand
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let action:ClientCommand.Action = try packet.readEnum()
             return Self(action: action)
         }

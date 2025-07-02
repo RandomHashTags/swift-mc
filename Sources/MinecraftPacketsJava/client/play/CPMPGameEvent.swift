@@ -4,7 +4,7 @@ public extension ClientPacket.Mojang.Java.Play {
     struct GameEvent: ClientPacket.Mojang.Java.PlayProtocol {
         public static let id = ClientPacket.Mojang.Java.Play.gameEvent
         
-        public static func parse(_ packet: any GeneralPacket) throws -> Self {
+        public static func parse(_ packet: inout GeneralPacketMojang) throws -> Self {
             let event:GameEvent.Event = try packet.readEnum()
             let value:Float = try packet.readFloat()
             return Self(event: event, value: value)

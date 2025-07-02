@@ -60,7 +60,7 @@ public extension ClientPacket.Mojang.Java.Play {
                 messageSignaturePresent
             ]
             if messageSignaturePresent {
-                let messageSignatureBytes:[UInt8] = try unwrapOptional(messageSignatureBytes, key_path: \Self.messageSignatureBytes, precondition: "messageSignaturePresent == true")
+                let messageSignatureBytes = try unwrapOptional(messageSignatureBytes, key: \Self.messageSignatureBytes, precondition: "messageSignaturePresent == true")
                 array.append(contentsOf: messageSignatureBytes)
             }
             
@@ -73,17 +73,17 @@ public extension ClientPacket.Mojang.Java.Play {
             ]
             secondary.append(contentsOf: messageIDs)
             if totalPreviousMessages.value == -1 {
-                let signatures:[Int8] = try unwrapOptional(signatures, key_path: \Self.signatures, precondition: "totalPreviousMessages.value == -1")
+                let signatures = try unwrapOptional(signatures, key: \Self.signatures, precondition: "totalPreviousMessages.value == -1")
                 secondary.append(contentsOf: signatures)
             }
             secondary.append(unsignedContentPresent)
             if unsignedContentPresent {
-                let unsignedContent:ChatPacketMojang = try unwrapOptional(unsignedContent, key_path: \Self.unsignedContent, precondition: "unsignedContentPresent == true")
+                let unsignedContent = try unwrapOptional(unsignedContent, key: \Self.unsignedContent, precondition: "unsignedContentPresent == true")
                 secondary.append(unsignedContent)
             }
             secondary.append(filterType)
             if filterType == .partially_filtered {
-                let filterTypeBits:Data = try unwrapOptional(filterTypeBits, key_path: \Self.filterTypeBits, precondition: "filterType == .partially_filtered")
+                let filterTypeBits = try unwrapOptional(filterTypeBits, key: \Self.filterTypeBits, precondition: "filterType == .partially_filtered")
                 secondary.append(filterTypeBits)
             }
             array.append(contentsOf: secondary)
@@ -94,7 +94,7 @@ public extension ClientPacket.Mojang.Java.Play {
                 networkTargetNamePresent
             ]
             if networkTargetNamePresent {
-                let networkTargetName:ChatPacketMojang = try unwrapOptional(networkTargetName, key_path: \Self.networkTargetName, precondition: "networkTargetNamePresent == true")
+                let networkTargetName = try unwrapOptional(networkTargetName, key: \Self.networkTargetName, precondition: "networkTargetNamePresent == true")
                 secondary.append(networkTargetName)
             }
             array.append(contentsOf: secondary)

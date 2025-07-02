@@ -6,7 +6,7 @@ import Foundation
 #endif
 import MinecraftPackets
 
-public protocol PacketEncodableMojangJava: PacketEncodable {
+public protocol PacketEncodableMojangJava: PacketEncodable, ~Copyable {
 }
 
 extension PacketEncodableMojangJava where Self: RawRepresentable, RawValue: PacketEncodableMojangJava {
@@ -20,7 +20,7 @@ extension FixedWidthInteger {
     @inlinable
     public func packetBytes() throws -> [UInt8] {
         var array:[UInt8] = []
-        var value:Self = self
+        var value = self
         let segmentBits = Self(GeneralPacketMojang.segmentBits)
         while true {
             if (value & ~segmentBits) == 0 {
@@ -38,7 +38,7 @@ extension Int: PacketEncodableMojangJava {}
 extension Int8: PacketEncodableMojangJava {}
 extension Int16: PacketEncodableMojangJava, PacketDecodableMojangJava {
     @inlinable
-    public static func decode<T: GeneralPacket>(from packet: T) throws -> Int16 {
+    public static func decode<T: GeneralPacket>(from packet: inout T) throws -> Int16 {
         return try packet.readShort()
     }
 }

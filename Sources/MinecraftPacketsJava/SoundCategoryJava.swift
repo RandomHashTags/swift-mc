@@ -1,3 +1,4 @@
+
 import MinecraftPackets
 
 public enum SoundCategoryJava: Int, SoundCategory, PacketEncodableMojangJava {
