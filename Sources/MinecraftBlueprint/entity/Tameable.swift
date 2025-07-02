@@ -5,7 +5,7 @@ import FoundationEssentials
 import Foundation
 #endif
 
-public protocol Tameable: Animal, ~Copyable {
+public protocol Tameable: AnimalProtocol, ~Copyable {
     var owner: UUID? { get }
     var isTamed: Bool { get }
 }

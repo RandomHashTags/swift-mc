@@ -1,8 +1,8 @@
 
-public protocol Damageable: Entity, ~Copyable {
+public protocol Damageable: EntityProtocol, ~Copyable {
     var health: Double { get }
         
-    mutating func tickDamageable(_ server: any Server)
+    mutating func tickDamageable(_ server: any ServerProtocol)
     
-    mutating func damage(cause: any DamageCause, amount: Double) -> DamageResult
+    mutating func damage(cause: any DamageCauseProtocol, amount: Double) -> DamageResult
 }

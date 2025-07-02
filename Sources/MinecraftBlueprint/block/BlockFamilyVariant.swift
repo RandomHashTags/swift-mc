@@ -1,3 +1,0 @@
-
-public protocol BlockFamilyVariant: MinecraftIdentifiable {
-}

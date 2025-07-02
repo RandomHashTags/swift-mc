@@ -1,0 +1,3 @@
+
+public protocol WolfVariantProtocol: MinecraftIdentifiable {
+}

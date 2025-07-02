@@ -1,6 +1,6 @@
 
 public struct BlockPopulator {
-    static func populate(chunk: any Chunk) {
+    static func populate(chunk: any ChunkProtocol) {
         /*let world = chunk.world
         let world_name = world.name
         let seed:UInt64 = UInt64(world.seed)

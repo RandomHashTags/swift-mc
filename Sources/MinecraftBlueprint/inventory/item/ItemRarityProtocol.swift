@@ -1,0 +1,3 @@
+
+public protocol ItemRarityProtocol: MinecraftIdentifiable {
+}

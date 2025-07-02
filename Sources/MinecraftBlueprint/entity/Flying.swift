@@ -1,4 +1,4 @@
 
 /// Indicates the Mob is always flying.
-public protocol Flying: Flyable, Mob, ~Copyable {
+public protocol Flying: Flyable, MobProtocol, ~Copyable {
 }

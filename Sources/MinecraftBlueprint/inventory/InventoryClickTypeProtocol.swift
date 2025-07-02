@@ -1,0 +1,3 @@
+
+public protocol InventoryClickTypeProtocol: MinecraftIdentifiable {
+}

@@ -1,5 +1,5 @@
 
-public enum ValueType {
+public enum ValueType: Sendable {
     case string(String)
     case char(Int8)
     case charUnsigned(UInt8)
@@ -16,6 +16,6 @@ public enum ValueType {
     
     case boolean(Bool)
     
-    case location((any Location)?)
-    case itemStack((any ItemStack)?)
+    case location((any LocationProtocol)?)
+    case itemStack((any ItemStackProtocol)?)
 }

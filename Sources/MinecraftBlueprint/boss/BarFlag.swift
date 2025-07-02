@@ -1,3 +1,0 @@
-
-public protocol BarFlag: MinecraftIdentifiable {
-}

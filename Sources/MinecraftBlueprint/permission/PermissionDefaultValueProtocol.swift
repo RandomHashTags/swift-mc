@@ -1,0 +1,3 @@
+
+public protocol PermissionDefaultValueProtocol: MinecraftIdentifiable {
+}

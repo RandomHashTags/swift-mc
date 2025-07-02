@@ -1,3 +1,0 @@
-
-public protocol EventType: MinecraftIdentifiable {
-}

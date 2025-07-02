@@ -1,3 +1,0 @@
-
-public protocol WardenAngerLevel: MinecraftIdentifiable {
-}

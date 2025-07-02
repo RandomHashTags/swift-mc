@@ -1,4 +1,4 @@
 
-public protocol Merchantable: Breedable, InventoryHolder, Merchant, NPC, ~Copyable {
-    var inventory: any Inventory { get }
+public protocol Merchantable: Breedable, InventoryHolderProtocol, MerchantProtocol, NPCProtocol, ~Copyable {
+    var inventory: any InventoryProtocol { get }
 }
