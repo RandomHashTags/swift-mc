@@ -4,8 +4,8 @@ import FoundationEssentials
 #elseif canImport(Foundation)
 import Foundation
 #endif
-import Logging
-import Socket
+//import Logging
+//import Socket
 import SwiftASN1
 
 /*

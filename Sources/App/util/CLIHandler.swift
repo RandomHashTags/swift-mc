@@ -1,6 +1,6 @@
 
 import MinecraftBlueprint
-import Logging
+//import Logging
 
 enum CLIHandler {
     static func listen() {
