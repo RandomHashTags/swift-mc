@@ -9,6 +9,9 @@ public struct ItemStack: Sendable {
 
     /// The `Material` of this item.
     public var material:Material
+
+    /// The item's current meta.
+    public var meta:ItemMeta?
 }
 
 // MARK: Enchantments
