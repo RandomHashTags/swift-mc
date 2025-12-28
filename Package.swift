@@ -46,6 +46,10 @@ let package = Package(
         ),
 
         .target(
+            name: "API"
+        ),
+
+        .target(
             name: "MinecraftUtilities",
             dependencies: [
                 "MinecraftMacros"
